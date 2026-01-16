@@ -3,7 +3,6 @@ import { useState, useEffect } from "react";
 import dynamic from "next/dynamic";
 import "leaflet/dist/leaflet.css";
 
-// Importação dinâmica protegida para evitar o erro de 'appendChild'
 const MapContainer = dynamic(() => import("react-leaflet").then((mod) => mod.MapContainer), { ssr: false });
 const TileLayer = dynamic(() => import("react-leaflet").then((mod) => mod.TileLayer), { ssr: false });
 const Circle = dynamic(() => import("react-leaflet").then((mod) => mod.Circle), { ssr: false });
@@ -25,6 +24,10 @@ export default function DashboardPage() {
     setIsMounted(true);
   }, []);
 
+  if (!isMounted) {
+    return <div className="min-h-screen bg-gray-50 flex items-center justify-center">Carregando Dashboard...</div>;
+  }
+
   return (
     <div className="flex min-h-screen bg-gray-50 font-sans text-gray-900">
       <aside className="w-64 bg-gray-900 text-white p-6 hidden md:flex flex-col border-r border-gray-800">
@@ -44,7 +47,6 @@ export default function DashboardPage() {
         </header>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
-          {/* Card Acadêmico */}
           <div className="bg-white p-5 rounded-2xl shadow-sm border border-gray-100 border-t-4 border-t-blue-500">
             <span className="text-xs font-bold text-gray-400 uppercase">Acadêmico</span>
             <div className="text-3xl font-bold mt-2">94.2%</div>
@@ -59,7 +61,6 @@ export default function DashboardPage() {
             </div>
           </div>
 
-          {/* Card Financeiro */}
           <div className="bg-white p-5 rounded-2xl shadow-sm border border-gray-100 border-t-4 border-t-emerald-500">
             <span className="text-xs font-bold text-gray-400 uppercase">Financeiro</span>
             <div className="text-3xl font-bold mt-2">12.5%</div>
@@ -74,26 +75,24 @@ export default function DashboardPage() {
             </div>
           </div>
 
-          {/* Card Clientes Ajustado */}
           <div className="bg-white p-5 rounded-2xl shadow-sm border border-gray-100 border-t-4 border-t-orange-500">
             <span className="text-xs font-bold text-gray-400 uppercase">Clientes</span>
-            <div className="text-3xl font-bold mt-2 text-gray-900">450</div>
+            <div className="text-3xl font-bold mt-2">450</div>
             <span className="text-xs text-gray-500">Total de Alunos Ativos</span>
-            <div className="mt-4 pt-4 border-t border-gray-50 text-gray-900">
+            <div className="mt-4 pt-4 border-t border-gray-50">
               <div className="flex justify-between text-[11px] mb-1">
-                <span className="text-gray-500 font-medium">% Bolsistas (100%)</span>
+                <span className="text-gray-500 font-medium">Bolsistas (100%)</span>
                 <span className="text-orange-600 font-bold">18%</span>
               </div>
-              <div className="w-full bg-gray-100 h-1.5 rounded-full overflow-hidden">
+              <div className="w-full bg-gray-100 h-1.5 rounded-full overflow-hidden text-orange-600">
                 <div className="bg-orange-500 h-full w-[18%]"></div>
               </div>
             </div>
           </div>
 
-          {/* Card Operacional */}
           <div className="bg-white p-5 rounded-2xl shadow-sm border border-gray-100 border-t-4 border-t-purple-500">
             <span className="text-xs font-bold text-gray-400 uppercase">Operacional</span>
-            <div className="text-3xl font-bold mt-2 font-bold text-gray-900">24</div>
+            <div className="text-3xl font-bold mt-2">24</div>
             <div className="mt-4 pt-4 border-t border-gray-50">
                <div className="flex items-center gap-2">
                  <div className="flex-1 bg-gray-100 h-1.5 rounded-full overflow-hidden">
@@ -105,20 +104,18 @@ export default function DashboardPage() {
           </div>
         </div>
 
-        <div className="bg-white p-6 rounded-3xl shadow-sm border border-gray-100 h-[600px] flex flex-col">
+        <div className="bg-white p-6 rounded-3xl shadow-sm border border-gray-100 h-[600px] flex flex-col relative z-0">
           <div className="mb-6">
             <h3 className="text-xl font-bold text-gray-900">Geolocalização de Alunos</h3>
           </div>
-          <div className="flex-1 rounded-2xl overflow-hidden border border-gray-200 z-0">
-            {isMounted && (
-              <MapContainer center={schoolPosition} zoom={15} style={{ height: "100%", width: "100%" }}>
-                <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-                <Circle center={schoolPosition} pathOptions={{ color: '#2563eb', fillColor: '#2563eb', fillOpacity: 0.3 }} radius={200} />
-                {students.map((student) => (
-                  <Circle key={student.id} center={student.pos} pathOptions={{ color: '#ef4444', fillColor: '#ef4444', fillOpacity: 0.6 }} radius={12} />
-                ))}
-              </MapContainer>
-            )}
+          <div className="flex-1 rounded-2xl overflow-hidden border border-gray-200">
+            <MapContainer center={schoolPosition} zoom={15} style={{ height: "100%", width: "100%" }}>
+              <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+              <Circle center={schoolPosition} pathOptions={{ color: '#2563eb', fillColor: '#2563eb', fillOpacity: 0.3 }} radius={200} />
+              {students.map((student) => (
+                <Circle key={student.id} center={student.pos} pathOptions={{ color: '#ef4444', fillColor: '#ef4444', fillOpacity: 0.6 }} radius={12} />
+              ))}
+            </MapContainer>
           </div>
         </div>
       </main>
