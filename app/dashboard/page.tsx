@@ -3,20 +3,21 @@ import { useState, useEffect } from "react";
 import dynamic from "next/dynamic";
 import "leaflet/dist/leaflet.css";
 
-// Importação dinâmica com bypass de tipagem para a Vercel não reclamar
-const MapContainer = dynamic(() => import("react-leaflet").then((mod) => mod.MapContainer as any), { ssr: false });
-const TileLayer = dynamic(() => import("react-leaflet").then((mod) => mod.TileLayer as any), { ssr: false });
-const Circle = dynamic(() => import("react-leaflet").then((mod) => mod.Circle as any), { ssr: false });
+// 1. Criamos um componente de carregamento simples
+const MapPlaceholder = () => (
+  <div className="flex items-center justify-center h-full w-full bg-gray-100 rounded-2xl">
+    <p className="text-gray-400 animate-pulse">Carregando mapa geográfico...</p>
+  </div>
+);
 
-const schoolPosition: [number, number] = [-22.9519, -43.1855];
-
-const students = Array.from({ length: 100 }, (_, i) => ({
-  id: i,
-  pos: [
-    schoolPosition[0] + (Math.random() - 0.5) * 0.02,
-    schoolPosition[1] + (Math.random() - 0.5) * 0.02,
-  ] as [number, number],
-}));
+// 2. Importamos o mapa SEM tipagem complexa para não travar o build da Vercel
+const MapWithNoSSR = dynamic(
+  () => import("./map-component"), // Vamos criar este arquivo abaixo
+  { 
+    ssr: false,
+    loading: () => <MapPlaceholder />
+  }
+);
 
 export default function DashboardPage() {
   const [isMounted, setIsMounted] = useState(false);
@@ -24,16 +25,6 @@ export default function DashboardPage() {
   useEffect(() => {
     setIsMounted(true);
   }, []);
-
-  // Enquanto não estiver montado no navegador, mostramos um carregando simples
-  // Isso evita o erro de 'appendChild' no servidor e no local
-  if (!isMounted) {
-    return (
-      <div className="flex min-h-screen bg-gray-50 items-center justify-center">
-        <p className="text-gray-500 font-medium animate-pulse">Carregando Ensitec BI...</p>
-      </div>
-    );
-  }
 
   return (
     <div className="flex min-h-screen bg-gray-50 font-sans text-gray-900">
@@ -55,48 +46,36 @@ export default function DashboardPage() {
           <p className="text-gray-500">Monitoramento estratégico Ensitec</p>
         </header>
 
-        {/* INDICADORES */}
+        {/* INDICADORES (Cards) */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
-          {/* Acadêmico */}
+          {/* Card Acadêmico */}
           <div className="bg-white p-5 rounded-2xl shadow-sm border border-gray-100 border-t-4 border-t-blue-500">
             <span className="text-xs font-bold text-gray-400 uppercase">Acadêmico</span>
             <div className="text-3xl font-bold mt-2">94.2%</div>
             <div className="mt-4 pt-4 border-t border-gray-50 text-[11px]">
-              <div className="flex justify-between mb-1">
-                <span className="text-gray-500 font-medium">Média Global</span>
-                <span className="text-blue-600 font-bold">7.8</span>
-              </div>
+              <div className="flex justify-between mb-1 text-gray-500"><span>Média Global</span><span className="text-blue-600 font-bold">7.8</span></div>
               <div className="w-full bg-gray-100 h-1.5 rounded-full overflow-hidden"><div className="bg-blue-500 h-full w-[78%]"></div></div>
             </div>
           </div>
-
-          {/* Financeiro */}
+          {/* Card Financeiro */}
           <div className="bg-white p-5 rounded-2xl shadow-sm border border-gray-100 border-t-4 border-t-emerald-500">
             <span className="text-xs font-bold text-gray-400 uppercase">Financeiro</span>
             <div className="text-3xl font-bold mt-2">12.5%</div>
             <div className="mt-4 pt-4 border-t border-gray-50 text-[11px]">
-              <div className="flex justify-between mb-1">
-                <span className="text-gray-500 font-medium">Orçamento Gasto</span>
-                <span className="text-emerald-600 font-bold">64%</span>
-              </div>
+              <div className="flex justify-between mb-1 text-gray-500"><span>Orçamento Gasto</span><span className="text-emerald-600 font-bold">64%</span></div>
               <div className="w-full bg-gray-100 h-1.5 rounded-full overflow-hidden"><div className="bg-emerald-500 h-full w-[64%]"></div></div>
             </div>
           </div>
-
-          {/* Clientes */}
+          {/* Card Clientes */}
           <div className="bg-white p-5 rounded-2xl shadow-sm border border-gray-100 border-t-4 border-t-orange-500">
             <span className="text-xs font-bold text-gray-400 uppercase">Clientes</span>
             <div className="text-3xl font-bold mt-2">450</div>
             <div className="mt-4 pt-4 border-t border-gray-50 text-[11px]">
-              <div className="flex justify-between mb-1">
-                <span className="text-gray-500 font-medium">% Bolsistas</span>
-                <span className="text-orange-600 font-bold">18%</span>
-              </div>
+              <div className="flex justify-between mb-1 text-gray-500"><span>% Bolsistas</span><span className="text-orange-600 font-bold">18%</span></div>
               <div className="w-full bg-gray-100 h-1.5 rounded-full overflow-hidden"><div className="bg-orange-500 h-full w-[18%]"></div></div>
             </div>
           </div>
-
-          {/* Operacional */}
+          {/* Card Operacional */}
           <div className="bg-white p-5 rounded-2xl shadow-sm border border-gray-100 border-t-4 border-t-purple-500">
             <span className="text-xs font-bold text-gray-400 uppercase">Operacional</span>
             <div className="text-3xl font-bold mt-2">24</div>
@@ -107,20 +86,14 @@ export default function DashboardPage() {
           </div>
         </div>
 
-        {/* MAPA */}
+        {/* ÁREA DO MAPA */}
         <div className="bg-white p-6 rounded-3xl shadow-sm border border-gray-100 h-[600px] flex flex-col">
-          <div className="mb-6 flex justify-between items-center">
-            <h3 className="text-xl font-bold text-gray-900">Geolocalização de Alunos</h3>
-            <span className="text-xs font-bold bg-blue-50 text-blue-600 px-3 py-1 rounded-full">Botafogo, RJ</span>
+          <div className="mb-6 flex justify-between items-center text-gray-900">
+            <h3 className="text-xl font-bold">Geolocalização de Alunos</h3>
+            <span className="text-xs font-bold bg-blue-50 text-blue-600 px-3 py-1 rounded-full">Rio de Janeiro, RJ</span>
           </div>
           <div className="flex-1 rounded-2xl overflow-hidden border border-gray-200">
-            <MapContainer center={schoolPosition} zoom={15} style={{ height: "100%", width: "100%" }}>
-              <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-              <Circle center={schoolPosition} pathOptions={{ color: '#2563eb', fillColor: '#2563eb', fillOpacity: 0.3 }} radius={200} />
-              {students.map((student) => (
-                <Circle key={student.id} center={student.pos} pathOptions={{ color: '#ef4444', fillColor: '#ef4444', fillOpacity: 0.6 }} radius={12} />
-              ))}
-            </MapContainer>
+            {isMounted && <MapWithNoSSR />}
           </div>
         </div>
       </main>
