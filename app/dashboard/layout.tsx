@@ -68,8 +68,11 @@ export default function DashboardLayout({
                         )}
                     </div>
                     <Link
-                        href="#"
-                        className="block w-full text-left py-2.5 px-4 text-gray-400 hover:text-white hover:bg-gray-800 transition"
+                        href="/dashboard/financeiro"
+                        className={`block w-full text-left py-2.5 px-4 rounded-lg transition ${isActive("/dashboard/financeiro")
+                            ? "bg-blue-600 text-white shadow-lg"
+                            : "text-gray-400 hover:text-white hover:bg-gray-800"
+                            }`}
                     >
                         Financeiro
                     </Link>
