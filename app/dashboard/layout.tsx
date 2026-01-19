@@ -20,27 +20,28 @@ export default function DashboardLayout({
         <nav className="flex-1 space-y-2 text-sm font-medium">
           <Link
             href="/dashboard"
-            className={`block w-full text-left py-2.5 px-4 rounded-lg transition ${
-              isActive("/dashboard")
+            className={`block w-full text-left py-2.5 px-4 rounded-lg transition ${isActive("/dashboard")
                 ? "bg-blue-600 text-white shadow-lg"
                 : "text-gray-400 hover:text-white hover:bg-gray-800"
-            }`}
+              }`}
           >
             Visão Geral
           </Link>
           <Link
             href="/dashboard/academico"
-            className={`block w-full text-left py-2.5 px-4 rounded-lg transition ${
-              isActive("/dashboard/academico")
+            className={`block w-full text-left py-2.5 px-4 rounded-lg transition ${isActive("/dashboard/academico")
                 ? "bg-blue-600 text-white shadow-lg"
                 : "text-gray-400 hover:text-white hover:bg-gray-800"
-            }`}
+              }`}
           >
             Acadêmico
           </Link>
           <Link
-            href="#"
-            className="block w-full text-left py-2.5 px-4 text-gray-400 hover:text-white hover:bg-gray-800 transition"
+            href="/dashboard/financeiro"
+            className={`block w-full text-left py-2.5 px-4 rounded-lg transition ${isActive("/dashboard/financeiro")
+                ? "bg-blue-600 text-white shadow-lg"
+                : "text-gray-400 hover:text-white hover:bg-gray-800"
+              }`}
           >
             Financeiro
           </Link>
