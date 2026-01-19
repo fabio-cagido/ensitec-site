@@ -1,7 +1,7 @@
 "use client";
 
 import { useSearchParams, useRouter } from "next/navigation";
-import { useState, useMemo, useEffect } from "react";
+import { useState, useMemo, useEffect, Suspense } from "react";
 import Link from "next/link";
 import { ArrowLeft, BarChart2, Calendar, Download, TrendingUp } from "lucide-react";
 
@@ -27,7 +27,7 @@ const KPI_MAP: Record<string, { label: string; data: MetricData[]; unit: string,
     "eficiencia": { label: "Eficiência Operacional", data: MOCK_EFFICIENCY, unit: "d", color: "#14b8a6" },
 };
 
-export default function HistoricoPage() {
+function HistoricoContent() {
     const searchParams = useSearchParams();
     const router = useRouter();
 
@@ -207,5 +207,13 @@ export default function HistoricoPage() {
                 </div>
             </div>
         </div>
+    );
+}
+
+export default function HistoricoPage() {
+    return (
+        <Suspense fallback={<div className="p-8 text-center text-gray-500">Carregando histórico...</div>}>
+            <HistoricoContent />
+        </Suspense>
     );
 }

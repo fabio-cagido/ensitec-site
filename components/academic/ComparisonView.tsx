@@ -1,14 +1,7 @@
 "use client";
 
 import { useMemo } from "react";
-
-type DataPoint = {
-    id: string;
-    label: string;
-    value: number;
-    trend?: number;
-    color?: string;
-};
+import { DataPoint } from "@/app/lib/mock-data";
 
 type ComparisonViewProps = {
     title: string;
