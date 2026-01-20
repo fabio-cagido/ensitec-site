@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { LogOut } from "lucide-react";
 
 export default function DashboardLayout({
     children,
@@ -15,9 +16,9 @@ export default function DashboardLayout({
     return (
         <div className="flex min-h-screen bg-gray-50 font-sans text-gray-900">
             {/* SIDEBAR */}
-            <aside className="w-64 bg-gray-900 text-white p-6 hidden md:flex flex-col border-r border-gray-800 fixed h-full">
-                <h2 className="text-xl font-bold mb-10 text-blue-400">ENSITEC BI</h2>
-                <nav className="flex-1 space-y-2 text-sm font-medium">
+            <aside className="w-64 bg-gray-900 text-white p-6 pb-24 hidden md:flex flex-col border-r border-gray-800 fixed h-full">
+                <h2 className="text-xl font-bold mb-6 text-blue-400">ENSITEC BI</h2>
+                <nav className="flex-1 space-y-2 text-sm font-medium overflow-y-auto pr-2 custom-scrollbar scrollbar-thin scrollbar-thumb-gray-800 scrollbar-track-transparent">
                     <Link
                         href="/dashboard"
                         className={`block w-full text-left py-2.5 px-4 rounded-lg transition ${isActive("/dashboard")
@@ -127,6 +128,27 @@ export default function DashboardLayout({
                         Operacional
                     </Link>
                 </nav>
+
+                {/* PERFIL & LOGOUT */}
+                <div className="border-t border-gray-800 pt-6 mt-6 w-full">
+                    <Link
+                        href="/login"
+                        className="flex items-center justify-center lg:justify-start gap-3 text-gray-400 hover:text-red-400 hover:bg-gray-800 px-4 py-3 rounded-xl transition-all text-sm font-medium w-full group mb-4"
+                    >
+                        <LogOut className="w-5 h-5 group-hover:text-red-400" />
+                        <span className="hidden lg:block">Sair da Conta</span>
+                    </Link>
+
+                    <div className="flex items-center justify-center lg:justify-start gap-3 px-2 py-2 rounded-xl hover:bg-gray-800/50 transition-colors cursor-default">
+                        <div className="w-10 h-10 min-w-[2.5rem] rounded-full bg-blue-600 flex items-center justify-center text-white font-bold text-sm shadow-md ring-2 ring-gray-800">
+                            AD
+                        </div>
+                        <div className="hidden lg:block flex-1 min-w-0">
+                            <p className="text-sm font-bold text-white truncate">Administrador</p>
+                            <p className="text-xs text-gray-400 truncate">Diretor Pedagógico</p>
+                        </div>
+                    </div>
+                </div>
             </aside>
 
             {/* ÁREA PRINCIPAL */}
