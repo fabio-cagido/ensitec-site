@@ -38,7 +38,9 @@ const KPI_DATA = {
     nps: 72,
     churnRate: 1.2, // %
     healthScore: 8.8, // 0-10
-    siblingsRate: 18.5 // % families with >1 student
+    siblingsRate: 18.5, // % families with >1 student
+    enemScore: 685, // Média Geral
+    enemApprovals: 82 // % Aprovação
 };
 
 const OCCUPANCY_BY_SEGMENT = [

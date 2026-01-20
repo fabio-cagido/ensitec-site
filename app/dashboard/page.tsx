@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react";
 import dynamic from "next/dynamic";
 import "leaflet/dist/leaflet.css";
+import Link from "next/link"; // Adicionar import Link
 
 // 1. Criamos um componente de carregamento simples
 const MapPlaceholder = () => (
@@ -34,7 +35,7 @@ export default function DashboardPage() {
       </header>
 
       {/* INDICADORES (Cards) */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 mb-10">
         {/* Card Acadêmico */}
         <div className="bg-white p-5 rounded-2xl shadow-sm border border-gray-100 border-t-4 border-t-blue-500">
           <span className="text-xs font-bold text-gray-400 uppercase">Acadêmico</span>
@@ -71,6 +72,19 @@ export default function DashboardPage() {
             <span className="text-[10px] font-bold text-purple-600">40% CRÍTICOS</span>
           </div>
         </div>
+
+
+        {/* Card ENEM (Novo) */}
+        <Link href="/dashboard/enem" className="block transition-transform hover:scale-105">
+          <div className="bg-white p-5 rounded-2xl shadow-sm border border-gray-100 border-t-4 border-t-indigo-500 h-full cursor-pointer hover:shadow-md">
+            <span className="text-xs font-bold text-gray-400 uppercase">Enem</span>
+            <div className="text-3xl font-bold mt-2">685</div>
+            <div className="mt-4 pt-4 border-t border-gray-50 text-[11px]">
+              <div className="flex justify-between mb-1 text-gray-500"><span>Aprovação Sisu</span><span className="text-indigo-600 font-bold">82%</span></div>
+              <div className="w-full bg-gray-100 h-1.5 rounded-full overflow-hidden"><div className="bg-indigo-500 h-full w-[82%]"></div></div>
+            </div>
+          </div>
+        </Link>
       </div>
 
       {/* ÁREA DO MAPA */}
