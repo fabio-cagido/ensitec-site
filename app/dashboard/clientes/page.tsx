@@ -245,7 +245,7 @@ export default function ClientDashboardPage() {
                                 <XAxis type="number" domain={[0, 100]} />
                                 <YAxis dataKey="name" type="category" width={80} />
                                 <Tooltip />
-                                <Bar dataKey="rate" name="Ocupação (%)" fill="#10b981" radius={[0, 4, 4, 0]} label={{ position: 'right', fill: '#666', formatter: (val: number) => `${val}%` }} />
+                                <Bar dataKey="rate" name="Ocupação (%)" fill="#10b981" radius={[0, 4, 4, 0]} />
                             </BarChart>
                         </ResponsiveContainer>
                     </div>
