@@ -132,8 +132,14 @@ export default function OcupacaoPage() {
         });
     }, [filters]);
 
-    // Média baseada nos filtros
-    const avgOcupacao = useMemo(() => {
+    // Média GERAL - FIXA (todas as unidades, sem filtros)
+    const avgGeral = useMemo(() => {
+        const total = MOCK_OCCUPANCY.reduce((sum, item) => sum + item.value, 0);
+        return Number((total / MOCK_OCCUPANCY.length).toFixed(1));
+    }, []);
+
+    // Média FILTRADA (baseada nos filtros aplicados)
+    const avgFiltrado = useMemo(() => {
         if (filteredData.length === 0) return 0;
         const total = filteredData.reduce((sum, item) => sum + item.value, 0);
         return Number((total / filteredData.length).toFixed(1));
@@ -186,23 +192,24 @@ export default function OcupacaoPage() {
             {/* Filtros */}
             <ClientFilterBar onFilterChange={setFilters} />
 
-            {/* Cards: Verde simples + Velocímetro */}
+            {/* Cards: Verde (fixo) + Velocímetro (dinâmico) */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                {/* Card Verde Simples */}
+                {/* Card Verde - MÉDIA GERAL FIXA */}
                 <div className="bg-gradient-to-br from-emerald-500 to-emerald-700 p-6 rounded-2xl shadow-lg text-white flex flex-col justify-center">
                     <div className="flex items-center gap-3 mb-3">
                         <div className="p-2 bg-white/20 rounded-lg">
                             <TrendingUp className="w-6 h-6" />
                         </div>
-                        <p className="text-emerald-100 text-sm font-medium">Taxa de Ocupação</p>
+                        <p className="text-emerald-100 text-sm font-medium">Ocupação Geral</p>
                     </div>
-                    <h2 className="text-5xl font-bold">{avgOcupacao}%</h2>
-                    <p className="text-emerald-100 text-sm mt-2">Capacidade utilizada</p>
+                    <h2 className="text-5xl font-bold">{avgGeral}%</h2>
+                    <p className="text-emerald-100 text-sm mt-2">Média de todas as unidades</p>
                 </div>
 
-                {/* Velocímetro */}
-                <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex items-center justify-center">
-                    <SpeedometerGauge percentage={avgOcupacao} />
+                {/* Velocímetro - MÉDIA FILTRADA */}
+                <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center justify-center">
+                    <p className="text-sm font-medium text-gray-500 mb-2">Ocupação Filtrada</p>
+                    <SpeedometerGauge percentage={avgFiltrado} />
                 </div>
             </div>
 
