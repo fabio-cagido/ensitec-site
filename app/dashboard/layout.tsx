@@ -80,6 +80,7 @@ export default function DashboardLayout({
                             <div className="ml-4 space-y-1 border-l border-gray-700 pl-2 mt-1">
                                 {[
                                     { name: "Total de Alunos", path: "/dashboard/clientes/total-alunos" },
+                                    { name: "Perfil do Aluno", path: "/dashboard/clientes/perfil-aluno" },
                                     { name: "Taxa de Ocupação", path: "/dashboard/clientes/ocupacao" },
                                     { name: "Alunos Bolsistas", path: "/dashboard/clientes/bolsistas" },
                                     { name: "Health Score", path: "/dashboard/clientes/health-score" },

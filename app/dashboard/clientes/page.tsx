@@ -235,8 +235,8 @@ export default function ClientDashboardPage() {
             {/* CHARTS SECTION */}
             < div className="grid grid-cols-1 lg:grid-cols-2 gap-8" >
 
-                {/* Ocupação por Segmento */}
-                < div className="bg-white p-6 rounded-3xl shadow-sm border border-gray-100" >
+                {/* Ocupação por Segmento - Click to see details */}
+                <Link href="/dashboard/clientes/ocupacao" className="bg-white p-6 rounded-3xl shadow-sm border border-gray-100 hover:shadow-md hover:border-emerald-200 transition-all cursor-pointer block">
                     <h3 className="font-bold text-gray-900 mb-6">Taxa de Ocupação por Segmento</h3>
                     <div className="h-72 w-full">
                         <ResponsiveContainer width="100%" height="100%">
@@ -249,13 +249,14 @@ export default function ClientDashboardPage() {
                             </BarChart>
                         </ResponsiveContainer>
                     </div>
-                </div >
+                    <p className="text-xs text-emerald-500 mt-2 text-center">Clique para ver detalhes →</p>
+                </Link>
 
-                {/* Geographic Distribution (New) */}
-                < div className="bg-white p-6 rounded-3xl shadow-sm border border-gray-100" >
+                {/* Geographic Distribution - Click to see details */}
+                <Link href="/dashboard/clientes/perfil-aluno" className="bg-white p-6 rounded-3xl shadow-sm border border-gray-100 hover:shadow-md hover:border-blue-200 transition-all cursor-pointer block">
                     <div className="flex justify-between items-center mb-6">
                         <h3 className="font-bold text-gray-900">Distribuição Geográfica (Bairros)</h3>
-                        <MapPin className="w-5 h-5 text-gray-400" />
+                        <MapPin className="w-5 h-5 text-blue-500" />
                     </div>
                     <div className="h-72 w-full">
                         <ResponsiveContainer width="100%" height="100%">
@@ -268,10 +269,11 @@ export default function ClientDashboardPage() {
                             </BarChart>
                         </ResponsiveContainer>
                     </div>
-                </div >
+                    <p className="text-xs text-blue-500 mt-2 text-center">Clique para ver detalhes →</p>
+                </Link>
 
-                {/* Perfil: Gênero */}
-                < div className="bg-white p-6 rounded-3xl shadow-sm border border-gray-100" >
+                {/* Perfil: Gênero - Click to see details */}
+                <Link href="/dashboard/clientes/perfil-aluno" className="bg-white p-6 rounded-3xl shadow-sm border border-gray-100 hover:shadow-md hover:border-blue-200 transition-all cursor-pointer block">
                     <h3 className="font-bold text-gray-900 mb-6">Perfil: Gênero</h3>
                     <div className="h-72 w-full flex justify-center">
                         <ResponsiveContainer width="100%" height="100%">
@@ -294,10 +296,11 @@ export default function ClientDashboardPage() {
                             </PieChart>
                         </ResponsiveContainer>
                     </div>
-                </div >
+                    <p className="text-xs text-blue-500 mt-2 text-center">Clique para ver detalhes →</p>
+                </Link>
 
-                {/* Perfil: Cor/Raça */}
-                < div className="bg-white p-6 rounded-3xl shadow-sm border border-gray-100" >
+                {/* Perfil: Cor/Raça - Click to see details */}
+                <Link href="/dashboard/clientes/perfil-aluno" className="bg-white p-6 rounded-3xl shadow-sm border border-gray-100 hover:shadow-md hover:border-blue-200 transition-all cursor-pointer block">
                     <h3 className="font-bold text-gray-900 mb-6">Perfil: Cor/Raça</h3>
                     <div className="h-72 w-full">
                         <ResponsiveContainer width="100%" height="100%">
@@ -310,10 +313,11 @@ export default function ClientDashboardPage() {
                             </BarChart>
                         </ResponsiveContainer>
                     </div>
-                </div >
+                    <p className="text-xs text-blue-500 mt-2 text-center">Clique para ver detalhes →</p>
+                </Link>
 
-                {/* Perfil: Renda Familiar */}
-                < div className="bg-white p-6 rounded-3xl shadow-sm border border-gray-100" >
+                {/* Perfil: Renda Familiar - Click to see details */}
+                <Link href="/dashboard/clientes/perfil-aluno" className="bg-white p-6 rounded-3xl shadow-sm border border-gray-100 hover:shadow-md hover:border-blue-200 transition-all cursor-pointer block">
                     <h3 className="font-bold text-gray-900 mb-6">Perfil Socioeconômico (Renda)</h3>
                     <div className="h-72 w-full">
                         <ResponsiveContainer width="100%" height="100%">
@@ -326,10 +330,11 @@ export default function ClientDashboardPage() {
                             </BarChart>
                         </ResponsiveContainer>
                     </div>
-                </div >
+                    <p className="text-xs text-blue-500 mt-2 text-center">Clique para ver detalhes →</p>
+                </Link>
 
-                {/* Perfil: Faixa Etária */}
-                < div className="bg-white p-6 rounded-3xl shadow-sm border border-gray-100 lg:col-span-1" >
+                {/* Perfil: Faixa Etária - Click to see details */}
+                <Link href="/dashboard/clientes/perfil-aluno" className="bg-white p-6 rounded-3xl shadow-sm border border-gray-100 hover:shadow-md hover:border-blue-200 transition-all cursor-pointer block lg:col-span-1">
                     <h3 className="font-bold text-gray-900 mb-6">Distribuição Etária</h3>
                     <div className="h-72 w-full">
                         <ResponsiveContainer width="100%" height="100%">
@@ -342,9 +347,11 @@ export default function ClientDashboardPage() {
                             </BarChart>
                         </ResponsiveContainer>
                     </div>
-                </div >
+                    <p className="text-xs text-blue-500 mt-2 text-center">Clique para ver detalhes →</p>
+                </Link>
 
-            </div >
-        </div >
+            </div>
+        </div>
     );
 }
+
