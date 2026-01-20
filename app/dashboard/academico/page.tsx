@@ -73,38 +73,7 @@ export default function AcademicoPage() {
                     </div>
                 </Link>
 
-                {/* 5. Taxa de Evasão */}
-                <Link href="/dashboard/academico/evasao" className="block transition-transform hover:scale-105">
-                    <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex flex-col justify-between h-full cursor-pointer hover:shadow-md transition-shadow">
-                        <div className="flex justify-between items-start">
-                            <div>
-                                <p className="text-sm font-medium text-gray-500">Taxa de Evasão</p>
-                                <h3 className="text-3xl font-bold text-gray-900 mt-2">1.2%</h3>
-                            </div>
-                            <span className="bg-emerald-50 text-emerald-600 text-xs px-2 py-1 rounded-full font-bold">Baixa</span>
-                        </div>
-                        <p className="text-xs text-gray-400 mt-4">Dentro da meta esperada (&lt; 2%)</p>
-                    </div>
-                </Link>
 
-                {/* 6. NPS (Satisfação) */}
-                <Link href="/dashboard/academico/nps" className="block transition-transform hover:scale-105">
-                    <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex flex-col justify-between h-full cursor-pointer hover:shadow-md transition-shadow">
-                        <div className="flex justify-between items-start">
-                            <div>
-                                <p className="text-sm font-medium text-gray-500">NPS (Satisfação)</p>
-                                <h3 className="text-3xl font-bold text-purple-600 mt-2">72</h3>
-                            </div>
-                            <span className="bg-purple-50 text-purple-600 text-xs px-2 py-1 rounded-full font-bold">Zona de Qualidade</span>
-                        </div>
-                        <div className="mt-4 flex gap-1">
-                            <div className="h-1.5 flex-1 bg-gray-200 rounded-l-full"></div>
-                            <div className="h-1.5 flex-1 bg-gray-200"></div>
-                            <div className="h-1.5 flex-1 bg-purple-500"></div>
-                            <div className="h-1.5 flex-1 bg-gray-200 rounded-r-full"></div>
-                        </div>
-                    </div>
-                </Link>
 
                 {/* 7. Entrega de Atividades */}
                 <Link href="/dashboard/academico/entregas" className="block transition-transform hover:scale-105">

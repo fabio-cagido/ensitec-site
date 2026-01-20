@@ -15,6 +15,7 @@ export default function EvasaoPage() {
                 "Nenhuma evasão registrada na Unidade Sul no último mês."
             ]}
             kpiSlug="evasao"
+            backLink="/dashboard/clientes"
         />
     );
 }

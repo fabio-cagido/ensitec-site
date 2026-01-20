@@ -8,15 +8,19 @@ export interface MetricData {
     classLabel: string;
     subjectId: string;
     subjectLabel: string;
+
+    year: string;
     value: number;
 }
 
 // Helper builder to reduce boilerplate
-const createMock = (id: string, u: string, s: string, c: string, sub: string, val: number): MetricData => ({
+// Added optional year, defaulting to "2026" for existing data compatibility
+const createMock = (id: string, u: string, s: string, c: string, sub: string, val: number, year: string = "2026"): MetricData => ({
     id, unitId: u, unitLabel: u === 'u1' ? 'Unidade Centro' : 'Unidade Sul',
     segmentId: s, segmentLabel: s === 's2' ? 'Fund. II' : 'Ensino Médio',
     classId: c, classLabel: c === 't1' ? '9º Ano A' : c === 't2' ? '9º Ano B' : c === 't3' ? '3º Médio A' : c === 't5' ? '8º Ano A' : c === 't6' ? '1º Médio A' : 'Geral',
     subjectId: sub, subjectLabel: sub === 'm1' ? 'Matemática' : sub === 'm2' ? 'Português' : sub === 'm3' ? 'História' : sub === 'm5' ? 'Física' : 'Geral',
+    year,
     value: val
 });
 
@@ -141,3 +145,45 @@ function getColorForKey(key: string): string {
     const index = Math.abs(hash) % colors.length;
     return colors[index];
 }
+
+// CLIENT DASHBOARD METRICS
+
+// Total de Alunos (Contagem por Unidade/Segmento)
+export const MOCK_TOTAL_STUDENTS: MetricData[] = [
+    createMock("ts1", "u1", "s1", "all", "all", 450), // Infantil Centro
+    createMock("ts2", "u1", "s2", "all", "all", 380), // Fund II Centro
+    createMock("ts3", "u1", "s3", "all", "all", 220), // Médio Centro
+    createMock("ts4", "u3", "s1", "all", "all", 200), // Infantil Sul
+];
+
+// Taxa de Ocupação (% por Unidade/Segmento)
+export const MOCK_OCCUPANCY: MetricData[] = [
+    createMock("oc1", "u1", "s1", "all", "all", 93.3), // Infantil Centro
+    createMock("oc2", "u1", "s2", "all", "all", 88.9), // Fund II Centro
+    createMock("oc3", "u1", "s3", "all", "all", 71.4), // Médio Centro
+    createMock("oc4", "u3", "s1", "all", "all", 85.0), // Infantil Sul
+];
+
+// Alunos Bolsistas (Contagem por Unidade/Segmento)
+export const MOCK_SCHOLARSHIPS: MetricData[] = [
+    createMock("sc1", "u1", "s1", "all", "all", 45), // Infantil Centro
+    createMock("sc2", "u1", "s2", "all", "all", 95), // Fund II Centro
+    createMock("sc3", "u1", "s3", "all", "all", 120), // Médio Centro
+    createMock("sc4", "u3", "s1", "all", "all", 52), // Infantil Sul
+];
+
+// Health Score (Índice 0-10 por Unidade/Segmento)
+export const MOCK_HEALTH_SCORE: MetricData[] = [
+    createMock("hs1", "u1", "s1", "all", "all", 9.2), // Infantil Centro
+    createMock("hs2", "u1", "s2", "all", "all", 8.5), // Fund II Centro
+    createMock("hs3", "u1", "s3", "all", "all", 8.0), // Médio Centro
+    createMock("hs4", "u3", "s1", "all", "all", 9.0), // Infantil Sul
+];
+
+// Taxa de Irmãos (% de famílias com múltiplos alunos)
+export const MOCK_SIBLINGS: MetricData[] = [
+    createMock("sb1", "u1", "s1", "all", "all", 22.5), // Infantil Centro
+    createMock("sb2", "u1", "s2", "all", "all", 18.0), // Fund II Centro
+    createMock("sb3", "u1", "s3", "all", "all", 15.2), // Médio Centro
+    createMock("sb4", "u3", "s1", "all", "all", 20.0), // Infantil Sul
+];

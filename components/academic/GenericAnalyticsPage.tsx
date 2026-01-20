@@ -15,6 +15,7 @@ interface GenericAnalyticsPageProps {
     kpiUnit?: string;
     insights?: string[];
     kpiSlug?: string; // Slug for deep linking to History
+    backLink?: string;
 }
 
 export function GenericAnalyticsPage({
@@ -23,7 +24,8 @@ export function GenericAnalyticsPage({
     dataset,
     kpiUnit = "",
     insights = [],
-    kpiSlug
+    kpiSlug,
+    backLink = "/dashboard/academico"
 }: GenericAnalyticsPageProps) {
     const router = useRouter();
     const [activeFilters, setActiveFilters] = useState<any>({
@@ -43,6 +45,7 @@ export function GenericAnalyticsPage({
             if (activeFilters.segmentos.length > 0 && !activeFilters.segmentos.includes(item.segmentId)) return false;
             if (activeFilters.turmas.length > 0 && !activeFilters.turmas.includes(item.classId)) return false;
             if (activeFilters.materias.length > 0 && !activeFilters.materias.includes(item.subjectId)) return false;
+            if (activeFilters.anos && activeFilters.anos.length > 0 && !activeFilters.anos.includes(item.year)) return false;
             return true;
         });
 
@@ -65,7 +68,7 @@ export function GenericAnalyticsPage({
         <div className="space-y-8 pb-10">
             {/* Header with Back Button */}
             <div className="flex items-center gap-4">
-                <Link href="/dashboard/academico" className="p-2 hover:bg-gray-100 rounded-lg transition-colors">
+                <Link href={backLink} className="p-2 hover:bg-gray-100 rounded-lg transition-colors">
                     <ArrowLeft className="w-5 h-5 text-gray-500" />
                 </Link>
                 <div>

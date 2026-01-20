@@ -15,6 +15,7 @@ export default function NPSPage() {
                 "Feedback positivo consistente sobre a infraestrutura da Unidade Centro."
             ]}
             kpiSlug="nps"
+            backLink="/dashboard/clientes"
         />
     );
 }
