@@ -18,7 +18,7 @@ export default function BiEscolasPage() {
       <section className="py-24 bg-white">
         <div className="max-w-6xl mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            
+
             {/* Texto */}
             <div>
               <h2 className="text-4xl font-bold text-gray-900 mb-6">
@@ -51,14 +51,14 @@ export default function BiEscolasPage() {
 
             {/* Vídeo YouTube */}
             <div className="relative w-full aspect-video rounded-2xl overflow-hidden shadow-xl">
-              <iframe
-                src="https://www.youtube.com/embed/j-3fA5U_JSE"
-                title="Apresentação BI para Escolas"
-                className="absolute top-0 left-0 w-full h-full"
-                frameBorder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-              />
+              <video
+                className="absolute top-0 left-0 w-full h-full object-cover"
+                controls
+                playsInline
+              >
+                <source src="/videos/school-bi-platform-introduction.mp4" type="video/mp4" />
+                Seu navegador não suporta a tag de vídeo.
+              </video>
             </div>
           </div>
         </div>

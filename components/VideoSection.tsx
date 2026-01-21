@@ -7,7 +7,7 @@ export default function VideoSection() {
   return (
     <section className="py-24 bg-white">
       <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-        
+
         {/* Texto */}
         <motion.div
           variants={fadeUp}
@@ -40,14 +40,14 @@ export default function VideoSection() {
           className="rounded-2xl overflow-hidden shadow-lg border border-gray-200"
         >
           <div className="relative w-full aspect-video rounded-xl overflow-hidden">
-            <iframe
-              src="https://www.youtube.com/embed/j-3fA5U_JSE"
-              title="Apresentação BI para Escolas"
-              className="absolute top-0 left-0 w-full h-full"
-              frameBorder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-            />
+            <video
+              className="absolute top-0 left-0 w-full h-full object-cover"
+              controls
+              playsInline
+            >
+              <source src="/videos/school-bi-platform-introduction.mp4" type="video/mp4" />
+              Seu navegador não suporta a tag de vídeo.
+            </video>
           </div>
         </motion.div>
 
