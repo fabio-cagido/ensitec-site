@@ -148,7 +148,7 @@ export default function EnemPage() {
                                 <YAxis domain={[0, 1000]} axisLine={false} tickLine={false} />
                                 <Tooltip
                                     contentStyle={{ borderRadius: '12px', border: 'none', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)' }}
-                                    formatter={(value: number) => [`${value} pts`, 'Média']}
+                                    formatter={(value: any) => [`${value} pts`, 'Média']}
                                     labelFormatter={(label) => stats.areas.find(a => a.sigla === label)?.area || label}
                                 />
                                 <Bar dataKey="media" radius={[8, 8, 0, 0]} animationDuration={1500}>
@@ -177,7 +177,7 @@ export default function EnemPage() {
                                     fill="#6366f1"
                                     fillOpacity={0.6}
                                 />
-                                <Tooltip formatter={(value: number) => [`${value} pts`, 'Média']} />
+                                <Tooltip formatter={(value: any) => [`${value} pts`, 'Média']} />
                             </RadarChart>
                         </ResponsiveContainer>
                     </div>
