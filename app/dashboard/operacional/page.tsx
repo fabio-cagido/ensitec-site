@@ -195,7 +195,7 @@ export default function OperationalPage() {
                                 <YAxis axisLine={false} tickLine={false} tick={{ fontSize: 12 }} tickFormatter={(val) => `R$${val / 1000}k`} />
                                 <CartesianGrid vertical={false} strokeDasharray="3 3" stroke="#f3f4f6" />
                                 <Tooltip
-                                    formatter={(value) => `R$ ${value.toLocaleString()}`}
+                                    formatter={(value: any) => `R$ ${(value || 0).toLocaleString()}`}
                                     contentStyle={{ borderRadius: '12px', border: 'none', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)' }}
                                 />
                                 <Area type="monotone" dataKey="energia" stackId="1" stroke="#f59e0b" fill="url(#colorEnergia)" name="Energia & Água" />
