@@ -14,9 +14,9 @@ export default function DashboardLayout({
     const isActive = (path: string) => pathname === path;
 
     return (
-        <div className="flex min-h-screen bg-gray-50 font-sans text-gray-900">
+        <div className="flex h-screen bg-gray-50 font-sans text-gray-900 overflow-hidden">
             {/* SIDEBAR */}
-            <aside className="w-64 bg-gray-900 text-white p-6 pb-24 hidden md:flex flex-col border-r border-gray-800 fixed h-full">
+            <aside className="w-64 bg-gray-900 text-white p-6 hidden md:flex flex-col border-r border-gray-800 h-full shrink-0">
                 <h2 className="text-xl font-bold mb-6 text-blue-400">ENSITEC BI</h2>
                 <nav className="flex-1 space-y-2 text-sm font-medium overflow-y-auto pr-2 custom-scrollbar scrollbar-thin scrollbar-thumb-gray-800 scrollbar-track-transparent">
                     <Link
@@ -152,7 +152,7 @@ export default function DashboardLayout({
             </aside>
 
             {/* ÁREA PRINCIPAL */}
-            <main className="flex-1 p-8 overflow-y-auto md:ml-64">
+            <main className="flex-1 p-8 overflow-y-auto h-full">
                 {children}
             </main>
         </div>

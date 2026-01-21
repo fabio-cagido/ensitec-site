@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import Link from "next/link";
 import { Lock, User, ArrowRight } from "lucide-react";
 
 export default function LoginPage() {
@@ -9,12 +10,12 @@ export default function LoginPage() {
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     // Verificação das credenciais
     if (username === "admin" && password === "ensitec2026") {
       // 1. Grava o COOKIE (O Middleware precisa disso para te deixar passar)
-      document.cookie = "isLoggedIn=true; path=/; max-age=3600"; 
-      
+      document.cookie = "isLoggedIn=true; path=/; max-age=3600";
+
       // 2. Redireciona usando window.location para garantir que o cookie seja lido
       window.location.href = "/dashboard";
     } else {
@@ -23,7 +24,13 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 flex items-center justify-center p-4 font-sans">
+    <div className="min-h-screen bg-gray-50 flex items-center justify-center p-4 font-sans relative">
+      <Link
+        href="/"
+        className="absolute top-6 left-6 text-gray-500 hover:text-blue-600 font-medium flex items-center gap-2 transition-colors"
+      >
+        <span>←</span> Voltar para o site
+      </Link>
       <div className="max-w-md w-full bg-white rounded-3xl shadow-xl border border-gray-100 p-8">
         <div className="text-center mb-10">
           <h2 className="text-3xl font-bold text-gray-900 tracking-tight text-blue-600">ENSITEC BI</h2>

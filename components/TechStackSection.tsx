@@ -45,11 +45,12 @@ export default function TechStackSection() {
           initial="hidden"
           whileInView="show"
           viewport={{ once: true }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
+          className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-8"
         >
           {[
             { name: "Looker Studio", color: "from-blue-500 to-cyan-400" },
             { name: "Power BI", color: "from-yellow-500 to-orange-500" },
+            { name: "Ensitec BI", color: "from-red-600 to-rose-500" },
             { name: "Tableau", color: "from-indigo-500 to-purple-500" },
             { name: "Dashboards em Python", color: "from-emerald-500 to-teal-400" },
           ].map((tech) => (
