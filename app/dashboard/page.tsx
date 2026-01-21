@@ -39,34 +39,38 @@ export default function DashboardPage() {
         {/* Card Acadêmico */}
         <div className="bg-white p-5 rounded-2xl shadow-sm border border-gray-100 border-t-4 border-t-blue-500">
           <span className="text-xs font-bold text-gray-400 uppercase">Acadêmico</span>
-          <div className="text-3xl font-bold mt-2">94.2%</div>
+          <div className="text-3xl font-bold mt-2 text-gray-900">94.2%</div>
+          <p className="text-xs text-blue-500 font-medium mb-1">Frequência Geral</p> {/* Legenda Adicionada */}
           <div className="mt-4 pt-4 border-t border-gray-50 text-[11px]">
-            <div className="flex justify-between mb-1 text-gray-500"><span>Média Global</span><span className="text-blue-600 font-bold">7.8</span></div>
+            <div className="flex justify-between mb-1 text-gray-500"><span>Média Gl.</span><span className="text-blue-600 font-bold">7.8</span></div>
             <div className="w-full bg-gray-100 h-1.5 rounded-full overflow-hidden"><div className="bg-blue-500 h-full w-[78%]"></div></div>
           </div>
         </div>
         {/* Card Financeiro */}
         <div className="bg-white p-5 rounded-2xl shadow-sm border border-gray-100 border-t-4 border-t-emerald-500">
           <span className="text-xs font-bold text-gray-400 uppercase">Financeiro</span>
-          <div className="text-3xl font-bold mt-2">12.5%</div>
+          <div className="text-3xl font-bold mt-2 text-gray-900">12.5%</div>
+          <p className="text-xs text-emerald-500 font-medium mb-1">Margem Líquida</p> {/* Legenda Adicionada */}
           <div className="mt-4 pt-4 border-t border-gray-50 text-[11px]">
-            <div className="flex justify-between mb-1 text-gray-500"><span>Orçamento Gasto</span><span className="text-emerald-600 font-bold">64%</span></div>
+            <div className="flex justify-between mb-1 text-gray-500"><span>Execução</span><span className="text-emerald-600 font-bold">64%</span></div>
             <div className="w-full bg-gray-100 h-1.5 rounded-full overflow-hidden"><div className="bg-emerald-500 h-full w-[64%]"></div></div>
           </div>
         </div>
         {/* Card Clientes */}
         <div className="bg-white p-5 rounded-2xl shadow-sm border border-gray-100 border-t-4 border-t-orange-500">
           <span className="text-xs font-bold text-gray-400 uppercase">Clientes</span>
-          <div className="text-3xl font-bold mt-2">450</div>
+          <div className="text-3xl font-bold mt-2 text-gray-900">450</div>
+          <p className="text-xs text-orange-500 font-medium mb-1">Total de Alunos</p> {/* Legenda Adicionada */}
           <div className="mt-4 pt-4 border-t border-gray-50 text-[11px]">
-            <div className="flex justify-between mb-1 text-gray-500"><span>% Bolsistas</span><span className="text-orange-600 font-bold">18%</span></div>
+            <div className="flex justify-between mb-1 text-gray-500"><span>Bolsistas</span><span className="text-orange-600 font-bold">18%</span></div>
             <div className="w-full bg-gray-100 h-1.5 rounded-full overflow-hidden"><div className="bg-orange-500 h-full w-[18%]"></div></div>
           </div>
         </div>
         {/* Card Operacional */}
         <div className="bg-white p-5 rounded-2xl shadow-sm border border-gray-100 border-t-4 border-t-purple-500">
           <span className="text-xs font-bold text-gray-400 uppercase">Operacional</span>
-          <div className="text-3xl font-bold mt-2">24</div>
+          <div className="text-3xl font-bold mt-2 text-gray-900">24</div>
+          <p className="text-xs text-purple-500 font-medium mb-1">Chamados Abertos</p> {/* Legenda Adicionada */}
           <div className="mt-4 pt-4 border-t border-gray-50 flex items-center gap-2">
             <div className="flex-1 bg-gray-100 h-1.5 rounded-full overflow-hidden"><div className="bg-purple-500 h-full w-[40%]"></div></div>
             <span className="text-[10px] font-bold text-purple-600">40% CRÍTICOS</span>
@@ -78,9 +82,10 @@ export default function DashboardPage() {
         <Link href="/dashboard/enem" className="block transition-transform hover:scale-105">
           <div className="bg-white p-5 rounded-2xl shadow-sm border border-gray-100 border-t-4 border-t-indigo-500 h-full cursor-pointer hover:shadow-md">
             <span className="text-xs font-bold text-gray-400 uppercase">Enem</span>
-            <div className="text-3xl font-bold mt-2">685</div>
+            <div className="text-3xl font-bold mt-2 text-gray-900">685</div>
+            <p className="text-xs text-indigo-500 font-medium mb-1">Média Geral (TRI)</p> {/* Legenda Adicionada */}
             <div className="mt-4 pt-4 border-t border-gray-50 text-[11px]">
-              <div className="flex justify-between mb-1 text-gray-500"><span>Aprovação Sisu</span><span className="text-indigo-600 font-bold">82%</span></div>
+              <div className="flex justify-between mb-1 text-gray-500"><span>Aprovação</span><span className="text-indigo-600 font-bold">82%</span></div>
               <div className="w-full bg-gray-100 h-1.5 rounded-full overflow-hidden"><div className="bg-indigo-500 h-full w-[82%]"></div></div>
             </div>
           </div>

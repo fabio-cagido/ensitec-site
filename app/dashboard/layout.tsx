@@ -121,12 +121,43 @@ export default function DashboardLayout({
                     >
                         Financeiro
                     </Link>
-                    <Link
-                        href="#"
-                        className="block w-full text-left py-2.5 px-4 text-gray-400 hover:text-white hover:bg-gray-800 transition"
-                    >
-                        Operacional
-                    </Link>
+                    {/* Operacional */}
+                    <div className="space-y-1">
+                        <Link
+                            href="/dashboard/operacional"
+                            className={`block w-full text-left py-2.5 px-4 rounded-lg transition ${pathname.startsWith("/dashboard/operacional")
+                                ? "bg-blue-600 text-white shadow-lg"
+                                : "text-gray-400 hover:text-white hover:bg-gray-800"
+                                }`}
+                        >
+                            Operacional
+                        </Link>
+                        {pathname.startsWith("/dashboard/operacional") && (
+                            <div className="ml-4 space-y-1 border-l border-gray-700 pl-2 mt-1">
+                                {[
+                                    { name: "Ocupação de Espaços", path: "/dashboard/operacional/espacos" },
+                                    { name: "SLA Secretaria", path: "/dashboard/operacional/secretaria" },
+                                    { name: "Manutenção e Zeladoria", path: "/dashboard/operacional/manutencao" },
+                                    { name: "Docentes (Absenteísmo)", path: "/dashboard/operacional/docentes" },
+                                    { name: "Gestão de TI", path: "/dashboard/operacional/ti" },
+                                    { name: "Custos de Impressão", path: "/dashboard/operacional/impressao" },
+                                    { name: "Alimentação", path: "/dashboard/operacional/alimentacao" },
+                                    { name: "Segurança e Acesso", path: "/dashboard/operacional/seguranca" },
+                                ].map((item) => (
+                                    <Link
+                                        key={item.path}
+                                        href={item.path}
+                                        className={`block w-full text-left py-1.5 px-4 rounded-lg text-xs transition ${isActive(item.path)
+                                            ? "text-blue-400 font-bold bg-gray-800"
+                                            : "text-gray-500 hover:text-gray-300"
+                                            }`}
+                                    >
+                                        {item.name}
+                                    </Link>
+                                ))}
+                            </div>
+                        )}
+                    </div>
                 </nav>
 
                 {/* PERFIL & LOGOUT */}
