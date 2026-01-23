@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import dynamic from "next/dynamic";
 import "leaflet/dist/leaflet.css";
 import Link from "next/link"; // Adicionar import Link
+import PageHeader from "@/components/dashboard/PageHeader";
 
 // 1. Criamos um componente de carregamento simples
 const MapPlaceholder = () => (
@@ -29,10 +30,11 @@ export default function DashboardPage() {
 
   return (
     <>
-      <header className="mb-10">
-        <h1 className="text-3xl font-bold tracking-tight text-gray-900">Dashboard Executivo</h1>
-        <p className="text-gray-500">Monitoramento estratégico Ensitec</p>
-      </header>
+      <PageHeader
+        title="Dashboard Executivo"
+        subtitle="Monitoramento estratégico Ensitec"
+        showLogo={true}
+      />
 
       {/* INDICADORES (Cards) */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 mb-10">

@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { ArrowLeft, TrendingUp, Calculator, Users, Loader2, MessageSquare, BarChart2 } from "lucide-react";
 import Link from "next/link";
+import PageHeader from "@/components/dashboard/PageHeader";
 import {
     BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Cell,
     RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar
@@ -80,16 +81,12 @@ export default function EnemPage() {
 
     return (
         <div className="space-y-8 pb-10">
-            {/* Cabeçalho */}
-            <div className="flex items-center gap-4">
-                <Link href="/dashboard" className="p-2 hover:bg-gray-100 rounded-lg transition-colors">
-                    <ArrowLeft className="w-5 h-5 text-gray-500" />
-                </Link>
-                <div>
-                    <h1 className="text-3xl font-bold tracking-tight text-gray-900">ENEM 2024</h1>
-                    <p className="text-gray-500">Panorama Nacional ({stats.total.toLocaleString('pt-BR')} registros)</p>
-                </div>
-            </div>
+            {/* Cabeçalho com Logo */}
+            <PageHeader
+                title={`ENEM 2024`}
+                subtitle={`Panorama Nacional (${stats.total.toLocaleString('pt-BR')} registros)`}
+                showLogo={true}
+            />
 
             {/* KPIs */}
             <div className="grid grid-cols-1 md:grid-cols-4 gap-6">

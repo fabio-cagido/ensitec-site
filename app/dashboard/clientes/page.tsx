@@ -28,6 +28,7 @@ import {
 } from 'recharts';
 import { ClientFilterBar, ClientFilterState } from "./components/ClientFilterBar";
 import Link from "next/link";
+import PageHeader from "@/components/dashboard/PageHeader";
 
 // --- MOCK DATA ---
 const KPI_DATA = {
@@ -96,10 +97,11 @@ export default function ClientDashboardPage() {
 
     return (
         <div className="space-y-8 pb-10">
-            <header>
-                <h1 className="text-3xl font-bold tracking-tight text-gray-900">Gestão de Clientes</h1>
-                <p className="text-gray-500">Perfil do Aluno, Ocupação e Satisfação</p>
-            </header>
+            <PageHeader
+                title="Gestão de Clientes"
+                subtitle="Perfil do Aluno, Ocupação e Satisfação"
+                showLogo={true}
+            />
 
             <ClientFilterBar onFilterChange={setFilters} />
 

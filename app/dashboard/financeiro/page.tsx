@@ -14,6 +14,7 @@ import {
     Legend
 } from 'recharts';
 import { ArrowUpRight, ArrowDownRight, DollarSign, Wallet, CreditCard, AlertCircle } from 'lucide-react';
+import PageHeader from "@/components/dashboard/PageHeader";
 
 const financeData = [
     { month: 'Jan', receita: 120000, despesa: 80000 },
@@ -51,10 +52,11 @@ const recentTransactions = [
 export default function FinancialDashboard() {
     return (
         <div className="space-y-6">
-            <header className="mb-8">
-                <h1 className="text-3xl font-bold tracking-tight text-gray-900">Dashboard Financeiro</h1>
-                <p className="text-gray-500">Visão consolidada das finanças escolares</p>
-            </header>
+            <PageHeader
+                title="Dashboard Financeiro"
+                subtitle="Visão consolidada das finanças escolares"
+                showLogo={true}
+            />
 
             {/* KPI Cards */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">

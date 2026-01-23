@@ -1,12 +1,14 @@
 import Link from "next/link";
+import PageHeader from "@/components/dashboard/PageHeader";
 
 export default function AcademicoPage() {
     return (
         <div className="space-y-8">
-            <header>
-                <h1 className="text-3xl font-bold tracking-tight text-gray-900">Acadêmico</h1>
-                <p className="text-gray-500">Gestão Pedagógica e Performance Educacional</p>
-            </header>
+            <PageHeader
+                title="Acadêmico"
+                subtitle="Gestão Pedagógica e Performance Educacional"
+                showLogo={true}
+            />
 
             {/* KPI GRID - 9 Indicadores */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

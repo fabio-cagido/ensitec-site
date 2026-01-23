@@ -13,6 +13,7 @@ import {
     TrendingUp
 } from "lucide-react";
 import Link from "next/link";
+import PageHeader from "@/components/dashboard/PageHeader";
 import {
     BarChart,
     Bar,
@@ -130,10 +131,11 @@ const TICKET_PERFORMANCE = [
 export default function OperationalPage() {
     return (
         <div className="space-y-8 pb-10">
-            <header>
-                <h1 className="text-3xl font-bold tracking-tight text-gray-900">Dashboard Operacional</h1>
-                <p className="text-gray-500">Eficiência, Manutenção e Recursos</p>
-            </header>
+            <PageHeader
+                title="Dashboard Operacional"
+                subtitle="Eficiência, Manutenção e Recursos"
+                showLogo={true}
+            />
 
             {/* KPI GRID */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
