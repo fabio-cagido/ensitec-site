@@ -234,7 +234,7 @@ export default function EnemPage() {
                                     boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)',
                                     padding: '12px'
                                 }}
-                                formatter={(value: any, name: string) => [`${value} pts`, 'Média MT']}
+                                formatter={(value: any) => [`${value} pts`, 'Média MT']}
                                 labelFormatter={(label) => UF_NAMES[label] || label}
                             />
                             <Bar dataKey="media_mt" radius={[6, 6, 0, 0]} animationDuration={1500}>
@@ -341,9 +341,9 @@ export default function EnemPage() {
                                             >
                                                 <td className="py-3 pl-4">
                                                     <span className={`inline-flex items-center justify-center w-6 h-6 rounded-full text-xs font-bold ${index === 0 ? 'bg-amber-500 text-white' :
-                                                            index === 1 ? 'bg-gray-400 text-white' :
-                                                                index === 2 ? 'bg-amber-700 text-white' :
-                                                                    'bg-white/10 text-white/60'
+                                                        index === 1 ? 'bg-gray-400 text-white' :
+                                                            index === 2 ? 'bg-amber-700 text-white' :
+                                                                'bg-white/10 text-white/60'
                                                         }`}>
                                                         {index + 1}
                                                     </span>
