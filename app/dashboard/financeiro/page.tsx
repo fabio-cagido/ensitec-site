@@ -1,5 +1,6 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import {
     BarChart,
     Bar,
@@ -13,43 +14,54 @@ import {
     Cell,
     Legend
 } from 'recharts';
-import { ArrowUpRight, ArrowDownRight, DollarSign, Wallet, CreditCard, AlertCircle } from 'lucide-react';
+import { ArrowUpRight, ArrowDownRight, DollarSign, Wallet, CreditCard, AlertCircle, Loader2 } from 'lucide-react';
 import PageHeader from "@/components/dashboard/PageHeader";
-
-const financeData = [
-    { month: 'Jan', receita: 120000, despesa: 80000 },
-    { month: 'Fev', receita: 135000, despesa: 85000 },
-    { month: 'Mar', receita: 140000, despesa: 90000 },
-    { month: 'Abr', receita: 130000, despesa: 88000 },
-    { month: 'Mai', receita: 150000, despesa: 95000 },
-    { month: 'Jun', receita: 160000, despesa: 100000 },
-    { month: 'Jul', receita: 155000, despesa: 110000 }, // Férias/13º professores as vezes
-    { month: 'Ago', receita: 165000, despesa: 95000 },
-    { month: 'Set', receita: 170000, despesa: 92000 },
-    { month: 'Out', receita: 175000, despesa: 96000 },
-    { month: 'Nov', receita: 180000, despesa: 94000 },
-    { month: 'Dez', receita: 190000, despesa: 120000 },
-];
-
-const expenseDistribution = [
-    { name: 'Pessoal (Salários)', value: 550000 },
-    { name: 'Infraestrutura', value: 120000 },
-    { name: 'Marketing', value: 80000 },
-    { name: 'Materiais', value: 50000 },
-    { name: 'Outros', value: 30000 },
-];
 
 const COLORS = ['#3b82f6', '#10b981', '#f59e0b', '#8b5cf6', '#ef4444'];
 
-const recentTransactions = [
-    { id: 1, desc: 'Mensalidade - Turma 3A', date: 'Hoje, 10:23', amount: '+ R$ 1.250,00', type: 'income' },
-    { id: 2, desc: 'Fornecedor - Papelaria', date: 'Hoje, 09:15', amount: '- R$ 450,00', type: 'expense' },
-    { id: 3, desc: 'Mensalidade - Turma 1B', date: 'Ontem, 16:45', amount: '+ R$ 1.250,00', type: 'income' },
-    { id: 4, desc: 'Manutenção Ar Cond.', date: 'Ontem, 14:20', amount: '- R$ 850,00', type: 'expense' },
-    { id: 5, desc: 'Mensalidade - Turma 2C', date: 'Ontem, 11:30', amount: '+ R$ 1.250,00', type: 'income' },
-];
-
 export default function FinancialDashboard() {
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState<string | null>(null);
+    const [data, setData] = useState<any>(null);
+
+    useEffect(() => {
+        async function fetchData() {
+            try {
+                const res = await fetch('/api/dashboard/financeiro');
+                if (!res.ok) throw new Error('Falha ao carregar dados financeiros');
+                const json = await res.json();
+                setData(json);
+            } catch (err: any) {
+                setError(err.message);
+            } finally {
+                setLoading(false);
+            }
+        }
+        fetchData();
+    }, []);
+
+    if (loading) {
+        return (
+            <div className="flex flex-col items-center justify-center min-h-[60vh] gap-4">
+                <Loader2 className="w-12 h-12 text-blue-600 animate-spin" />
+                <p className="text-gray-600 font-medium">Carregando dados financeiros...</p>
+            </div>
+        );
+    }
+
+    if (error || !data) {
+        return (
+            <div className="flex flex-col items-center justify-center min-h-[60vh] px-4">
+                <div className="bg-red-50 border border-red-200 rounded-2xl p-8 max-w-lg text-center">
+                    <h2 className="text-red-700 font-bold text-xl mb-2">Erro no Carregamento</h2>
+                    <p className="text-red-600 text-sm">{error}</p>
+                </div>
+            </div>
+        );
+    }
+
+    const { financeData, kpis, expenseDistribution, recentTransactions } = data;
+
     return (
         <div className="space-y-6">
             <PageHeader
@@ -71,45 +83,47 @@ export default function FinancialDashboard() {
                             +12.5%
                         </span>
                     </div>
-                    <span className="text-sm font-medium text-gray-500">Receita Total (Ano)</span>
-                    <div className="text-2xl font-bold text-gray-900 mt-1">R$ 2.4M</div>
+                    <span className="text-sm font-medium text-gray-500">Receita Total</span>
+                    <div className="text-2xl font-bold text-gray-900 mt-1">
+                        R$ {(kpis.receitaTotal / 1000).toFixed(1)}k
+                    </div>
                 </div>
 
-                {/* Despesas */}
+                {/* Receita Recebida */}
                 <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
                     <div className="flex justify-between items-start mb-4">
-                        <div className="p-2 bg-red-50 rounded-lg">
-                            <CreditCard className="w-6 h-6 text-red-600" />
+                        <div className="p-2 bg-green-50 rounded-lg">
+                            <Wallet className="w-6 h-6 text-green-600" />
                         </div>
-                        <span className="flex items-center text-xs font-bold text-red-600 bg-red-50 px-2 py-1 rounded-full">
+                        <span className="flex items-center text-xs font-bold text-green-600 bg-green-50 px-2 py-1 rounded-full">
                             <ArrowUpRight className="w-3 h-3 mr-1" />
                             +4.2%
                         </span>
                     </div>
-                    <span className="text-sm font-medium text-gray-500">Despesas Operacionais</span>
-                    <div className="text-2xl font-bold text-gray-900 mt-1">R$ 1.1M</div>
+                    <span className="text-sm font-medium text-gray-500">Receita Recebida</span>
+                    <div className="text-2xl font-bold text-gray-900 mt-1">
+                        R$ {(kpis.receitaRecebida / 1000).toFixed(1)}k
+                    </div>
                 </div>
 
-                {/* Lucro Líquido */}
+                {/* Receita Pendente */}
                 <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
                     <div className="flex justify-between items-start mb-4">
-                        <div className="p-2 bg-emerald-50 rounded-lg">
-                            <Wallet className="w-6 h-6 text-emerald-600" />
+                        <div className="p-2 bg-orange-50 rounded-lg">
+                            <AlertCircle className="w-6 h-6 text-orange-600" />
                         </div>
-                        <span className="flex items-center text-xs font-bold text-green-600 bg-green-50 px-2 py-1 rounded-full">
-                            <ArrowUpRight className="w-3 h-3 mr-1" />
-                            +8.1%
-                        </span>
                     </div>
-                    <span className="text-sm font-medium text-gray-500">Lucro Líquido</span>
-                    <div className="text-2xl font-bold text-gray-900 mt-1">R$ 1.3M</div>
+                    <span className="text-sm font-medium text-gray-500">Receita Pendente</span>
+                    <div className="text-2xl font-bold text-gray-900 mt-1">
+                        R$ {(kpis.receitaAtrasada / 1000).toFixed(1)}k
+                    </div>
                 </div>
 
                 {/* Inadimplência */}
                 <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
                     <div className="flex justify-between items-start mb-4">
-                        <div className="p-2 bg-orange-50 rounded-lg">
-                            <AlertCircle className="w-6 h-6 text-orange-600" />
+                        <div className="p-2 bg-red-50 rounded-lg">
+                            <CreditCard className="w-6 h-6 text-red-600" />
                         </div>
                         <span className="flex items-center text-xs font-bold text-green-600 bg-green-50 px-2 py-1 rounded-full">
                             <ArrowDownRight className="w-3 h-3 mr-1" />
@@ -117,7 +131,7 @@ export default function FinancialDashboard() {
                         </span>
                     </div>
                     <span className="text-sm font-medium text-gray-500">Inadimplência</span>
-                    <div className="text-2xl font-bold text-gray-900 mt-1">4.2%</div>
+                    <div className="text-2xl font-bold text-gray-900 mt-1">{kpis.inadimplencia}%</div>
                 </div>
             </div>
 
@@ -125,7 +139,7 @@ export default function FinancialDashboard() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 pt-4">
                 {/* Histórico Receita vs Despesa */}
                 <div className="bg-white p-6 rounded-3xl shadow-sm border border-gray-100">
-                    <h3 className="text-lg font-bold text-gray-900 mb-6">Fluxo de Caixa (12 meses)</h3>
+                    <h3 className="text-lg font-bold text-gray-900 mb-6">Fluxo de Caixa</h3>
                     <div className="h-[300px] w-full">
                         <ResponsiveContainer width="100%" height="100%">
                             <BarChart data={financeData} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
@@ -146,8 +160,8 @@ export default function FinancialDashboard() {
                                     contentStyle={{ backgroundColor: '#fff', borderRadius: '12px', border: '1px solid #e5e7eb', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)' }}
                                     cursor={{ fill: '#F3F4F6' }}
                                 />
-                                <Bar dataKey="receita" name="Receita" fill="#3b82f6" radius={[4, 4, 0, 0]} />
-                                <Bar dataKey="despesa" name="Despesa" fill="#ef4444" radius={[4, 4, 0, 0]} />
+                                <Bar dataKey="receita" name="Recebido" fill="#3b82f6" radius={[4, 4, 0, 0]} />
+                                <Bar dataKey="pendente" name="Pendente" fill="#ef4444" radius={[4, 4, 0, 0]} />
                             </BarChart>
                         </ResponsiveContainer>
                     </div>
@@ -155,7 +169,7 @@ export default function FinancialDashboard() {
 
                 {/* Distribuição de Despesas */}
                 <div className="bg-white p-6 rounded-3xl shadow-sm border border-gray-100">
-                    <h3 className="text-lg font-bold text-gray-900 mb-6">Composição de Despesas</h3>
+                    <h3 className="text-lg font-bold text-gray-900 mb-6">Composição Estimada (Custos)</h3>
                     <div className="h-[300px] w-full flex items-center justify-center">
                         <ResponsiveContainer width="100%" height="100%">
                             <PieChart>
@@ -168,7 +182,7 @@ export default function FinancialDashboard() {
                                     paddingAngle={5}
                                     dataKey="value"
                                 >
-                                    {expenseDistribution.map((entry, index) => (
+                                    {expenseDistribution.map((entry: any, index: number) => (
                                         <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                                     ))}
                                 </Pie>
@@ -202,7 +216,7 @@ export default function FinancialDashboard() {
                             </tr>
                         </thead>
                         <tbody className="divide-y divide-gray-100">
-                            {recentTransactions.map((t) => (
+                            {recentTransactions.map((t: any) => (
                                 <tr key={t.id} className="hover:bg-gray-50 transition-colors">
                                     <td className="px-6 py-4 font-medium text-gray-900">{t.desc}</td>
                                     <td className="px-6 py-4 text-gray-500">{t.date}</td>
@@ -210,8 +224,8 @@ export default function FinancialDashboard() {
                                         {t.amount}
                                     </td>
                                     <td className="px-6 py-4 text-center">
-                                        <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
-                                            Concluído
+                                        <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${t.type === 'income' ? 'bg-green-100 text-green-800' : 'bg-yellow-100 text-yellow-800'}`}>
+                                            {t.type === 'income' ? 'Pago' : 'Pendente'}
                                         </span>
                                     </td>
                                 </tr>

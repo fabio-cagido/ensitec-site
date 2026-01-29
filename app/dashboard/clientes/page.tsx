@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
     Users,
     Percent,
@@ -11,7 +11,8 @@ import {
     Smile,
     MapPin,
     HeartPulse,
-    Users2
+    Users2,
+    Loader2
 } from "lucide-react";
 import {
     BarChart,
@@ -30,70 +31,52 @@ import { ClientFilterBar, ClientFilterState } from "./components/ClientFilterBar
 import Link from "next/link";
 import PageHeader from "@/components/dashboard/PageHeader";
 
-// --- MOCK DATA ---
-const KPI_DATA = {
-    totalStudents: 1250,
-    occupancyRate: 85.4, // %
-    scholarships: 312, // Count
-    scholarshipPercentage: 24.9, // %
-    nps: 72,
-    churnRate: 1.2, // %
-    healthScore: 8.8, // 0-10
-    siblingsRate: 18.5, // % families with >1 student
-    enemScore: 685, // Média Geral
-    enemApprovals: 82 // % Aprovação
-};
-
-const OCCUPANCY_BY_SEGMENT = [
-    { name: 'Infantil', capacity: 300, occupied: 280, rate: 93.3 },
-    { name: 'Fund. I', capacity: 450, occupied: 400, rate: 88.9 },
-    { name: 'Fund. II', capacity: 400, occupied: 320, rate: 80.0 },
-    { name: 'Médio', capacity: 350, occupied: 250, rate: 71.4 },
-];
-
-const GENDER_DATA = [
-    { name: 'Feminino', value: 650 },
-    { name: 'Masculino', value: 600 },
-];
-
-const RACE_DATA = [
-    { name: 'Branca', value: 500 },
-    { name: 'Parda', value: 450 },
-    { name: 'Preta', value: 200 },
-    { name: 'Amarela', value: 80 },
-    { name: 'Indígena', value: 20 },
-];
-
-const AGE_DATA = [
-    { age: '2-5', count: 150 },
-    { age: '6-10', count: 400 },
-    { age: '11-14', count: 320 },
-    { age: '15-18', count: 380 },
-];
-
-const INCOME_DATA = [
-    { range: 'Até 3 SM', count: 200 },
-    { range: '3-6 SM', count: 450 },
-    { range: '6-10 SM', count: 350 },
-    { range: '> 10 SM', count: 250 },
-];
-
-const GEO_DATA = [
-    { name: 'Centro', value: 350 },
-    { name: 'Jd. América', value: 280 },
-    { name: 'Vila Nova', value: 200 },
-    { name: 'Bela Vista', value: 150 },
-    { name: 'Outros', value: 270 },
-];
-
 const COLORS = ['#3b82f6', '#ec4899', '#10b981', '#f59e0b', '#8b5cf6'];
-const PIE_COLORS = ['#3b82f6', '#ec4899']; // Blue, Pink for Gender
+const PIE_COLORS = ['#3b82f6', '#ec4899'];
 
 export default function ClientDashboardPage() {
     const [filters, setFilters] = useState<ClientFilterState | null>(null);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState<string | null>(null);
+    const [data, setData] = useState<any>(null);
 
-    // Filter Logic would go here (filtering the mock data based on 'filters' state)
-    // For now, we display static mock data.
+    useEffect(() => {
+        async function fetchData() {
+            try {
+                const res = await fetch('/api/dashboard/clientes');
+                if (!res.ok) throw new Error('Falha ao carregar dados de clientes');
+                const json = await res.json();
+                setData(json);
+            } catch (err: any) {
+                setError(err.message);
+            } finally {
+                setLoading(false);
+            }
+        }
+        fetchData();
+    }, []);
+
+    if (loading) {
+        return (
+            <div className="flex flex-col items-center justify-center min-h-[60vh] gap-4">
+                <Loader2 className="w-12 h-12 text-blue-600 animate-spin" />
+                <p className="text-gray-600 font-medium">Carregando dados de clientes...</p>
+            </div>
+        );
+    }
+
+    if (error || !data) {
+        return (
+            <div className="flex flex-col items-center justify-center min-h-[60vh] px-4">
+                <div className="bg-red-50 border border-red-200 rounded-2xl p-8 max-w-lg text-center">
+                    <h2 className="text-red-700 font-bold text-xl mb-2">Erro no Carregamento</h2>
+                    <p className="text-red-600 text-sm">{error}</p>
+                </div>
+            </div>
+        );
+    }
+
+    const { kpis, occupancyBySegment, genderData, geoData, raceData, ageData, incomeData } = data;
 
     return (
         <div className="space-y-8 pb-10">
@@ -121,7 +104,7 @@ export default function ClientDashboardPage() {
                         </div>
                         <div>
                             <p className="text-sm font-medium text-gray-500 mt-4">Total de Alunos</p>
-                            <h3 className="text-3xl font-bold text-gray-900">{KPI_DATA.totalStudents}</h3>
+                            <h3 className="text-3xl font-bold text-gray-900">{kpis.totalStudents}</h3>
                         </div>
                     </div>
                 </Link>
@@ -138,7 +121,7 @@ export default function ClientDashboardPage() {
                         </div>
                         <div>
                             <p className="text-sm font-medium text-gray-500 mt-4">Taxa de Ocupação</p>
-                            <h3 className="text-3xl font-bold text-gray-900">{KPI_DATA.occupancyRate}%</h3>
+                            <h3 className="text-3xl font-bold text-gray-900">{kpis.occupancyRate}%</h3>
                             <p className="text-xs text-gray-400 mt-1">Capacidade Utilizada</p>
                         </div>
                     </div>
@@ -155,7 +138,7 @@ export default function ClientDashboardPage() {
                         </div>
                         <div>
                             <p className="text-sm font-medium text-gray-500 mt-4">Health Score (Família)</p>
-                            <h3 className="text-3xl font-bold text-gray-900">{KPI_DATA.healthScore}</h3>
+                            <h3 className="text-3xl font-bold text-gray-900">{kpis.healthScore}</h3>
                             <p className="text-xs text-gray-400 mt-1">Engajamento + Frequência</p>
                         </div>
                     </div>
@@ -172,7 +155,7 @@ export default function ClientDashboardPage() {
                         </div>
                         <div>
                             <p className="text-sm font-medium text-gray-500 mt-4">NPS (Satisfação)</p>
-                            <h3 className="text-3xl font-bold text-gray-900">{KPI_DATA.nps}</h3>
+                            <h3 className="text-3xl font-bold text-gray-900">{kpis.nps}</h3>
                         </div>
                     </div>
                 </Link>
@@ -191,8 +174,8 @@ export default function ClientDashboardPage() {
                         <div>
                             <p className="text-sm font-medium text-gray-500 mt-4">Alunos Bolsistas</p>
                             <div className="flex items-baseline gap-2">
-                                <h3 className="text-3xl font-bold text-gray-900">{KPI_DATA.scholarships}</h3>
-                                <span className="text-sm text-gray-500">({KPI_DATA.scholarshipPercentage}%)</span>
+                                <h3 className="text-3xl font-bold text-gray-900">{kpis.scholarships}</h3>
+                                <span className="text-sm text-gray-500">({kpis.scholarshipPercentage}%)</span>
                             </div>
                         </div>
                     </div>
@@ -210,7 +193,7 @@ export default function ClientDashboardPage() {
                         <div>
                             <p className="text-sm font-medium text-gray-500 mt-4">Famílias com +1 Filho</p>
                             <div className="flex items-baseline gap-2">
-                                <h3 className="text-3xl font-bold text-gray-900">{KPI_DATA.siblingsRate}%</h3>
+                                <h3 className="text-3xl font-bold text-gray-900">18.5%</h3>
                             </div>
                             <p className="text-xs text-gray-400 mt-1">Fidelidade Alta</p>
                         </div>
@@ -229,7 +212,7 @@ export default function ClientDashboardPage() {
                         </div>
                         <div>
                             <p className="text-sm font-medium text-gray-500 mt-4">Taxa de Evasão</p>
-                            <h3 className="text-3xl font-bold text-gray-900">{KPI_DATA.churnRate}%</h3>
+                            <h3 className="text-3xl font-bold text-gray-900">{kpis.churnRate}%</h3>
                         </div>
                     </div>
                 </Link>
@@ -241,10 +224,10 @@ export default function ClientDashboardPage() {
 
                 {/* Ocupação por Segmento - Click to see details */}
                 <Link href="/dashboard/clientes/ocupacao" className="bg-white p-6 rounded-3xl shadow-sm border border-gray-100 hover:shadow-md hover:border-emerald-200 transition-all cursor-pointer block">
-                    <h3 className="font-bold text-gray-900 mb-6">Taxa de Ocupação por Segmento</h3>
+                    <h3 className="font-bold text-gray-900 mb-6">Taxa de Ocupação por Turma</h3>
                     <div className="h-72 w-full">
                         <ResponsiveContainer width="100%" height="100%">
-                            <BarChart data={OCCUPANCY_BY_SEGMENT} layout="vertical" margin={{ left: 20 }}>
+                            <BarChart data={occupancyBySegment} layout="vertical" margin={{ left: 20 }}>
                                 <CartesianGrid strokeDasharray="3 3" horizontal={true} vertical={false} />
                                 <XAxis type="number" domain={[0, 100]} />
                                 <YAxis dataKey="name" type="category" width={80} />
@@ -259,12 +242,12 @@ export default function ClientDashboardPage() {
                 {/* Geographic Distribution - Click to see details */}
                 <Link href="/dashboard/clientes/perfil-aluno" className="bg-white p-6 rounded-3xl shadow-sm border border-gray-100 hover:shadow-md hover:border-blue-200 transition-all cursor-pointer block">
                     <div className="flex justify-between items-center mb-6">
-                        <h3 className="font-bold text-gray-900">Distribuição Geográfica (Bairros)</h3>
+                        <h3 className="font-bold text-gray-900">Distribuição Geográfica (Cidades)</h3>
                         <MapPin className="w-5 h-5 text-blue-500" />
                     </div>
                     <div className="h-72 w-full">
                         <ResponsiveContainer width="100%" height="100%">
-                            <BarChart data={GEO_DATA}>
+                            <BarChart data={geoData}>
                                 <CartesianGrid strokeDasharray="3 3" vertical={false} />
                                 <XAxis dataKey="name" />
                                 <YAxis />
@@ -283,7 +266,7 @@ export default function ClientDashboardPage() {
                         <ResponsiveContainer width="100%" height="100%">
                             <PieChart>
                                 <Pie
-                                    data={GENDER_DATA}
+                                    data={genderData}
                                     cx="50%"
                                     cy="50%"
                                     innerRadius={60}
@@ -291,7 +274,7 @@ export default function ClientDashboardPage() {
                                     paddingAngle={5}
                                     dataKey="value"
                                 >
-                                    {GENDER_DATA.map((entry, index) => (
+                                    {genderData.map((entry: any, index: number) => (
                                         <Cell key={`cell-${index}`} fill={PIE_COLORS[index % PIE_COLORS.length]} />
                                     ))}
                                 </Pie>
@@ -308,7 +291,7 @@ export default function ClientDashboardPage() {
                     <h3 className="font-bold text-gray-900 mb-6">Perfil: Cor/Raça</h3>
                     <div className="h-72 w-full">
                         <ResponsiveContainer width="100%" height="100%">
-                            <BarChart data={RACE_DATA}>
+                            <BarChart data={raceData}>
                                 <CartesianGrid strokeDasharray="3 3" vertical={false} />
                                 <XAxis dataKey="name" />
                                 <YAxis />
@@ -325,7 +308,7 @@ export default function ClientDashboardPage() {
                     <h3 className="font-bold text-gray-900 mb-6">Perfil Socioeconômico (Renda)</h3>
                     <div className="h-72 w-full">
                         <ResponsiveContainer width="100%" height="100%">
-                            <BarChart data={INCOME_DATA}>
+                            <BarChart data={incomeData}>
                                 <CartesianGrid strokeDasharray="3 3" vertical={false} />
                                 <XAxis dataKey="range" />
                                 <YAxis />
@@ -342,7 +325,7 @@ export default function ClientDashboardPage() {
                     <h3 className="font-bold text-gray-900 mb-6">Distribuição Etária</h3>
                     <div className="h-72 w-full">
                         <ResponsiveContainer width="100%" height="100%">
-                            <BarChart data={AGE_DATA}>
+                            <BarChart data={ageData}>
                                 <CartesianGrid strokeDasharray="3 3" vertical={false} />
                                 <XAxis dataKey="age" label={{ value: 'Idade (Anos)', position: 'insideBottom', offset: -5 }} />
                                 <YAxis />
