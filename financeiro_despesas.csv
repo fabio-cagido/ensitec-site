@@ -1,31 +1,31 @@
-id,categoria,valor,data_despesa,descricao
-589e9c9e-c29d-4ba5-8b68-60bb6c5ab95b,Pessoal,41945.59662990204,2026-01-05,Folha de Pagamento
-ba770a97-13d0-4e29-ae15-f04c41df4bc1,Energia,13570.90650654526,2026-01-15,Conta de Luz
-c6f790ca-9c16-46f0-8e2a-97fc67727b8c,Manutenção,7070.494583404539,2026-01-20,Reparos Gerais
-a332c8d6-5f62-470c-9c71-40d60f1a58fe,Marketing,2000,2026-01-10,Ads
-d340e5c9-603d-438b-af53-94e5dea09409,Insumos,8791.652394832685,2026-01-02,Material Escritorio
-fc2e38be-ee83-4b55-b51f-4533cf433cda,Pessoal,41853.30652442773,2026-02-05,Folha de Pagamento
-787cd3aa-eb18-433a-82bd-d0d2ce0f62c6,Energia,13267.827020437431,2026-02-15,Conta de Luz
-aeda749f-e868-4fd7-a37f-35358bea11a6,Manutenção,5811.491524296058,2026-02-20,Reparos Gerais
-830e3c8e-41a4-415e-9845-f41657f638df,Marketing,2000,2026-02-10,Ads
-98cb9634-4f90-44bc-91f6-11bf67bb4e24,Insumos,8879.166127567567,2026-02-02,Material Escritorio
-83c5dc38-4e83-4b13-80d3-a967de63ceee,Pessoal,40250.507189846445,2026-03-05,Folha de Pagamento
-bee336c9-7e58-4499-9507-622e17022a2a,Energia,13401.083605212083,2026-03-15,Conta de Luz
-0fa8ec34-447c-474d-af96-b3053c3bf66c,Manutenção,5236.825910159169,2026-03-20,Reparos Gerais
-62c5c0b7-2e0e-4e08-922a-292dc24f7c93,Marketing,2000,2026-03-10,Ads
-cbf5a2a7-6fd6-4a1a-ba59-1159e4088062,Insumos,3871.5151371765874,2026-03-02,Material Escritorio
-39a86d51-f727-48e6-86a8-887fe2debecf,Pessoal,40331.48444439337,2026-04-05,Folha de Pagamento
-4f412c73-b602-4b55-80d5-e747cbc0a556,Energia,14503.764198378398,2026-04-15,Conta de Luz
-3d6c7c60-2a4c-49d8-9110-5348aa9404ce,Manutenção,5180.868723380048,2026-04-20,Reparos Gerais
-dcfa18ca-1694-4b4e-b07d-ebe99b9bed17,Marketing,2000,2026-04-10,Ads
-5d81f602-65da-4781-bbc9-6cad1e9da91c,Insumos,3562.845726541924,2026-04-02,Material Escritorio
-7229b88e-aa40-4804-90c4-5649865d5a3e,Pessoal,40161.56528430988,2026-05-05,Folha de Pagamento
-4c9fe30a-ec3b-4ae9-982c-31dd322f2104,Energia,12082.702701509792,2026-05-15,Conta de Luz
-467aabce-69fe-4172-87d3-3388039e290d,Manutenção,7847.9175092333135,2026-05-20,Reparos Gerais
-c67cf0ae-8b84-4345-a832-f0cf40c03179,Marketing,2000,2026-05-10,Ads
-098aac47-e09d-4e71-aa40-b1b015de9326,Insumos,3951.3316213600788,2026-05-02,Material Escritorio
-0902e19b-97bc-44ca-a7aa-88b1bb3386f3,Pessoal,41697.609382651106,2026-06-05,Folha de Pagamento
-01b6ff90-c994-44cf-8150-d0cec7d30580,Energia,13095.185089449842,2026-06-15,Conta de Luz
-08dd332e-3948-49b4-8404-281f6ac8d5cf,Manutenção,4486.800778951818,2026-06-20,Reparos Gerais
-1829a735-67e1-44f1-be2b-9c83521f6f2f,Marketing,2000,2026-06-10,Ads
-34332af9-6877-4cba-9e66-0ebf7bde0da4,Insumos,3110.5502905091653,2026-06-02,Material Escritorio
+﻿id,categoria,valor,data_despesa,descricao
+6f0ab438-19fe-459e-a408-bd2fc8048382,Pessoal,42000,2026-01-05,Salários Funcionários
+91fbf3a1-b488-40dc-8f49-ea930ed4572e,Energia,13107,2026-01-15,Conta de Energia Elétrica
+980876ed-be12-46f0-9053-d3759e19d4bd,Manutenção,4366,2026-01-20,Manutenção Predial e Reparos
+d7b0b291-adc8-43e6-8ac7-725727757917,Insumos,4950,2026-01-10,Materiais de Escritório e Limpeza
+746a16e6-8fa6-4dff-a07d-9dd87f2ea846,Marketing,2500,2026-01-02,Anúncios Redes Sociais
+08917df4-8bc6-4421-acca-59297ceae501,Pessoal,42000,2026-02-05,Salários Funcionários
+9e286252-28c6-485f-aaf6-99c79149fb73,Energia,11310,2026-02-15,Conta de Energia Elétrica
+8067a861-d281-434c-8dbc-3f6d4b552f74,Manutenção,2525,2026-02-20,Manutenção Predial e Reparos
+17a89f66-8529-48f2-943a-d4ff86bc47bd,Insumos,5629,2026-02-10,Materiais de Escritório e Limpeza
+cff5da4f-ff13-4d24-a54d-589eff11b464,Marketing,2500,2026-02-02,Anúncios Redes Sociais
+b3a7cba1-b2f8-44de-9dc6-a8e848394810,Pessoal,42000,2026-03-05,Salários Funcionários
+14ef644d-7aa4-4ee1-8595-dee4e56b47f4,Energia,12370,2026-03-15,Conta de Energia Elétrica
+0a75cac6-4ac2-4939-8c17-7285510ac333,Manutenção,3044,2026-03-20,Manutenção Predial e Reparos
+386f0227-af03-4a8e-b4bf-7ce8b4fafb71,Insumos,3547,2026-03-10,Materiais de Escritório e Limpeza
+26716c82-8862-4054-affb-a931bda10c1f,Marketing,2500,2026-03-02,Anúncios Redes Sociais
+95508dce-27eb-4226-80e8-311e37838694,Pessoal,42000,2026-04-05,Salários Funcionários
+1f5642de-e50d-4f67-8159-cbe3e6fc2d1f,Energia,13281,2026-04-15,Conta de Energia Elétrica
+646eba21-c339-48ea-ae33-7f4278502053,Manutenção,3646,2026-04-20,Manutenção Predial e Reparos
+9bbcb233-029a-4172-829a-05a6fc16ef3f,Insumos,4040,2026-04-10,Materiais de Escritório e Limpeza
+dab963be-11a1-4bf2-9c58-5595f9167ba2,Marketing,2500,2026-04-02,Anúncios Redes Sociais
+24d6c6c9-5f49-48c4-87a7-898054563a0e,Pessoal,42000,2026-05-05,Salários Funcionários
+0bd0009f-58e8-40ec-9dd8-4c46a7683e66,Energia,13113,2026-05-15,Conta de Energia Elétrica
+b8f1ce1c-bd70-4ca0-8cdd-8dfa442862ae,Manutenção,4640,2026-05-20,Manutenção Predial e Reparos
+efbd035f-b002-424c-ba1e-18099bf4e468,Insumos,4609,2026-05-10,Materiais de Escritório e Limpeza
+3117b212-9087-4698-8083-95225675f014,Marketing,2500,2026-05-02,Anúncios Redes Sociais
+321fe7aa-5f5d-4c7f-9265-ac51f6db23c5,Pessoal,42000,2026-06-05,Salários Funcionários
+6d8436d0-0405-4bed-b95f-9f999cb6b1a7,Energia,11181,2026-06-15,Conta de Energia Elétrica
+3f908156-e1f9-424a-9358-df3aef5df3c4,Manutenção,4368,2026-06-20,Manutenção Predial e Reparos
+b4ca5f29-0954-42f1-a330-992f06472dc9,Insumos,4452,2026-06-10,Materiais de Escritório e Limpeza
+66592ada-4eae-46ac-a511-7a039573a367,Marketing,2500,2026-06-02,Anúncios Redes Sociais

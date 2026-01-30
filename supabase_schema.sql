@@ -16,6 +16,8 @@ CREATE TABLE IF NOT EXISTS alunos (
     genero TEXT CHECK (genero IN ('M', 'F', 'Outro')),
     turma TEXT NOT NULL,
     status_matricula TEXT CHECK (status_matricula IN ('Ativo', 'Inadimplente', 'Evadido')),
+    cor_raca TEXT CHECK (cor_raca IN ('Branca', 'Preta', 'Parda', 'Amarela', 'Indígena', 'Não declarado')),
+    faixa_renda TEXT CHECK (faixa_renda IN ('Até 3 SM', '3-6 SM', '6-10 SM', 'Acima de 10 SM')),
     created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
 );
 

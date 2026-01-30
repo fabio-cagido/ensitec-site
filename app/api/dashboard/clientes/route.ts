@@ -77,8 +77,23 @@ export async function GET() {
         `;
         const ageResult = await query(ageQuery);
 
+        // 6. Cor/Raça
+        const raceQuery = `
+            SELECT cor_raca, COUNT(*) as count 
+            FROM alunos 
+            GROUP BY cor_raca
+        `;
+        const raceResult = await query(raceQuery);
 
-        // 6. Métricas KPIs (NPS, Health Score, Bolsistas)
+        // 7. Renda
+        const incomeQuery = `
+            SELECT faixa_renda, COUNT(*) as count 
+            FROM alunos 
+            GROUP BY faixa_renda
+        `;
+        const incomeResult = await query(incomeQuery);
+
+        // 8. Métricas KPIs (NPS, Health Score, Bolsistas)
         const metricsQuery = `
             SELECT DISTINCT ON (tipo_metrica) 
                 tipo_metrica, valor
@@ -138,18 +153,14 @@ export async function GET() {
             occupancyBySegment,
             genderData,
             geoData: geoData.length > 0 ? geoData : [{ name: 'Sem dados', value: 0 }],
-            raceData: [
-                { name: 'Branca', value: 50 },
-                { name: 'Parda', value: 45 },
-                { name: 'Preta', value: 20 },
-                { name: 'Outros', value: 5 }
-            ],
-            ageData: ageData.length > 0 ? ageData : [{ age: 'N/A', count: 0 }],
-            incomeData: [
-                { range: 'Até 3 SM', count: 20 },
-                { range: '3-6 SM', count: 45 },
-                { range: '6-10 SM', count: 35 }
-            ]
+            raceData: raceResult.rows.map((r: any) => ({
+                name: r.cor_raca || 'Não declarado',
+                value: Number(r.count)
+            })),
+            incomeData: incomeResult.rows.map((r: any) => ({
+                range: r.faixa_renda || 'Não declarado',
+                count: Number(r.count)
+            }))
         });
 
     } catch (error) {
