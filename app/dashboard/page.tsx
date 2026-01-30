@@ -24,8 +24,44 @@ const MapWithNoSSR = dynamic(
 export default function DashboardPage() {
   const [isMounted, setIsMounted] = useState(false);
 
+  const [data, setData] = useState({
+    academic: null as any,
+    financial: null as any,
+    clients: null as any,
+    operational: null as any,
+    enem: null as any,
+    map: [] as any[]
+  });
+
   useEffect(() => {
     setIsMounted(true);
+
+    // Fetch summary data from all APIs
+    const fetchData = async () => {
+      try {
+        const [academicRes, financialRes, clientRes, operationalRes, enemRes, mapRes] = await Promise.all([
+          fetch('/api/dashboard/academico'),
+          fetch('/api/dashboard/financeiro'),
+          fetch('/api/dashboard/clientes'),
+          fetch('/api/dashboard/operacional'),
+          fetch('/api/enem/stats'),
+          fetch('/api/dashboard/map')
+        ]);
+
+        const academic = await academicRes.json();
+        const financial = await financialRes.json();
+        const clients = await clientRes.json();
+        const operational = await operationalRes.json();
+        const enem = await enemRes.json();
+        const map = await mapRes.json();
+
+        setData({ academic, financial, clients, operational, enem, map: Array.isArray(map) ? map : [] });
+      } catch (error) {
+        console.error("Dashboard overview fetch error:", error);
+      }
+    };
+
+    fetchData();
   }, []);
 
   return (
@@ -36,59 +72,106 @@ export default function DashboardPage() {
         showLogo={true}
       />
 
-      {/* INDICADORES (Cards) */}
+      {/* INDICADORES (Cards Dynamicos) */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 mb-10">
-        {/* Card Acadêmico */}
-        <div className="bg-white p-5 rounded-2xl shadow-sm border border-gray-100 border-t-4 border-t-blue-500">
-          <span className="text-xs font-bold text-gray-400 uppercase">Acadêmico</span>
-          <div className="text-3xl font-bold mt-2 text-gray-900">94.2%</div>
-          <p className="text-xs text-blue-500 font-medium mb-1">Frequência Geral</p> {/* Legenda Adicionada */}
-          <div className="mt-4 pt-4 border-t border-gray-50 text-[11px]">
-            <div className="flex justify-between mb-1 text-gray-500"><span>Média Gl.</span><span className="text-blue-600 font-bold">7.8</span></div>
-            <div className="w-full bg-gray-100 h-1.5 rounded-full overflow-hidden"><div className="bg-blue-500 h-full w-[78%]"></div></div>
+
+        {/* Card Acadêmico - Link para dashboard */}
+        <Link href="/dashboard/academico" className="block hover:scale-105 transition-transform">
+          <div className="bg-white p-5 rounded-2xl shadow-sm border border-gray-100 border-t-4 border-t-blue-500 h-full">
+            <span className="text-xs font-bold text-gray-400 uppercase">Acadêmico</span>
+            <div className="text-3xl font-bold mt-2 text-gray-900">
+              {data.academic ? `${data.academic.kpis.attendance}%` : '...'}
+            </div>
+            <p className="text-xs text-blue-500 font-medium mb-1">Frequência Geral</p>
+            <div className="mt-4 pt-4 border-t border-gray-50 text-[11px]">
+              <div className="flex justify-between mb-1 text-gray-500">
+                <span>Média Gl.</span>
+                <span className="text-blue-600 font-bold">{data.academic ? data.academic.kpis.mediaGlobal : '-'}</span>
+              </div>
+              <div className="w-full bg-gray-100 h-1.5 rounded-full overflow-hidden">
+                <div className="bg-blue-500 h-full" style={{ width: data.academic ? `${data.academic.kpis.mediaGlobal * 10}%` : '0%' }}></div>
+              </div>
+            </div>
           </div>
-        </div>
+        </Link>
+
         {/* Card Financeiro */}
-        <div className="bg-white p-5 rounded-2xl shadow-sm border border-gray-100 border-t-4 border-t-emerald-500">
-          <span className="text-xs font-bold text-gray-400 uppercase">Financeiro</span>
-          <div className="text-3xl font-bold mt-2 text-gray-900">12.5%</div>
-          <p className="text-xs text-emerald-500 font-medium mb-1">Margem Líquida</p> {/* Legenda Adicionada */}
-          <div className="mt-4 pt-4 border-t border-gray-50 text-[11px]">
-            <div className="flex justify-between mb-1 text-gray-500"><span>Execução</span><span className="text-emerald-600 font-bold">64%</span></div>
-            <div className="w-full bg-gray-100 h-1.5 rounded-full overflow-hidden"><div className="bg-emerald-500 h-full w-[64%]"></div></div>
+        <Link href="/dashboard/financeiro" className="block hover:scale-105 transition-transform">
+          <div className="bg-white p-5 rounded-2xl shadow-sm border border-gray-100 border-t-4 border-t-emerald-500 h-full">
+            <span className="text-xs font-bold text-gray-400 uppercase">Financeiro</span>
+            <div className="text-3xl font-bold mt-2 text-gray-900">
+              {data.financial ? `R$ ${(data.financial.kpis.receitaTotal / 1000).toFixed(0)}k` : '...'}
+            </div>
+            <p className="text-xs text-emerald-500 font-medium mb-1">Faturamento Total</p>
+            <div className="mt-4 pt-4 border-t border-gray-50 text-[11px]">
+              <div className="flex justify-between mb-1 text-gray-500">
+                <span>Inadimplência</span>
+                <span className="text-emerald-600 font-bold">{data.financial ? `${data.financial.kpis.inadimplencia}%` : '-'}</span>
+              </div>
+              <div className="w-full bg-gray-100 h-1.5 rounded-full overflow-hidden">
+                <div className="bg-emerald-500 h-full" style={{ width: data.financial ? `${100 - data.financial.kpis.inadimplencia}%` : '0%' }}></div>
+              </div>
+            </div>
           </div>
-        </div>
+        </Link>
+
         {/* Card Clientes */}
-        <div className="bg-white p-5 rounded-2xl shadow-sm border border-gray-100 border-t-4 border-t-orange-500">
-          <span className="text-xs font-bold text-gray-400 uppercase">Clientes</span>
-          <div className="text-3xl font-bold mt-2 text-gray-900">450</div>
-          <p className="text-xs text-orange-500 font-medium mb-1">Total de Alunos</p> {/* Legenda Adicionada */}
-          <div className="mt-4 pt-4 border-t border-gray-50 text-[11px]">
-            <div className="flex justify-between mb-1 text-gray-500"><span>Bolsistas</span><span className="text-orange-600 font-bold">18%</span></div>
-            <div className="w-full bg-gray-100 h-1.5 rounded-full overflow-hidden"><div className="bg-orange-500 h-full w-[18%]"></div></div>
+        <Link href="/dashboard/clientes" className="block hover:scale-105 transition-transform">
+          <div className="bg-white p-5 rounded-2xl shadow-sm border border-gray-100 border-t-4 border-t-orange-500 h-full">
+            <span className="text-xs font-bold text-gray-400 uppercase">Clientes</span>
+            <div className="text-3xl font-bold mt-2 text-gray-900">
+              {data.clients ? data.clients.kpis.totalStudents : '...'}
+            </div>
+            <p className="text-xs text-orange-500 font-medium mb-1">Total de Alunos</p>
+            <div className="mt-4 pt-4 border-t border-gray-50 text-[11px]">
+              <div className="flex justify-between mb-1 text-gray-500">
+                <span>NPS</span>
+                <span className="text-orange-600 font-bold">{data.clients ? data.clients.kpis.nps : '-'}</span>
+              </div>
+              <div className="w-full bg-gray-100 h-1.5 rounded-full overflow-hidden">
+                <div className="bg-orange-500 h-full" style={{ width: data.clients ? `${data.clients.kpis.nps}%` : '0%' }}></div>
+              </div>
+            </div>
           </div>
-        </div>
+        </Link>
+
         {/* Card Operacional */}
-        <div className="bg-white p-5 rounded-2xl shadow-sm border border-gray-100 border-t-4 border-t-purple-500">
-          <span className="text-xs font-bold text-gray-400 uppercase">Operacional</span>
-          <div className="text-3xl font-bold mt-2 text-gray-900">24</div>
-          <p className="text-xs text-purple-500 font-medium mb-1">Chamados Abertos</p> {/* Legenda Adicionada */}
-          <div className="mt-4 pt-4 border-t border-gray-50 flex items-center gap-2">
-            <div className="flex-1 bg-gray-100 h-1.5 rounded-full overflow-hidden"><div className="bg-purple-500 h-full w-[40%]"></div></div>
-            <span className="text-[10px] font-bold text-purple-600">40% CRÍTICOS</span>
+        <Link href="/dashboard/operacional" className="block hover:scale-105 transition-transform">
+          <div className="bg-white p-5 rounded-2xl shadow-sm border border-gray-100 border-t-4 border-t-purple-500 h-full">
+            <span className="text-xs font-bold text-gray-400 uppercase">Operacional</span>
+            <div className="text-3xl font-bold mt-2 text-gray-900">
+              {data.operational ? data.operational.kpis.manutencao.split(' ')[0] : '...'}
+            </div>
+            <p className="text-xs text-purple-500 font-medium mb-1">Chamados Ativos</p>
+            <div className="mt-4 pt-4 border-t border-gray-50 flex items-center gap-2">
+              <div className="flex-1 bg-gray-100 h-1.5 rounded-full overflow-hidden">
+                <div className="bg-purple-500 h-full w-[60%]"></div>
+              </div>
+              <span className="text-[10px] font-bold text-purple-600">RESOLUÇÃO EM DIA</span>
+            </div>
           </div>
-        </div>
+        </Link>
 
-
-        {/* Card ENEM (Novo) */}
+        {/* Card ENEM */}
         <Link href="/dashboard/enem" className="block transition-transform hover:scale-105">
           <div className="bg-white p-5 rounded-2xl shadow-sm border border-gray-100 border-t-4 border-t-indigo-500 h-full cursor-pointer hover:shadow-md">
             <span className="text-xs font-bold text-gray-400 uppercase">Enem</span>
-            <div className="text-3xl font-bold mt-2 text-gray-900">685</div>
-            <p className="text-xs text-indigo-500 font-medium mb-1">Média Geral (TRI)</p> {/* Legenda Adicionada */}
+            <div className="text-3xl font-bold mt-2 text-gray-900">
+              {data.enem && !data.enem.error ?
+                Math.round((data.enem.medias.matematica + data.enem.medias.linguagens + data.enem.medias.humanas + data.enem.medias.natureza + data.enem.medias.redacao) / 5)
+                : '685'}
+            </div>
+            <p className="text-xs text-indigo-500 font-medium mb-1">Média Geral (TRI)</p>
             <div className="mt-4 pt-4 border-t border-gray-50 text-[11px]">
-              <div className="flex justify-between mb-1 text-gray-500"><span>Aprovação</span><span className="text-indigo-600 font-bold">82%</span></div>
-              <div className="w-full bg-gray-100 h-1.5 rounded-full overflow-hidden"><div className="bg-indigo-500 h-full w-[82%]"></div></div>
+              <div className="flex justify-between mb-1 text-gray-500">
+                <span>Total Participantes</span>
+                <span className="text-indigo-600 font-bold">
+                  {data.enem && !data.enem.error ? data.enem.total.toLocaleString('pt-BR') : '-'}
+                </span>
+              </div>
+              <div className="w-full bg-gray-100 h-1.5 rounded-full overflow-hidden">
+                <div className="bg-indigo-500 h-full" style={{ width: '82%' }}></div>
+              </div>
             </div>
           </div>
         </Link>
@@ -97,8 +180,18 @@ export default function DashboardPage() {
       {/* ÁREA DO MAPA */}
       <div className="bg-white p-6 rounded-3xl shadow-sm border border-gray-100 h-[600px] flex flex-col">
         <div className="mb-6 flex justify-between items-center text-gray-900">
-          <h3 className="text-xl font-bold">Geolocalização de Alunos</h3>
-          <span className="text-xs font-bold bg-blue-50 text-blue-600 px-3 py-1 rounded-full">Rio de Janeiro, RJ</span>
+          <h3 className="text-xl font-bold">Geolocalização de Unidades</h3>
+          <div className="flex gap-2">
+            {data.map.length > 0 ? data.map.map((school: any) => (
+              <span key={school.id} className="text-xs font-bold bg-blue-50 text-blue-600 px-3 py-1 rounded-full">{school.city}</span>
+            )) : (
+              <>
+                <span className="text-xs font-bold bg-blue-50 text-blue-600 px-3 py-1 rounded-full">Rio de Janeiro</span>
+                <span className="text-xs font-bold bg-green-50 text-green-600 px-3 py-1 rounded-full">São Paulo</span>
+                <span className="text-xs font-bold bg-yellow-50 text-yellow-600 px-3 py-1 rounded-full">Curitiba</span>
+              </>
+            )}
+          </div>
         </div>
         <div className="flex-1 rounded-2xl overflow-hidden border border-gray-200">
           {isMounted && <MapWithNoSSR />}

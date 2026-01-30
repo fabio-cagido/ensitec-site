@@ -1,451 +1,481 @@
-﻿id,escola_id,nome_completo,data_nascimento,genero,turma,status_matricula,cor_raca,faixa_renda
-4fc828a4-fd02-40d2-afbd-af4c70240688,15b74999-8d06-4125-9b81-1711dd786399,Letícia Silva Souza,2009-12-3,F,3B,Ativo,Não declarado,3-6 SM
-57058922-8097-4145-bee9-96ad8ce5627e,35b74999-8d06-4125-9b81-1711dd786397,Bruno Alves Santos,2010-9-17,M,1A,Ativo,Indígena,3-6 SM
-511aecbf-fe77-4de2-91aa-b1103732f135,25b74999-8d06-4125-9b81-1711dd786398,Gustavo Santos Gomes,2012-7-22,M,2B,Ativo,Preta,3-6 SM
-29fee9a5-4344-4c2f-8bab-e818eaeeb0a6,35b74999-8d06-4125-9b81-1711dd786397,Pedro Silva Lopes,2012-8-22,M,3A,Ativo,Preta,Até 3 SM
-58425a78-23c7-43dc-a02c-503cd774dd2e,15b74999-8d06-4125-9b81-1711dd786399,Bruno Alves Pereira,2012-4-12,M,2B,Ativo,Parda,3-6 SM
-6fcfec10-c24f-4463-97c5-983dc33b92db,15b74999-8d06-4125-9b81-1711dd786399,Valentina Alves Almeida,2011-6-13,F,3B,Ativo,Parda,Até 3 SM
-50b79a6f-1317-4ec5-8226-0c38d97cd41e,15b74999-8d06-4125-9b81-1711dd786399,Leonardo Silva Silva,2008-5-6,M,1A,Ativo,Branca,Até 3 SM
-a983afd6-15ec-43cc-82c1-9d9a4467f0a3,15b74999-8d06-4125-9b81-1711dd786399,Gabriel Carvalho Ribeiro,2012-5-6,M,1A,Ativo,Indígena,Até 3 SM
-fbffce82-cfb4-4600-a8a7-6fa962cbacdd,25b74999-8d06-4125-9b81-1711dd786398,Leonardo Almeida Ferreira,2009-1-28,M,1B,Inadimplente,Preta,Até 3 SM
-c0b0140b-3405-42d1-8f20-2df7fca6a87b,35b74999-8d06-4125-9b81-1711dd786397,Guilherme Alves Carvalho,2008-3-11,M,2B,Ativo,Indígena,Acima de 10 SM
-a7a630bb-99d2-4485-8430-8ec979fbea2b,15b74999-8d06-4125-9b81-1711dd786399,Valentina Souza Alves,2008-5-14,F,3B,Evadido,Parda,Até 3 SM
-b51fdd72-83f1-4817-9095-b0ab2c375914,25b74999-8d06-4125-9b81-1711dd786398,Maria Costa Gomes,2009-6-15,F,3B,Evadido,Amarela,6-10 SM
-4fc99f62-323f-436e-9ccd-a94eead98e1f,25b74999-8d06-4125-9b81-1711dd786398,Vitor Almeida Martins,2011-3-4,M,1B,Ativo,Não declarado,Acima de 10 SM
-d8baeff9-0f39-4abb-bc8f-f89d09c7d8ab,25b74999-8d06-4125-9b81-1711dd786398,Amanda Rodrigues Pereira,2011-4-26,F,2A,Ativo,Parda,3-6 SM
-06937000-9015-476f-b491-258a643ba872,25b74999-8d06-4125-9b81-1711dd786398,Gustavo Almeida Gomes,2010-10-7,M,2A,Evadido,Indígena,Acima de 10 SM
-a6213355-9bbf-4c01-bb50-69062c368880,35b74999-8d06-4125-9b81-1711dd786397,Camila Lima Silva,2010-11-4,F,2A,Ativo,Não declarado,3-6 SM
-2f9f38d2-4a3f-4afb-b2c2-8aab06c1a5d0,15b74999-8d06-4125-9b81-1711dd786399,Mariana Costa Oliveira,2008-3-19,F,2A,Ativo,Amarela,Acima de 10 SM
-ace442a8-8d00-4ee4-b6ab-c23602e9f3d0,35b74999-8d06-4125-9b81-1711dd786397,Leonardo Alves Souza,2009-10-12,M,1A,Ativo,Parda,3-6 SM
-a1e2de7a-fa66-4c9b-8197-7ba66f19b525,25b74999-8d06-4125-9b81-1711dd786398,Beatriz Ribeiro Martins,2011-6-24,F,3B,Ativo,Indígena,Até 3 SM
-b22770ec-6e6a-406c-bc03-1060293a5bd6,35b74999-8d06-4125-9b81-1711dd786397,Gabriel Pereira Almeida,2010-11-12,M,3A,Ativo,Parda,Acima de 10 SM
-6b9d24ee-7f60-4c2c-a16a-143cf845f526,35b74999-8d06-4125-9b81-1711dd786397,Helena Ribeiro Oliveira,2011-4-1,F,3B,Ativo,Parda,3-6 SM
-a5195b18-6659-46af-a509-8583efdd74a1,35b74999-8d06-4125-9b81-1711dd786397,Larissa Oliveira Alves,2010-6-16,F,2B,Ativo,Parda,Até 3 SM
-029e8d0a-a3be-4ab3-9dd1-abdc31ccd69e,35b74999-8d06-4125-9b81-1711dd786397,Amanda Lima Oliveira,2010-2-11,F,3B,Ativo,Indígena,6-10 SM
-888ef7b1-5beb-4ce6-b2f0-89bada0964b1,35b74999-8d06-4125-9b81-1711dd786397,Camila Carvalho Carvalho,2012-10-24,F,2A,Inadimplente,Preta,3-6 SM
-718bd7a2-b81e-4900-913f-d4d4b6b81c65,25b74999-8d06-4125-9b81-1711dd786398,Rodrigo Lopes Alves,2011-6-4,M,1A,Ativo,Não declarado,6-10 SM
-184f4b1c-737e-4535-81df-7ababcc2ad74,25b74999-8d06-4125-9b81-1711dd786398,Valentina Martins Lopes,2012-7-19,F,2B,Evadido,Parda,Acima de 10 SM
-677c7045-f128-4171-bb0e-f72a9c46cc2b,25b74999-8d06-4125-9b81-1711dd786398,Sophia Oliveira Alves,2012-7-20,F,1A,Ativo,Preta,3-6 SM
-4f011c73-ebd2-48ae-9ca5-8c45e0c53ca9,35b74999-8d06-4125-9b81-1711dd786397,Gabriela Ribeiro Lopes,2012-2-18,F,3B,Evadido,Branca,Acima de 10 SM
-7640f12d-e5e6-4234-9e6d-42e797d946f9,35b74999-8d06-4125-9b81-1711dd786397,Gabriela Lopes Lima,2011-9-8,F,1B,Ativo,Branca,6-10 SM
-8670cd2d-b698-4c71-a132-4572327c8bef,35b74999-8d06-4125-9b81-1711dd786397,Beatriz Carvalho Lima,2011-7-27,F,1B,Ativo,Parda,3-6 SM
-29aa1fd5-69f0-4295-b080-96c2b81cdbd5,35b74999-8d06-4125-9b81-1711dd786397,Leonardo Martins Martins,2008-11-27,M,3B,Ativo,Branca,Até 3 SM
-778f2027-cd70-44ee-8f69-eae4ffeccbb6,25b74999-8d06-4125-9b81-1711dd786398,Daniel Martins Rodrigues,2011-9-19,M,1A,Ativo,Preta,Até 3 SM
-8712b274-8797-4c91-b756-de4ee2f3ed6e,35b74999-8d06-4125-9b81-1711dd786397,Bruno Martins Ferreira,2009-3-25,M,1B,Evadido,Branca,Até 3 SM
-f765ed7e-cbb8-4255-b592-bb07e885c9d6,15b74999-8d06-4125-9b81-1711dd786399,Sophia Gomes Silva,2010-6-15,F,2B,Ativo,Branca,Acima de 10 SM
-cdc14a86-2d8d-46bc-94fb-6dd37d156d0e,15b74999-8d06-4125-9b81-1711dd786399,João Lima Alves,2012-7-22,M,3A,Ativo,Não declarado,3-6 SM
-10b62524-b0d7-42e5-b76d-e68ade76f86e,15b74999-8d06-4125-9b81-1711dd786399,Guilherme Ribeiro Silva,2012-9-2,M,3A,Ativo,Indígena,Até 3 SM
-2659be60-0f0c-4450-a7a5-d07e905d518d,25b74999-8d06-4125-9b81-1711dd786398,Rafael Souza Oliveira,2008-4-13,M,2A,Ativo,Parda,Acima de 10 SM
-ee712d05-fc6a-467c-90c6-15c167ba2353,25b74999-8d06-4125-9b81-1711dd786398,Vitor Silva Rodrigues,2010-10-10,M,3B,Ativo,Preta,Até 3 SM
-63509094-f79f-453a-a37e-eb5262658bed,15b74999-8d06-4125-9b81-1711dd786399,Matheus Almeida Souza,2012-9-17,M,1B,Evadido,Parda,Até 3 SM
-f5e0fee2-3c02-460e-93b3-ccb921e5fe66,35b74999-8d06-4125-9b81-1711dd786397,Gustavo Costa Ribeiro,2011-8-5,M,1A,Ativo,Amarela,6-10 SM
-4e39518d-8dfc-498e-8d64-6df371582ad5,35b74999-8d06-4125-9b81-1711dd786397,João Costa Rodrigues,2009-11-14,M,1B,Ativo,Indígena,3-6 SM
-3d115992-d1d8-41f3-9b4d-319e6c5116e7,15b74999-8d06-4125-9b81-1711dd786399,Gabriel Costa Silva,2011-9-12,M,3A,Ativo,Indígena,Acima de 10 SM
-cced2feb-953c-4e3b-b99d-8d62ea86ec19,25b74999-8d06-4125-9b81-1711dd786398,Mariana Lopes Alves,2012-10-19,F,3B,Ativo,Branca,Até 3 SM
-13d3bedf-db9e-4fa1-b000-ea79548266a1,35b74999-8d06-4125-9b81-1711dd786397,Beatriz Pereira Souza,2010-6-25,F,3B,Ativo,Branca,Acima de 10 SM
-abe6e425-e532-4bc9-8ebc-062ac55bd37c,35b74999-8d06-4125-9b81-1711dd786397,Helena Gomes Carvalho,2010-4-2,F,3B,Ativo,Preta,3-6 SM
-351e2ef8-d76f-4d64-98a7-fa6f53070953,15b74999-8d06-4125-9b81-1711dd786399,Letícia Souza Costa,2012-3-18,F,2B,Evadido,Parda,3-6 SM
-8ea28d62-9ce9-46fc-a365-f21e68a34465,15b74999-8d06-4125-9b81-1711dd786399,Rodrigo Ferreira Rodrigues,2009-6-3,M,2A,Ativo,Parda,Acima de 10 SM
-9b91ea95-f18a-4ffa-bcb1-f0b4995cf8ab,15b74999-8d06-4125-9b81-1711dd786399,Luana Alves Ribeiro,2012-4-7,F,1B,Ativo,Não declarado,3-6 SM
-c807d11e-eff1-410d-a8e7-7fcbacb60d80,25b74999-8d06-4125-9b81-1711dd786398,Maria Ferreira Lima,2011-12-9,F,2A,Ativo,Parda,3-6 SM
-813a6f52-7460-4fc3-939a-95a2f79bb130,15b74999-8d06-4125-9b81-1711dd786399,Rodrigo Santos Carvalho,2011-8-21,M,3A,Ativo,Não declarado,6-10 SM
-7d25a4a3-428a-4201-a617-7a01b8a0327d,25b74999-8d06-4125-9b81-1711dd786398,Gustavo Souza Ferreira,2012-5-13,M,1B,Inadimplente,Branca,3-6 SM
-04be7bfb-b1fa-414a-b186-5566b5d481b6,35b74999-8d06-4125-9b81-1711dd786397,Matheus Almeida Lopes,2009-10-17,M,3B,Ativo,Branca,6-10 SM
-e8a0fa08-49d2-4db6-b2eb-dc306e08fc27,25b74999-8d06-4125-9b81-1711dd786398,Thiago Almeida Ribeiro,2008-1-16,M,1B,Evadido,Branca,3-6 SM
-52d4661d-b354-4951-b1f0-b6349f207356,15b74999-8d06-4125-9b81-1711dd786399,Mariana Ribeiro Rodrigues,2009-11-21,F,1B,Inadimplente,Branca,3-6 SM
-f5685f98-8162-4828-ae1f-3311542c24bd,15b74999-8d06-4125-9b81-1711dd786399,Felipe Costa Rodrigues,2012-12-1,M,3B,Evadido,Parda,3-6 SM
-a27fd264-4225-42a6-8c48-ff0f85c3f435,15b74999-8d06-4125-9b81-1711dd786399,Amanda Alves Carvalho,2011-2-10,F,2B,Evadido,Parda,Até 3 SM
-106433e4-a150-423a-bf88-6519fd467117,35b74999-8d06-4125-9b81-1711dd786397,Helena Silva Silva,2009-7-1,F,2A,Ativo,Branca,3-6 SM
-e87c5487-a048-48d1-8ed9-365f99388c5b,35b74999-8d06-4125-9b81-1711dd786397,Julia Carvalho Gomes,2010-6-12,F,2A,Ativo,Parda,Até 3 SM
-9e9df27f-a17d-46a1-a2f2-d017a9053cd5,15b74999-8d06-4125-9b81-1711dd786399,Amanda Lima Rodrigues,2010-10-10,F,3A,Evadido,Parda,Acima de 10 SM
-fa36fd20-8fa8-451a-bdb3-196de888ff63,35b74999-8d06-4125-9b81-1711dd786397,Bruno Pereira Lima,2008-4-23,M,1B,Evadido,Amarela,6-10 SM
-7d3440c5-59e5-40ee-a236-71d86524b6ce,25b74999-8d06-4125-9b81-1711dd786398,Julia Gomes Costa,2008-1-4,F,1B,Inadimplente,Parda,3-6 SM
-42ee0c94-f434-4f4b-9730-2ef6b513d399,15b74999-8d06-4125-9b81-1711dd786399,Matheus Alves Ferreira,2008-4-27,M,2A,Ativo,Não declarado,Até 3 SM
-9f49ae92-b421-4950-843d-7146f0ecb593,35b74999-8d06-4125-9b81-1711dd786397,Felipe Ferreira Carvalho,2009-3-25,M,1A,Inadimplente,Não declarado,Até 3 SM
-02e0c038-e6b9-4fb2-ac13-666e1ff7c58a,15b74999-8d06-4125-9b81-1711dd786399,Bruno Santos Rodrigues,2010-7-5,M,3A,Ativo,Parda,3-6 SM
-5f8e4762-354e-4c8d-8f58-fe1d5db3e261,15b74999-8d06-4125-9b81-1711dd786399,João Alves Rodrigues,2009-4-2,M,1B,Inadimplente,Parda,6-10 SM
-591d9275-d590-4d28-9f2a-52ab72bec387,35b74999-8d06-4125-9b81-1711dd786397,Gustavo Santos Ferreira,2012-3-11,M,1B,Ativo,Parda,Até 3 SM
-be54c291-9b16-4dc7-aa1f-73f813be2b36,25b74999-8d06-4125-9b81-1711dd786398,Larissa Oliveira Lima,2011-7-4,F,3A,Ativo,Preta,Até 3 SM
-2e2c2d53-b66f-4b6f-bc1a-d0963c4c9118,25b74999-8d06-4125-9b81-1711dd786398,Larissa Martins Souza,2012-3-22,F,3B,Ativo,Indígena,3-6 SM
-7f6ba6ae-c192-4b73-b167-47f3e4c43efc,15b74999-8d06-4125-9b81-1711dd786399,Camila Souza Ribeiro,2012-1-13,F,1B,Ativo,Indígena,Acima de 10 SM
-b94215e4-06f3-4716-a04e-0a06d60e4634,25b74999-8d06-4125-9b81-1711dd786398,Mariana Ribeiro Pereira,2008-7-10,F,2A,Ativo,Parda,3-6 SM
-92961511-cfa6-43fd-a2ca-cc67446dcfe8,15b74999-8d06-4125-9b81-1711dd786399,Lucas Pereira Gomes,2012-8-4,M,3A,Ativo,Preta,3-6 SM
-5a2b929d-fdef-48b4-89b8-4c9a1e29051e,15b74999-8d06-4125-9b81-1711dd786399,Matheus Martins Pereira,2009-4-19,M,3B,Inadimplente,Branca,6-10 SM
-a6c8ec9b-ff15-43e5-ad18-36274f74fa06,25b74999-8d06-4125-9b81-1711dd786398,Felipe Gomes Souza,2012-5-2,M,2A,Ativo,Parda,Acima de 10 SM
-3b3e501d-84ad-4840-a4f7-19fd6992548a,15b74999-8d06-4125-9b81-1711dd786399,Guilherme Lopes Lima,2010-2-6,M,3A,Evadido,Parda,3-6 SM
-4d4fe6c4-ea72-4802-bd2f-a05542234213,35b74999-8d06-4125-9b81-1711dd786397,Larissa Carvalho Santos,2010-4-2,F,2A,Inadimplente,Parda,6-10 SM
-dfaeff5a-08c6-4407-be3b-d1876486121f,15b74999-8d06-4125-9b81-1711dd786399,Guilherme Silva Carvalho,2012-12-22,M,3B,Ativo,Parda,Até 3 SM
-f8b0fcf2-1a81-43aa-b407-545a1450bf04,15b74999-8d06-4125-9b81-1711dd786399,Julia Silva Pereira,2008-9-25,F,2B,Ativo,Branca,Acima de 10 SM
-8e3335b7-40c1-40ed-9e60-bedcf777b53b,25b74999-8d06-4125-9b81-1711dd786398,João Silva Santos,2009-7-11,M,1A,Evadido,Não declarado,Acima de 10 SM
-df6176f5-1e28-465f-ad07-9934343b5d09,15b74999-8d06-4125-9b81-1711dd786399,Camila Souza Gomes,2009-12-7,F,1B,Ativo,Não declarado,3-6 SM
-5f9a6695-cd26-4aab-b2df-bbf816312241,25b74999-8d06-4125-9b81-1711dd786398,Gabriel Silva Rodrigues,2008-9-1,M,3B,Ativo,Não declarado,3-6 SM
-d8031568-8d43-43fe-9f71-ccf8dd91221f,35b74999-8d06-4125-9b81-1711dd786397,Guilherme Oliveira Oliveira,2008-8-6,M,1B,Inadimplente,Não declarado,3-6 SM
-f3b313b2-60f2-43f1-b2b6-9bc08c87f210,35b74999-8d06-4125-9b81-1711dd786397,Julia Souza Alves,2008-9-23,F,2A,Ativo,Branca,Até 3 SM
-fc1db78d-ae1b-4f83-86f2-684e0fe610cc,25b74999-8d06-4125-9b81-1711dd786398,Matheus Pereira Oliveira,2010-9-11,M,1A,Evadido,Indígena,Acima de 10 SM
-00f8ef33-21eb-45a0-86fd-c65ec7b4772c,25b74999-8d06-4125-9b81-1711dd786398,Daniel Lima Costa,2010-8-24,M,2B,Ativo,Branca,6-10 SM
-8be47045-f19d-49a4-b281-ddc6253ac7cf,35b74999-8d06-4125-9b81-1711dd786397,Julia Carvalho Alves,2008-8-28,F,3B,Evadido,Preta,3-6 SM
-34b080e2-efc5-4a02-8cda-4734870d1e2e,25b74999-8d06-4125-9b81-1711dd786398,João Lima Martins,2012-4-18,M,2A,Ativo,Branca,Até 3 SM
-76493df4-21c4-4ce7-908e-9cba2fe7576a,35b74999-8d06-4125-9b81-1711dd786397,Daniel Alves Alves,2010-9-15,M,2A,Evadido,Amarela,Até 3 SM
-41dffd5f-0359-4d49-abb1-4ab0b30e52e3,25b74999-8d06-4125-9b81-1711dd786398,Julia Lima Costa,2009-7-11,F,2B,Ativo,Amarela,3-6 SM
-a2a71717-a9ff-4d81-bea7-8b4109504977,35b74999-8d06-4125-9b81-1711dd786397,João Lopes Souza,2008-12-18,M,2A,Ativo,Preta,6-10 SM
-6aecd915-ef3c-4b93-8690-ca9b80a772a7,35b74999-8d06-4125-9b81-1711dd786397,Daniel Gomes Silva,2012-10-16,M,3A,Ativo,Preta,Acima de 10 SM
-8d371788-d93e-4051-a597-52db62d958fb,35b74999-8d06-4125-9b81-1711dd786397,Mariana Ferreira Ferreira,2011-10-25,F,2A,Ativo,Branca,Acima de 10 SM
-6ab8c423-6b8e-476d-80aa-6eec279fe086,25b74999-8d06-4125-9b81-1711dd786398,Ana Ribeiro Alves,2008-8-25,F,1B,Ativo,Indígena,Até 3 SM
-187154bf-ede3-48e0-9c6e-fd76bd506650,15b74999-8d06-4125-9b81-1711dd786399,Letícia Costa Souza,2009-11-21,F,3A,Ativo,Preta,Acima de 10 SM
-b423c8ca-7278-491c-b2be-7ce5689a0911,25b74999-8d06-4125-9b81-1711dd786398,Larissa Silva Martins,2012-11-23,F,2A,Ativo,Preta,Até 3 SM
-327e5529-6c67-416c-8b9f-8bce31bb7801,35b74999-8d06-4125-9b81-1711dd786397,Felipe Martins Alves,2011-3-9,M,2B,Ativo,Parda,3-6 SM
-46847cde-8ac3-401c-a0c7-d1ca0a4967f6,15b74999-8d06-4125-9b81-1711dd786399,Letícia Martins Martins,2009-10-14,F,2B,Ativo,Preta,6-10 SM
-760897c4-91d2-4cf4-9fc5-b897c0c20f40,35b74999-8d06-4125-9b81-1711dd786397,Gabriela Costa Ferreira,2012-9-28,F,3B,Inadimplente,Branca,3-6 SM
-f4eb927b-b9c1-4b4b-9b9d-7ba2d2de16b3,25b74999-8d06-4125-9b81-1711dd786398,Rafael Martins Costa,2009-5-13,M,2A,Ativo,Indígena,Acima de 10 SM
-4bb3499e-9307-428a-9c76-d2f7992ebec8,35b74999-8d06-4125-9b81-1711dd786397,Gustavo Carvalho Alves,2011-8-13,M,3A,Ativo,Branca,3-6 SM
-affecf2f-a1fd-4eda-bd77-f5ae52b92a88,15b74999-8d06-4125-9b81-1711dd786399,Beatriz Santos Pereira,2012-12-3,F,2B,Ativo,Parda,3-6 SM
-4679cdc5-da45-4801-b0e5-8bc9f59e3003,25b74999-8d06-4125-9b81-1711dd786398,Vitor Alves Lopes,2012-3-24,M,1A,Inadimplente,Preta,6-10 SM
-9ee2f38a-cc9c-440f-aec6-a14ba331d33b,35b74999-8d06-4125-9b81-1711dd786397,Leonardo Costa Pereira,2009-10-19,M,2A,Inadimplente,Parda,6-10 SM
-73f532ff-5943-4d80-ab27-53769f3f40a4,15b74999-8d06-4125-9b81-1711dd786399,Matheus Ferreira Rodrigues,2010-10-22,M,2B,Evadido,Não declarado,3-6 SM
-86bc134c-3d7c-4a6e-8cce-d7414c6dca9b,25b74999-8d06-4125-9b81-1711dd786398,Matheus Souza Alves,2012-6-24,M,1A,Ativo,Indígena,Até 3 SM
-f3052d86-8b60-4463-aab9-66448e103d8d,35b74999-8d06-4125-9b81-1711dd786397,Felipe Pereira Pereira,2012-3-9,M,1A,Ativo,Parda,6-10 SM
-626fc526-8147-4acc-b3f5-cb9932a5d7b9,35b74999-8d06-4125-9b81-1711dd786397,Matheus Martins Costa,2010-2-20,M,3B,Ativo,Não declarado,Até 3 SM
-5c86b07d-3b8b-4285-bb87-7340afebade0,25b74999-8d06-4125-9b81-1711dd786398,Ana Souza Alves,2012-3-23,F,1B,Ativo,Não declarado,6-10 SM
-ca513817-3723-418a-89f7-7792b31c9a75,25b74999-8d06-4125-9b81-1711dd786398,Felipe Rodrigues Silva,2010-8-10,M,2B,Ativo,Branca,3-6 SM
-bea4e8d5-05a9-4166-89e3-cb1ff1c566d1,25b74999-8d06-4125-9b81-1711dd786398,Matheus Ribeiro Ferreira,2010-9-1,M,3A,Ativo,Branca,3-6 SM
-a1ee94fa-ddfc-4252-8d2a-e0624eeca9d8,35b74999-8d06-4125-9b81-1711dd786397,Luana Gomes Santos,2008-11-20,F,3A,Inadimplente,Indígena,6-10 SM
-c8c43286-dda4-4702-9f38-c58e6ae9044c,15b74999-8d06-4125-9b81-1711dd786399,Guilherme Ferreira Martins,2012-7-28,M,2A,Inadimplente,Não declarado,Acima de 10 SM
-8bcc3851-6efd-4ca6-a931-ce173e1550bb,35b74999-8d06-4125-9b81-1711dd786397,Camila Souza Carvalho,2009-6-6,F,1A,Ativo,Branca,Até 3 SM
-41a17be9-c067-4807-9b67-e7b268981621,35b74999-8d06-4125-9b81-1711dd786397,Beatriz Almeida Ferreira,2011-8-25,F,3A,Ativo,Indígena,3-6 SM
-96836808-987e-41f0-a294-4b4fc61bdea8,25b74999-8d06-4125-9b81-1711dd786398,Isabela Lopes Carvalho,2009-9-17,F,3B,Ativo,Não declarado,Até 3 SM
-6fcc845b-1f3c-4c01-99dd-03c749155205,15b74999-8d06-4125-9b81-1711dd786399,Gabriela Ferreira Carvalho,2009-12-12,F,3B,Ativo,Parda,3-6 SM
-ea0e6385-29ee-4cc5-ae1d-e5c1a5625241,35b74999-8d06-4125-9b81-1711dd786397,Felipe Lopes Martins,2008-4-21,M,2B,Evadido,Parda,3-6 SM
-20a98162-01b9-4c0d-ab6e-750b35a4cb2b,15b74999-8d06-4125-9b81-1711dd786399,Pedro Costa Souza,2009-5-25,M,1A,Ativo,Preta,6-10 SM
-71807d59-8df6-4857-b4c8-009bd314ffef,25b74999-8d06-4125-9b81-1711dd786398,Sophia Pereira Lima,2011-8-18,F,3B,Ativo,Preta,Até 3 SM
-e5b3a8bf-5c3d-4637-b86f-7c6dd9400f84,35b74999-8d06-4125-9b81-1711dd786397,Pedro Alves Lima,2008-10-24,M,3B,Inadimplente,Indígena,Acima de 10 SM
-6442e180-722a-40dc-a506-207a784f22d2,15b74999-8d06-4125-9b81-1711dd786399,Vitor Santos Silva,2008-5-28,M,2A,Ativo,Parda,3-6 SM
-8a1a8e51-51f9-417a-8c73-be584ae3a190,35b74999-8d06-4125-9b81-1711dd786397,Pedro Rodrigues Almeida,2010-6-23,M,2B,Inadimplente,Não declarado,Até 3 SM
-6358fcbc-275b-4f47-b311-1a797b035370,25b74999-8d06-4125-9b81-1711dd786398,Matheus Martins Oliveira,2008-2-16,M,3B,Evadido,Não declarado,3-6 SM
-5a98e49c-54f4-4a30-b468-7964d5aed00c,15b74999-8d06-4125-9b81-1711dd786399,Guilherme Costa Pereira,2009-3-4,M,2A,Ativo,Indígena,3-6 SM
-91782910-f706-4a71-b1f3-80189dc334db,25b74999-8d06-4125-9b81-1711dd786398,Gustavo Gomes Oliveira,2008-3-19,M,1B,Ativo,Preta,3-6 SM
-25869256-e7d1-45ec-84b5-87bea549f507,35b74999-8d06-4125-9b81-1711dd786397,Thiago Costa Costa,2010-8-3,M,1B,Ativo,Branca,Até 3 SM
-f98ec44f-050c-433d-a278-48ddf4136656,15b74999-8d06-4125-9b81-1711dd786399,Camila Pereira Lopes,2009-1-17,F,3A,Ativo,Não declarado,Até 3 SM
-b15fafa9-723a-4c57-a59b-aafc173eab03,25b74999-8d06-4125-9b81-1711dd786398,Vitor Gomes Costa,2010-7-22,M,1A,Ativo,Preta,Até 3 SM
-928db8db-0367-41d0-998e-4f5ba4e096f7,15b74999-8d06-4125-9b81-1711dd786399,Bruno Gomes Almeida,2010-3-20,M,3A,Ativo,Não declarado,6-10 SM
-45e2ef08-ca57-46fb-9fc0-633393d9226c,15b74999-8d06-4125-9b81-1711dd786399,Beatriz Lima Silva,2009-6-22,F,2A,Ativo,Preta,Até 3 SM
-bd3cd035-795d-4237-933c-c26cea78fb44,15b74999-8d06-4125-9b81-1711dd786399,Sophia Ferreira Santos,2008-9-21,F,3A,Ativo,Parda,Até 3 SM
-39f98591-0f9b-4de9-af61-806ee9d64208,25b74999-8d06-4125-9b81-1711dd786398,Maria Almeida Oliveira,2009-7-11,F,2A,Ativo,Parda,3-6 SM
-9fa46aa2-6c55-4ed0-b984-377cb69cf8fc,25b74999-8d06-4125-9b81-1711dd786398,Julia Oliveira Silva,2008-4-20,F,1B,Ativo,Amarela,6-10 SM
-0104f45b-517b-49a8-afaf-f97783240bae,15b74999-8d06-4125-9b81-1711dd786399,João Ribeiro Ribeiro,2009-7-3,M,1A,Ativo,Não declarado,3-6 SM
-c6b6e9fb-4fca-4c82-b802-e49fb238e90a,15b74999-8d06-4125-9b81-1711dd786399,Gabriela Gomes Lima,2011-1-17,F,1A,Ativo,Preta,Até 3 SM
-ed8e9425-1b3e-4ea6-b610-949281261bd1,25b74999-8d06-4125-9b81-1711dd786398,Beatriz Costa Lima,2009-3-20,F,2B,Ativo,Parda,3-6 SM
-f0741b93-3c01-4986-8491-25c26621faee,25b74999-8d06-4125-9b81-1711dd786398,Valentina Souza Ribeiro,2011-12-28,F,3A,Inadimplente,Indígena,3-6 SM
-fd526d77-7482-41f0-acce-ef2e83d4a7fe,35b74999-8d06-4125-9b81-1711dd786397,Valentina Pereira Ribeiro,2009-3-10,F,1B,Ativo,Amarela,3-6 SM
-7614d2e2-efbc-4e8c-9995-6d1f47d4f94f,25b74999-8d06-4125-9b81-1711dd786398,Matheus Rodrigues Lopes,2011-4-24,M,3A,Ativo,Branca,6-10 SM
-fd668867-d37e-4151-acd1-17ab869b8d35,25b74999-8d06-4125-9b81-1711dd786398,Vitor Gomes Gomes,2012-3-13,M,3B,Inadimplente,Indígena,3-6 SM
-68196b2e-af29-4d66-832d-08a736a48066,25b74999-8d06-4125-9b81-1711dd786398,João Lima Ferreira,2008-11-7,M,3B,Inadimplente,Amarela,6-10 SM
-7c5b3eb0-f118-4d65-ba54-8233150c7b38,25b74999-8d06-4125-9b81-1711dd786398,Helena Lima Almeida,2008-7-19,F,1A,Ativo,Amarela,Até 3 SM
-26b0a8e5-6a37-4e26-b759-06f9c03fbb5f,15b74999-8d06-4125-9b81-1711dd786399,Mariana Lopes Souza,2009-11-3,F,2A,Ativo,Não declarado,Até 3 SM
-e3598b81-4638-48eb-b34f-ea1ea215624b,15b74999-8d06-4125-9b81-1711dd786399,Gabriela Rodrigues Lopes,2009-9-8,F,3B,Ativo,Não declarado,3-6 SM
-59e49a4d-c83e-41bd-bad8-5d1202b7b31e,35b74999-8d06-4125-9b81-1711dd786397,Letícia Lima Carvalho,2011-7-21,F,2B,Ativo,Branca,3-6 SM
-4511c0c9-22f9-4972-aafa-efd07d387cb6,15b74999-8d06-4125-9b81-1711dd786399,Sophia Oliveira Ferreira,2012-2-5,F,2B,Ativo,Amarela,Até 3 SM
-b6c05e42-b9b8-43d5-a738-b9eaee88a4b8,25b74999-8d06-4125-9b81-1711dd786398,Ana Rodrigues Souza,2010-4-22,F,1B,Ativo,Não declarado,Até 3 SM
-a3c405b3-fc4b-4211-93a1-e6d8d40a93ef,15b74999-8d06-4125-9b81-1711dd786399,Daniel Carvalho Santos,2012-1-6,M,3B,Ativo,Indígena,6-10 SM
-870a71f7-1f82-4ae2-8c54-7e96e50982fa,15b74999-8d06-4125-9b81-1711dd786399,Mariana Silva Rodrigues,2010-12-12,F,1A,Ativo,Parda,3-6 SM
-637f7038-4dae-4d28-a7d2-29391f5c9e08,15b74999-8d06-4125-9b81-1711dd786399,Daniel Gomes Pereira,2008-1-2,M,1A,Ativo,Branca,6-10 SM
-8c96de64-318f-47ea-adcc-1ae1f5e2360f,35b74999-8d06-4125-9b81-1711dd786397,Pedro Rodrigues Gomes,2009-11-12,M,3A,Inadimplente,Parda,3-6 SM
-2c2954af-1763-400e-942d-eda3ff06bc48,35b74999-8d06-4125-9b81-1711dd786397,Bruno Silva Silva,2009-1-6,M,3B,Ativo,Amarela,Acima de 10 SM
-22afda24-772b-4c6e-9bba-167718d532d0,15b74999-8d06-4125-9b81-1711dd786399,Leonardo Ferreira Almeida,2009-3-5,M,2A,Ativo,Não declarado,Acima de 10 SM
-37fdab51-9a1e-4d58-9988-34fadc6e0e8d,15b74999-8d06-4125-9b81-1711dd786399,Felipe Costa Lima,2008-5-20,M,3A,Ativo,Branca,Acima de 10 SM
-8e2612f5-e6be-4aee-bbcc-4af0373360f0,25b74999-8d06-4125-9b81-1711dd786398,Daniel Silva Almeida,2010-12-26,M,1B,Ativo,Preta,6-10 SM
-e170775d-c0fd-4fd9-91e0-9e71261c8f06,25b74999-8d06-4125-9b81-1711dd786398,Mariana Almeida Gomes,2008-10-2,F,2A,Ativo,Parda,3-6 SM
-f024540d-cb7c-4132-99f8-19466b3d668d,35b74999-8d06-4125-9b81-1711dd786397,Lucas Rodrigues Pereira,2011-7-18,M,2B,Ativo,Parda,3-6 SM
-2faccf1a-703f-4462-8846-c3e1ab57f920,15b74999-8d06-4125-9b81-1711dd786399,João Lima Santos,2012-1-26,M,1B,Ativo,Indígena,3-6 SM
-a40e8e8c-8046-473c-9521-1fd7ac4b3f97,35b74999-8d06-4125-9b81-1711dd786397,Guilherme Martins Martins,2012-5-23,M,3B,Evadido,Preta,Acima de 10 SM
-5485c582-c758-494a-a40f-6e8aaf55d360,35b74999-8d06-4125-9b81-1711dd786397,Luana Ribeiro Carvalho,2010-2-6,F,2B,Ativo,Preta,Até 3 SM
-10139836-38f4-4ce1-8520-24ccd5a8b895,25b74999-8d06-4125-9b81-1711dd786398,Guilherme Santos Oliveira,2011-5-11,M,2A,Ativo,Indígena,3-6 SM
-e7636f54-b175-4fb5-998d-93fb146cd1fd,15b74999-8d06-4125-9b81-1711dd786399,Luana Santos Lima,2009-8-20,F,2B,Inadimplente,Preta,3-6 SM
-cf46abce-2f02-4007-a418-acfabd514ffd,25b74999-8d06-4125-9b81-1711dd786398,Sophia Almeida Almeida,2011-11-1,F,1A,Ativo,Branca,Acima de 10 SM
-f5c74e20-05cf-43df-acb9-6d7b7479ab80,15b74999-8d06-4125-9b81-1711dd786399,Beatriz Almeida Ribeiro,2008-8-18,F,1A,Inadimplente,Branca,Até 3 SM
-c8fbe8c3-8c52-4dde-bce8-7304a736d248,15b74999-8d06-4125-9b81-1711dd786399,Daniel Gomes Almeida,2011-4-5,M,1B,Ativo,Parda,Até 3 SM
-32034048-9734-4fde-9429-6a9dcdaec436,15b74999-8d06-4125-9b81-1711dd786399,Thiago Alves Santos,2008-1-8,M,3B,Ativo,Parda,Acima de 10 SM
-2a4649c9-d645-45a7-aafe-c7cebf13a1d7,15b74999-8d06-4125-9b81-1711dd786399,Rodrigo Ribeiro Lopes,2012-2-21,M,1A,Ativo,Amarela,Acima de 10 SM
-4d95ddec-d8ab-49d7-bc12-5be68e3d3348,35b74999-8d06-4125-9b81-1711dd786397,Sophia Santos Almeida,2011-4-19,F,3A,Ativo,Não declarado,Acima de 10 SM
-ee5b3ffc-7a45-4f27-95ec-81ca37065209,15b74999-8d06-4125-9b81-1711dd786399,Maria Oliveira Rodrigues,2009-12-4,F,2B,Inadimplente,Parda,Acima de 10 SM
-5f4576c9-c0a5-4c1b-81f0-9afc667721e2,35b74999-8d06-4125-9b81-1711dd786397,Thiago Silva Alves,2012-11-19,M,1A,Ativo,Branca,3-6 SM
-5702f5a8-ccd1-470a-91c0-af626354123f,25b74999-8d06-4125-9b81-1711dd786398,Valentina Souza Oliveira,2011-3-18,F,1A,Ativo,Parda,Até 3 SM
-0d655d95-af4a-4287-82f5-3ba25e585355,35b74999-8d06-4125-9b81-1711dd786397,Bruno Souza Ribeiro,2012-4-12,M,2A,Ativo,Branca,Até 3 SM
-820392e1-c895-4fbf-a9bb-868ed3b57f67,15b74999-8d06-4125-9b81-1711dd786399,Felipe Carvalho Souza,2009-12-10,M,1A,Ativo,Indígena,6-10 SM
-eda0472e-e905-4f07-875c-7b176c8e5f39,25b74999-8d06-4125-9b81-1711dd786398,Gabriel Oliveira Souza,2011-7-4,M,1A,Ativo,Parda,3-6 SM
-31775f64-541a-481f-8fc8-3de535579471,25b74999-8d06-4125-9b81-1711dd786398,Camila Oliveira Ribeiro,2008-7-10,F,2B,Ativo,Indígena,3-6 SM
-9650c217-299d-4334-8494-149086ad8d1c,25b74999-8d06-4125-9b81-1711dd786398,Isabela Pereira Lima,2012-9-22,F,3A,Evadido,Preta,3-6 SM
-712989b0-0be8-4a51-9ef5-e073a6334c8b,25b74999-8d06-4125-9b81-1711dd786398,Rodrigo Carvalho Lopes,2012-8-22,M,1A,Ativo,Parda,3-6 SM
-61b09f60-a51f-45e4-98b7-a9ebf32d2502,15b74999-8d06-4125-9b81-1711dd786399,Letícia Oliveira Gomes,2008-11-18,F,3A,Ativo,Branca,Até 3 SM
-fdbf30b4-3221-480e-b1ac-ecefe8497165,25b74999-8d06-4125-9b81-1711dd786398,Lucas Pereira Pereira,2012-4-7,M,3A,Ativo,Não declarado,Até 3 SM
-ac9dcd76-3d47-4813-9944-d63d2e3ad1ad,15b74999-8d06-4125-9b81-1711dd786399,Isabela Lopes Martins,2011-10-25,F,3A,Ativo,Branca,6-10 SM
-b8441296-a98a-48c1-be1a-ee0c41205d66,15b74999-8d06-4125-9b81-1711dd786399,Beatriz Ribeiro Alves,2010-6-16,F,1B,Evadido,Parda,3-6 SM
-e2daf0bf-e5df-430e-9315-edc02c47f3dd,15b74999-8d06-4125-9b81-1711dd786399,Valentina Carvalho Martins,2010-11-6,F,2B,Evadido,Indígena,Acima de 10 SM
-16843a42-88ab-4ee3-98f1-1d61bd1c9a52,25b74999-8d06-4125-9b81-1711dd786398,Leonardo Ribeiro Lima,2008-11-5,M,1B,Ativo,Indígena,Até 3 SM
-d1b9e6ec-f921-48d6-be03-5c1cf09fec89,15b74999-8d06-4125-9b81-1711dd786399,Guilherme Gomes Alves,2010-6-3,M,1B,Ativo,Não declarado,6-10 SM
-abdab2cd-734e-46d4-9e0e-93354093faf8,15b74999-8d06-4125-9b81-1711dd786399,Beatriz Gomes Almeida,2012-12-13,F,1B,Evadido,Amarela,3-6 SM
-e52f240c-974c-40d0-a791-241ba9480e4c,25b74999-8d06-4125-9b81-1711dd786398,Rodrigo Pereira Martins,2009-10-9,M,2A,Ativo,Não declarado,Até 3 SM
-3da9d0f2-b218-4d04-9157-1162fa410d6d,35b74999-8d06-4125-9b81-1711dd786397,Vitor Santos Ribeiro,2008-1-6,M,3B,Inadimplente,Parda,6-10 SM
-1e3b6e4c-1bc8-444e-9ec4-d93717139bde,35b74999-8d06-4125-9b81-1711dd786397,Maria Almeida Almeida,2009-9-5,F,1A,Ativo,Indígena,Acima de 10 SM
-3eb44cc3-fb6a-452c-9222-6ce38f54d86d,25b74999-8d06-4125-9b81-1711dd786398,Julia Santos Almeida,2008-6-10,F,2B,Ativo,Parda,3-6 SM
-553ee709-1243-41c5-bb63-015a100e0a91,35b74999-8d06-4125-9b81-1711dd786397,João Santos Rodrigues,2008-4-10,M,3B,Ativo,Parda,Acima de 10 SM
-f9c53cc3-3054-456b-88a4-752749d5111b,35b74999-8d06-4125-9b81-1711dd786397,Gabriela Pereira Oliveira,2010-10-9,F,2B,Ativo,Preta,Até 3 SM
-cea095b6-5c71-43d0-ac64-85275d09ebe6,35b74999-8d06-4125-9b81-1711dd786397,Maria Santos Oliveira,2010-1-24,F,1B,Ativo,Branca,3-6 SM
-4781fbfe-a740-421f-a0ca-5ecddd6e81f4,35b74999-8d06-4125-9b81-1711dd786397,Ana Silva Rodrigues,2011-10-6,F,3A,Inadimplente,Indígena,Até 3 SM
-c44aeddf-689c-460a-8718-a654f65f33f1,25b74999-8d06-4125-9b81-1711dd786398,Thiago Ribeiro Lima,2009-2-24,M,2B,Ativo,Branca,Até 3 SM
-d0184ac6-94f8-4e99-81d3-c9293b5279d7,15b74999-8d06-4125-9b81-1711dd786399,Letícia Silva Carvalho,2012-5-14,F,2A,Ativo,Amarela,Até 3 SM
-e62f977b-7df6-4a56-9a1f-690884f473a8,25b74999-8d06-4125-9b81-1711dd786398,Thiago Carvalho Souza,2011-5-16,M,2B,Ativo,Branca,3-6 SM
-a89ed54b-2bef-465d-b253-0f78b7b316cf,35b74999-8d06-4125-9b81-1711dd786397,Ana Ferreira Alves,2011-1-22,F,3B,Evadido,Amarela,Até 3 SM
-c2866732-0939-47a8-8757-90b74296ad8c,15b74999-8d06-4125-9b81-1711dd786399,Rodrigo Ribeiro Martins,2011-8-8,M,1A,Ativo,Branca,Até 3 SM
-0a007eb4-4a44-4669-84cb-39dd5c0f1e91,15b74999-8d06-4125-9b81-1711dd786399,Sophia Alves Alves,2012-9-6,F,1B,Ativo,Preta,6-10 SM
-6c4dbc73-39e6-407a-8264-3f65d985bf96,15b74999-8d06-4125-9b81-1711dd786399,Matheus Gomes Rodrigues,2011-2-28,M,3B,Evadido,Branca,3-6 SM
-196f20b9-303c-4075-a67c-022a5778df5b,35b74999-8d06-4125-9b81-1711dd786397,Vitor Rodrigues Almeida,2009-8-19,M,2B,Evadido,Parda,Acima de 10 SM
-5b59c4f7-c718-4550-8999-c2b146c3d1c5,15b74999-8d06-4125-9b81-1711dd786399,Helena Oliveira Costa,2011-11-20,F,3A,Ativo,Amarela,Acima de 10 SM
-6841cd12-0f1c-41c9-91ce-d6c8e25a6212,15b74999-8d06-4125-9b81-1711dd786399,Thiago Alves Oliveira,2010-8-24,M,3A,Inadimplente,Preta,Até 3 SM
-89b8c526-83b0-4e94-96d4-a8bf008218e1,15b74999-8d06-4125-9b81-1711dd786399,Luana Gomes Lopes,2010-3-18,F,1B,Evadido,Indígena,6-10 SM
-95e3c40e-abb3-438b-aa0e-baf45740ec02,15b74999-8d06-4125-9b81-1711dd786399,Thiago Lima Lima,2009-10-16,M,2B,Ativo,Indígena,Acima de 10 SM
-59e4e015-dbdb-4d79-8d0b-42430bacaefb,35b74999-8d06-4125-9b81-1711dd786397,Gustavo Lopes Santos,2011-10-25,M,3A,Ativo,Indígena,6-10 SM
-6d09031b-2a25-4479-a78a-1bea450d4c65,15b74999-8d06-4125-9b81-1711dd786399,Letícia Oliveira Martins,2010-2-11,F,3B,Ativo,Indígena,3-6 SM
-8be5be71-167d-4871-a2f9-2cfc64c36d6a,25b74999-8d06-4125-9b81-1711dd786398,Daniel Costa Almeida,2012-5-25,M,1B,Ativo,Não declarado,Acima de 10 SM
-0f0c5a26-e118-4aa8-bc6e-04d947a273ff,35b74999-8d06-4125-9b81-1711dd786397,Thiago Ferreira Carvalho,2010-4-9,M,1A,Ativo,Branca,Acima de 10 SM
-26aff4b5-b3bf-48f1-b11c-784b4075bb0e,25b74999-8d06-4125-9b81-1711dd786398,Bruno Almeida Rodrigues,2010-7-6,M,2A,Inadimplente,Indígena,6-10 SM
-9cac512d-a868-4363-8b01-fede916af35c,35b74999-8d06-4125-9b81-1711dd786397,Maria Gomes Ferreira,2012-4-13,F,3A,Ativo,Preta,3-6 SM
-6187ce68-773c-4926-9a4e-4539a9cccf0a,15b74999-8d06-4125-9b81-1711dd786399,Gabriel Oliveira Ribeiro,2009-3-11,M,2A,Evadido,Branca,Acima de 10 SM
-e3221856-63b2-4b76-88e0-347c0d7a05dc,25b74999-8d06-4125-9b81-1711dd786398,Gabriel Carvalho Souza,2008-11-2,M,3A,Ativo,Preta,3-6 SM
-e1f5861c-db9e-4b35-a4ad-149b973b275a,25b74999-8d06-4125-9b81-1711dd786398,Helena Almeida Gomes,2011-10-7,F,2A,Ativo,Branca,6-10 SM
-9fc3f28c-a649-41bc-ad62-6caf116ff297,15b74999-8d06-4125-9b81-1711dd786399,Julia Lopes Santos,2012-10-11,F,2A,Ativo,Amarela,3-6 SM
-4ce17279-e5c0-4469-91da-8355068e0aa1,35b74999-8d06-4125-9b81-1711dd786397,Guilherme Martins Oliveira,2011-11-1,M,2B,Inadimplente,Parda,3-6 SM
-7219b67f-b2f3-40d4-980a-67b9516eef4d,35b74999-8d06-4125-9b81-1711dd786397,Larissa Costa Almeida,2010-6-7,F,2A,Evadido,Parda,3-6 SM
-c66f14d8-0add-48f8-9df9-c0197f4385d7,15b74999-8d06-4125-9b81-1711dd786399,Camila Alves Carvalho,2009-3-18,F,2B,Evadido,Amarela,6-10 SM
-87102699-a6f1-44d0-80d8-6c2df2cfe7dc,25b74999-8d06-4125-9b81-1711dd786398,Lucas Pereira Rodrigues,2009-12-2,M,2B,Ativo,Indígena,Até 3 SM
-df20a016-f59e-49de-93e9-16ef62aa04e2,25b74999-8d06-4125-9b81-1711dd786398,Ana Pereira Lopes,2009-4-7,F,3A,Ativo,Amarela,6-10 SM
-4fe3d2b2-cdb8-462a-8f0a-7d8f2fc96c14,35b74999-8d06-4125-9b81-1711dd786397,Helena Alves Gomes,2010-6-27,F,2A,Ativo,Parda,3-6 SM
-7cea5f68-c89e-42b6-b6e1-00fc7a97fd99,25b74999-8d06-4125-9b81-1711dd786398,Gustavo Carvalho Santos,2011-3-8,M,3B,Evadido,Amarela,6-10 SM
-5be09cd9-52e9-45a8-9dcd-04d93924fefd,15b74999-8d06-4125-9b81-1711dd786399,Larissa Costa Martins,2009-5-25,F,1B,Ativo,Parda,3-6 SM
-47721f65-dacc-4852-8998-d58889fdcd7f,25b74999-8d06-4125-9b81-1711dd786398,Mariana Almeida Souza,2012-4-8,F,2A,Ativo,Indígena,Até 3 SM
-9f9f67df-b303-4577-a9a8-935a87ca0c1a,25b74999-8d06-4125-9b81-1711dd786398,Julia Martins Oliveira,2010-6-28,F,2A,Evadido,Parda,Até 3 SM
-ea491821-5ac2-49f2-84d0-d7998e059e87,25b74999-8d06-4125-9b81-1711dd786398,Vitor Lima Ribeiro,2010-5-22,M,2A,Ativo,Preta,Até 3 SM
-8207af83-3785-491b-b9d8-610e9100da25,15b74999-8d06-4125-9b81-1711dd786399,Isabela Pereira Almeida,2010-8-9,F,2A,Evadido,Não declarado,Até 3 SM
-a3bcdc84-7be2-4162-abb6-65d1ba81e38b,25b74999-8d06-4125-9b81-1711dd786398,Larissa Lopes Ribeiro,2010-9-16,F,3A,Ativo,Branca,Até 3 SM
-823251bb-6045-4368-a63d-97c850b44cc7,15b74999-8d06-4125-9b81-1711dd786399,Helena Souza Ferreira,2008-7-17,F,1B,Evadido,Branca,6-10 SM
-86f46fb5-c874-429f-9e50-b79c721d7961,35b74999-8d06-4125-9b81-1711dd786397,Gabriela Costa Gomes,2008-1-1,F,2A,Ativo,Indígena,Acima de 10 SM
-da43a4ee-cb91-4f92-b9fb-15a6ffb519ae,35b74999-8d06-4125-9b81-1711dd786397,Sophia Almeida Lopes,2009-7-2,F,2A,Ativo,Preta,Até 3 SM
-664f8bb3-e066-4979-94da-117f4bf84232,15b74999-8d06-4125-9b81-1711dd786399,Gabriela Silva Almeida,2012-9-2,F,2B,Ativo,Branca,3-6 SM
-aa5889fb-9b63-40bf-b13f-5c14e285b732,35b74999-8d06-4125-9b81-1711dd786397,Gustavo Ribeiro Silva,2010-7-25,M,1B,Ativo,Branca,3-6 SM
-db81c86e-c002-4b5c-b5f8-83955b053ecf,15b74999-8d06-4125-9b81-1711dd786399,Mariana Rodrigues Oliveira,2009-6-17,F,1B,Evadido,Branca,3-6 SM
-8a28a067-bc25-4882-931e-7d8a2ec7d5f3,25b74999-8d06-4125-9b81-1711dd786398,Lucas Lopes Alves,2010-2-26,M,2A,Ativo,Branca,Acima de 10 SM
-70a6a3a5-9235-4dd0-8e98-c9c4ecd89be2,15b74999-8d06-4125-9b81-1711dd786399,Maria Martins Ferreira,2008-12-9,F,3B,Ativo,Não declarado,6-10 SM
-ac8f1794-902b-40af-b3a8-fddac8456697,25b74999-8d06-4125-9b81-1711dd786398,Matheus Ferreira Martins,2012-3-14,M,1A,Ativo,Indígena,Até 3 SM
-153ea23d-b01d-4103-9df6-2a11a0e68d44,35b74999-8d06-4125-9b81-1711dd786397,Letícia Silva Lima,2009-2-3,F,2A,Evadido,Parda,3-6 SM
-cb804588-048a-47b6-b9c3-d945f70887a1,25b74999-8d06-4125-9b81-1711dd786398,Isabela Gomes Rodrigues,2011-1-20,F,1A,Ativo,Indígena,3-6 SM
-ce7f3796-4c65-4091-a418-3897e34da2f4,25b74999-8d06-4125-9b81-1711dd786398,Sophia Gomes Carvalho,2012-5-21,F,3B,Ativo,Parda,3-6 SM
-61a41118-84e6-4418-8f0c-61d3f2e3bbe7,15b74999-8d06-4125-9b81-1711dd786399,Sophia Rodrigues Santos,2010-3-22,F,3A,Ativo,Parda,6-10 SM
-65834c2d-ca68-4fd5-8edd-8093a1fd416a,35b74999-8d06-4125-9b81-1711dd786397,Amanda Souza Santos,2010-8-1,F,2B,Ativo,Amarela,6-10 SM
-918ea2c1-db0a-4a75-8902-91480cf79a78,35b74999-8d06-4125-9b81-1711dd786397,Julia Ferreira Carvalho,2012-10-19,F,2B,Inadimplente,Branca,3-6 SM
-89b08cae-a46d-4e7e-9bfe-fa3a4eeef7c2,25b74999-8d06-4125-9b81-1711dd786398,Rodrigo Lima Souza,2010-2-26,M,1B,Ativo,Indígena,Até 3 SM
-51df7b27-ee12-49a2-bf99-816d15a76488,25b74999-8d06-4125-9b81-1711dd786398,Valentina Martins Lima,2011-2-22,F,3A,Ativo,Branca,3-6 SM
-497dabb9-8d6b-4ee7-adc8-c9ae57af2b5a,15b74999-8d06-4125-9b81-1711dd786399,Luana Ribeiro Rodrigues,2010-2-25,F,3B,Ativo,Indígena,3-6 SM
-b198d466-6376-45ad-a9ca-36d1bbc90f35,15b74999-8d06-4125-9b81-1711dd786399,Daniel Ferreira Costa,2011-3-19,M,2A,Ativo,Parda,Até 3 SM
-a48a85d8-e58f-434a-be4f-7963bbb5f6e2,35b74999-8d06-4125-9b81-1711dd786397,Bruno Costa Oliveira,2012-1-5,M,1B,Ativo,Branca,3-6 SM
-3ef5a89a-4ffe-4b19-9349-a152453c7b16,25b74999-8d06-4125-9b81-1711dd786398,Gabriela Gomes Ferreira,2008-6-2,F,2A,Ativo,Não declarado,3-6 SM
-85818cf7-9c2d-4c53-97c8-382c6e3b2438,35b74999-8d06-4125-9b81-1711dd786397,Helena Lima Oliveira,2012-7-24,F,3B,Ativo,Branca,Até 3 SM
-a13cdfc7-22bd-4e8c-9aae-a15b330d8627,25b74999-8d06-4125-9b81-1711dd786398,Julia Pereira Lima,2011-2-21,F,2B,Evadido,Não declarado,6-10 SM
-d0812c74-c563-4bd6-bb83-e7370b5e3f6b,15b74999-8d06-4125-9b81-1711dd786399,Guilherme Ribeiro Martins,2010-11-23,M,2B,Inadimplente,Parda,3-6 SM
-b2cca24c-7b79-431c-8cbd-26868ae5d9d6,25b74999-8d06-4125-9b81-1711dd786398,Leonardo Martins Oliveira,2009-4-3,M,2A,Ativo,Não declarado,6-10 SM
-3a90aceb-5f89-4bea-b658-5a5512d7bf5a,15b74999-8d06-4125-9b81-1711dd786399,Maria Lopes Ferreira,2008-4-16,F,2B,Inadimplente,Branca,3-6 SM
-a8c5bf52-ccef-4f32-b303-e696433f34bd,35b74999-8d06-4125-9b81-1711dd786397,Larissa Silva Costa,2008-7-6,F,1B,Inadimplente,Parda,Até 3 SM
-51d0f0f8-d509-41ab-bba3-d834910f1377,15b74999-8d06-4125-9b81-1711dd786399,Felipe Gomes Ribeiro,2012-8-19,M,3B,Ativo,Não declarado,3-6 SM
-dbe8b1ed-011f-4361-8a98-ca4ff4cbf535,15b74999-8d06-4125-9b81-1711dd786399,Pedro Rodrigues Gomes,2011-12-7,M,1B,Inadimplente,Indígena,3-6 SM
-fa38cfcb-5ad1-473c-9270-12e0aad9272f,25b74999-8d06-4125-9b81-1711dd786398,Luana Ribeiro Almeida,2009-4-13,F,3A,Inadimplente,Não declarado,Até 3 SM
-3e53298b-5d26-4568-9bad-a5c8009f0a33,25b74999-8d06-4125-9b81-1711dd786398,Sophia Lima Souza,2010-2-8,F,1B,Inadimplente,Amarela,6-10 SM
-e136ccda-a836-4a41-91ca-db7082d7d28f,25b74999-8d06-4125-9b81-1711dd786398,Luana Lima Pereira,2008-5-24,F,2B,Evadido,Indígena,3-6 SM
-ac80541e-fdb3-4920-97c9-03a043340ddf,35b74999-8d06-4125-9b81-1711dd786397,Isabela Costa Costa,2008-9-16,F,1A,Ativo,Parda,6-10 SM
-76862f62-c69c-4234-a66c-bcfd143b1722,25b74999-8d06-4125-9b81-1711dd786398,Helena Lima Souza,2008-8-24,F,1B,Ativo,Indígena,Até 3 SM
-bd5b5245-bbb8-4064-acfd-5faa078ae62f,35b74999-8d06-4125-9b81-1711dd786397,Larissa Silva Oliveira,2012-3-1,F,2B,Ativo,Indígena,3-6 SM
-ff2ecdb6-4b5b-4f81-8475-fef93fa9357c,35b74999-8d06-4125-9b81-1711dd786397,Gabriel Almeida Rodrigues,2011-10-18,M,3A,Ativo,Parda,3-6 SM
-a09eaaa0-1a81-46fc-9b2c-53ecde002c78,25b74999-8d06-4125-9b81-1711dd786398,Matheus Almeida Carvalho,2009-12-3,M,2A,Ativo,Branca,6-10 SM
-2299b7a4-4df6-4cc1-b05d-c4f0a3bb1736,15b74999-8d06-4125-9b81-1711dd786399,Felipe Ferreira Lopes,2010-9-27,M,1A,Evadido,Não declarado,3-6 SM
-4331c1c1-b6e5-42e0-bf33-6c2d2798a8ec,25b74999-8d06-4125-9b81-1711dd786398,Lucas Carvalho Pereira,2011-12-12,M,1A,Inadimplente,Preta,3-6 SM
-fc342f07-beb2-469c-bac8-ccd698a1438e,35b74999-8d06-4125-9b81-1711dd786397,Camila Carvalho Rodrigues,2011-4-9,F,2B,Ativo,Parda,Até 3 SM
-3701647d-2eb2-45da-a0cb-c0c3efdf3338,15b74999-8d06-4125-9b81-1711dd786399,Rodrigo Lopes Santos,2012-5-1,M,1A,Ativo,Preta,6-10 SM
-828874c4-0e80-470b-b7be-820a51618442,25b74999-8d06-4125-9b81-1711dd786398,Luana Silva Gomes,2010-1-5,F,3A,Ativo,Não declarado,3-6 SM
-b42626bb-1002-4ba6-9e2c-ab691a91ddc8,15b74999-8d06-4125-9b81-1711dd786399,Helena Ribeiro Santos,2011-8-27,F,1A,Ativo,Indígena,3-6 SM
-eae9c792-1052-4662-8ffe-394d3c856315,15b74999-8d06-4125-9b81-1711dd786399,Gabriela Costa Gomes,2008-2-27,F,3B,Evadido,Amarela,Até 3 SM
-918d240e-012a-4863-96ac-268e439c8b56,25b74999-8d06-4125-9b81-1711dd786398,Guilherme Almeida Lopes,2009-11-20,M,3B,Ativo,Branca,3-6 SM
-bf1d0c78-b8b9-4c59-8170-991976bc56a4,35b74999-8d06-4125-9b81-1711dd786397,Rodrigo Lima Almeida,2011-4-8,M,2A,Evadido,Não declarado,6-10 SM
-829267a5-7ff8-426d-ac6a-52bccb1d834f,25b74999-8d06-4125-9b81-1711dd786398,Luana Martins Ferreira,2010-3-12,F,2B,Evadido,Parda,Até 3 SM
-31a41e3d-4497-4cb6-b7f9-b7a23711404d,25b74999-8d06-4125-9b81-1711dd786398,Julia Souza Souza,2008-12-4,F,2A,Ativo,Preta,3-6 SM
-4d089790-2766-454d-92fd-96394051c58c,35b74999-8d06-4125-9b81-1711dd786397,Bruno Costa Ribeiro,2011-8-22,M,2B,Ativo,Não declarado,Acima de 10 SM
-996411b8-e92b-4a59-87c9-2d598c21086d,35b74999-8d06-4125-9b81-1711dd786397,Thiago Ribeiro Ribeiro,2011-10-19,M,1B,Ativo,Branca,Acima de 10 SM
-cd381ace-1062-4b55-8c36-c72d84e26c62,35b74999-8d06-4125-9b81-1711dd786397,Rodrigo Gomes Pereira,2009-12-21,M,1A,Ativo,Branca,3-6 SM
-c8806b9e-7775-4020-ba83-c6717147a348,35b74999-8d06-4125-9b81-1711dd786397,Gustavo Martins Silva,2009-12-1,M,3B,Evadido,Indígena,3-6 SM
-0182d48a-4eaa-4767-8453-252bd24d5922,35b74999-8d06-4125-9b81-1711dd786397,Helena Ferreira Souza,2008-10-10,F,2A,Ativo,Branca,6-10 SM
-fcfa9ba4-d462-498f-8e16-0ad430145b1d,25b74999-8d06-4125-9b81-1711dd786398,Helena Oliveira Rodrigues,2012-5-22,F,2B,Inadimplente,Branca,3-6 SM
-63a682d1-d54e-49a4-bd74-65f85f015af9,35b74999-8d06-4125-9b81-1711dd786397,Lucas Silva Almeida,2012-11-6,M,2B,Ativo,Preta,3-6 SM
-95f4ae95-707e-4b12-a44b-1c4a145183f1,35b74999-8d06-4125-9b81-1711dd786397,Helena Rodrigues Lima,2008-6-15,F,3B,Ativo,Preta,Acima de 10 SM
-11c70894-5d50-4c1b-8189-5dc0854529c0,15b74999-8d06-4125-9b81-1711dd786399,Pedro Santos Carvalho,2009-3-13,M,1B,Ativo,Branca,Até 3 SM
-57f463d9-0a64-4492-8321-fe0f9fdf487c,35b74999-8d06-4125-9b81-1711dd786397,Guilherme Alves Lima,2011-7-11,M,3A,Inadimplente,Parda,3-6 SM
-9452a293-0dba-4442-8efe-c73189bdc7df,35b74999-8d06-4125-9b81-1711dd786397,Leonardo Santos Pereira,2011-9-2,M,2B,Evadido,Não declarado,3-6 SM
-528f0e63-fa36-4e6f-9e24-3eea277b2303,25b74999-8d06-4125-9b81-1711dd786398,Mariana Ribeiro Ferreira,2011-4-23,F,3B,Ativo,Amarela,Acima de 10 SM
-01f92781-2d5b-49cb-a4f6-e4e3081a3d28,15b74999-8d06-4125-9b81-1711dd786399,Helena Almeida Pereira,2011-9-25,F,1A,Evadido,Preta,Até 3 SM
-c51bb53c-f861-4d4a-b83e-d14001ffc495,25b74999-8d06-4125-9b81-1711dd786398,Lucas Costa Alves,2011-1-22,M,3A,Ativo,Parda,3-6 SM
-71770df4-2c8d-4ec8-a2d1-14cc6c61054f,25b74999-8d06-4125-9b81-1711dd786398,Gustavo Ribeiro Santos,2011-8-14,M,1B,Ativo,Preta,3-6 SM
-13f633a8-3ecd-4a60-860b-effdca8a0d48,15b74999-8d06-4125-9b81-1711dd786399,Beatriz Carvalho Souza,2010-12-2,F,1B,Inadimplente,Branca,3-6 SM
-8ad02a27-fd1b-4996-8373-26c9cec9c56d,35b74999-8d06-4125-9b81-1711dd786397,Daniel Souza Costa,2008-1-25,M,1A,Ativo,Parda,6-10 SM
-1eb3284e-b920-43ab-ac9d-d4ab2fae2f35,35b74999-8d06-4125-9b81-1711dd786397,Camila Souza Souza,2012-12-4,F,2A,Ativo,Preta,3-6 SM
-9cdc08df-ea6e-41f7-901e-52df6debb79b,35b74999-8d06-4125-9b81-1711dd786397,Valentina Costa Souza,2009-9-18,F,2A,Ativo,Branca,Até 3 SM
-935cb5dc-9a08-4fe9-9bab-2a8ed0ba6ebc,25b74999-8d06-4125-9b81-1711dd786398,Bruno Oliveira Santos,2009-1-1,M,2A,Ativo,Indígena,Até 3 SM
-5c48f49b-c163-4652-9771-c9e6d1807be3,15b74999-8d06-4125-9b81-1711dd786399,Matheus Ferreira Almeida,2010-9-9,M,1B,Ativo,Parda,6-10 SM
-551df274-830c-4d83-b705-5b7b92c33a87,35b74999-8d06-4125-9b81-1711dd786397,Amanda Martins Rodrigues,2012-4-25,F,1B,Inadimplente,Branca,3-6 SM
-a049c648-1b25-4505-a25b-155d843bbbb8,35b74999-8d06-4125-9b81-1711dd786397,Pedro Almeida Carvalho,2012-8-1,M,2A,Ativo,Indígena,Até 3 SM
-713fb9ad-1c97-4ec9-ac03-490964e03c6e,15b74999-8d06-4125-9b81-1711dd786399,Bruno Carvalho Lima,2008-4-17,M,1A,Ativo,Parda,Até 3 SM
-f504b331-2e05-48dd-8548-d4eeb1e7cd32,15b74999-8d06-4125-9b81-1711dd786399,Pedro Gomes Rodrigues,2012-5-9,M,3B,Evadido,Preta,6-10 SM
-69a412c4-5761-4b73-a776-ff25058fca35,35b74999-8d06-4125-9b81-1711dd786397,Leonardo Ribeiro Almeida,2011-12-13,M,2A,Ativo,Branca,Até 3 SM
-78ca107c-b6b1-4798-b4d4-1102af1b32ca,35b74999-8d06-4125-9b81-1711dd786397,Mariana Lima Lima,2008-7-27,F,2B,Ativo,Indígena,Até 3 SM
-a029e150-4843-48cf-aa21-92dcb9b53ef7,25b74999-8d06-4125-9b81-1711dd786398,Rafael Costa Santos,2012-9-23,M,3A,Ativo,Amarela,3-6 SM
-a04fd808-f32b-4a0d-aa38-27d975b15a49,35b74999-8d06-4125-9b81-1711dd786397,Larissa Carvalho Pereira,2011-7-8,F,3A,Ativo,Preta,Até 3 SM
-b42dd8b4-1288-45b4-87f3-f31c4badc1f9,35b74999-8d06-4125-9b81-1711dd786397,Gustavo Rodrigues Silva,2012-4-5,M,2B,Ativo,Indígena,3-6 SM
-6213daad-982b-4bc6-bf3d-5bb5e3e12105,25b74999-8d06-4125-9b81-1711dd786398,Ana Silva Alves,2009-2-28,F,2B,Ativo,Indígena,6-10 SM
-4a16003d-9ae0-4280-959e-dd339e60c790,25b74999-8d06-4125-9b81-1711dd786398,Ana Ferreira Silva,2012-6-21,F,2B,Ativo,Parda,3-6 SM
-aa9ac336-b173-4d27-9823-aa6b3be8f78e,25b74999-8d06-4125-9b81-1711dd786398,Letícia Costa Almeida,2009-9-22,F,3A,Ativo,Preta,6-10 SM
-0d4b6dd5-eb95-4885-bcf1-4aabbce71458,15b74999-8d06-4125-9b81-1711dd786399,Gustavo Carvalho Lima,2008-6-4,M,2B,Inadimplente,Branca,Acima de 10 SM
-e7f55b5f-bca3-42e9-88a7-481f6bd523d6,15b74999-8d06-4125-9b81-1711dd786399,Thiago Carvalho Ribeiro,2010-1-4,M,3B,Ativo,Parda,6-10 SM
-e68b4e25-2014-4d0a-9251-7b60691e8195,15b74999-8d06-4125-9b81-1711dd786399,Julia Almeida Costa,2009-6-15,F,1A,Ativo,Branca,3-6 SM
-2c2fdec3-6faf-458d-a26d-4ebae6e9de0d,15b74999-8d06-4125-9b81-1711dd786399,Felipe Souza Martins,2012-1-22,M,2A,Ativo,Não declarado,6-10 SM
-f34be4d0-481f-4420-9b48-5b75c3b7be77,35b74999-8d06-4125-9b81-1711dd786397,Gustavo Santos Souza,2012-12-2,M,2B,Ativo,Parda,Até 3 SM
-e3f52207-d51b-4725-9848-6d02d8fa573b,25b74999-8d06-4125-9b81-1711dd786398,Rafael Lopes Martins,2012-7-17,M,1B,Inadimplente,Indígena,Acima de 10 SM
-0d7e7f52-ffa7-4797-bcf1-8939cef386a7,35b74999-8d06-4125-9b81-1711dd786397,Rodrigo Lopes Carvalho,2010-6-19,M,2B,Ativo,Parda,3-6 SM
-3388d2f1-bf6d-4a52-8a76-bc9870b30cc3,35b74999-8d06-4125-9b81-1711dd786397,Amanda Almeida Oliveira,2009-6-22,F,3B,Ativo,Parda,Acima de 10 SM
-1bac8c43-7b8d-4eb8-a748-d62fdfac88cc,25b74999-8d06-4125-9b81-1711dd786398,Bruno Oliveira Carvalho,2009-8-17,M,1A,Ativo,Amarela,Acima de 10 SM
-56c2f1a2-f2a8-4f17-b4b4-ed9d6542154d,25b74999-8d06-4125-9b81-1711dd786398,Matheus Ribeiro Santos,2012-10-16,M,3A,Ativo,Parda,3-6 SM
-9386e609-bb65-4ba4-a064-1dbedf8dbcb4,25b74999-8d06-4125-9b81-1711dd786398,Isabela Lopes Pereira,2008-3-4,F,2B,Ativo,Preta,Até 3 SM
-9210d712-3597-42f9-b7bb-34ebece90860,25b74999-8d06-4125-9b81-1711dd786398,Valentina Pereira Lopes,2008-10-22,F,2B,Ativo,Parda,6-10 SM
-8342eb86-1932-43e5-a48c-3e61e2872860,25b74999-8d06-4125-9b81-1711dd786398,Sophia Santos Lopes,2009-10-4,F,2B,Inadimplente,Preta,3-6 SM
-882af89a-36ea-45da-9140-a3c9f18f1559,25b74999-8d06-4125-9b81-1711dd786398,Pedro Rodrigues Almeida,2008-1-19,M,1A,Ativo,Branca,3-6 SM
-cd23eb29-b71d-423a-a1b0-671fb5f06a52,25b74999-8d06-4125-9b81-1711dd786398,Sophia Ribeiro Ferreira,2009-12-11,F,1A,Evadido,Branca,3-6 SM
-e6cec183-e206-4c4b-9a9c-48a53655a9fe,15b74999-8d06-4125-9b81-1711dd786399,Sophia Costa Ribeiro,2011-6-13,F,3B,Ativo,Parda,Até 3 SM
-18adadbb-e24c-4327-bb55-632738b5e408,25b74999-8d06-4125-9b81-1711dd786398,Letícia Ferreira Carvalho,2011-10-23,F,3B,Ativo,Parda,Acima de 10 SM
-85bb19e0-61de-41e4-88ec-27b886bef66c,15b74999-8d06-4125-9b81-1711dd786399,Lucas Almeida Silva,2010-12-9,M,3B,Inadimplente,Parda,3-6 SM
-cf885fb2-5b5c-49d3-83e3-fe6c6e349bc5,35b74999-8d06-4125-9b81-1711dd786397,Julia Ferreira Lima,2008-5-27,F,1B,Ativo,Não declarado,3-6 SM
-89b18b8d-ec6e-4193-a563-447ea994ef25,15b74999-8d06-4125-9b81-1711dd786399,Rodrigo Lopes Souza,2010-6-25,M,2A,Ativo,Branca,3-6 SM
-19d1ee3c-f1f3-45a7-876d-8d972fd33b95,25b74999-8d06-4125-9b81-1711dd786398,Vitor Pereira Ribeiro,2009-3-11,M,2B,Ativo,Branca,6-10 SM
-3b1c76bc-588d-4d4d-aa40-c6a35bcab8f7,25b74999-8d06-4125-9b81-1711dd786398,Julia Oliveira Martins,2010-8-1,F,1A,Inadimplente,Branca,Acima de 10 SM
-0aff2585-c10c-4332-93c9-eb0dcab4eabe,15b74999-8d06-4125-9b81-1711dd786399,Daniel Almeida Costa,2012-6-17,M,2A,Ativo,Não declarado,Acima de 10 SM
-be576b43-e428-44f4-807d-02f0d44fb7d9,15b74999-8d06-4125-9b81-1711dd786399,Guilherme Alves Costa,2012-4-5,M,3A,Ativo,Preta,Acima de 10 SM
-a907f82b-f2d7-487f-bf5b-ec237474da89,15b74999-8d06-4125-9b81-1711dd786399,Isabela Ribeiro Santos,2008-11-18,F,1A,Ativo,Parda,Até 3 SM
-ffc78719-e6de-440c-9cb6-7600c3dabfda,35b74999-8d06-4125-9b81-1711dd786397,Rafael Ribeiro Costa,2009-3-6,M,3B,Ativo,Branca,3-6 SM
-b2a0cc71-176a-46be-b931-ea216aa071c9,15b74999-8d06-4125-9b81-1711dd786399,Rafael Martins Lopes,2012-3-21,M,1B,Ativo,Preta,Acima de 10 SM
-a1c45b87-7348-4a9b-931f-59850f4b6789,15b74999-8d06-4125-9b81-1711dd786399,Luana Costa Lima,2008-5-24,F,3A,Ativo,Parda,Até 3 SM
-34cf1781-88b3-4097-8bfc-eed4ee2f674f,25b74999-8d06-4125-9b81-1711dd786398,Helena Lopes Carvalho,2010-5-26,F,1A,Ativo,Amarela,6-10 SM
-a741e695-0793-45b1-9282-93a7a7ff7f39,35b74999-8d06-4125-9b81-1711dd786397,Gabriela Santos Oliveira,2012-12-6,F,2A,Evadido,Indígena,6-10 SM
-a1484af9-ea42-4f0b-ab5f-a1ccd1df6804,15b74999-8d06-4125-9b81-1711dd786399,Valentina Carvalho Silva,2012-8-11,F,1B,Evadido,Parda,Até 3 SM
-15a67953-8b58-482e-88a2-5007048fc323,35b74999-8d06-4125-9b81-1711dd786397,Daniel Alves Lopes,2008-6-27,M,2B,Ativo,Indígena,3-6 SM
-2d0afe2f-e2b0-4fd0-a2b9-d358e9ea28dd,25b74999-8d06-4125-9b81-1711dd786398,Gabriel Pereira Alves,2010-12-14,M,3B,Inadimplente,Parda,Até 3 SM
-e2868bd1-acab-45af-b053-b6ab871f27da,35b74999-8d06-4125-9b81-1711dd786397,Matheus Silva Pereira,2008-7-10,M,3B,Ativo,Parda,Até 3 SM
-d10f9123-8535-47c3-a78d-f76d2c4d6787,25b74999-8d06-4125-9b81-1711dd786398,João Gomes Almeida,2008-9-22,M,2A,Ativo,Não declarado,Até 3 SM
-235b0f86-03a8-4b05-af4d-52bf460bb10b,25b74999-8d06-4125-9b81-1711dd786398,Bruno Ferreira Silva,2011-6-4,M,3A,Evadido,Parda,3-6 SM
-f749e471-930e-41ed-97b7-ead6ca435d48,35b74999-8d06-4125-9b81-1711dd786397,João Lima Carvalho,2008-9-4,M,1B,Ativo,Branca,3-6 SM
-42e78757-8b26-4df1-8fee-1778154ba98d,25b74999-8d06-4125-9b81-1711dd786398,Daniel Lima Santos,2010-8-20,M,2A,Evadido,Parda,3-6 SM
-63b6baec-a608-4c13-83bd-f03519af56e9,15b74999-8d06-4125-9b81-1711dd786399,Valentina Martins Martins,2011-12-7,F,1A,Ativo,Indígena,3-6 SM
-5e7c58e6-94ec-42b8-8f5b-c28ae5ba0ae4,15b74999-8d06-4125-9b81-1711dd786399,Luana Ribeiro Carvalho,2011-11-27,F,1A,Ativo,Não declarado,6-10 SM
-56f28006-fa3b-4e6f-abfd-11b55d53b4cc,15b74999-8d06-4125-9b81-1711dd786399,Valentina Ferreira Oliveira,2010-11-26,F,2B,Inadimplente,Parda,Até 3 SM
-084bfdc5-10cd-4573-b155-ce6585ff8b68,15b74999-8d06-4125-9b81-1711dd786399,Letícia Alves Carvalho,2011-6-18,F,1A,Evadido,Não declarado,6-10 SM
-4132286e-b9c3-41f9-a6a8-fc7a4688955c,15b74999-8d06-4125-9b81-1711dd786399,Leonardo Souza Ribeiro,2012-6-1,M,3A,Ativo,Branca,3-6 SM
-45cc566d-ff04-45c2-9a5e-5bdecc6feee5,35b74999-8d06-4125-9b81-1711dd786397,Bruno Lima Carvalho,2009-3-22,M,2A,Ativo,Parda,Até 3 SM
-358a9526-9b37-402a-8511-10e0b401d311,35b74999-8d06-4125-9b81-1711dd786397,Valentina Gomes Lima,2011-2-28,F,1B,Inadimplente,Preta,3-6 SM
-68ec7a9d-a6aa-40d4-8084-7f2cd6b40043,15b74999-8d06-4125-9b81-1711dd786399,Mariana Souza Costa,2012-5-15,F,3A,Inadimplente,Amarela,Até 3 SM
-1913de97-61b0-4603-b11d-7b5a18456632,35b74999-8d06-4125-9b81-1711dd786397,Rodrigo Alves Martins,2011-8-21,M,2B,Evadido,Branca,Acima de 10 SM
-354811dc-274b-4b9a-8b05-047f7bee7a6d,15b74999-8d06-4125-9b81-1711dd786399,Maria Ferreira Pereira,2012-11-7,F,2A,Ativo,Não declarado,Até 3 SM
-6797e835-a0d0-4cd5-be1b-b3c5197ae1f7,15b74999-8d06-4125-9b81-1711dd786399,Larissa Santos Souza,2010-4-21,F,2A,Evadido,Parda,Até 3 SM
-c7cb88c5-cad9-42d8-9d20-3d6e1928095b,25b74999-8d06-4125-9b81-1711dd786398,Valentina Lopes Souza,2012-12-21,F,1A,Evadido,Parda,Acima de 10 SM
-2babc437-b9f1-4787-b988-77603f903997,25b74999-8d06-4125-9b81-1711dd786398,Letícia Lima Oliveira,2008-4-18,F,2A,Ativo,Preta,Até 3 SM
-2797c15e-9427-49a9-98d7-f5df51d01453,15b74999-8d06-4125-9b81-1711dd786399,Lucas Costa Souza,2011-4-23,M,2B,Ativo,Branca,Acima de 10 SM
-ccd49529-c7a9-48f2-a5d1-3ecf17e41854,15b74999-8d06-4125-9b81-1711dd786399,Beatriz Lima Silva,2011-11-2,F,1A,Inadimplente,Amarela,3-6 SM
-243e4577-2248-47c0-8181-13d446b8d15b,15b74999-8d06-4125-9b81-1711dd786399,Ana Almeida Ribeiro,2012-5-28,F,3B,Ativo,Branca,3-6 SM
-58d69db7-1ea7-4c06-ad5e-954503052deb,35b74999-8d06-4125-9b81-1711dd786397,Rodrigo Costa Silva,2012-11-27,M,1A,Ativo,Branca,Acima de 10 SM
-fbdedbf1-0cc3-4fb1-83b0-e2ce9c96bfd6,25b74999-8d06-4125-9b81-1711dd786398,Bruno Silva Rodrigues,2010-4-22,M,1B,Ativo,Não declarado,6-10 SM
-061720d1-fa2e-4519-b292-c414097fe753,15b74999-8d06-4125-9b81-1711dd786399,Luana Ferreira Martins,2011-4-2,F,3B,Ativo,Amarela,Até 3 SM
-da6baf65-c1ba-479a-907f-57d261dea095,35b74999-8d06-4125-9b81-1711dd786397,Sophia Lopes Rodrigues,2012-11-1,F,3B,Ativo,Branca,Acima de 10 SM
-f9f47ed5-99e9-493f-afe8-758a9b53f3c0,35b74999-8d06-4125-9b81-1711dd786397,Sophia Martins Martins,2009-6-15,F,2A,Ativo,Amarela,3-6 SM
-5268a094-6e26-428d-8918-18bb8d09bfc7,35b74999-8d06-4125-9b81-1711dd786397,Camila Rodrigues Santos,2008-1-12,F,1B,Ativo,Branca,3-6 SM
-c4e163fa-449e-4b1c-a0b9-f259d9417f0c,25b74999-8d06-4125-9b81-1711dd786398,Daniel Alves Costa,2008-1-22,M,3B,Ativo,Não declarado,3-6 SM
-8e66679d-0dc1-4c71-a634-7fc4ea4d62a5,15b74999-8d06-4125-9b81-1711dd786399,Mariana Costa Gomes,2012-1-8,F,3A,Evadido,Branca,6-10 SM
-0d3e1f70-d7f1-4c0b-92d5-ab7a8da3159a,35b74999-8d06-4125-9b81-1711dd786397,Rodrigo Souza Almeida,2010-7-10,M,1A,Ativo,Amarela,Até 3 SM
-0e0bf1d9-699d-4075-b6ff-03bbff796620,25b74999-8d06-4125-9b81-1711dd786398,Gabriel Martins Martins,2009-4-10,M,2B,Ativo,Não declarado,3-6 SM
-9a72ad0e-f931-4665-82f7-6b6fbb21ac16,15b74999-8d06-4125-9b81-1711dd786399,Isabela Gomes Lima,2009-6-18,F,2B,Ativo,Indígena,Até 3 SM
-b3e6b908-f429-4456-820e-ac1ec0ea2c6e,15b74999-8d06-4125-9b81-1711dd786399,Pedro Oliveira Souza,2011-6-9,M,2B,Ativo,Branca,Acima de 10 SM
-5ce03b15-f386-4aaf-9f91-a615e17a0c86,25b74999-8d06-4125-9b81-1711dd786398,João Silva Rodrigues,2008-7-11,M,2B,Ativo,Parda,3-6 SM
-760da9c2-6919-47f0-b3e1-29d814470e27,15b74999-8d06-4125-9b81-1711dd786399,Gabriela Silva Pereira,2008-2-12,F,2A,Ativo,Parda,3-6 SM
-3e496b0c-9271-49da-8a26-89eb5b8ff8a7,15b74999-8d06-4125-9b81-1711dd786399,Mariana Carvalho Santos,2012-12-28,F,2B,Evadido,Indígena,Acima de 10 SM
-1d014faf-97bd-4e7b-add3-206fe96065b3,25b74999-8d06-4125-9b81-1711dd786398,Mariana Gomes Souza,2012-9-19,F,3A,Ativo,Branca,3-6 SM
-eab03561-55e3-481b-ba0a-c94a42d356d4,35b74999-8d06-4125-9b81-1711dd786397,Rodrigo Ferreira Santos,2009-5-26,M,1B,Ativo,Parda,Acima de 10 SM
-b86f4265-3e19-45ec-a7ce-fc6af879a478,25b74999-8d06-4125-9b81-1711dd786398,Mariana Martins Pereira,2011-2-19,F,2B,Ativo,Não declarado,Até 3 SM
-27728c63-283a-4345-9c4f-ddcf126662a4,15b74999-8d06-4125-9b81-1711dd786399,Isabela Souza Martins,2008-8-13,F,3B,Ativo,Branca,3-6 SM
-041bbd9a-4059-4b71-bcb1-fb7ea91a2401,15b74999-8d06-4125-9b81-1711dd786399,Lucas Oliveira Ferreira,2011-9-7,M,1A,Ativo,Preta,3-6 SM
-b39b47d0-d114-493d-9d1a-b6762904e105,15b74999-8d06-4125-9b81-1711dd786399,Rafael Lopes Martins,2009-12-21,M,3A,Inadimplente,Branca,3-6 SM
-32064b93-1fcd-4c7a-b3d1-dc96fa4d5690,25b74999-8d06-4125-9b81-1711dd786398,Pedro Rodrigues Lima,2008-11-8,M,1A,Ativo,Indígena,6-10 SM
-8d1979ae-2c82-4827-8931-6f839fa8778c,35b74999-8d06-4125-9b81-1711dd786397,Camila Rodrigues Ferreira,2008-2-15,F,2A,Evadido,Indígena,Até 3 SM
-774765c6-ee0d-4c78-906a-7b4344f15ff8,25b74999-8d06-4125-9b81-1711dd786398,Valentina Oliveira Ribeiro,2009-1-6,F,3A,Inadimplente,Branca,6-10 SM
-fd6d8080-969e-4d0c-a2d4-5ba7fedcd2fc,15b74999-8d06-4125-9b81-1711dd786399,Vitor Ferreira Oliveira,2008-7-11,M,1B,Ativo,Parda,3-6 SM
-d723bcd3-aba0-4272-b45b-38e70c0f0796,35b74999-8d06-4125-9b81-1711dd786397,Sophia Lima Pereira,2008-2-20,F,3A,Evadido,Branca,Até 3 SM
-63db2e68-072c-4f12-aa1c-af3c8ed39ab0,15b74999-8d06-4125-9b81-1711dd786399,Vitor Almeida Costa,2012-8-2,M,1B,Ativo,Branca,Até 3 SM
-a4f49125-f263-48a4-a052-9d7b0d4cb69b,35b74999-8d06-4125-9b81-1711dd786397,Vitor Ribeiro Alves,2012-6-26,M,2A,Ativo,Parda,3-6 SM
-7023ba59-3afa-4e47-ba5f-26446ed80b65,25b74999-8d06-4125-9b81-1711dd786398,Larissa Alves Santos,2011-1-2,F,2B,Ativo,Não declarado,3-6 SM
-60c6373b-3189-4a14-882a-9b328f0c938f,15b74999-8d06-4125-9b81-1711dd786399,Amanda Silva Silva,2008-10-14,F,1A,Evadido,Indígena,Até 3 SM
-f7526fa0-97fe-4c6d-a44b-5aec465eaa53,35b74999-8d06-4125-9b81-1711dd786397,Julia Lima Lopes,2011-6-5,F,2A,Ativo,Parda,3-6 SM
-eb95a56b-ae18-406a-8057-82f386ffa5d0,15b74999-8d06-4125-9b81-1711dd786399,Larissa Alves Silva,2008-6-17,F,1A,Evadido,Branca,6-10 SM
-4de77def-a6f8-4092-a374-5619aa62a2a5,35b74999-8d06-4125-9b81-1711dd786397,Julia Oliveira Silva,2009-2-14,F,1B,Ativo,Preta,3-6 SM
-5eee21c4-236a-4385-8ddc-a4776c44b159,25b74999-8d06-4125-9b81-1711dd786398,Vitor Oliveira Lopes,2009-11-23,M,1B,Ativo,Branca,Até 3 SM
-35ba9a4e-ecf0-406f-b27e-854cc9a1d850,25b74999-8d06-4125-9b81-1711dd786398,Lucas Almeida Alves,2009-8-6,M,1B,Inadimplente,Indígena,Até 3 SM
-ea07d216-c428-4155-9eee-0ee897123909,35b74999-8d06-4125-9b81-1711dd786397,Julia Lima Alves,2009-5-19,F,2A,Ativo,Amarela,6-10 SM
-54aac1a9-e734-415d-ae2f-90bd29d50b3b,25b74999-8d06-4125-9b81-1711dd786398,Helena Lima Lima,2011-3-2,F,2A,Inadimplente,Parda,3-6 SM
-66d35c8d-d796-48ae-8d78-f985e633b48f,15b74999-8d06-4125-9b81-1711dd786399,Rafael Costa Ferreira,2012-4-21,M,2A,Ativo,Branca,Acima de 10 SM
-12c541ba-0277-429f-8c48-4d881e7dcce0,15b74999-8d06-4125-9b81-1711dd786399,Guilherme Gomes Souza,2009-1-11,M,2B,Ativo,Não declarado,6-10 SM
-3866b31e-7d0a-4c0c-9841-b61d6279b39f,35b74999-8d06-4125-9b81-1711dd786397,Amanda Costa Rodrigues,2011-12-9,F,2A,Ativo,Não declarado,6-10 SM
-d0eb4e9a-efa5-4c37-a01a-ca045b4c6bc9,25b74999-8d06-4125-9b81-1711dd786398,Leonardo Rodrigues Gomes,2011-2-6,M,1B,Ativo,Preta,3-6 SM
-347bf340-c1fd-4319-8c84-3cd759ae9d35,35b74999-8d06-4125-9b81-1711dd786397,Maria Martins Oliveira,2011-4-12,F,2B,Inadimplente,Preta,6-10 SM
-dc283d56-95e4-4812-a756-50506637c86e,25b74999-8d06-4125-9b81-1711dd786398,João Ferreira Silva,2012-7-14,M,1A,Ativo,Indígena,3-6 SM
-3a43bfa0-8aef-49a6-a925-063b9a9e4965,25b74999-8d06-4125-9b81-1711dd786398,Gustavo Souza Oliveira,2010-9-17,M,2B,Ativo,Preta,Até 3 SM
-329b0018-bf21-42a8-bdc6-4fad5f46d2ee,15b74999-8d06-4125-9b81-1711dd786399,Letícia Souza Silva,2012-11-1,F,1B,Ativo,Não declarado,Até 3 SM
-82a1637a-4854-4440-8ff5-bb07fc4fd73b,25b74999-8d06-4125-9b81-1711dd786398,Daniel Pereira Pereira,2008-6-17,M,1A,Ativo,Parda,3-6 SM
-8f6c0e90-a2c8-4c90-baad-2581e927784d,15b74999-8d06-4125-9b81-1711dd786399,Daniel Lopes Costa,2012-11-5,M,2A,Inadimplente,Preta,6-10 SM
-7722cca6-af8d-4378-83bf-c0774b254880,25b74999-8d06-4125-9b81-1711dd786398,Isabela Martins Costa,2012-12-10,F,2B,Ativo,Amarela,Acima de 10 SM
-e5c9579c-f43b-4e37-9df8-fe5df04a0bbe,25b74999-8d06-4125-9b81-1711dd786398,Felipe Pereira Souza,2011-12-28,M,1A,Ativo,Indígena,6-10 SM
-b45e3ee8-a4d4-4d26-97b9-dc98a09a811a,35b74999-8d06-4125-9b81-1711dd786397,Isabela Costa Gomes,2008-10-8,F,2B,Ativo,Não declarado,Até 3 SM
-c612a047-5aaf-48bf-84a5-2d074c1890e8,15b74999-8d06-4125-9b81-1711dd786399,Vitor Alves Souza,2010-12-20,M,3A,Ativo,Preta,6-10 SM
-ff375b4e-5ffc-4415-a6e8-c0e0402abd0c,35b74999-8d06-4125-9b81-1711dd786397,Pedro Rodrigues Pereira,2008-3-10,M,2B,Ativo,Preta,Até 3 SM
-3c9a0f54-84c2-46a4-b311-59331e874a01,35b74999-8d06-4125-9b81-1711dd786397,Maria Lima Silva,2010-2-24,F,1B,Inadimplente,Preta,6-10 SM
-e5d3b140-5d1b-44ce-9beb-e01422ac58f1,15b74999-8d06-4125-9b81-1711dd786399,Leonardo Silva Pereira,2008-7-7,M,2A,Evadido,Preta,3-6 SM
-717d5164-e3dc-4095-b842-ac9fa9121c56,25b74999-8d06-4125-9b81-1711dd786398,Rodrigo Lima Lima,2011-11-28,M,3A,Ativo,Branca,6-10 SM
-a148a69e-e252-4606-b62b-3623818662ae,25b74999-8d06-4125-9b81-1711dd786398,Gabriel Carvalho Pereira,2010-6-4,M,3B,Ativo,Branca,Até 3 SM
-0b89c450-1028-4c99-8ef5-e63f93896570,35b74999-8d06-4125-9b81-1711dd786397,Beatriz Almeida Almeida,2008-9-23,F,1A,Inadimplente,Indígena,3-6 SM
-b99e969d-5929-448a-8fd5-5b000b1fe60b,35b74999-8d06-4125-9b81-1711dd786397,Larissa Carvalho Oliveira,2012-7-19,F,2A,Ativo,Branca,3-6 SM
-d21bccc1-f928-4ec8-bd17-cd8208a9e056,15b74999-8d06-4125-9b81-1711dd786399,Rafael Costa Lopes,2010-5-11,M,1B,Ativo,Parda,Até 3 SM
-691159f7-fa0f-4de2-9262-c23492ec57b5,25b74999-8d06-4125-9b81-1711dd786398,Beatriz Martins Ribeiro,2009-8-28,F,1A,Inadimplente,Parda,3-6 SM
-61050c81-562c-429a-b464-7f05b2fac961,35b74999-8d06-4125-9b81-1711dd786397,João Carvalho Martins,2010-5-16,M,1B,Ativo,Não declarado,6-10 SM
-726167a4-f2d9-483a-86af-29a66d7e0c1c,25b74999-8d06-4125-9b81-1711dd786398,Maria Souza Santos,2011-7-4,F,2A,Ativo,Branca,Até 3 SM
-e35a6047-56df-47e9-919d-75db32c8ab7e,15b74999-8d06-4125-9b81-1711dd786399,Gabriela Costa Lima,2012-3-18,F,3B,Ativo,Indígena,Até 3 SM
-cb849939-e515-48c9-b69d-d60f69d3b2c2,35b74999-8d06-4125-9b81-1711dd786397,Felipe Costa Santos,2012-12-6,M,1A,Ativo,Branca,3-6 SM
-eee728c9-f5e3-48b6-9063-b26ce9973b97,25b74999-8d06-4125-9b81-1711dd786398,Luana Oliveira Carvalho,2009-4-14,F,2B,Ativo,Branca,3-6 SM
-e29a470f-35be-4e1c-83dd-afafe7ea14b0,25b74999-8d06-4125-9b81-1711dd786398,Felipe Rodrigues Alves,2012-2-19,M,2B,Ativo,Indígena,Acima de 10 SM
-71d784ec-41db-4ac0-ac77-ecbfcd398523,25b74999-8d06-4125-9b81-1711dd786398,Ana Pereira Carvalho,2010-2-18,F,2B,Ativo,Branca,Até 3 SM
-03c9e730-b726-4305-b958-7653913f2949,25b74999-8d06-4125-9b81-1711dd786398,Rodrigo Alves Costa,2009-9-7,M,3B,Inadimplente,Parda,Até 3 SM
-19d7fb14-55c9-455f-940a-9e05e3643349,25b74999-8d06-4125-9b81-1711dd786398,Luana Lima Martins,2012-3-28,F,2B,Inadimplente,Amarela,Até 3 SM
-75cdc788-5a86-497a-917d-6b479368e872,15b74999-8d06-4125-9b81-1711dd786399,Guilherme Rodrigues Costa,2010-12-20,M,2B,Inadimplente,Amarela,3-6 SM
-3fdc7b7c-16b7-465e-9e8e-762e808d574a,25b74999-8d06-4125-9b81-1711dd786398,Julia Ribeiro Santos,2008-3-10,F,2B,Ativo,Não declarado,6-10 SM
-ff227806-2b65-41cf-98e5-44d92db9257a,25b74999-8d06-4125-9b81-1711dd786398,Luana Costa Rodrigues,2010-9-27,F,3B,Ativo,Preta,3-6 SM
-2fbdf23f-2213-4447-8dd8-6a0cc6565d73,15b74999-8d06-4125-9b81-1711dd786399,Maria Almeida Rodrigues,2008-8-25,F,2A,Inadimplente,Parda,Até 3 SM
-0ca6c403-79a2-4bb8-9357-ae6f7b824aa4,25b74999-8d06-4125-9b81-1711dd786398,Bruno Carvalho Rodrigues,2011-8-11,M,2B,Ativo,Branca,Até 3 SM
-60858126-97eb-4b55-9260-577bb4072f8b,15b74999-8d06-4125-9b81-1711dd786399,Amanda Silva Rodrigues,2008-4-9,F,2A,Ativo,Parda,6-10 SM
-118481d0-89cd-42be-8874-4a9716638051,35b74999-8d06-4125-9b81-1711dd786397,Gabriel Martins Souza,2008-5-21,M,3A,Inadimplente,Indígena,3-6 SM
-6305300d-f109-4f1a-bc27-c3a76a8438e7,25b74999-8d06-4125-9b81-1711dd786398,Sophia Alves Alves,2008-10-20,F,3A,Ativo,Amarela,Até 3 SM
-4f8000c5-9049-487a-b8b1-a276241eec96,25b74999-8d06-4125-9b81-1711dd786398,Luana Martins Souza,2012-10-9,F,2A,Ativo,Branca,3-6 SM
-f1cd9180-173d-43fe-9138-07e6947c66a2,35b74999-8d06-4125-9b81-1711dd786397,Beatriz Almeida Souza,2010-9-2,F,3B,Ativo,Indígena,3-6 SM
-c2c85ada-b9b5-4e87-b913-fcc3f3fc7ca7,35b74999-8d06-4125-9b81-1711dd786397,Leonardo Souza Almeida,2010-1-15,M,2A,Ativo,Branca,3-6 SM
-1294854e-97ee-4406-a5b3-7ab605526078,25b74999-8d06-4125-9b81-1711dd786398,Bruno Ferreira Lopes,2010-8-21,M,3B,Ativo,Parda,Acima de 10 SM
-cc7e4c37-3d1c-4ee6-9b66-9ee13afe44b0,35b74999-8d06-4125-9b81-1711dd786397,Gabriel Pereira Ribeiro,2011-6-8,M,2B,Ativo,Branca,3-6 SM
-aa0bb197-cd47-40cc-b09f-32ce5ef00c29,15b74999-8d06-4125-9b81-1711dd786399,Larissa Rodrigues Silva,2008-5-27,F,3A,Ativo,Branca,Acima de 10 SM
-f301a0e8-1f03-4f98-8f4f-5e6ee5827b88,15b74999-8d06-4125-9b81-1711dd786399,Isabela Ribeiro Ribeiro,2012-2-24,F,1A,Evadido,Preta,Acima de 10 SM
-f313f2dd-6b92-4784-83cb-5aefcf1c4088,25b74999-8d06-4125-9b81-1711dd786398,Camila Almeida Lopes,2010-7-26,F,2A,Inadimplente,Indígena,3-6 SM
-a7eeadad-da2f-4636-b2b4-0c4e9e061325,35b74999-8d06-4125-9b81-1711dd786397,Ana Lima Costa,2010-8-20,F,3A,Ativo,Amarela,3-6 SM
-8f885fe3-a8a7-4385-8e29-5986c2715165,25b74999-8d06-4125-9b81-1711dd786398,Mariana Souza Almeida,2009-8-21,F,1A,Ativo,Branca,Acima de 10 SM
-fd3bd082-6d8c-4687-9169-8c189fd8cdc6,25b74999-8d06-4125-9b81-1711dd786398,Matheus Carvalho Ferreira,2009-5-26,M,3B,Ativo,Branca,Até 3 SM
+id,escola_id,nome_completo,data_nascimento,genero,turma,segmento,status_matricula,cor_raca,faixa_renda,bolsista,tem_irmaos,cidade_aluno
+75f65128-40c9-4aa7-bcdc-5f0cce7ba631,a2e84a36-a2e3-4ce3-bdd8-7b52233ee058,Valentina Pereira Costa,2012-07-04,F,1A,Ensino Médio,Ativo,Indígena,Até 3 SM,FALSE,FALSE,Guarulhos
+4974d09a-f638-428f-befd-1ee79d08103d,a2e84a36-a2e3-4ce3-bdd8-7b52233ee058,Ana Souza Oliveira,2009-06-28,F,2A,Ensino Médio,Evadido,Preta,Acima de 10 SM,TRUE,FALSE,Guarulhos
+c0809dad-549e-4609-9939-2fe224f5a3cd,83c021b5-46f9-4a60-b512-be10433f2228,Maria Pereira Martins,2009-07-22,F,3A,Ensino Médio,Inadimplente,Indígena,Até 3 SM,TRUE,FALSE,Diadema
+1aca114d-e715-4dab-b085-0fe173c8be5f,a2e84a36-a2e3-4ce3-bdd8-7b52233ee058,Rodrigo Lima Ribeiro,2011-07-14,F,3B,Ensino Médio,Evadido,Preta,Acima de 10 SM,FALSE,FALSE,Sorocaba
+18ba0f25-f5aa-4635-a0b9-c6d7bf295117,a2e84a36-a2e3-4ce3-bdd8-7b52233ee058,Eduardo Lopes Pereira,2011-12-27,M,3A,Ensino Médio,Evadido,Não declarado,3-6 SM,FALSE,FALSE,São Bernardo do Campo
+253cd045-89cd-467e-a841-366e9493a711,1e8d5fb9-e77d-401e-aa28-0de51ef34e72,Bruno Carvalho Santos,2013-04-13,M,1A,Fundamental II,Inadimplente,Amarela,6-10 SM,FALSE,FALSE,Sorocaba
+0d56172d-1a4b-450a-be02-a189687fc80f,a2e84a36-a2e3-4ce3-bdd8-7b52233ee058,Matheus Silva Carvalho,2008-09-17,M,3B,Ensino Médio,Ativo,Indígena,6-10 SM,FALSE,FALSE,São Bernardo do Campo
+fe03eb31-9a73-449b-a989-bd87c1de9078,83c021b5-46f9-4a60-b512-be10433f2228,Ana Silva Gomes,2008-02-23,M,3A,Ensino Médio,Ativo,Parda,6-10 SM,TRUE,FALSE,Santo André
+cc267498-3ea7-4986-8669-b61b03f1b6c9,1e8d5fb9-e77d-401e-aa28-0de51ef34e72,Sophia Souza Lima,2009-06-14,M,1B,Ensino Médio,Ativo,Indígena,3-6 SM,FALSE,TRUE,Ribeirão Preto
+816fd743-6349-4a19-a5dd-55a73e588ac3,1e8d5fb9-e77d-401e-aa28-0de51ef34e72,Gustavo Silva Lima,2012-09-03,M,1A,Fundamental II,Evadido,Parda,3-6 SM,TRUE,TRUE,Santo André
+98a42972-da63-4c5f-82d9-5a55b4290032,1e8d5fb9-e77d-401e-aa28-0de51ef34e72,Camila Pereira Almeida,2011-08-04,M,1B,Fundamental II,Ativo,Parda,6-10 SM,FALSE,FALSE,Santo André
+9992d58f-3a70-4058-a633-e346049a713f,a2e84a36-a2e3-4ce3-bdd8-7b52233ee058,Felipe Gomes Gomes,2008-01-04,F,3B,Ensino Médio,Ativo,Amarela,6-10 SM,FALSE,TRUE,São Paulo
+78abeca1-3334-4cb7-9aea-af30e8d6773d,83c021b5-46f9-4a60-b512-be10433f2228,João Martins Souza,2008-09-01,F,1A,Ensino Médio,Ativo,Amarela,6-10 SM,FALSE,FALSE,Sorocaba
+b9f064ff-2605-47b2-87b8-34f62884c5e9,1e8d5fb9-e77d-401e-aa28-0de51ef34e72,Rodrigo Ferreira Lima,2010-10-19,F,2B,Fundamental II,Ativo,Amarela,Até 3 SM,FALSE,TRUE,Osasco
+5e4e95b1-1064-43c0-8d84-7ea3888320b7,a2e84a36-a2e3-4ce3-bdd8-7b52233ee058,Daniel Martins Gomes,2009-07-28,M,1A,Ensino Médio,Inadimplente,Não declarado,Acima de 10 SM,TRUE,FALSE,Ribeirão Preto
+dcd92af7-d629-4f7d-ab2b-955598ef454d,83c021b5-46f9-4a60-b512-be10433f2228,Isabela Costa Martins,2011-08-23,M,3B,Ensino Médio,Inadimplente,Preta,3-6 SM,FALSE,FALSE,Guarulhos
+204ce7d9-bf79-43b1-9c3c-26ab0b65e96d,a2e84a36-a2e3-4ce3-bdd8-7b52233ee058,Luana Rodrigues Lima,2009-06-20,F,1B,Fundamental II,Ativo,Parda,Acima de 10 SM,FALSE,TRUE,São Bernardo do Campo
+48109966-7a6c-4ab7-ae87-270d3a7079d5,83c021b5-46f9-4a60-b512-be10433f2228,Luana Ribeiro Lopes,2008-05-26,F,1A,Fundamental II,Ativo,Parda,3-6 SM,FALSE,FALSE,Osasco
+68fbc6db-3785-4c34-ac34-b00d71f3a770,a2e84a36-a2e3-4ce3-bdd8-7b52233ee058,Vitor Ferreira Costa,2012-01-07,F,1B,Ensino Médio,Ativo,Parda,6-10 SM,FALSE,FALSE,Santo André
+0a42aa45-94d4-48b9-980a-636e4b9267cb,83c021b5-46f9-4a60-b512-be10433f2228,Daniel Lopes Costa,2010-05-02,F,2A,Ensino Médio,Ativo,Indígena,3-6 SM,FALSE,TRUE,Osasco
+7ea55832-d867-4a97-b127-1b0878343b1d,83c021b5-46f9-4a60-b512-be10433f2228,Bruno Carvalho Oliveira,2013-01-27,M,2A,Fundamental II,Evadido,Não declarado,6-10 SM,TRUE,FALSE,Campinas
+c05883e3-af9f-4077-a0f8-9e26b68f0341,83c021b5-46f9-4a60-b512-be10433f2228,Sophia Carvalho Alves,2008-10-23,F,1B,Fundamental II,Ativo,Parda,6-10 SM,FALSE,FALSE,Guarulhos
+d12e100b-32e2-4f0e-b84d-62c00c6ab23c,1e8d5fb9-e77d-401e-aa28-0de51ef34e72,Gabriel Silva Rodrigues,2008-01-19,M,2A,Ensino Médio,Evadido,Não declarado,Acima de 10 SM,FALSE,FALSE,Ribeirão Preto
+272abe4c-23db-4b88-8935-3e19aa37afbb,83c021b5-46f9-4a60-b512-be10433f2228,Thiago Oliveira Martins,2012-02-08,M,3A,Ensino Médio,Ativo,Indígena,3-6 SM,FALSE,TRUE,Sorocaba
+74f2bc1f-d881-43ef-a38d-79042f6cdd97,1e8d5fb9-e77d-401e-aa28-0de51ef34e72,Isabela Ribeiro Carvalho,2011-12-01,F,1A,Ensino Médio,Inadimplente,Não declarado,Acima de 10 SM,FALSE,FALSE,Campinas
+dde61cc5-cbdd-444b-a46d-6d6d3abbffbd,a2e84a36-a2e3-4ce3-bdd8-7b52233ee058,Gustavo Martins Ribeiro,2011-10-10,F,3B,Ensino Médio,Evadido,Parda,Acima de 10 SM,FALSE,FALSE,Campinas
+a8fdaaef-c750-45f8-9104-e622a21e13dd,83c021b5-46f9-4a60-b512-be10433f2228,Leonardo Alves Costa,2012-08-20,F,1A,Ensino Médio,Evadido,Indígena,Acima de 10 SM,FALSE,FALSE,Campinas
+00205829-b7a8-4694-8347-8d5ce4517407,1e8d5fb9-e77d-401e-aa28-0de51ef34e72,Gustavo Oliveira Ferreira,2013-11-12,F,2A,Fundamental II,Ativo,Indígena,6-10 SM,FALSE,TRUE,Campinas
+64c90f7b-9051-4497-bc89-773cea157616,a2e84a36-a2e3-4ce3-bdd8-7b52233ee058,Camila Lopes Silva,2009-06-07,M,3B,Ensino Médio,Inadimplente,Amarela,Acima de 10 SM,FALSE,FALSE,Ribeirão Preto
+f156d8b9-a6aa-4db7-98d7-ba89cec7b046,1e8d5fb9-e77d-401e-aa28-0de51ef34e72,Rafael Alves Lima,2009-01-12,M,1B,Fundamental II,Inadimplente,Indígena,3-6 SM,TRUE,TRUE,Santo André
+f9b5dd72-75bd-41af-8274-e7566dc81fe3,83c021b5-46f9-4a60-b512-be10433f2228,Isabela Carvalho Silva,2013-12-06,M,1A,Ensino Médio,Inadimplente,Parda,3-6 SM,FALSE,FALSE,Santos
+f5978565-7d1e-4b90-8fea-3af8fd67108b,83c021b5-46f9-4a60-b512-be10433f2228,Sophia Alves Lopes,2010-09-12,M,3B,Ensino Médio,Ativo,Preta,Até 3 SM,FALSE,TRUE,Campinas
+0d4a6291-07b3-424e-a586-bb1c4cd07614,a2e84a36-a2e3-4ce3-bdd8-7b52233ee058,João Ferreira Ferreira,2013-07-05,F,1B,Fundamental II,Ativo,Preta,Acima de 10 SM,FALSE,FALSE,Sorocaba
+181d6fd9-7cf4-4c8c-bad0-a09a44a35ba2,83c021b5-46f9-4a60-b512-be10433f2228,Pedro Santos Santos,2008-05-13,F,2A,Fundamental II,Inadimplente,Não declarado,6-10 SM,FALSE,TRUE,São Bernardo do Campo
+afd77beb-b6b0-4cb3-a71e-f8c941a7b2d7,83c021b5-46f9-4a60-b512-be10433f2228,Pedro Lopes Ferreira,2010-02-24,M,1B,Fundamental II,Ativo,Indígena,Até 3 SM,FALSE,FALSE,Ribeirão Preto
+aa2cf774-6f14-442a-8b9a-817c8149630c,1e8d5fb9-e77d-401e-aa28-0de51ef34e72,Luana Almeida Souza,2009-08-04,F,3A,Ensino Médio,Evadido,Não declarado,6-10 SM,TRUE,FALSE,Sorocaba
+652f67f1-886d-42c5-befa-71110b44cc9f,a2e84a36-a2e3-4ce3-bdd8-7b52233ee058,Camila Lopes Lopes,2013-06-25,F,2A,Fundamental II,Ativo,Amarela,Acima de 10 SM,FALSE,FALSE,São Paulo
+21b0ddb1-cf0a-4db2-8422-f0c1ebeddcbd,83c021b5-46f9-4a60-b512-be10433f2228,Bruno Lima Ribeiro,2013-03-04,F,3B,Ensino Médio,Inadimplente,Branca,3-6 SM,FALSE,TRUE,Osasco
+53d5bf5e-83a3-4734-a9e1-eaed07c63c7a,a2e84a36-a2e3-4ce3-bdd8-7b52233ee058,Gabriel Gomes Almeida,2011-12-27,M,3B,Ensino Médio,Inadimplente,Branca,Acima de 10 SM,FALSE,TRUE,Guarulhos
+aeee3316-cb70-40a0-a62d-9f6977958640,a2e84a36-a2e3-4ce3-bdd8-7b52233ee058,Mariana Martins Martins,2009-06-27,F,1B,Ensino Médio,Ativo,Preta,Acima de 10 SM,FALSE,TRUE,Campinas
+27b5db69-6bb3-47d1-b19f-a09c4b2e9f00,83c021b5-46f9-4a60-b512-be10433f2228,Gustavo Souza Rodrigues,2008-01-28,F,1A,Fundamental II,Ativo,Branca,6-10 SM,FALSE,FALSE,Sorocaba
+6b218c62-814b-4a7a-a92f-418142f00973,a2e84a36-a2e3-4ce3-bdd8-7b52233ee058,Rodrigo Gomes Lopes,2009-07-06,F,1A,Ensino Médio,Inadimplente,Indígena,3-6 SM,FALSE,FALSE,São Paulo
+c55fc533-6dfd-43f9-aff9-981b1227e4f1,1e8d5fb9-e77d-401e-aa28-0de51ef34e72,Gustavo Santos Souza,2013-11-28,F,2A,Fundamental II,Ativo,Parda,Acima de 10 SM,FALSE,FALSE,Diadema
+46483f4c-e24a-46ef-ba46-2c4bb0747718,83c021b5-46f9-4a60-b512-be10433f2228,João Lima Lima,2011-04-18,M,1B,Fundamental II,Ativo,Branca,3-6 SM,FALSE,FALSE,Santos
+7d03b5a2-d5c8-4013-93b2-5020273d4711,a2e84a36-a2e3-4ce3-bdd8-7b52233ee058,Eduardo Costa Ribeiro,2009-10-02,F,2B,Ensino Médio,Inadimplente,Amarela,Acima de 10 SM,TRUE,TRUE,Santos
+561c305b-83e9-4914-994d-4958e00a718f,1e8d5fb9-e77d-401e-aa28-0de51ef34e72,Luana Ferreira Oliveira,2010-09-28,M,2B,Ensino Médio,Ativo,Não declarado,Até 3 SM,FALSE,FALSE,Campinas
+dddca227-b7f5-43e7-acdf-dde471d9ff7e,a2e84a36-a2e3-4ce3-bdd8-7b52233ee058,Felipe Ribeiro Costa,2013-08-12,F,3A,Ensino Médio,Ativo,Não declarado,Até 3 SM,FALSE,TRUE,Santos
+8db5a5f8-5c9d-42aa-9d53-b67e4fdf1905,83c021b5-46f9-4a60-b512-be10433f2228,Pedro Lopes Lima,2011-01-30,M,2A,Fundamental II,Ativo,Parda,3-6 SM,FALSE,TRUE,São Bernardo do Campo
+9cdcb083-0536-4931-8864-e238bc525c17,83c021b5-46f9-4a60-b512-be10433f2228,Pedro Pereira Martins,2013-03-20,F,1A,Fundamental II,Ativo,Não declarado,6-10 SM,FALSE,FALSE,Santo André
+0d76cca9-6cab-466b-bf5b-22872af0847a,a2e84a36-a2e3-4ce3-bdd8-7b52233ee058,Lucas Costa Lopes,2012-12-18,F,1B,Ensino Médio,Ativo,Não declarado,Até 3 SM,FALSE,FALSE,Campinas
+9879f71f-e51c-4d81-8b07-843b8ff1c5d5,a2e84a36-a2e3-4ce3-bdd8-7b52233ee058,Lucas Lopes Oliveira,2013-10-03,F,3B,Ensino Médio,Ativo,Preta,3-6 SM,FALSE,TRUE,Sorocaba
+3ff1e6f3-fa7d-40e2-b9e3-b50b49eb31c4,1e8d5fb9-e77d-401e-aa28-0de51ef34e72,Sophia Santos Lima,2013-05-07,M,3A,Ensino Médio,Ativo,Parda,6-10 SM,TRUE,TRUE,Santo André
+7be26dec-fa3b-4ca2-88b6-56b8e59c932c,83c021b5-46f9-4a60-b512-be10433f2228,Valentina Costa Gomes,2011-05-12,M,1A,Ensino Médio,Ativo,Branca,6-10 SM,FALSE,FALSE,Santos
+36e889ee-12e5-40ff-870c-8da90a835619,83c021b5-46f9-4a60-b512-be10433f2228,Matheus Lopes Souza,2008-06-06,M,3B,Ensino Médio,Evadido,Não declarado,Até 3 SM,FALSE,TRUE,Guarulhos
+b60fd224-2f1c-4ab0-a901-a3f90ca0c5ac,1e8d5fb9-e77d-401e-aa28-0de51ef34e72,Ana Lopes Oliveira,2012-08-10,F,1A,Ensino Médio,Ativo,Amarela,Acima de 10 SM,FALSE,TRUE,Guarulhos
+23e3ae82-d38f-415f-bc6a-b4a020cd90ac,83c021b5-46f9-4a60-b512-be10433f2228,Felipe Oliveira Alves,2008-02-18,F,1A,Ensino Médio,Ativo,Branca,Acima de 10 SM,TRUE,TRUE,São Bernardo do Campo
+5f09b010-73ca-425b-9a5c-aa5630bfa53c,83c021b5-46f9-4a60-b512-be10433f2228,Ana Lima Silva,2013-05-03,M,1A,Fundamental II,Ativo,Não declarado,3-6 SM,FALSE,FALSE,Ribeirão Preto
+4f61e82a-7b93-43f7-9ac0-024ff17d634e,83c021b5-46f9-4a60-b512-be10433f2228,João Alves Ribeiro,2011-04-05,M,2B,Fundamental II,Evadido,Amarela,Até 3 SM,FALSE,FALSE,Osasco
+e576f4ec-5678-4054-b72b-6c8935826fa0,83c021b5-46f9-4a60-b512-be10433f2228,Thiago Santos Gomes,2010-07-14,M,3B,Ensino Médio,Evadido,Amarela,3-6 SM,FALSE,TRUE,Santos
+cb48e0f5-9573-4079-b317-4f6aa35f59d6,1e8d5fb9-e77d-401e-aa28-0de51ef34e72,Daniel Oliveira Gomes,2011-12-19,F,2A,Fundamental II,Ativo,Parda,Até 3 SM,FALSE,FALSE,Santo André
+ae307eee-d14c-4148-bc4d-2b205ee08b73,83c021b5-46f9-4a60-b512-be10433f2228,Larissa Almeida Alves,2010-09-17,M,3A,Ensino Médio,Ativo,Parda,Acima de 10 SM,FALSE,TRUE,Guarulhos
+a2834ed3-e342-430f-bae4-a758dff020c6,a2e84a36-a2e3-4ce3-bdd8-7b52233ee058,Amanda Silva Lima,2009-06-22,M,2B,Ensino Médio,Evadido,Parda,Acima de 10 SM,TRUE,FALSE,Campinas
+f522b9a9-75d2-4e16-bba6-0154dba1cafb,a2e84a36-a2e3-4ce3-bdd8-7b52233ee058,Letícia Souza Souza,2011-11-01,M,1B,Fundamental II,Inadimplente,Indígena,Acima de 10 SM,FALSE,FALSE,Campinas
+7a871f6d-14a5-4a9e-b16a-e790c2216285,a2e84a36-a2e3-4ce3-bdd8-7b52233ee058,Sophia Gomes Souza,2010-05-16,F,3A,Ensino Médio,Evadido,Preta,Acima de 10 SM,FALSE,FALSE,Diadema
+2607c14b-5822-4e4c-9f7f-fc370080d84b,1e8d5fb9-e77d-401e-aa28-0de51ef34e72,Sophia Pereira Souza,2008-03-30,M,2A,Fundamental II,Ativo,Branca,6-10 SM,FALSE,TRUE,Ribeirão Preto
+317c5364-66cf-44d5-9881-d2e580aa357d,83c021b5-46f9-4a60-b512-be10433f2228,Rafael Silva Souza,2013-08-08,M,2B,Fundamental II,Inadimplente,Indígena,Até 3 SM,TRUE,FALSE,Guarulhos
+409f2342-02f2-49da-99ed-748f4cfa2dc6,1e8d5fb9-e77d-401e-aa28-0de51ef34e72,Letícia Rodrigues Costa,2012-06-10,F,2A,Fundamental II,Ativo,Indígena,Até 3 SM,FALSE,FALSE,Santos
+95e3d56a-1b0e-4122-a8bb-6323776b373c,a2e84a36-a2e3-4ce3-bdd8-7b52233ee058,Mariana Oliveira Carvalho,2009-07-13,F,3B,Ensino Médio,Ativo,Indígena,3-6 SM,FALSE,FALSE,Guarulhos
+8dcd6828-c65e-4a42-a20f-8f2ec0b684a7,83c021b5-46f9-4a60-b512-be10433f2228,Matheus Oliveira Lopes,2012-12-02,F,3A,Ensino Médio,Evadido,Preta,Acima de 10 SM,FALSE,FALSE,Santo André
+4ad7ba71-2d1f-4a54-af9f-039d49969b95,1e8d5fb9-e77d-401e-aa28-0de51ef34e72,Amanda Carvalho Lopes,2008-02-07,F,3B,Ensino Médio,Ativo,Não declarado,Até 3 SM,FALSE,FALSE,Guarulhos
+44834e7a-45fd-4e47-b774-547372b98852,83c021b5-46f9-4a60-b512-be10433f2228,Bruno Oliveira Gomes,2011-06-09,M,2A,Ensino Médio,Ativo,Preta,Acima de 10 SM,FALSE,FALSE,Santos
+deb9b5ac-b8e0-4f07-8543-a21035d665a4,1e8d5fb9-e77d-401e-aa28-0de51ef34e72,Isabela Almeida Oliveira,2010-06-23,M,2B,Ensino Médio,Ativo,Preta,3-6 SM,FALSE,FALSE,Campinas
+11554f47-da06-4acf-acf8-8453ecf9a313,a2e84a36-a2e3-4ce3-bdd8-7b52233ee058,Guilherme Oliveira Costa,2010-01-20,M,3B,Ensino Médio,Ativo,Indígena,6-10 SM,FALSE,FALSE,Santo André
+b89ecfdc-9682-4796-9d3d-13c5c9e55349,a2e84a36-a2e3-4ce3-bdd8-7b52233ee058,Letícia Gomes Lopes,2010-10-26,F,1B,Ensino Médio,Ativo,Indígena,6-10 SM,FALSE,TRUE,Sorocaba
+e7d52094-6308-4e4b-bfd2-fa085a28e97a,1e8d5fb9-e77d-401e-aa28-0de51ef34e72,Vitor Souza Martins,2008-10-26,F,3A,Ensino Médio,Ativo,Indígena,3-6 SM,FALSE,FALSE,Osasco
+1b557e20-0bf0-4cee-9978-46e552782a67,a2e84a36-a2e3-4ce3-bdd8-7b52233ee058,Eduardo Costa Souza,2010-07-26,M,3A,Ensino Médio,Inadimplente,Indígena,3-6 SM,FALSE,TRUE,São Bernardo do Campo
+c3dfc92f-2237-486b-9e81-285ae3fadaf2,1e8d5fb9-e77d-401e-aa28-0de51ef34e72,Pedro Alves Souza,2009-02-11,M,2A,Fundamental II,Inadimplente,Branca,6-10 SM,TRUE,FALSE,Osasco
+9d8d7edb-b07c-4060-9520-c588d41af629,a2e84a36-a2e3-4ce3-bdd8-7b52233ee058,Larissa Almeida Almeida,2013-07-04,M,1A,Fundamental II,Inadimplente,Parda,3-6 SM,FALSE,FALSE,Sorocaba
+9593d7b6-d0c6-4754-9eb2-c2761d314213,1e8d5fb9-e77d-401e-aa28-0de51ef34e72,Ana Rodrigues Silva,2011-10-04,F,3A,Ensino Médio,Evadido,Preta,3-6 SM,FALSE,FALSE,Ribeirão Preto
+b000aaa3-2c69-4352-9786-5a68ea171df4,83c021b5-46f9-4a60-b512-be10433f2228,Luana Martins Alves,2011-05-23,M,2A,Fundamental II,Evadido,Parda,Até 3 SM,FALSE,FALSE,São Paulo
+97ed081e-c314-419d-a425-12a31cd847bf,a2e84a36-a2e3-4ce3-bdd8-7b52233ee058,Julia Carvalho Ferreira,2011-10-04,M,1B,Fundamental II,Ativo,Branca,3-6 SM,FALSE,TRUE,Campinas
+0e164f1c-395c-406f-b4e5-7a77466d7783,a2e84a36-a2e3-4ce3-bdd8-7b52233ee058,Eduardo Pereira Ribeiro,2009-03-11,M,3B,Ensino Médio,Ativo,Preta,Até 3 SM,FALSE,FALSE,Ribeirão Preto
+8b35392c-29a6-4444-b961-485ff07a2afc,a2e84a36-a2e3-4ce3-bdd8-7b52233ee058,Vitor Lopes Ribeiro,2010-01-20,F,2B,Ensino Médio,Inadimplente,Preta,3-6 SM,FALSE,TRUE,Osasco
+196fa2d4-ed98-4f8f-be61-41625da96b42,83c021b5-46f9-4a60-b512-be10433f2228,Rodrigo Silva Lopes,2010-11-30,F,2B,Ensino Médio,Inadimplente,Branca,6-10 SM,FALSE,FALSE,São Paulo
+fcc32502-1804-46e4-98be-cc8fdd0ffcc3,a2e84a36-a2e3-4ce3-bdd8-7b52233ee058,Julia Lopes Lima,2013-03-09,M,3A,Ensino Médio,Evadido,Branca,3-6 SM,FALSE,TRUE,São Paulo
+af0e71a0-a2d2-48c0-a52a-0f841474939b,a2e84a36-a2e3-4ce3-bdd8-7b52233ee058,Thiago Lopes Silva,2010-11-08,M,2A,Ensino Médio,Inadimplente,Preta,6-10 SM,FALSE,FALSE,São Paulo
+a75e4f4f-257f-4703-bc2c-b364621e80be,1e8d5fb9-e77d-401e-aa28-0de51ef34e72,Gustavo Oliveira Rodrigues,2013-01-20,M,2B,Ensino Médio,Ativo,Parda,6-10 SM,FALSE,FALSE,Santos
+582c4a2f-1409-40b4-8d92-8e56978f1551,83c021b5-46f9-4a60-b512-be10433f2228,Luana Alves Oliveira,2013-02-11,M,1A,Fundamental II,Ativo,Branca,3-6 SM,FALSE,FALSE,Guarulhos
+98fac18e-0618-4f43-9610-c91c0dc0409b,a2e84a36-a2e3-4ce3-bdd8-7b52233ee058,Matheus Lopes Lopes,2012-10-30,F,1B,Ensino Médio,Ativo,Amarela,6-10 SM,FALSE,FALSE,Sorocaba
+672e9c38-393d-4a80-a2af-4349b58f2100,83c021b5-46f9-4a60-b512-be10433f2228,Bruno Almeida Gomes,2010-09-27,F,3A,Ensino Médio,Evadido,Parda,Acima de 10 SM,FALSE,FALSE,São Paulo
+0865a371-bf7a-4c6e-9633-462c5f05847f,a2e84a36-a2e3-4ce3-bdd8-7b52233ee058,Vitor Gomes Carvalho,2008-09-13,M,1A,Fundamental II,Ativo,Branca,Acima de 10 SM,TRUE,FALSE,Santo André
+8ff78004-a3ef-4d77-a1bf-449ce833a39b,83c021b5-46f9-4a60-b512-be10433f2228,Ana Ribeiro Oliveira,2009-04-04,F,1A,Ensino Médio,Ativo,Não declarado,Até 3 SM,TRUE,FALSE,Campinas
+09d3e831-0b0c-4efa-afa9-2c2cb77172bd,83c021b5-46f9-4a60-b512-be10433f2228,Rodrigo Gomes Alves,2009-12-31,F,1B,Ensino Médio,Ativo,Indígena,Acima de 10 SM,FALSE,FALSE,Santo André
+99149dae-3070-4335-8b67-62cca29919b3,83c021b5-46f9-4a60-b512-be10433f2228,Vitor Ribeiro Gomes,2011-03-15,F,3B,Ensino Médio,Evadido,Preta,3-6 SM,TRUE,FALSE,Santo André
+99a410f1-9854-4dd5-95aa-88b9a4324d99,1e8d5fb9-e77d-401e-aa28-0de51ef34e72,Maria Almeida Ribeiro,2011-11-06,F,2B,Ensino Médio,Ativo,Preta,3-6 SM,FALSE,FALSE,Sorocaba
+1e15bc10-20f8-439f-a5a2-4c4fdcf72597,1e8d5fb9-e77d-401e-aa28-0de51ef34e72,Beatriz Lopes Ribeiro,2008-10-13,F,2B,Fundamental II,Evadido,Amarela,Acima de 10 SM,FALSE,FALSE,Campinas
+a9608bf1-7142-42df-918c-775a36c1b26e,a2e84a36-a2e3-4ce3-bdd8-7b52233ee058,Gustavo Lopes Rodrigues,2012-10-18,F,2B,Fundamental II,Ativo,Indígena,Até 3 SM,TRUE,FALSE,Sorocaba
+ca935581-0d92-489a-a980-e3877d809e11,a2e84a36-a2e3-4ce3-bdd8-7b52233ee058,Felipe Carvalho Costa,2010-06-28,M,1B,Fundamental II,Ativo,Indígena,Acima de 10 SM,TRUE,FALSE,Osasco
+288e03dd-82ae-467b-9e90-e0699e41cc2c,83c021b5-46f9-4a60-b512-be10433f2228,Leonardo Almeida Ferreira,2010-02-23,F,1B,Fundamental II,Ativo,Parda,Acima de 10 SM,FALSE,TRUE,São Paulo
+45257864-cbd2-4449-b958-c7c154d86e13,83c021b5-46f9-4a60-b512-be10433f2228,Daniel Ribeiro Oliveira,2011-03-30,M,3A,Ensino Médio,Ativo,Indígena,Até 3 SM,TRUE,TRUE,Ribeirão Preto
+827d186e-f602-4ff7-a268-78265b32e94c,1e8d5fb9-e77d-401e-aa28-0de51ef34e72,Sophia Lopes Rodrigues,2008-09-13,F,3A,Ensino Médio,Ativo,Branca,6-10 SM,FALSE,FALSE,Santo André
+422cd848-f4b2-4f84-832c-cf8a13d79635,1e8d5fb9-e77d-401e-aa28-0de51ef34e72,Maria Pereira Rodrigues,2011-08-07,M,2B,Fundamental II,Inadimplente,Indígena,6-10 SM,TRUE,TRUE,Guarulhos
+7fa6235d-7303-4e15-bb41-4afcce258514,a2e84a36-a2e3-4ce3-bdd8-7b52233ee058,Guilherme Lima Ferreira,2010-02-21,M,2B,Ensino Médio,Ativo,Parda,3-6 SM,FALSE,TRUE,Diadema
+91ffdc76-74f8-400b-a0b1-d61b731a739b,83c021b5-46f9-4a60-b512-be10433f2228,Vitor Almeida Oliveira,2008-01-15,F,1B,Fundamental II,Ativo,Preta,Até 3 SM,FALSE,TRUE,Campinas
+df32944a-4457-4cd9-ac93-1fc3a9209bee,1e8d5fb9-e77d-401e-aa28-0de51ef34e72,Vitor Lopes Costa,2012-06-04,F,1B,Ensino Médio,Ativo,Indígena,Acima de 10 SM,FALSE,FALSE,Campinas
+1559927f-d262-470c-902c-c6273e3444c7,1e8d5fb9-e77d-401e-aa28-0de51ef34e72,Luana Almeida Gomes,2011-04-13,M,2A,Fundamental II,Ativo,Branca,Acima de 10 SM,TRUE,FALSE,São Paulo
+a82393f2-a820-4bf7-8348-13c696d6024e,a2e84a36-a2e3-4ce3-bdd8-7b52233ee058,Eduardo Silva Rodrigues,2008-11-14,M,3A,Ensino Médio,Inadimplente,Indígena,6-10 SM,TRUE,FALSE,Diadema
+112a1d9d-af4c-463a-88ec-b3266d1baaa7,83c021b5-46f9-4a60-b512-be10433f2228,Luana Souza Pereira,2010-09-18,M,1A,Ensino Médio,Evadido,Parda,Até 3 SM,FALSE,TRUE,Diadema
+a3c91685-69ee-49ea-ba30-0ef60b80a659,1e8d5fb9-e77d-401e-aa28-0de51ef34e72,Leonardo Oliveira Lopes,2008-10-14,F,2B,Fundamental II,Evadido,Não declarado,Até 3 SM,FALSE,FALSE,Diadema
+063dcaff-1b4f-475f-a5ab-475b250cd280,a2e84a36-a2e3-4ce3-bdd8-7b52233ee058,Vitor Lopes Carvalho,2009-06-06,F,2B,Fundamental II,Ativo,Indígena,Acima de 10 SM,TRUE,TRUE,Diadema
+4032ffde-33ee-4747-8958-7f19201af675,1e8d5fb9-e77d-401e-aa28-0de51ef34e72,Beatriz Gomes Souza,2013-07-31,M,1A,Ensino Médio,Ativo,Branca,Até 3 SM,FALSE,TRUE,Campinas
+f19db0dd-638d-4823-ad28-3ce2548020f3,83c021b5-46f9-4a60-b512-be10433f2228,Pedro Alves Santos,2012-06-22,M,3A,Ensino Médio,Ativo,Amarela,Acima de 10 SM,FALSE,FALSE,Campinas
+75fd0184-6973-4508-a52f-76027247920f,a2e84a36-a2e3-4ce3-bdd8-7b52233ee058,Sophia Souza Rodrigues,2008-09-29,M,2A,Ensino Médio,Ativo,Branca,3-6 SM,FALSE,TRUE,São Paulo
+c9fe7764-7b59-459e-8dd4-885b95ea6d2c,1e8d5fb9-e77d-401e-aa28-0de51ef34e72,Maria Alves Carvalho,2008-02-28,M,1B,Fundamental II,Inadimplente,Branca,3-6 SM,FALSE,FALSE,Santo André
+0602cf8c-ff5f-4d9d-ab2e-37ba9b9bdb2e,1e8d5fb9-e77d-401e-aa28-0de51ef34e72,Luana Gomes Silva,2012-07-04,F,1A,Fundamental II,Ativo,Branca,Até 3 SM,FALSE,TRUE,Diadema
+aac316e3-69e1-4642-95b7-c82fb9ebec23,a2e84a36-a2e3-4ce3-bdd8-7b52233ee058,Eduardo Costa Pereira,2010-09-13,M,1B,Ensino Médio,Inadimplente,Indígena,Até 3 SM,FALSE,TRUE,Campinas
+bbba388d-cb7d-4fd7-8c57-f01448431f9b,83c021b5-46f9-4a60-b512-be10433f2228,Beatriz Costa Ribeiro,2008-06-10,F,3B,Ensino Médio,Evadido,Indígena,6-10 SM,FALSE,FALSE,Campinas
+fcfcb107-bb32-4cbf-81b6-403a2c81572d,1e8d5fb9-e77d-401e-aa28-0de51ef34e72,Amanda Lima Pereira,2009-07-20,F,3B,Ensino Médio,Ativo,Amarela,Acima de 10 SM,FALSE,FALSE,Santo André
+080df4a4-be1f-430f-84cd-f52a7a0dbf90,83c021b5-46f9-4a60-b512-be10433f2228,Mariana Carvalho Santos,2009-05-09,M,2A,Fundamental II,Ativo,Não declarado,3-6 SM,FALSE,FALSE,Santo André
+7b8a9751-0322-4d0f-af0d-b9e5de331321,a2e84a36-a2e3-4ce3-bdd8-7b52233ee058,Larissa Gomes Lima,2010-05-04,F,3B,Ensino Médio,Evadido,Indígena,Até 3 SM,FALSE,FALSE,Guarulhos
+d806879a-2393-4171-8cec-c62da16e68d8,1e8d5fb9-e77d-401e-aa28-0de51ef34e72,Valentina Carvalho Ribeiro,2013-04-28,F,2A,Ensino Médio,Ativo,Parda,Acima de 10 SM,FALSE,TRUE,Santos
+c1a10383-5fca-4709-971b-946ce642fff6,83c021b5-46f9-4a60-b512-be10433f2228,João Santos Costa,2008-03-07,F,3A,Ensino Médio,Ativo,Amarela,Acima de 10 SM,FALSE,FALSE,Ribeirão Preto
+5313f418-d616-4ed2-890a-138f7ea557ff,1e8d5fb9-e77d-401e-aa28-0de51ef34e72,Sophia Rodrigues Oliveira,2013-12-30,M,1A,Fundamental II,Inadimplente,Preta,3-6 SM,FALSE,FALSE,Guarulhos
+e3e28e25-4eb5-4645-9cc4-37092f21ef2b,1e8d5fb9-e77d-401e-aa28-0de51ef34e72,Gabriel Alves Oliveira,2011-03-24,F,1A,Ensino Médio,Ativo,Branca,Acima de 10 SM,FALSE,TRUE,Ribeirão Preto
+9d9711fc-1227-4175-8823-0ca723061e70,a2e84a36-a2e3-4ce3-bdd8-7b52233ee058,Rafael Martins Gomes,2011-03-30,F,1B,Fundamental II,Ativo,Branca,Até 3 SM,FALSE,FALSE,Campinas
+8f5f93d8-c0ee-45ab-86b7-897f3097dbba,1e8d5fb9-e77d-401e-aa28-0de51ef34e72,Luana Ferreira Ferreira,2012-02-22,F,2B,Fundamental II,Ativo,Amarela,3-6 SM,FALSE,FALSE,Diadema
+dcb985c2-a285-4a7d-97d5-07a86d78701a,83c021b5-46f9-4a60-b512-be10433f2228,Isabela Santos Lopes,2012-03-25,M,3A,Ensino Médio,Ativo,Parda,3-6 SM,TRUE,FALSE,Campinas
+c336f705-e782-41ff-a451-84006af94b75,1e8d5fb9-e77d-401e-aa28-0de51ef34e72,Larissa Almeida Alves,2008-04-14,F,3B,Ensino Médio,Evadido,Preta,6-10 SM,TRUE,TRUE,São Bernardo do Campo
+ff90295b-f46a-42a2-9de0-6b998a033aa5,1e8d5fb9-e77d-401e-aa28-0de51ef34e72,Lucas Ribeiro Souza,2011-01-04,F,2A,Fundamental II,Ativo,Parda,3-6 SM,TRUE,TRUE,Guarulhos
+3f3fc8b9-2faf-49ff-9097-1dacc0c42115,a2e84a36-a2e3-4ce3-bdd8-7b52233ee058,Maria Rodrigues Costa,2008-11-14,F,3A,Ensino Médio,Ativo,Branca,Até 3 SM,FALSE,TRUE,São Paulo
+48083e8a-7bee-4ca8-a0e4-ad3dccbe6acd,83c021b5-46f9-4a60-b512-be10433f2228,Guilherme Martins Gomes,2010-09-23,F,1B,Ensino Médio,Ativo,Preta,3-6 SM,FALSE,FALSE,São Paulo
+213accd2-1f5e-496f-9cdb-5d6b0c081fdc,a2e84a36-a2e3-4ce3-bdd8-7b52233ee058,João Lopes Oliveira,2009-08-01,F,2A,Ensino Médio,Evadido,Branca,Até 3 SM,FALSE,FALSE,Diadema
+1bf4f943-8a8b-4d81-b351-b99b8411945d,a2e84a36-a2e3-4ce3-bdd8-7b52233ee058,Luana Ferreira Souza,2010-07-14,F,2A,Ensino Médio,Inadimplente,Amarela,Acima de 10 SM,FALSE,TRUE,Campinas
+443d8e13-cee2-48f3-9130-1f546f936390,83c021b5-46f9-4a60-b512-be10433f2228,Thiago Gomes Gomes,2012-08-11,M,2B,Fundamental II,Ativo,Indígena,Acima de 10 SM,FALSE,FALSE,Ribeirão Preto
+b8b5d5c4-53f5-4ffb-820f-abb2eaed2f97,1e8d5fb9-e77d-401e-aa28-0de51ef34e72,Isabela Ferreira Oliveira,2013-11-14,F,3B,Ensino Médio,Ativo,Amarela,Acima de 10 SM,FALSE,TRUE,Guarulhos
+5f74800c-cdbf-495b-9383-0e9eac0b1581,1e8d5fb9-e77d-401e-aa28-0de51ef34e72,Gabriel Almeida Costa,2011-03-25,F,3A,Ensino Médio,Ativo,Indígena,6-10 SM,FALSE,FALSE,São Bernardo do Campo
+65440808-9b97-47a3-a3ee-80d6cef3b73f,83c021b5-46f9-4a60-b512-be10433f2228,Eduardo Oliveira Ferreira,2012-01-05,M,2A,Fundamental II,Ativo,Branca,6-10 SM,FALSE,TRUE,São Bernardo do Campo
+5a41b6c8-bd1a-43f8-9cf6-b2dc5b7079da,1e8d5fb9-e77d-401e-aa28-0de51ef34e72,Thiago Gomes Carvalho,2013-09-25,F,3B,Ensino Médio,Ativo,Preta,3-6 SM,TRUE,FALSE,São Paulo
+89d41c5a-33a2-4e56-a106-6d49cf5d8dc2,83c021b5-46f9-4a60-b512-be10433f2228,Julia Pereira Martins,2008-06-25,M,3B,Ensino Médio,Ativo,Amarela,3-6 SM,FALSE,FALSE,Diadema
+8c406614-84a5-47d6-bcfb-b000ba98f96a,a2e84a36-a2e3-4ce3-bdd8-7b52233ee058,Letícia Costa Almeida,2009-11-19,M,1A,Fundamental II,Ativo,Branca,6-10 SM,FALSE,TRUE,Guarulhos
+4d8681a9-422a-49d9-b1ed-aa8b8a5eac7f,83c021b5-46f9-4a60-b512-be10433f2228,Pedro Carvalho Lopes,2013-02-08,M,3A,Ensino Médio,Ativo,Preta,Acima de 10 SM,FALSE,TRUE,Santos
+b662c21d-9233-40df-8425-3a9d6e54f863,1e8d5fb9-e77d-401e-aa28-0de51ef34e72,Gustavo Almeida Oliveira,2010-12-31,F,3B,Ensino Médio,Evadido,Parda,Acima de 10 SM,TRUE,FALSE,São Bernardo do Campo
+e28758bb-70c4-4536-ad05-7cf45207ffb8,1e8d5fb9-e77d-401e-aa28-0de51ef34e72,Larissa Carvalho Almeida,2010-10-11,F,2A,Ensino Médio,Evadido,Amarela,6-10 SM,FALSE,FALSE,Sorocaba
+fe271b21-5226-4444-b9d7-72604b41ac16,83c021b5-46f9-4a60-b512-be10433f2228,Beatriz Gomes Gomes,2012-11-04,F,3A,Ensino Médio,Evadido,Não declarado,Até 3 SM,FALSE,FALSE,Sorocaba
+de4b4071-e59a-48f3-8333-639a50b8aad3,83c021b5-46f9-4a60-b512-be10433f2228,Maria Lopes Pereira,2010-04-22,F,2A,Ensino Médio,Inadimplente,Não declarado,Até 3 SM,FALSE,TRUE,Sorocaba
+968391ab-4306-4692-bc1a-be12ee19e467,1e8d5fb9-e77d-401e-aa28-0de51ef34e72,Luana Santos Ferreira,2013-09-20,M,2A,Fundamental II,Ativo,Preta,Até 3 SM,FALSE,FALSE,Osasco
+109f2c28-d4cb-401d-9fa7-e0cd78372d6d,1e8d5fb9-e77d-401e-aa28-0de51ef34e72,Valentina Alves Almeida,2009-04-10,F,1B,Ensino Médio,Ativo,Não declarado,6-10 SM,TRUE,FALSE,Campinas
+a38ba058-110d-4acb-86dd-a3c20caf1fc3,83c021b5-46f9-4a60-b512-be10433f2228,Pedro Lima Gomes,2009-03-22,M,3B,Ensino Médio,Inadimplente,Amarela,6-10 SM,FALSE,TRUE,Guarulhos
+e7e71a37-701d-48d1-a546-826885807c39,1e8d5fb9-e77d-401e-aa28-0de51ef34e72,Leonardo Gomes Costa,2012-07-23,F,3A,Ensino Médio,Evadido,Indígena,6-10 SM,FALSE,FALSE,Campinas
+90bae3f8-258e-40a9-bb95-c6a0e197d85b,83c021b5-46f9-4a60-b512-be10433f2228,Matheus Oliveira Alves,2008-05-07,F,2A,Ensino Médio,Inadimplente,Preta,Até 3 SM,FALSE,FALSE,Ribeirão Preto
+0c81ee1d-63be-4467-bdc9-47b06d304ab4,a2e84a36-a2e3-4ce3-bdd8-7b52233ee058,Maria Lima Martins,2012-06-30,M,1B,Fundamental II,Ativo,Parda,Acima de 10 SM,TRUE,TRUE,Osasco
+ae9ab13e-c6cb-419b-88b0-c0b5fe5b246c,83c021b5-46f9-4a60-b512-be10433f2228,Guilherme Ferreira Costa,2008-09-05,M,2A,Ensino Médio,Inadimplente,Não declarado,3-6 SM,FALSE,FALSE,São Bernardo do Campo
+4773ea57-5c39-4b87-ad14-3f3b5ef0d2d0,83c021b5-46f9-4a60-b512-be10433f2228,Lucas Lima Costa,2011-03-14,M,2B,Fundamental II,Ativo,Parda,Até 3 SM,FALSE,FALSE,São Bernardo do Campo
+af2a3828-7944-4336-98ba-a925e7197b42,83c021b5-46f9-4a60-b512-be10433f2228,Rafael Carvalho Martins,2010-01-27,F,2A,Ensino Médio,Evadido,Parda,Até 3 SM,FALSE,TRUE,Diadema
+c62e9923-fce1-486a-9ae6-01ca8bdc5381,1e8d5fb9-e77d-401e-aa28-0de51ef34e72,Mariana Pereira Lopes,2011-05-22,F,3B,Ensino Médio,Inadimplente,Indígena,Acima de 10 SM,FALSE,FALSE,Osasco
+05854723-246c-4a61-b8ec-0787e30b777d,1e8d5fb9-e77d-401e-aa28-0de51ef34e72,Gustavo Martins Pereira,2012-04-25,M,3A,Ensino Médio,Ativo,Parda,6-10 SM,FALSE,FALSE,Santo André
+d1d249e9-87c2-4f9c-8fc4-ccc5462c25cd,83c021b5-46f9-4a60-b512-be10433f2228,Felipe Pereira Oliveira,2010-02-28,F,1A,Ensino Médio,Evadido,Branca,6-10 SM,FALSE,FALSE,Ribeirão Preto
+d9aa7b91-ab3d-4787-95e8-b205033622fd,1e8d5fb9-e77d-401e-aa28-0de51ef34e72,Thiago Silva Alves,2009-08-10,M,3A,Ensino Médio,Evadido,Indígena,Acima de 10 SM,FALSE,FALSE,Osasco
+f120cf22-4481-4b0a-bf54-3bd127b06b96,a2e84a36-a2e3-4ce3-bdd8-7b52233ee058,Eduardo Ferreira Gomes,2012-04-20,F,1B,Fundamental II,Ativo,Preta,6-10 SM,FALSE,TRUE,Campinas
+254fd2d0-919c-4e77-93a4-f5d044a45ea7,1e8d5fb9-e77d-401e-aa28-0de51ef34e72,Maria Oliveira Souza,2012-07-11,M,3A,Ensino Médio,Evadido,Preta,6-10 SM,FALSE,TRUE,Sorocaba
+ef742f81-4f4e-446a-a759-c6aa7cf24a4c,83c021b5-46f9-4a60-b512-be10433f2228,Letícia Lopes Martins,2010-11-24,M,2A,Fundamental II,Evadido,Não declarado,Até 3 SM,FALSE,FALSE,Santos
+a80d43cb-83b6-404b-97ce-92d05b89ec88,a2e84a36-a2e3-4ce3-bdd8-7b52233ee058,Letícia Ferreira Gomes,2012-08-08,M,2B,Ensino Médio,Ativo,Indígena,Acima de 10 SM,FALSE,TRUE,Ribeirão Preto
+9314e239-4863-4fa0-9471-45cd3827da06,1e8d5fb9-e77d-401e-aa28-0de51ef34e72,Letícia Costa Ribeiro,2008-01-09,M,3B,Ensino Médio,Evadido,Branca,6-10 SM,FALSE,TRUE,Ribeirão Preto
+9b1d0ab1-eda4-4a12-9261-c387f25ad9a4,a2e84a36-a2e3-4ce3-bdd8-7b52233ee058,Helena Almeida Ribeiro,2011-12-19,M,1B,Fundamental II,Ativo,Preta,3-6 SM,FALSE,FALSE,Ribeirão Preto
+8b5b2148-6a4a-4e97-a04f-fedd819627e8,a2e84a36-a2e3-4ce3-bdd8-7b52233ee058,Daniel Lima Souza,2011-04-01,F,1B,Fundamental II,Inadimplente,Não declarado,Acima de 10 SM,FALSE,FALSE,Ribeirão Preto
+123f0d1a-59b5-4014-a366-0e6db864d513,a2e84a36-a2e3-4ce3-bdd8-7b52233ee058,Luana Rodrigues Almeida,2010-11-30,M,2A,Ensino Médio,Evadido,Branca,6-10 SM,TRUE,FALSE,Guarulhos
+c70101a0-8bd1-4d92-91c4-51248cc4ef4d,a2e84a36-a2e3-4ce3-bdd8-7b52233ee058,Rafael Ferreira Silva,2008-12-23,M,1B,Fundamental II,Ativo,Indígena,Até 3 SM,TRUE,FALSE,Osasco
+0919041c-ead8-4af1-bad8-68c0a5562312,83c021b5-46f9-4a60-b512-be10433f2228,João Ferreira Lima,2009-12-15,M,3A,Ensino Médio,Ativo,Amarela,Até 3 SM,FALSE,TRUE,Osasco
+f9001c07-800f-4192-8975-88488890f670,83c021b5-46f9-4a60-b512-be10433f2228,Thiago Ferreira Costa,2009-06-04,F,2B,Ensino Médio,Inadimplente,Branca,6-10 SM,FALSE,FALSE,Campinas
+f677b219-1b99-4456-965b-1efaa3d260df,1e8d5fb9-e77d-401e-aa28-0de51ef34e72,Felipe Ribeiro Lopes,2009-09-24,F,2A,Fundamental II,Ativo,Não declarado,6-10 SM,FALSE,TRUE,Guarulhos
+36ab1486-7048-4da2-a025-031c8ced42eb,1e8d5fb9-e77d-401e-aa28-0de51ef34e72,Gustavo Pereira Silva,2010-05-22,F,2B,Ensino Médio,Evadido,Branca,3-6 SM,FALSE,FALSE,Sorocaba
+577c9d00-3667-432c-ae3e-2f08a8d020a6,83c021b5-46f9-4a60-b512-be10433f2228,Guilherme Costa Lopes,2009-09-28,M,1B,Ensino Médio,Ativo,Parda,6-10 SM,FALSE,FALSE,Ribeirão Preto
+b6e3e099-6995-4a25-8b50-c9c46fd98ef1,83c021b5-46f9-4a60-b512-be10433f2228,Rafael Alves Oliveira,2008-07-08,F,1A,Fundamental II,Ativo,Parda,6-10 SM,FALSE,TRUE,São Paulo
+9571a8fb-4628-4859-8506-364cb8bdbe86,1e8d5fb9-e77d-401e-aa28-0de51ef34e72,Guilherme Alves Lopes,2013-02-06,F,1B,Ensino Médio,Ativo,Preta,Acima de 10 SM,FALSE,TRUE,Santo André
+4577798a-9ebd-4403-83c0-a5933a3af342,1e8d5fb9-e77d-401e-aa28-0de51ef34e72,Daniel Martins Carvalho,2009-09-30,M,2B,Ensino Médio,Ativo,Branca,3-6 SM,TRUE,FALSE,Santo André
+2528a77c-96c7-44a0-879e-4555cc58877d,1e8d5fb9-e77d-401e-aa28-0de51ef34e72,Beatriz Carvalho Pereira,2013-05-16,F,2B,Fundamental II,Inadimplente,Não declarado,6-10 SM,FALSE,FALSE,Santos
+27ebd9e8-445c-48b9-8ce2-ba6a187c3154,a2e84a36-a2e3-4ce3-bdd8-7b52233ee058,Vitor Alves Lima,2012-08-27,M,1A,Ensino Médio,Ativo,Branca,Até 3 SM,FALSE,FALSE,Campinas
+5e4e0c5d-9fa3-42a7-b692-22dfec6f403e,a2e84a36-a2e3-4ce3-bdd8-7b52233ee058,Mariana Gomes Oliveira,2011-06-04,F,1B,Ensino Médio,Ativo,Amarela,Até 3 SM,FALSE,FALSE,Diadema
+283c96ec-2398-4dd5-b5fd-153eb9fff2a6,83c021b5-46f9-4a60-b512-be10433f2228,Gustavo Gomes Gomes,2010-06-08,M,1A,Ensino Médio,Ativo,Não declarado,6-10 SM,FALSE,TRUE,Guarulhos
+d1b72d13-f96a-4a86-8753-fc24aaf8b63b,83c021b5-46f9-4a60-b512-be10433f2228,Larissa Carvalho Pereira,2012-06-23,M,2A,Fundamental II,Ativo,Branca,3-6 SM,TRUE,TRUE,Sorocaba
+84413d4f-7f49-473b-9171-2eadc25da4ab,1e8d5fb9-e77d-401e-aa28-0de51ef34e72,Valentina Almeida Rodrigues,2013-12-20,F,2B,Fundamental II,Evadido,Amarela,6-10 SM,FALSE,FALSE,Santo André
+ee7577f1-9826-409f-b574-65c6fc297822,1e8d5fb9-e77d-401e-aa28-0de51ef34e72,Amanda Lopes Rodrigues,2012-01-30,M,2A,Ensino Médio,Inadimplente,Parda,Acima de 10 SM,FALSE,FALSE,Santo André
+d5948439-4888-49c7-8c04-b19c0ecc1bce,1e8d5fb9-e77d-401e-aa28-0de51ef34e72,Pedro Pereira Silva,2013-04-18,M,1A,Ensino Médio,Ativo,Parda,3-6 SM,FALSE,FALSE,São Bernardo do Campo
+248e796d-9029-44f5-9eb4-738a51fa8819,83c021b5-46f9-4a60-b512-be10433f2228,Larissa Carvalho Almeida,2012-08-03,F,2A,Fundamental II,Ativo,Parda,Até 3 SM,FALSE,FALSE,Sorocaba
+c693f832-525e-4b0a-9503-8ca621b09311,a2e84a36-a2e3-4ce3-bdd8-7b52233ee058,Gustavo Carvalho Silva,2010-11-04,M,1B,Fundamental II,Evadido,Parda,6-10 SM,FALSE,FALSE,Santo André
+0ccef0f4-2b90-4316-82f4-9d79f226ab3f,83c021b5-46f9-4a60-b512-be10433f2228,Rafael Gomes Lopes,2013-01-05,M,1A,Fundamental II,Inadimplente,Amarela,Acima de 10 SM,FALSE,FALSE,Diadema
+75593d82-5b66-4a7e-ae00-3acaea98b17e,a2e84a36-a2e3-4ce3-bdd8-7b52233ee058,Rafael Almeida Almeida,2011-03-24,M,3B,Ensino Médio,Ativo,Preta,Acima de 10 SM,FALSE,FALSE,Santos
+a279b183-d649-4a27-9644-de3ae826143a,83c021b5-46f9-4a60-b512-be10433f2228,Sophia Almeida Martins,2011-11-29,F,3B,Ensino Médio,Evadido,Indígena,Até 3 SM,FALSE,FALSE,Diadema
+cf00f821-dbb1-4616-a1ef-24860087aa8b,1e8d5fb9-e77d-401e-aa28-0de51ef34e72,Matheus Martins Carvalho,2008-03-04,F,3A,Ensino Médio,Ativo,Indígena,Até 3 SM,FALSE,FALSE,Santos
+0b8effb7-ac94-4adb-b8a9-90d0248da09d,a2e84a36-a2e3-4ce3-bdd8-7b52233ee058,Lucas Rodrigues Oliveira,2010-03-25,M,2B,Fundamental II,Evadido,Parda,6-10 SM,FALSE,TRUE,Santos
+ba39130e-4532-4830-9cb5-da6512c80771,a2e84a36-a2e3-4ce3-bdd8-7b52233ee058,Mariana Santos Martins,2009-04-02,M,1A,Fundamental II,Ativo,Não declarado,3-6 SM,FALSE,TRUE,São Paulo
+a41b2501-60aa-482c-900e-4351854a11e6,a2e84a36-a2e3-4ce3-bdd8-7b52233ee058,Valentina Lima Oliveira,2013-11-19,M,3B,Ensino Médio,Ativo,Parda,Acima de 10 SM,FALSE,TRUE,Guarulhos
+16453b5c-808d-4f6b-8723-af9c3ebed533,a2e84a36-a2e3-4ce3-bdd8-7b52233ee058,Guilherme Souza Almeida,2012-11-22,M,2B,Fundamental II,Inadimplente,Não declarado,3-6 SM,FALSE,FALSE,São Bernardo do Campo
+4c122964-0bbc-44a0-a4d7-2996a55a7c1b,a2e84a36-a2e3-4ce3-bdd8-7b52233ee058,Luana Ferreira Oliveira,2012-04-05,F,1B,Fundamental II,Ativo,Preta,Acima de 10 SM,FALSE,TRUE,Diadema
+ae2ee601-9d04-4a47-8b74-489a2293fff8,a2e84a36-a2e3-4ce3-bdd8-7b52233ee058,Isabela Lima Pereira,2008-11-08,F,3A,Ensino Médio,Ativo,Não declarado,Acima de 10 SM,FALSE,FALSE,Santos
+62f502d6-f1f0-42f6-94f0-20b30443d1c6,1e8d5fb9-e77d-401e-aa28-0de51ef34e72,Sophia Carvalho Ribeiro,2010-02-04,M,3B,Ensino Médio,Ativo,Indígena,Até 3 SM,FALSE,TRUE,Osasco
+71643920-36a4-48e0-9a44-077a5b38b247,83c021b5-46f9-4a60-b512-be10433f2228,Rafael Lopes Lopes,2008-03-02,F,3A,Ensino Médio,Ativo,Indígena,Até 3 SM,FALSE,FALSE,Osasco
+6ae37f93-9224-4ccd-86ae-f76419b354df,1e8d5fb9-e77d-401e-aa28-0de51ef34e72,Helena Costa Costa,2008-05-21,F,1B,Fundamental II,Evadido,Amarela,3-6 SM,FALSE,FALSE,Ribeirão Preto
+cac871b0-66b1-4885-8f5b-a4cadad426b3,83c021b5-46f9-4a60-b512-be10433f2228,Mariana Carvalho Alves,2012-06-20,F,1B,Ensino Médio,Ativo,Indígena,3-6 SM,FALSE,FALSE,Osasco
+4c192265-1bd1-41a7-b8b4-2a372afea012,a2e84a36-a2e3-4ce3-bdd8-7b52233ee058,Luana Silva Santos,2012-04-17,F,1A,Ensino Médio,Ativo,Parda,Até 3 SM,FALSE,FALSE,São Paulo
+f1c16292-fb45-428d-acea-acbf548f7581,83c021b5-46f9-4a60-b512-be10433f2228,Eduardo Silva Pereira,2012-08-22,F,2A,Fundamental II,Evadido,Amarela,Acima de 10 SM,FALSE,FALSE,São Paulo
+cc6b1328-8899-4fe8-84c4-9f10c6ef7506,1e8d5fb9-e77d-401e-aa28-0de51ef34e72,Lucas Silva Souza,2009-03-09,M,3B,Ensino Médio,Evadido,Indígena,Acima de 10 SM,FALSE,FALSE,Diadema
+274891d7-8ac0-4ca6-8ae1-8697728da703,1e8d5fb9-e77d-401e-aa28-0de51ef34e72,Helena Silva Pereira,2013-08-24,F,1B,Ensino Médio,Inadimplente,Branca,Acima de 10 SM,FALSE,FALSE,Osasco
+e42c104c-a55f-4bb5-8365-a325b9e60ea4,1e8d5fb9-e77d-401e-aa28-0de51ef34e72,Camila Costa Almeida,2008-03-26,M,3A,Ensino Médio,Evadido,Parda,3-6 SM,FALSE,FALSE,Santos
+7a5693e7-d5de-4987-bca8-a49959139a5c,1e8d5fb9-e77d-401e-aa28-0de51ef34e72,Leonardo Alves Ferreira,2008-02-22,F,3B,Ensino Médio,Ativo,Parda,Até 3 SM,FALSE,TRUE,Ribeirão Preto
+09157c5a-0b0b-4915-a759-cf11510e5ea6,83c021b5-46f9-4a60-b512-be10433f2228,Letícia Carvalho Lima,2009-12-19,F,1B,Fundamental II,Ativo,Preta,Acima de 10 SM,FALSE,FALSE,Diadema
+8a88175b-8d7a-4d41-9e0c-3d7590a0b81a,83c021b5-46f9-4a60-b512-be10433f2228,Pedro Ribeiro Alves,2012-01-21,M,3B,Ensino Médio,Inadimplente,Branca,Acima de 10 SM,FALSE,FALSE,São Bernardo do Campo
+eb176c46-fc07-48ce-bdb9-646043f74f18,1e8d5fb9-e77d-401e-aa28-0de51ef34e72,Sophia Pereira Carvalho,2008-08-05,F,2B,Fundamental II,Ativo,Preta,Até 3 SM,FALSE,FALSE,Santos
+fc0db2fe-1f3d-4991-8c21-495359d18b2a,a2e84a36-a2e3-4ce3-bdd8-7b52233ee058,Gabriel Gomes Pereira,2012-01-10,M,3B,Ensino Médio,Ativo,Não declarado,6-10 SM,TRUE,FALSE,Guarulhos
+b9c6538d-4a2e-472c-93e0-9ed8da19937b,83c021b5-46f9-4a60-b512-be10433f2228,Luana Santos Costa,2013-03-21,M,1B,Ensino Médio,Ativo,Preta,Acima de 10 SM,FALSE,TRUE,Ribeirão Preto
+1c575a35-eb29-4fda-92c7-2ac7f40ce314,1e8d5fb9-e77d-401e-aa28-0de51ef34e72,Amanda Rodrigues Almeida,2013-08-02,M,1B,Fundamental II,Inadimplente,Parda,Até 3 SM,FALSE,FALSE,Santo André
+93cd07e6-ce96-4a5b-8440-da2c8a3d86a2,83c021b5-46f9-4a60-b512-be10433f2228,João Oliveira Costa,2013-04-09,F,2B,Fundamental II,Inadimplente,Não declarado,6-10 SM,TRUE,TRUE,Ribeirão Preto
+4dd36a4e-e704-4e8d-a784-f4d45edb02af,1e8d5fb9-e77d-401e-aa28-0de51ef34e72,Valentina Costa Lima,2008-09-08,F,3A,Ensino Médio,Ativo,Amarela,Acima de 10 SM,FALSE,FALSE,Diadema
+2933588e-56a6-4065-b05c-7978badece62,1e8d5fb9-e77d-401e-aa28-0de51ef34e72,Luana Silva Gomes,2012-03-19,F,2B,Fundamental II,Ativo,Parda,Acima de 10 SM,FALSE,TRUE,Sorocaba
+76bc6d0a-4f9c-4ade-a7f4-2070622a0659,a2e84a36-a2e3-4ce3-bdd8-7b52233ee058,Camila Souza Martins,2011-06-02,F,1B,Fundamental II,Ativo,Amarela,Até 3 SM,FALSE,FALSE,Osasco
+5a7df25f-9130-4f77-afcf-caec2fd7c803,a2e84a36-a2e3-4ce3-bdd8-7b52233ee058,Sophia Almeida Costa,2009-02-09,F,1A,Fundamental II,Ativo,Não declarado,3-6 SM,FALSE,FALSE,Campinas
+28c9f0c3-0314-4849-b983-7851c332b861,1e8d5fb9-e77d-401e-aa28-0de51ef34e72,João Rodrigues Lima,2008-02-19,F,2B,Fundamental II,Ativo,Preta,Acima de 10 SM,FALSE,TRUE,São Paulo
+da87cf23-36be-4d82-b981-b078b31a9d4e,83c021b5-46f9-4a60-b512-be10433f2228,Luana Lopes Rodrigues,2012-10-11,F,1A,Ensino Médio,Ativo,Indígena,Acima de 10 SM,FALSE,FALSE,Diadema
+9ca7b794-0f24-4a14-9aa0-d4130b3ae4e4,a2e84a36-a2e3-4ce3-bdd8-7b52233ee058,Bruno Carvalho Souza,2010-11-24,M,1B,Ensino Médio,Ativo,Amarela,6-10 SM,TRUE,TRUE,São Bernardo do Campo
+064b48b4-d7c6-40f3-b216-2cb9c8c8f03d,83c021b5-46f9-4a60-b512-be10433f2228,Valentina Silva Almeida,2013-01-18,F,1A,Fundamental II,Evadido,Preta,3-6 SM,TRUE,FALSE,Guarulhos
+dd1cf0ac-788d-43b4-88e3-15fa73268677,1e8d5fb9-e77d-401e-aa28-0de51ef34e72,Thiago Lopes Ferreira,2008-08-06,M,1A,Ensino Médio,Evadido,Amarela,3-6 SM,FALSE,FALSE,Osasco
+4ba07d16-53d0-4f6f-9dff-16766edb70bb,a2e84a36-a2e3-4ce3-bdd8-7b52233ee058,Daniel Oliveira Carvalho,2008-05-07,F,3A,Ensino Médio,Ativo,Amarela,3-6 SM,FALSE,FALSE,Santos
+896b4afc-ab51-404f-b159-fb5d600ffc8e,a2e84a36-a2e3-4ce3-bdd8-7b52233ee058,Ana Costa Ribeiro,2009-04-07,M,2A,Fundamental II,Inadimplente,Indígena,Até 3 SM,FALSE,TRUE,São Paulo
+5aa5feb0-0c58-4f5a-bc85-fcb7f981314f,a2e84a36-a2e3-4ce3-bdd8-7b52233ee058,Vitor Oliveira Ribeiro,2012-08-16,M,3B,Ensino Médio,Evadido,Parda,3-6 SM,FALSE,TRUE,Campinas
+f0668b57-f29d-4a28-b0e6-5f427286ad5a,1e8d5fb9-e77d-401e-aa28-0de51ef34e72,João Souza Souza,2010-09-25,F,2B,Ensino Médio,Inadimplente,Branca,Acima de 10 SM,FALSE,TRUE,São Bernardo do Campo
+e3693b18-bbb3-4504-98b4-5b220a7d601a,83c021b5-46f9-4a60-b512-be10433f2228,Julia Ribeiro Silva,2009-08-06,F,2B,Ensino Médio,Evadido,Amarela,Acima de 10 SM,FALSE,FALSE,São Paulo
+6da4b2fc-8fbf-4ca8-8ecd-741f604c6e3f,1e8d5fb9-e77d-401e-aa28-0de51ef34e72,Guilherme Almeida Souza,2009-09-19,F,3A,Ensino Médio,Ativo,Branca,Até 3 SM,FALSE,FALSE,Guarulhos
+e99c9962-a9f5-4d82-9e87-1edfad5ee2ea,83c021b5-46f9-4a60-b512-be10433f2228,Ana Almeida Souza,2008-05-21,M,1B,Ensino Médio,Ativo,Amarela,3-6 SM,FALSE,FALSE,Sorocaba
+bad5d69d-d083-4643-9a78-ddb8fd4ca66f,83c021b5-46f9-4a60-b512-be10433f2228,Letícia Gomes Ribeiro,2008-12-19,M,2A,Ensino Médio,Ativo,Preta,Acima de 10 SM,FALSE,FALSE,Santos
+0dcb247d-d26b-4d9e-b6ac-b3ad458bfe4d,a2e84a36-a2e3-4ce3-bdd8-7b52233ee058,Guilherme Costa Ferreira,2013-12-10,F,3B,Ensino Médio,Inadimplente,Indígena,3-6 SM,TRUE,FALSE,Guarulhos
+50ee8e29-e9ce-44f4-8956-13641b9a3a6b,a2e84a36-a2e3-4ce3-bdd8-7b52233ee058,Amanda Ferreira Santos,2012-08-25,M,1A,Ensino Médio,Evadido,Não declarado,6-10 SM,FALSE,FALSE,Diadema
+927b47e1-97a6-4f64-859a-b12183bce34e,1e8d5fb9-e77d-401e-aa28-0de51ef34e72,Isabela Carvalho Ribeiro,2011-12-08,F,2A,Fundamental II,Evadido,Preta,Até 3 SM,TRUE,FALSE,São Bernardo do Campo
+e5d0d15e-41af-48eb-a6eb-0c65e460af23,1e8d5fb9-e77d-401e-aa28-0de51ef34e72,Valentina Carvalho Santos,2008-07-19,F,1B,Ensino Médio,Ativo,Amarela,3-6 SM,FALSE,TRUE,São Paulo
+b1fbc357-e301-440b-b950-932adf898b59,1e8d5fb9-e77d-401e-aa28-0de51ef34e72,Vitor Carvalho Ferreira,2009-08-08,F,2A,Fundamental II,Inadimplente,Branca,Até 3 SM,FALSE,TRUE,São Paulo
+0c645d4a-0135-4327-be66-d74327c82f0c,a2e84a36-a2e3-4ce3-bdd8-7b52233ee058,Eduardo Souza Costa,2008-10-10,F,3A,Ensino Médio,Ativo,Preta,Acima de 10 SM,FALSE,FALSE,Ribeirão Preto
+ae61218d-6390-4803-b005-9ab25432774b,a2e84a36-a2e3-4ce3-bdd8-7b52233ee058,Valentina Alves Souza,2008-10-05,F,3B,Ensino Médio,Ativo,Amarela,Até 3 SM,FALSE,TRUE,São Paulo
+565326eb-9416-46da-a035-7ec9befaa104,1e8d5fb9-e77d-401e-aa28-0de51ef34e72,Ana Oliveira Alves,2013-01-04,F,3A,Ensino Médio,Inadimplente,Indígena,Acima de 10 SM,TRUE,FALSE,Santo André
+218b09ca-d10b-489c-9bde-dbd5bae56566,1e8d5fb9-e77d-401e-aa28-0de51ef34e72,Daniel Pereira Gomes,2009-09-01,M,1A,Fundamental II,Ativo,Amarela,Até 3 SM,TRUE,FALSE,Ribeirão Preto
+c46aa163-2c37-46ef-bfda-4f953f9d7adb,a2e84a36-a2e3-4ce3-bdd8-7b52233ee058,Rafael Silva Gomes,2010-07-16,M,3B,Ensino Médio,Inadimplente,Não declarado,Acima de 10 SM,FALSE,TRUE,Osasco
+32d648e4-5b09-4dce-aca0-d13e97fb33bc,1e8d5fb9-e77d-401e-aa28-0de51ef34e72,Ana Lima Martins,2012-08-02,M,1A,Ensino Médio,Evadido,Amarela,Até 3 SM,FALSE,FALSE,Diadema
+0dbb0211-9493-4ea5-bb7e-a7cfa7931266,a2e84a36-a2e3-4ce3-bdd8-7b52233ee058,Ana Alves Oliveira,2011-08-07,F,1B,Fundamental II,Evadido,Preta,6-10 SM,FALSE,FALSE,Santo André
+85f41c6c-0441-43be-94ee-e0b35066bcca,83c021b5-46f9-4a60-b512-be10433f2228,Pedro Lima Oliveira,2010-11-24,F,1B,Fundamental II,Ativo,Não declarado,6-10 SM,TRUE,FALSE,Guarulhos
+faeb09fe-6ee5-4c91-9694-fc11de2ca1ed,a2e84a36-a2e3-4ce3-bdd8-7b52233ee058,Gabriel Gomes Carvalho,2010-04-19,F,2A,Ensino Médio,Ativo,Parda,6-10 SM,FALSE,TRUE,Diadema
+2b2a4638-5f2f-4630-9e36-97b32c0ff4ab,1e8d5fb9-e77d-401e-aa28-0de51ef34e72,Beatriz Lopes Costa,2009-06-13,F,1B,Fundamental II,Ativo,Parda,6-10 SM,FALSE,FALSE,Osasco
+2fdc78fe-bdaf-4d7c-8d38-41618c5bf05c,83c021b5-46f9-4a60-b512-be10433f2228,Felipe Costa Santos,2013-11-27,M,1B,Fundamental II,Evadido,Parda,3-6 SM,FALSE,FALSE,Osasco
+35cba270-e218-48dd-a706-dc7cf547cbf8,a2e84a36-a2e3-4ce3-bdd8-7b52233ee058,Larissa Oliveira Ribeiro,2010-03-01,M,3A,Ensino Médio,Ativo,Indígena,Acima de 10 SM,FALSE,FALSE,Sorocaba
+e75cadc7-fe31-4685-be82-fe8de3c80cb1,a2e84a36-a2e3-4ce3-bdd8-7b52233ee058,Camila Carvalho Lopes,2012-04-13,M,2A,Fundamental II,Evadido,Não declarado,Até 3 SM,FALSE,FALSE,São Bernardo do Campo
+d7ff1932-6285-4497-a99f-84bf20536e36,83c021b5-46f9-4a60-b512-be10433f2228,Valentina Rodrigues Carvalho,2008-12-11,F,2A,Ensino Médio,Inadimplente,Amarela,Acima de 10 SM,FALSE,FALSE,Guarulhos
+d70dbfbc-bac5-4dd7-9980-213e5c1524fe,a2e84a36-a2e3-4ce3-bdd8-7b52233ee058,Guilherme Costa Lima,2010-02-04,F,2B,Fundamental II,Evadido,Amarela,Acima de 10 SM,FALSE,FALSE,Sorocaba
+41ff804b-63fe-42c0-bbe1-cedaba151c06,83c021b5-46f9-4a60-b512-be10433f2228,Leonardo Silva Lima,2008-03-26,F,1B,Fundamental II,Inadimplente,Parda,Até 3 SM,TRUE,TRUE,São Paulo
+1dd5dbc8-8f7f-418c-9d10-e5edc88d7b84,83c021b5-46f9-4a60-b512-be10433f2228,Sophia Ferreira Alves,2008-09-21,M,3B,Ensino Médio,Ativo,Amarela,Até 3 SM,FALSE,FALSE,Guarulhos
+1f6bf51a-18e3-48ce-83e4-903fb0566aef,a2e84a36-a2e3-4ce3-bdd8-7b52233ee058,Amanda Ferreira Lopes,2010-06-23,M,2A,Fundamental II,Evadido,Branca,6-10 SM,FALSE,TRUE,Osasco
+908b1b17-16b1-451b-ad64-3609b438e763,a2e84a36-a2e3-4ce3-bdd8-7b52233ee058,João Lopes Oliveira,2008-12-28,F,1B,Fundamental II,Ativo,Não declarado,Acima de 10 SM,FALSE,TRUE,São Paulo
+f2420602-1465-4c40-8fdd-9cf83b0eca32,1e8d5fb9-e77d-401e-aa28-0de51ef34e72,Felipe Santos Alves,2012-12-29,M,1A,Ensino Médio,Ativo,Branca,Até 3 SM,FALSE,FALSE,Sorocaba
+52eee8a5-dbdb-4b3c-b6bc-7b2379b19b98,1e8d5fb9-e77d-401e-aa28-0de51ef34e72,Ana Costa Pereira,2010-01-09,F,3B,Ensino Médio,Inadimplente,Parda,Acima de 10 SM,FALSE,FALSE,São Paulo
+28c5cff3-2f89-48c5-a380-92f603828536,a2e84a36-a2e3-4ce3-bdd8-7b52233ee058,João Carvalho Lopes,2009-03-03,F,1B,Ensino Médio,Inadimplente,Amarela,6-10 SM,FALSE,FALSE,Guarulhos
+ff915590-504e-4476-a144-c136c42653dc,1e8d5fb9-e77d-401e-aa28-0de51ef34e72,Sophia Alves Alves,2012-02-21,M,2A,Fundamental II,Ativo,Amarela,Até 3 SM,FALSE,FALSE,São Bernardo do Campo
+c7d0255c-dcf9-49d3-9b5d-b91faf1b56dd,83c021b5-46f9-4a60-b512-be10433f2228,Guilherme Rodrigues Martins,2011-04-17,M,2A,Ensino Médio,Ativo,Preta,3-6 SM,FALSE,TRUE,São Paulo
+727f12c3-6a62-45fb-bc79-d6e21c040f56,83c021b5-46f9-4a60-b512-be10433f2228,Rodrigo Oliveira Martins,2010-01-04,M,2A,Ensino Médio,Ativo,Amarela,3-6 SM,FALSE,FALSE,Santos
+d391f3ee-a333-4b12-9f72-5d962599f86a,83c021b5-46f9-4a60-b512-be10433f2228,Helena Carvalho Silva,2011-12-27,M,1A,Ensino Médio,Ativo,Indígena,3-6 SM,FALSE,TRUE,Campinas
+cc85a4ee-219d-4dae-a432-802805819efe,1e8d5fb9-e77d-401e-aa28-0de51ef34e72,Maria Martins Oliveira,2010-04-20,F,3A,Ensino Médio,Ativo,Amarela,3-6 SM,FALSE,FALSE,Osasco
+b0fc44b1-794c-45c2-8107-9d4ef481ff49,a2e84a36-a2e3-4ce3-bdd8-7b52233ee058,Rodrigo Gomes Silva,2010-09-03,M,3A,Ensino Médio,Ativo,Não declarado,Até 3 SM,FALSE,TRUE,Santos
+43dda31e-fcb0-47f9-be0d-bdb63b110f63,83c021b5-46f9-4a60-b512-be10433f2228,Valentina Oliveira Souza,2008-08-03,M,2A,Fundamental II,Ativo,Não declarado,Acima de 10 SM,FALSE,FALSE,Diadema
+3e36e89c-d01c-4e5d-9425-7cab8324ffee,83c021b5-46f9-4a60-b512-be10433f2228,Ana Almeida Costa,2008-01-10,F,2A,Fundamental II,Ativo,Indígena,Acima de 10 SM,FALSE,FALSE,Osasco
+2a77d154-5e47-4304-ae64-6585c2b89b8e,83c021b5-46f9-4a60-b512-be10433f2228,Mariana Lopes Silva,2009-09-21,F,1A,Fundamental II,Evadido,Preta,3-6 SM,FALSE,FALSE,São Bernardo do Campo
+449f6d46-dda5-4d8b-914f-baba575fd4e7,a2e84a36-a2e3-4ce3-bdd8-7b52233ee058,Matheus Santos Silva,2008-12-22,M,1A,Fundamental II,Ativo,Amarela,Acima de 10 SM,FALSE,FALSE,Diadema
+d2493d70-4478-492e-80c4-60c940fb940d,a2e84a36-a2e3-4ce3-bdd8-7b52233ee058,Luana Almeida Oliveira,2011-09-02,M,3A,Ensino Médio,Evadido,Preta,Até 3 SM,FALSE,TRUE,Ribeirão Preto
+b80b77e1-f1c3-4582-84fa-8528161c23f8,a2e84a36-a2e3-4ce3-bdd8-7b52233ee058,Eduardo Souza Silva,2013-01-25,M,2A,Ensino Médio,Evadido,Branca,Até 3 SM,FALSE,FALSE,Santos
+17f8b324-2317-403e-b980-30dfffc7333f,a2e84a36-a2e3-4ce3-bdd8-7b52233ee058,Felipe Costa Santos,2013-11-08,M,3A,Ensino Médio,Evadido,Preta,6-10 SM,FALSE,FALSE,Guarulhos
+9ecded89-bba0-4aff-bf60-7a689e6cd571,83c021b5-46f9-4a60-b512-be10433f2228,Rafael Costa Souza,2009-07-08,M,3A,Ensino Médio,Evadido,Branca,Acima de 10 SM,FALSE,FALSE,Guarulhos
+fbe72558-6509-4274-b30c-32fbdcfeff28,a2e84a36-a2e3-4ce3-bdd8-7b52233ee058,Vitor Pereira Martins,2009-09-24,F,3A,Ensino Médio,Evadido,Branca,Acima de 10 SM,TRUE,FALSE,Guarulhos
+f2e4d327-9758-4384-9c66-3f6c02665168,83c021b5-46f9-4a60-b512-be10433f2228,Letícia Santos Rodrigues,2011-05-04,M,3B,Ensino Médio,Inadimplente,Amarela,3-6 SM,TRUE,FALSE,Campinas
+6f59a681-fed0-453c-bd96-2900574f43d5,a2e84a36-a2e3-4ce3-bdd8-7b52233ee058,Daniel Lopes Silva,2008-07-24,M,1A,Fundamental II,Inadimplente,Indígena,Até 3 SM,FALSE,TRUE,Santo André
+6a5bc874-dbec-4462-8035-a69ec9a11a0e,83c021b5-46f9-4a60-b512-be10433f2228,Valentina Santos Silva,2013-06-01,F,3A,Ensino Médio,Inadimplente,Indígena,6-10 SM,TRUE,TRUE,Campinas
+3dcc4ff7-f358-45ef-89a0-af57dac895a3,1e8d5fb9-e77d-401e-aa28-0de51ef34e72,Pedro Pereira Almeida,2009-03-10,F,3A,Ensino Médio,Ativo,Indígena,3-6 SM,FALSE,TRUE,Ribeirão Preto
+cd6b4f48-c374-498a-bb13-16500faee542,1e8d5fb9-e77d-401e-aa28-0de51ef34e72,Valentina Carvalho Silva,2010-08-25,F,3A,Ensino Médio,Ativo,Não declarado,Acima de 10 SM,TRUE,TRUE,Guarulhos
+97b82d29-b370-428a-99c9-bf486f93857f,1e8d5fb9-e77d-401e-aa28-0de51ef34e72,Bruno Santos Ferreira,2011-05-22,F,2A,Ensino Médio,Evadido,Indígena,3-6 SM,FALSE,FALSE,Osasco
+f4823c0d-d2a5-46b0-8b00-4f62946bbf03,1e8d5fb9-e77d-401e-aa28-0de51ef34e72,Letícia Carvalho Lima,2011-07-13,F,3A,Ensino Médio,Ativo,Não declarado,6-10 SM,FALSE,TRUE,São Paulo
+d0ca375c-8a45-4d02-9228-acd97cb4ceb6,a2e84a36-a2e3-4ce3-bdd8-7b52233ee058,Maria Pereira Lima,2010-05-10,F,3B,Ensino Médio,Inadimplente,Parda,3-6 SM,FALSE,TRUE,Osasco
+99c7bbdd-e75c-49d5-94bf-d947cdaf29d6,83c021b5-46f9-4a60-b512-be10433f2228,Luana Santos Almeida,2009-01-04,F,2B,Ensino Médio,Inadimplente,Indígena,Acima de 10 SM,TRUE,TRUE,Sorocaba
+d557f1b5-7adb-4481-a687-00ae2ab915e6,83c021b5-46f9-4a60-b512-be10433f2228,Vitor Oliveira Lopes,2013-10-03,F,3A,Ensino Médio,Inadimplente,Branca,Até 3 SM,FALSE,TRUE,Diadema
+ce8ebba2-4d8d-41e9-bc20-2db85d6c8aeb,83c021b5-46f9-4a60-b512-be10433f2228,Daniel Oliveira Gomes,2008-04-27,F,2B,Ensino Médio,Inadimplente,Indígena,6-10 SM,TRUE,FALSE,Campinas
+2933b2a9-0e0b-48cc-8899-0cbe42630f2f,a2e84a36-a2e3-4ce3-bdd8-7b52233ee058,Isabela Souza Ferreira,2012-05-26,M,2A,Fundamental II,Ativo,Amarela,Acima de 10 SM,TRUE,TRUE,São Paulo
+fc2d649a-8321-4951-9232-80c578ebcd3f,a2e84a36-a2e3-4ce3-bdd8-7b52233ee058,Luana Carvalho Gomes,2010-09-18,M,1A,Ensino Médio,Inadimplente,Não declarado,6-10 SM,FALSE,TRUE,Santo André
+2aae9917-f78f-4852-80e6-1e0662390773,83c021b5-46f9-4a60-b512-be10433f2228,Guilherme Ferreira Lima,2012-10-06,F,2B,Fundamental II,Ativo,Amarela,Até 3 SM,FALSE,TRUE,Campinas
+f473b78f-7587-4aad-aa9d-1c4022baff69,a2e84a36-a2e3-4ce3-bdd8-7b52233ee058,Pedro Ferreira Ribeiro,2013-09-06,F,3B,Ensino Médio,Ativo,Parda,3-6 SM,TRUE,FALSE,São Bernardo do Campo
+839b8a82-f1f6-4fd5-855e-b237a30c1e8e,1e8d5fb9-e77d-401e-aa28-0de51ef34e72,Felipe Gomes Costa,2012-04-21,M,2B,Ensino Médio,Ativo,Não declarado,Até 3 SM,TRUE,FALSE,Guarulhos
+a8688e74-b4c9-47e7-96d6-95a913bc0078,83c021b5-46f9-4a60-b512-be10433f2228,Julia Ferreira Ferreira,2012-04-21,M,3B,Ensino Médio,Ativo,Não declarado,3-6 SM,FALSE,TRUE,Santos
+6893ecec-b4e8-4c79-a013-e622329b0acb,a2e84a36-a2e3-4ce3-bdd8-7b52233ee058,João Rodrigues Santos,2009-04-25,M,3B,Ensino Médio,Ativo,Indígena,3-6 SM,FALSE,FALSE,Santo André
+26a4e5c1-65a2-462e-ba9e-c0bf7f7994b1,a2e84a36-a2e3-4ce3-bdd8-7b52233ee058,Mariana Rodrigues Ribeiro,2010-02-07,F,2A,Ensino Médio,Inadimplente,Branca,Acima de 10 SM,FALSE,TRUE,São Paulo
+5527f165-35dc-4f5a-9e85-3cf20a44f8b1,1e8d5fb9-e77d-401e-aa28-0de51ef34e72,Gabriel Gomes Costa,2011-04-18,F,3B,Ensino Médio,Evadido,Preta,3-6 SM,FALSE,FALSE,Santos
+c31253e4-4d02-438c-8e8b-25676cea3dee,a2e84a36-a2e3-4ce3-bdd8-7b52233ee058,Maria Rodrigues Lopes,2009-09-26,F,1B,Ensino Médio,Ativo,Não declarado,Até 3 SM,FALSE,FALSE,Ribeirão Preto
+5fe5be34-a5b2-4564-bb6f-81c12f122e22,a2e84a36-a2e3-4ce3-bdd8-7b52233ee058,Rafael Pereira Rodrigues,2012-08-12,F,1B,Fundamental II,Ativo,Amarela,Acima de 10 SM,FALSE,FALSE,Osasco
+c34c332a-56eb-4cbc-b48b-5b140f5ff5d4,1e8d5fb9-e77d-401e-aa28-0de51ef34e72,Camila Rodrigues Silva,2009-04-17,M,3A,Ensino Médio,Ativo,Branca,3-6 SM,FALSE,TRUE,Guarulhos
+1654f03f-f760-4273-b688-1a0bc358a947,a2e84a36-a2e3-4ce3-bdd8-7b52233ee058,Thiago Carvalho Lima,2011-04-20,F,2B,Fundamental II,Ativo,Branca,Até 3 SM,FALSE,FALSE,São Paulo
+35a6903b-f607-4624-9f87-55728555897e,83c021b5-46f9-4a60-b512-be10433f2228,Julia Carvalho Lima,2010-06-02,M,2A,Ensino Médio,Ativo,Parda,3-6 SM,FALSE,FALSE,Ribeirão Preto
+455f087f-5127-46d2-a4ee-0b1b58c4c86b,a2e84a36-a2e3-4ce3-bdd8-7b52233ee058,Pedro Rodrigues Costa,2010-08-31,F,1A,Fundamental II,Ativo,Não declarado,Até 3 SM,TRUE,TRUE,Guarulhos
+5f213b39-9fa3-41aa-94b0-cda882fe9cbd,1e8d5fb9-e77d-401e-aa28-0de51ef34e72,Maria Lopes Souza,2013-05-09,M,1A,Ensino Médio,Ativo,Parda,Acima de 10 SM,FALSE,TRUE,Osasco
+77197216-d730-4513-b21b-d92c74149f4e,a2e84a36-a2e3-4ce3-bdd8-7b52233ee058,Pedro Rodrigues Almeida,2008-08-24,F,3A,Ensino Médio,Inadimplente,Não declarado,3-6 SM,FALSE,TRUE,São Paulo
+dc4043c4-e647-453e-b733-b8bfe0770700,1e8d5fb9-e77d-401e-aa28-0de51ef34e72,Beatriz Oliveira Martins,2012-09-02,F,2B,Ensino Médio,Ativo,Não declarado,6-10 SM,FALSE,FALSE,São Paulo
+30b4c480-515d-46a9-83da-940ed040e7cc,83c021b5-46f9-4a60-b512-be10433f2228,Rodrigo Rodrigues Pereira,2012-12-30,F,3A,Ensino Médio,Inadimplente,Indígena,Acima de 10 SM,FALSE,FALSE,Santos
+77bb7527-489b-427b-9c50-75ff8662d10d,1e8d5fb9-e77d-401e-aa28-0de51ef34e72,Gabriel Gomes Ribeiro,2010-04-07,F,3A,Ensino Médio,Ativo,Indígena,Até 3 SM,FALSE,TRUE,Campinas
+a85409b2-4ea5-402b-aca4-d6a1d16da8c9,1e8d5fb9-e77d-401e-aa28-0de51ef34e72,Gabriel Rodrigues Santos,2013-10-05,F,3B,Ensino Médio,Inadimplente,Preta,3-6 SM,FALSE,FALSE,Campinas
+ad3fca2d-3c10-4b89-9221-9b612b0526e5,a2e84a36-a2e3-4ce3-bdd8-7b52233ee058,Daniel Alves Costa,2012-01-15,M,2B,Ensino Médio,Ativo,Indígena,6-10 SM,TRUE,TRUE,Guarulhos
+9f9b14f7-26b5-4430-98c1-2db9ded5bf1a,83c021b5-46f9-4a60-b512-be10433f2228,Helena Rodrigues Carvalho,2012-06-09,F,2A,Fundamental II,Evadido,Branca,6-10 SM,FALSE,FALSE,Campinas
+faf2e6be-3b72-4bdc-bdbd-e22dc5e2b9a7,a2e84a36-a2e3-4ce3-bdd8-7b52233ee058,Luana Ribeiro Gomes,2012-04-13,F,2A,Ensino Médio,Ativo,Branca,Até 3 SM,TRUE,TRUE,Diadema
+eed4315b-2241-4aa9-a664-03695e126aac,a2e84a36-a2e3-4ce3-bdd8-7b52233ee058,Valentina Souza Carvalho,2013-09-30,M,3B,Ensino Médio,Evadido,Não declarado,6-10 SM,FALSE,FALSE,Guarulhos
+b14cf6f5-9c0c-4b36-a88d-784714912703,a2e84a36-a2e3-4ce3-bdd8-7b52233ee058,Sophia Oliveira Lopes,2012-06-06,M,3A,Ensino Médio,Ativo,Branca,6-10 SM,FALSE,FALSE,Diadema
+0a06063c-f4fe-44ae-82c1-c987fd0e90dd,a2e84a36-a2e3-4ce3-bdd8-7b52233ee058,Guilherme Pereira Lima,2013-02-20,F,1A,Fundamental II,Ativo,Branca,3-6 SM,FALSE,TRUE,Santo André
+34df67db-ea63-438c-a625-e93c4603a5a7,83c021b5-46f9-4a60-b512-be10433f2228,Rodrigo Carvalho Lima,2011-09-24,F,1B,Ensino Médio,Evadido,Preta,Acima de 10 SM,FALSE,FALSE,Sorocaba
+4929f598-76a5-4d6c-bc96-b117f2485ae4,83c021b5-46f9-4a60-b512-be10433f2228,Mariana Lopes Lima,2011-05-31,F,3B,Ensino Médio,Ativo,Branca,Até 3 SM,TRUE,FALSE,Santo André
+728e6547-9697-4444-bd33-161cece254db,a2e84a36-a2e3-4ce3-bdd8-7b52233ee058,Daniel Pereira Ferreira,2010-10-19,M,1B,Fundamental II,Evadido,Não declarado,Até 3 SM,FALSE,FALSE,Campinas
+d12bd9bc-39b5-4b9c-8844-dd9e10ca66aa,a2e84a36-a2e3-4ce3-bdd8-7b52233ee058,João Alves Rodrigues,2008-05-05,M,3B,Ensino Médio,Ativo,Parda,Acima de 10 SM,FALSE,FALSE,Santo André
+c880d29e-f958-4c40-a04d-214ee5e2c28f,a2e84a36-a2e3-4ce3-bdd8-7b52233ee058,Bruno Rodrigues Alves,2010-09-19,F,2B,Fundamental II,Ativo,Parda,3-6 SM,FALSE,TRUE,Sorocaba
+4334c4b3-6360-4328-87c5-0480925312e2,1e8d5fb9-e77d-401e-aa28-0de51ef34e72,Bruno Ferreira Silva,2012-03-10,M,2B,Ensino Médio,Evadido,Preta,6-10 SM,FALSE,TRUE,Ribeirão Preto
+487f5aad-b2af-4ba0-977e-f1aa46b53ee2,a2e84a36-a2e3-4ce3-bdd8-7b52233ee058,Julia Souza Lima,2011-07-06,M,2A,Ensino Médio,Ativo,Preta,3-6 SM,FALSE,TRUE,Diadema
+feec1dc6-5b62-4b7a-93cf-ea0c4cefbe03,a2e84a36-a2e3-4ce3-bdd8-7b52233ee058,Rafael Ferreira Lima,2009-08-30,M,2A,Fundamental II,Ativo,Amarela,6-10 SM,TRUE,FALSE,Campinas
+ecce185c-2562-443b-b767-902b27c7fa65,a2e84a36-a2e3-4ce3-bdd8-7b52233ee058,Letícia Rodrigues Lima,2009-07-01,F,2B,Ensino Médio,Ativo,Preta,Acima de 10 SM,TRUE,FALSE,Santos
+52614d63-e28c-4dd7-80e6-de6c312a4b6b,a2e84a36-a2e3-4ce3-bdd8-7b52233ee058,Mariana Santos Costa,2012-10-09,M,2A,Ensino Médio,Ativo,Parda,6-10 SM,TRUE,FALSE,Campinas
+ae8fe51d-5792-465b-89be-a5065f71998a,83c021b5-46f9-4a60-b512-be10433f2228,Vitor Alves Souza,2011-01-11,M,2B,Ensino Médio,Ativo,Não declarado,6-10 SM,FALSE,FALSE,São Paulo
+cbf69b82-10d0-4acd-a801-6ddcb908d2b3,83c021b5-46f9-4a60-b512-be10433f2228,Lucas Lopes Oliveira,2012-12-13,M,3A,Ensino Médio,Inadimplente,Parda,6-10 SM,FALSE,TRUE,Ribeirão Preto
+37615713-f4d8-47e7-b9a9-5d142815f771,1e8d5fb9-e77d-401e-aa28-0de51ef34e72,Felipe Silva Lopes,2013-12-24,F,1B,Fundamental II,Evadido,Indígena,6-10 SM,TRUE,FALSE,Santos
+010ce815-f1c8-43eb-8da3-49fdc9713ab9,1e8d5fb9-e77d-401e-aa28-0de51ef34e72,Mariana Carvalho Souza,2011-03-15,F,1A,Ensino Médio,Ativo,Não declarado,Acima de 10 SM,TRUE,TRUE,São Paulo
+c6eab2b3-7087-4474-ba6a-f65bc370dafd,a2e84a36-a2e3-4ce3-bdd8-7b52233ee058,Isabela Souza Carvalho,2009-12-24,F,2B,Ensino Médio,Ativo,Indígena,6-10 SM,FALSE,TRUE,Guarulhos
+47a0010d-438d-411d-a118-9da40cde4286,1e8d5fb9-e77d-401e-aa28-0de51ef34e72,Bruno Silva Lopes,2011-09-26,F,1A,Ensino Médio,Evadido,Branca,Acima de 10 SM,FALSE,FALSE,São Bernardo do Campo
+07da1218-25b1-45f5-8500-29f8eff8028d,a2e84a36-a2e3-4ce3-bdd8-7b52233ee058,Rodrigo Carvalho Lopes,2010-03-30,F,2A,Fundamental II,Ativo,Amarela,Até 3 SM,FALSE,FALSE,Osasco
+c10b7566-f207-4ecc-96d3-7c87b064d28d,1e8d5fb9-e77d-401e-aa28-0de51ef34e72,Pedro Carvalho Carvalho,2010-01-09,F,1B,Fundamental II,Ativo,Preta,Até 3 SM,FALSE,FALSE,Guarulhos
+995544da-8a7e-4f13-8006-c1600403dfe6,83c021b5-46f9-4a60-b512-be10433f2228,Daniel Lima Alves,2010-12-21,F,1B,Fundamental II,Ativo,Parda,3-6 SM,TRUE,FALSE,Osasco
+0fc68378-a0ef-4c47-a8db-95e10078820d,a2e84a36-a2e3-4ce3-bdd8-7b52233ee058,Mariana Gomes Carvalho,2013-02-11,M,2B,Fundamental II,Ativo,Não declarado,Até 3 SM,FALSE,FALSE,São Bernardo do Campo
+0ac29c74-4a18-4e2b-be58-3205d451ded6,83c021b5-46f9-4a60-b512-be10433f2228,Matheus Santos Ferreira,2008-07-10,M,2A,Fundamental II,Ativo,Parda,Acima de 10 SM,FALSE,FALSE,Guarulhos
+f66ef846-4d80-424a-bc72-0cf1a376d781,a2e84a36-a2e3-4ce3-bdd8-7b52233ee058,Julia Rodrigues Carvalho,2011-11-30,M,1B,Fundamental II,Evadido,Branca,Acima de 10 SM,FALSE,FALSE,Santo André
+f8cf104f-2785-4714-8014-cce8c2121f86,a2e84a36-a2e3-4ce3-bdd8-7b52233ee058,Lucas Rodrigues Alves,2013-01-31,M,1A,Ensino Médio,Inadimplente,Preta,3-6 SM,FALSE,FALSE,Campinas
+0d6215fb-d4ab-43c0-b81b-826ac7922fa8,83c021b5-46f9-4a60-b512-be10433f2228,Helena Carvalho Oliveira,2013-06-13,M,3B,Ensino Médio,Inadimplente,Indígena,6-10 SM,TRUE,TRUE,Ribeirão Preto
+002b725c-e28c-4c97-b73f-6597c8247c91,1e8d5fb9-e77d-401e-aa28-0de51ef34e72,Leonardo Almeida Alves,2010-01-04,F,1B,Fundamental II,Inadimplente,Preta,Até 3 SM,TRUE,FALSE,São Paulo
+2dc614fd-d44e-4c91-a304-57506b027aa3,a2e84a36-a2e3-4ce3-bdd8-7b52233ee058,Gustavo Almeida Gomes,2013-09-15,F,2B,Fundamental II,Evadido,Indígena,Acima de 10 SM,FALSE,TRUE,Santo André
+2dffe88b-e01b-42a1-ada1-a8b57e6a92c3,a2e84a36-a2e3-4ce3-bdd8-7b52233ee058,Mariana Alves Costa,2010-08-12,M,1B,Fundamental II,Inadimplente,Não declarado,6-10 SM,TRUE,FALSE,Campinas
+00b33a7e-0cb0-475c-971b-e2e247d6496c,a2e84a36-a2e3-4ce3-bdd8-7b52233ee058,Letícia Lima Almeida,2008-06-24,F,3B,Ensino Médio,Inadimplente,Indígena,Acima de 10 SM,TRUE,FALSE,Santo André
+990d43ea-707b-45af-847b-4006b0711880,a2e84a36-a2e3-4ce3-bdd8-7b52233ee058,Thiago Silva Ferreira,2011-11-20,F,1B,Ensino Médio,Ativo,Não declarado,Até 3 SM,FALSE,FALSE,Guarulhos
+97df980d-ff67-4a1c-9e4c-0c9104708d19,83c021b5-46f9-4a60-b512-be10433f2228,Letícia Silva Gomes,2010-11-25,M,1A,Fundamental II,Ativo,Indígena,Acima de 10 SM,FALSE,FALSE,Guarulhos
+873b99a8-48a3-46c4-94dc-5506bdf8f007,1e8d5fb9-e77d-401e-aa28-0de51ef34e72,Vitor Silva Gomes,2009-08-17,F,3B,Ensino Médio,Ativo,Preta,Acima de 10 SM,FALSE,FALSE,Campinas
+912195c6-b5e2-428c-b2cb-d776d239ee56,1e8d5fb9-e77d-401e-aa28-0de51ef34e72,Bruno Gomes Carvalho,2010-11-06,M,1A,Fundamental II,Ativo,Indígena,Até 3 SM,TRUE,FALSE,Guarulhos
+d625a567-d695-40bd-8d16-3074e66611e9,1e8d5fb9-e77d-401e-aa28-0de51ef34e72,Valentina Souza Costa,2013-02-27,F,1B,Ensino Médio,Evadido,Branca,6-10 SM,FALSE,FALSE,Guarulhos
+9abc44b6-c071-4035-be03-37b31e6970fc,1e8d5fb9-e77d-401e-aa28-0de51ef34e72,Mariana Lopes Ferreira,2012-11-17,M,3A,Ensino Médio,Evadido,Parda,Acima de 10 SM,FALSE,FALSE,Guarulhos
+52392dc8-a162-417a-9166-e9ff71d0c77a,83c021b5-46f9-4a60-b512-be10433f2228,Leonardo Pereira Carvalho,2013-03-06,M,2B,Ensino Médio,Ativo,Preta,Até 3 SM,FALSE,FALSE,São Paulo
+0a4563bc-afcb-4550-8fdc-93c6e328c56d,a2e84a36-a2e3-4ce3-bdd8-7b52233ee058,Gabriel Silva Ferreira,2013-05-30,M,2B,Fundamental II,Ativo,Indígena,Até 3 SM,FALSE,TRUE,Sorocaba
+6f74f966-0284-46e0-8071-696997732310,1e8d5fb9-e77d-401e-aa28-0de51ef34e72,Maria Pereira Alves,2012-11-04,F,3A,Ensino Médio,Ativo,Amarela,Acima de 10 SM,FALSE,FALSE,Guarulhos
+7c521445-e3f4-4dbb-9db5-53b90f082cab,a2e84a36-a2e3-4ce3-bdd8-7b52233ee058,Larissa Santos Martins,2008-01-28,F,2B,Ensino Médio,Evadido,Não declarado,3-6 SM,FALSE,FALSE,Guarulhos
+f99ba9fc-8c65-4522-94d8-03a88d851458,a2e84a36-a2e3-4ce3-bdd8-7b52233ee058,Larissa Gomes Costa,2013-04-13,M,1A,Fundamental II,Inadimplente,Amarela,Até 3 SM,FALSE,TRUE,Osasco
+35b2448a-a4ad-4fa7-9e66-28acb9f552d4,1e8d5fb9-e77d-401e-aa28-0de51ef34e72,Valentina Lima Souza,2012-04-30,F,2B,Ensino Médio,Ativo,Parda,Até 3 SM,FALSE,FALSE,Santo André
+797b0987-7832-48a0-9a48-38f53954c599,1e8d5fb9-e77d-401e-aa28-0de51ef34e72,Ana Carvalho Alves,2012-02-19,F,1B,Ensino Médio,Ativo,Indígena,3-6 SM,FALSE,TRUE,Guarulhos
+3d21d752-4bc1-4269-a2a0-6a94dcbe4554,a2e84a36-a2e3-4ce3-bdd8-7b52233ee058,Luana Pereira Ferreira,2013-03-19,M,2B,Ensino Médio,Evadido,Branca,6-10 SM,TRUE,FALSE,Santos
+6a497f75-227e-4ec9-aff6-63cb8f513c64,83c021b5-46f9-4a60-b512-be10433f2228,Thiago Rodrigues Santos,2010-06-29,M,2A,Fundamental II,Ativo,Indígena,6-10 SM,TRUE,FALSE,São Bernardo do Campo
+309202bc-949e-43b7-8eac-ae5799902876,1e8d5fb9-e77d-401e-aa28-0de51ef34e72,Daniel Martins Pereira,2011-08-25,M,2B,Fundamental II,Evadido,Indígena,6-10 SM,TRUE,FALSE,Campinas
+9627fee9-908a-4931-a311-ade1d833f816,a2e84a36-a2e3-4ce3-bdd8-7b52233ee058,Camila Lopes Carvalho,2013-07-08,M,3A,Ensino Médio,Inadimplente,Parda,Acima de 10 SM,FALSE,TRUE,São Bernardo do Campo
+9339eef4-a12b-487e-8c98-d572ace822b9,83c021b5-46f9-4a60-b512-be10433f2228,Rodrigo Silva Rodrigues,2010-08-07,M,1A,Ensino Médio,Evadido,Parda,3-6 SM,FALSE,TRUE,Santo André
+93dde715-5469-43ee-9eae-058208ba80b9,1e8d5fb9-e77d-401e-aa28-0de51ef34e72,Felipe Alves Almeida,2010-10-23,F,3A,Ensino Médio,Inadimplente,Não declarado,Acima de 10 SM,FALSE,TRUE,Ribeirão Preto
+22db7061-1e0d-4f38-9489-c651406eb6fd,83c021b5-46f9-4a60-b512-be10433f2228,Gustavo Santos Rodrigues,2008-07-24,F,3A,Ensino Médio,Ativo,Parda,Até 3 SM,FALSE,FALSE,São Bernardo do Campo
+1ed80549-1485-4f0c-83a8-15302a8b3699,1e8d5fb9-e77d-401e-aa28-0de51ef34e72,Eduardo Santos Gomes,2010-04-08,M,2A,Fundamental II,Inadimplente,Preta,Acima de 10 SM,FALSE,FALSE,Osasco
+c83a1559-fa36-4a44-aca0-d951acf289ad,1e8d5fb9-e77d-401e-aa28-0de51ef34e72,Valentina Souza Martins,2013-08-13,F,3A,Ensino Médio,Ativo,Indígena,6-10 SM,TRUE,FALSE,Sorocaba
+2928f963-dede-462a-b617-a18d22187e3e,a2e84a36-a2e3-4ce3-bdd8-7b52233ee058,Matheus Costa Martins,2008-05-09,M,2B,Ensino Médio,Inadimplente,Branca,6-10 SM,FALSE,FALSE,Diadema
+33d90137-6732-4991-9e87-df69422a48e3,1e8d5fb9-e77d-401e-aa28-0de51ef34e72,Sophia Ribeiro Lima,2011-10-30,F,2A,Ensino Médio,Ativo,Amarela,6-10 SM,FALSE,FALSE,São Bernardo do Campo
+afd0cc85-b9e8-4f92-88b1-ab109261e4ab,a2e84a36-a2e3-4ce3-bdd8-7b52233ee058,Luana Lima Lima,2011-01-16,M,2B,Fundamental II,Ativo,Amarela,3-6 SM,FALSE,FALSE,São Paulo
+affb8084-ba26-4398-90f7-6103118c80fc,1e8d5fb9-e77d-401e-aa28-0de51ef34e72,Isabela Rodrigues Lopes,2008-09-23,F,1A,Ensino Médio,Ativo,Parda,3-6 SM,FALSE,FALSE,Osasco
+efde1de0-5d11-4582-9a2f-bfa3af38a423,83c021b5-46f9-4a60-b512-be10433f2228,Maria Souza Costa,2013-11-25,M,2B,Ensino Médio,Ativo,Indígena,Até 3 SM,FALSE,FALSE,Osasco
+3e857018-23f7-410d-956d-8c94c70b21da,83c021b5-46f9-4a60-b512-be10433f2228,Julia Costa Martins,2012-06-29,M,2B,Fundamental II,Ativo,Branca,6-10 SM,FALSE,FALSE,São Paulo
+e7968e6b-c4c9-48e7-9bd7-8fdb6418f519,83c021b5-46f9-4a60-b512-be10433f2228,Bruno Rodrigues Silva,2012-10-17,F,2A,Ensino Médio,Inadimplente,Amarela,3-6 SM,FALSE,FALSE,Santos
+f3460bf8-dc8b-4df4-a385-8dfe7c765f74,a2e84a36-a2e3-4ce3-bdd8-7b52233ee058,Julia Gomes Silva,2012-08-06,M,1A,Fundamental II,Ativo,Preta,6-10 SM,FALSE,TRUE,Campinas
+8c51528e-fba2-4199-b8ff-d31ad4030c68,a2e84a36-a2e3-4ce3-bdd8-7b52233ee058,Letícia Lopes Alves,2011-06-07,M,2A,Fundamental II,Ativo,Indígena,3-6 SM,FALSE,FALSE,Ribeirão Preto
+89a605b3-5e88-49b1-91ee-4255eacd9796,83c021b5-46f9-4a60-b512-be10433f2228,Amanda Silva Lopes,2009-09-09,F,2B,Ensino Médio,Ativo,Amarela,6-10 SM,FALSE,TRUE,Guarulhos
+266842f7-fa69-4815-b5de-606c52661c59,83c021b5-46f9-4a60-b512-be10433f2228,Beatriz Lima Souza,2010-01-17,F,2A,Fundamental II,Ativo,Preta,Acima de 10 SM,FALSE,FALSE,Diadema
+47ef2a61-eb02-45dc-90d0-faf6f4ccb561,a2e84a36-a2e3-4ce3-bdd8-7b52233ee058,Valentina Oliveira Ferreira,2013-09-13,F,2A,Ensino Médio,Ativo,Parda,Acima de 10 SM,TRUE,FALSE,Sorocaba
+69bf12cd-ff63-4d6b-9fd6-4013707c99e9,1e8d5fb9-e77d-401e-aa28-0de51ef34e72,Larissa Almeida Almeida,2010-12-15,M,2B,Fundamental II,Ativo,Amarela,6-10 SM,FALSE,FALSE,São Paulo
+70e078ce-7587-417f-bd72-f4b6f5711c1c,1e8d5fb9-e77d-401e-aa28-0de51ef34e72,Isabela Almeida Rodrigues,2012-10-11,F,3A,Ensino Médio,Ativo,Parda,Acima de 10 SM,FALSE,FALSE,Sorocaba
+a08cd360-fdb8-40d7-b0bb-89e1b4f15955,a2e84a36-a2e3-4ce3-bdd8-7b52233ee058,Matheus Gomes Ribeiro,2009-09-19,F,2B,Fundamental II,Ativo,Parda,6-10 SM,FALSE,FALSE,Guarulhos
+0b8dcdbc-535b-460b-82bb-003807f58a14,a2e84a36-a2e3-4ce3-bdd8-7b52233ee058,Pedro Ferreira Ferreira,2008-10-08,M,1B,Fundamental II,Ativo,Preta,Até 3 SM,FALSE,FALSE,Campinas
+cd2c79f7-d11f-46b9-ab3f-10bc1ed4a49d,83c021b5-46f9-4a60-b512-be10433f2228,Gustavo Costa Pereira,2008-11-30,M,1B,Ensino Médio,Ativo,Branca,3-6 SM,FALSE,TRUE,Diadema
+22e0746b-35aa-42d8-aa88-7241471c294c,83c021b5-46f9-4a60-b512-be10433f2228,Luana Rodrigues Martins,2012-07-09,M,3B,Ensino Médio,Inadimplente,Não declarado,Até 3 SM,FALSE,FALSE,São Bernardo do Campo
+724bcec7-ea2d-439f-ac78-7e39171f84fe,a2e84a36-a2e3-4ce3-bdd8-7b52233ee058,Beatriz Costa Ferreira,2010-11-07,F,2B,Fundamental II,Evadido,Amarela,Acima de 10 SM,FALSE,FALSE,Osasco
+cd664a91-e8a8-402a-a8ee-a3583b9b38b8,1e8d5fb9-e77d-401e-aa28-0de51ef34e72,Rafael Gomes Pereira,2011-03-03,M,3A,Ensino Médio,Inadimplente,Indígena,Até 3 SM,FALSE,FALSE,Santos
+8fa03ed4-1788-4cf0-8541-15303f304491,a2e84a36-a2e3-4ce3-bdd8-7b52233ee058,Sophia Santos Souza,2012-07-18,M,3A,Ensino Médio,Ativo,Não declarado,6-10 SM,TRUE,TRUE,Osasco
+a6dae1c8-0a29-47eb-afc3-d8304aa90471,1e8d5fb9-e77d-401e-aa28-0de51ef34e72,Julia Gomes Santos,2012-02-14,M,1A,Fundamental II,Inadimplente,Indígena,6-10 SM,FALSE,FALSE,Santo André
+5244a1e7-b4b6-4212-93b5-a15f47e1cedb,a2e84a36-a2e3-4ce3-bdd8-7b52233ee058,Larissa Pereira Gomes,2009-06-30,M,2A,Ensino Médio,Ativo,Branca,Acima de 10 SM,FALSE,FALSE,Sorocaba
+ac8bf1af-011e-4aeb-bc2b-9d9b67ba5576,83c021b5-46f9-4a60-b512-be10433f2228,Guilherme Silva Almeida,2010-10-22,F,3A,Ensino Médio,Ativo,Preta,6-10 SM,FALSE,TRUE,Campinas
+74b3ccef-aa56-4bf2-aba1-7f078b1e16d3,1e8d5fb9-e77d-401e-aa28-0de51ef34e72,Luana Lima Almeida,2010-08-15,M,1A,Fundamental II,Ativo,Preta,Acima de 10 SM,FALSE,FALSE,São Paulo
+1f88612a-090b-40b5-8709-1b87dbd5c23c,1e8d5fb9-e77d-401e-aa28-0de51ef34e72,Bruno Gomes Santos,2009-08-26,F,1A,Ensino Médio,Inadimplente,Indígena,6-10 SM,FALSE,FALSE,Ribeirão Preto
+eab4f10f-a654-46ef-88b5-f9ba02ab6933,1e8d5fb9-e77d-401e-aa28-0de51ef34e72,Eduardo Costa Lima,2008-08-29,M,1A,Fundamental II,Ativo,Não declarado,Até 3 SM,FALSE,FALSE,Santo André
+c93cf79a-db0a-4493-b1c7-78c8542778c7,83c021b5-46f9-4a60-b512-be10433f2228,Ana Martins Santos,2013-04-03,M,1B,Fundamental II,Ativo,Indígena,Até 3 SM,FALSE,TRUE,Sorocaba
+899ec910-45c5-4794-a7b1-3bdcfacc2cd4,a2e84a36-a2e3-4ce3-bdd8-7b52233ee058,Luana Ribeiro Martins,2009-03-19,F,2A,Fundamental II,Ativo,Parda,Até 3 SM,FALSE,FALSE,São Bernardo do Campo
+5f5e5cc3-65c9-46b4-84bf-162b556a2d06,1e8d5fb9-e77d-401e-aa28-0de51ef34e72,Amanda Santos Silva,2011-10-21,M,1A,Fundamental II,Inadimplente,Branca,3-6 SM,FALSE,FALSE,Diadema
+fa40d60f-57b9-4402-8313-ddc9dc047408,83c021b5-46f9-4a60-b512-be10433f2228,Ana Ribeiro Gomes,2010-03-12,F,3A,Ensino Médio,Ativo,Branca,Até 3 SM,FALSE,FALSE,São Paulo
+5fc3b72c-c384-4768-b2e6-00e7c28603b5,1e8d5fb9-e77d-401e-aa28-0de51ef34e72,Camila Pereira Lima,2012-08-14,F,3A,Ensino Médio,Ativo,Indígena,Acima de 10 SM,FALSE,FALSE,Sorocaba
+dd4454da-f6e9-422e-8f2e-77672f9a3d46,1e8d5fb9-e77d-401e-aa28-0de51ef34e72,Sophia Alves Lopes,2008-04-07,F,3A,Ensino Médio,Inadimplente,Branca,3-6 SM,FALSE,FALSE,São Paulo
+3575a8dd-31f3-461a-b0dc-b4f878580e25,1e8d5fb9-e77d-401e-aa28-0de51ef34e72,Luana Pereira Pereira,2008-09-10,F,2B,Fundamental II,Inadimplente,Amarela,3-6 SM,FALSE,FALSE,Sorocaba
+d1269685-7406-44cc-a219-88949ab7f992,1e8d5fb9-e77d-401e-aa28-0de51ef34e72,Gustavo Ribeiro Souza,2012-03-01,M,2B,Ensino Médio,Ativo,Parda,Até 3 SM,FALSE,TRUE,Santos
+64faec37-7036-4dc7-be67-319564c3a82b,a2e84a36-a2e3-4ce3-bdd8-7b52233ee058,Leonardo Costa Almeida,2011-03-12,M,3B,Ensino Médio,Ativo,Amarela,Até 3 SM,TRUE,TRUE,Guarulhos
+c58497b9-42e2-4006-8e0e-5ca235673fc1,83c021b5-46f9-4a60-b512-be10433f2228,Leonardo Carvalho Oliveira,2009-02-03,M,3A,Ensino Médio,Evadido,Preta,Acima de 10 SM,FALSE,FALSE,Osasco
+4350b5fe-d3cd-4f15-bfda-f0fec68252a9,1e8d5fb9-e77d-401e-aa28-0de51ef34e72,Guilherme Santos Gomes,2011-06-16,F,3B,Ensino Médio,Ativo,Indígena,Até 3 SM,FALSE,TRUE,São Paulo
+71c1abf7-1072-472f-a207-cd943c789c83,1e8d5fb9-e77d-401e-aa28-0de51ef34e72,Valentina Souza Almeida,2011-01-21,M,1B,Fundamental II,Evadido,Preta,6-10 SM,FALSE,TRUE,Guarulhos
+f18c32b8-1333-4b43-b136-c69ec6c95156,83c021b5-46f9-4a60-b512-be10433f2228,Thiago Alves Carvalho,2010-05-17,M,2B,Ensino Médio,Ativo,Branca,Até 3 SM,FALSE,TRUE,Santo André
+defa9d3e-0247-4013-81b1-30afaae815ba,1e8d5fb9-e77d-401e-aa28-0de51ef34e72,Bruno Martins Gomes,2013-03-02,M,1B,Fundamental II,Ativo,Amarela,Até 3 SM,TRUE,FALSE,Santo André
+e47a087a-4253-4910-8bfd-0c673e7e2a21,a2e84a36-a2e3-4ce3-bdd8-7b52233ee058,Camila Oliveira Ribeiro,2010-02-07,M,2B,Fundamental II,Evadido,Amarela,3-6 SM,FALSE,FALSE,Guarulhos
+87c792c8-b361-4685-a6d5-5e47c8159d50,83c021b5-46f9-4a60-b512-be10433f2228,Rodrigo Ribeiro Almeida,2010-05-28,F,3A,Ensino Médio,Evadido,Não declarado,3-6 SM,FALSE,FALSE,São Paulo
+79c0c8ac-71ca-4fbb-8cae-3ff142cb2d16,83c021b5-46f9-4a60-b512-be10433f2228,Valentina Costa Martins,2013-07-22,F,1A,Fundamental II,Inadimplente,Preta,3-6 SM,FALSE,FALSE,São Paulo
+c84af1c0-afa3-4f44-87e2-cacd0a6d735b,1e8d5fb9-e77d-401e-aa28-0de51ef34e72,Ana Rodrigues Ribeiro,2012-02-28,M,3B,Ensino Médio,Ativo,Branca,3-6 SM,FALSE,FALSE,São Bernardo do Campo
+7ff09504-fdc8-496c-958a-667fcf98ec12,1e8d5fb9-e77d-401e-aa28-0de51ef34e72,Lucas Carvalho Alves,2012-07-28,M,2A,Fundamental II,Inadimplente,Amarela,Até 3 SM,FALSE,TRUE,Santos
+2eaddb8e-1ec7-4340-8178-bd5f1c11770a,a2e84a36-a2e3-4ce3-bdd8-7b52233ee058,Daniel Ribeiro Oliveira,2012-10-30,M,1A,Ensino Médio,Ativo,Branca,Acima de 10 SM,FALSE,FALSE,Guarulhos
+163d4035-a761-4bd4-9edc-4d3291f18f84,83c021b5-46f9-4a60-b512-be10433f2228,Maria Souza Lopes,2009-05-20,F,3B,Ensino Médio,Ativo,Parda,3-6 SM,FALSE,FALSE,Ribeirão Preto
+162ba114-3681-48bd-9379-0c066c9c68e6,1e8d5fb9-e77d-401e-aa28-0de51ef34e72,Daniel Costa Pereira,2011-09-05,F,1A,Ensino Médio,Ativo,Parda,Até 3 SM,FALSE,TRUE,Campinas
+7bb47886-877d-486c-b38c-b7eb15c6c5a7,1e8d5fb9-e77d-401e-aa28-0de51ef34e72,Sophia Oliveira Martins,2013-01-14,F,2B,Fundamental II,Inadimplente,Amarela,3-6 SM,FALSE,FALSE,Osasco
+a9e78d23-6cdb-4580-a87d-8e7a9d51e737,a2e84a36-a2e3-4ce3-bdd8-7b52233ee058,Felipe Alves Lima,2011-08-15,F,2B,Ensino Médio,Inadimplente,Amarela,6-10 SM,FALSE,FALSE,Diadema
+f9dc7933-1f4f-445e-9077-1f0f1379c1d2,83c021b5-46f9-4a60-b512-be10433f2228,Rodrigo Costa Martins,2011-01-23,F,3B,Ensino Médio,Ativo,Não declarado,Acima de 10 SM,FALSE,TRUE,Diadema
+23a1b8c3-8086-40fb-8b57-f662c036d8ea,a2e84a36-a2e3-4ce3-bdd8-7b52233ee058,Lucas Oliveira Silva,2008-06-10,F,3A,Ensino Médio,Inadimplente,Não declarado,Até 3 SM,FALSE,TRUE,Diadema
+ad90c176-bd8d-4039-b763-5e6ea966f743,83c021b5-46f9-4a60-b512-be10433f2228,Pedro Rodrigues Santos,2009-07-24,F,1B,Fundamental II,Ativo,Preta,3-6 SM,FALSE,FALSE,Santo André
+6ab4c77e-dc00-4c28-9eaf-41a6a27a86e8,83c021b5-46f9-4a60-b512-be10433f2228,Lucas Ribeiro Carvalho,2008-01-26,F,2A,Ensino Médio,Inadimplente,Preta,Acima de 10 SM,FALSE,FALSE,Campinas
+431d9d7d-a0d8-4cce-a1db-fdee1935634b,a2e84a36-a2e3-4ce3-bdd8-7b52233ee058,Luana Oliveira Souza,2012-09-07,F,1B,Fundamental II,Ativo,Branca,6-10 SM,FALSE,FALSE,Santos
+4a3609be-987f-44d4-87bf-e310f7beeaf8,a2e84a36-a2e3-4ce3-bdd8-7b52233ee058,Beatriz Gomes Ferreira,2009-07-26,M,2B,Fundamental II,Inadimplente,Não declarado,3-6 SM,FALSE,TRUE,São Bernardo do Campo
+34d02f40-e7be-4a15-8e09-8879f71c04be,1e8d5fb9-e77d-401e-aa28-0de51ef34e72,Rodrigo Pereira Martins,2010-06-22,F,1B,Ensino Médio,Ativo,Não declarado,Acima de 10 SM,FALSE,FALSE,São Paulo
+8d13df64-45bc-487f-a815-54f98f77a4b8,a2e84a36-a2e3-4ce3-bdd8-7b52233ee058,Rafael Ferreira Gomes,2012-03-29,F,1B,Fundamental II,Evadido,Não declarado,6-10 SM,FALSE,FALSE,São Bernardo do Campo
+bc0a161a-6b11-4977-b5f4-7010391309d0,1e8d5fb9-e77d-401e-aa28-0de51ef34e72,Bruno Rodrigues Souza,2009-08-01,F,2A,Fundamental II,Ativo,Parda,3-6 SM,FALSE,FALSE,Diadema
+82332626-5616-44b4-80a6-ab467e7a92ea,a2e84a36-a2e3-4ce3-bdd8-7b52233ee058,Larissa Alves Oliveira,2008-12-04,M,3B,Ensino Médio,Ativo,Parda,6-10 SM,FALSE,FALSE,Osasco
+7f1aa457-e3a0-436b-867c-3524eda3f88a,a2e84a36-a2e3-4ce3-bdd8-7b52233ee058,Felipe Souza Costa,2009-04-14,F,1A,Fundamental II,Ativo,Branca,Acima de 10 SM,FALSE,FALSE,São Bernardo do Campo
+a7abae1d-5f72-4e90-880a-9905a50a496a,1e8d5fb9-e77d-401e-aa28-0de51ef34e72,Eduardo Ferreira Rodrigues,2013-06-08,M,2B,Fundamental II,Ativo,Parda,Até 3 SM,FALSE,FALSE,Campinas
+fd5985cf-3ff3-433c-9984-a08f4fa49026,83c021b5-46f9-4a60-b512-be10433f2228,Leonardo Souza Silva,2011-05-24,F,1B,Ensino Médio,Ativo,Parda,6-10 SM,FALSE,FALSE,São Bernardo do Campo
+ec992efa-2ad5-485c-9aee-a4f3f730d08e,83c021b5-46f9-4a60-b512-be10433f2228,Isabela Gomes Silva,2008-04-03,F,2A,Ensino Médio,Ativo,Indígena,6-10 SM,FALSE,FALSE,Santo André
+7e96f301-d630-412c-95ab-d36cb8f7e8a6,83c021b5-46f9-4a60-b512-be10433f2228,Luana Souza Almeida,2009-04-25,M,3A,Ensino Médio,Ativo,Indígena,3-6 SM,FALSE,FALSE,São Paulo
+2c8ca2fb-a4b7-4029-985b-fc6db2a625fd,1e8d5fb9-e77d-401e-aa28-0de51ef34e72,Daniel Almeida Pereira,2012-07-12,M,2B,Ensino Médio,Ativo,Branca,Até 3 SM,FALSE,TRUE,Sorocaba
+5afc0857-bc85-414e-9c14-0c40349e08a9,83c021b5-46f9-4a60-b512-be10433f2228,Sophia Lopes Alves,2011-05-04,M,1A,Fundamental II,Inadimplente,Preta,Até 3 SM,FALSE,FALSE,Santo André
+afdb1ec6-7343-4aac-b686-9486c949c1a4,1e8d5fb9-e77d-401e-aa28-0de51ef34e72,Luana Santos Ribeiro,2013-12-17,M,3A,Ensino Médio,Ativo,Não declarado,6-10 SM,FALSE,TRUE,São Paulo
+1446391d-414f-4283-b02d-c7e6db529c54,83c021b5-46f9-4a60-b512-be10433f2228,Sophia Lopes Silva,2012-02-03,M,3B,Ensino Médio,Ativo,Amarela,3-6 SM,FALSE,TRUE,São Paulo
+04df70a1-405b-4f64-9188-c75c21bb3d0b,83c021b5-46f9-4a60-b512-be10433f2228,Ana Lima Silva,2010-01-26,F,3A,Ensino Médio,Inadimplente,Indígena,3-6 SM,FALSE,FALSE,São Paulo
+e7c6d6aa-5bbc-416c-b910-3b649c9f0209,83c021b5-46f9-4a60-b512-be10433f2228,Bruno Souza Silva,2010-10-23,M,1B,Ensino Médio,Ativo,Preta,3-6 SM,FALSE,TRUE,São Bernardo do Campo
+0d6c8122-0afc-4324-8875-b6b5f90f7225,1e8d5fb9-e77d-401e-aa28-0de51ef34e72,Gabriel Gomes Ribeiro,2011-12-11,F,1A,Fundamental II,Evadido,Amarela,Acima de 10 SM,FALSE,TRUE,Sorocaba
+fa381fa0-d9a5-4bf7-80cd-5182d98ed7e0,a2e84a36-a2e3-4ce3-bdd8-7b52233ee058,João Costa Souza,2010-07-23,F,1B,Ensino Médio,Ativo,Parda,6-10 SM,TRUE,FALSE,Diadema
+2fe65cf2-f18a-4d81-8f59-f5deb29ee18a,a2e84a36-a2e3-4ce3-bdd8-7b52233ee058,Eduardo Oliveira Pereira,2010-09-10,F,3B,Ensino Médio,Evadido,Amarela,3-6 SM,FALSE,TRUE,São Bernardo do Campo
+9a3be62e-ba82-46d8-91e8-d8940d3182b0,1e8d5fb9-e77d-401e-aa28-0de51ef34e72,Felipe Costa Ribeiro,2013-06-06,M,2B,Ensino Médio,Inadimplente,Preta,Até 3 SM,FALSE,FALSE,Santos
+c7a0577a-d644-43a7-9fef-f9a2f65837a6,83c021b5-46f9-4a60-b512-be10433f2228,Larissa Pereira Lopes,2011-03-20,M,2B,Fundamental II,Ativo,Amarela,Até 3 SM,TRUE,FALSE,Guarulhos
+406a6217-e95c-4126-b874-868f2b4f296e,a2e84a36-a2e3-4ce3-bdd8-7b52233ee058,Rodrigo Santos Martins,2010-09-20,M,1B,Ensino Médio,Ativo,Preta,6-10 SM,FALSE,FALSE,Santos
+2bdaa409-2223-4bae-b552-545f19f39ed9,a2e84a36-a2e3-4ce3-bdd8-7b52233ee058,Daniel Santos Santos,2011-07-25,M,2B,Fundamental II,Evadido,Branca,3-6 SM,TRUE,TRUE,Sorocaba
+9369eb87-a67b-4a84-a725-7c884475f457,1e8d5fb9-e77d-401e-aa28-0de51ef34e72,Leonardo Santos Martins,2008-09-06,F,1A,Fundamental II,Ativo,Branca,6-10 SM,FALSE,FALSE,Santos
+33baccd8-3d93-4d3a-a726-29951f6cd0d2,83c021b5-46f9-4a60-b512-be10433f2228,Sophia Pereira Lopes,2009-12-26,F,1B,Fundamental II,Ativo,Amarela,Acima de 10 SM,FALSE,FALSE,Osasco
+560e0494-1777-40c3-ac7d-94b69dfdbda0,a2e84a36-a2e3-4ce3-bdd8-7b52233ee058,Leonardo Oliveira Gomes,2012-01-27,M,3B,Ensino Médio,Evadido,Amarela,Acima de 10 SM,FALSE,FALSE,Santo André
+07271dd6-36c0-4b96-a6bb-89c8b0fc57a2,1e8d5fb9-e77d-401e-aa28-0de51ef34e72,Camila Gomes Alves,2008-08-05,F,2A,Ensino Médio,Evadido,Amarela,Acima de 10 SM,TRUE,FALSE,Guarulhos
+8a4cfa6d-be88-464d-97be-e5d04981cbd0,1e8d5fb9-e77d-401e-aa28-0de51ef34e72,Vitor Ribeiro Gomes,2012-05-30,F,2B,Ensino Médio,Ativo,Amarela,6-10 SM,FALSE,TRUE,Sorocaba
+fc7d02ec-285c-42ec-a068-7f540c916d5c,83c021b5-46f9-4a60-b512-be10433f2228,Sophia Oliveira Pereira,2011-05-01,M,1B,Ensino Médio,Inadimplente,Parda,6-10 SM,TRUE,FALSE,Santos
+8d0f9f64-541b-4a41-8862-38782b190688,83c021b5-46f9-4a60-b512-be10433f2228,Rodrigo Silva Santos,2013-06-08,M,2A,Ensino Médio,Ativo,Amarela,3-6 SM,FALSE,FALSE,Sorocaba
+dcf722fb-4adc-45f8-8f6b-4390bb3f1e72,1e8d5fb9-e77d-401e-aa28-0de51ef34e72,Valentina Martins Lopes,2011-08-30,M,3B,Ensino Médio,Ativo,Amarela,Até 3 SM,FALSE,TRUE,Osasco
+d007e43a-873b-4910-aedf-a5b73e743864,1e8d5fb9-e77d-401e-aa28-0de51ef34e72,Gustavo Almeida Lopes,2012-02-06,M,3A,Ensino Médio,Inadimplente,Não declarado,Acima de 10 SM,FALSE,FALSE,Santos
+ae2bca87-1f6f-4b0a-ad71-3685a970f0e5,83c021b5-46f9-4a60-b512-be10433f2228,Leonardo Costa Carvalho,2009-08-14,M,2A,Fundamental II,Inadimplente,Não declarado,Acima de 10 SM,FALSE,FALSE,Osasco
+e8c88157-58d0-4c39-9a3e-d41a67995086,1e8d5fb9-e77d-401e-aa28-0de51ef34e72,Sophia Almeida Pereira,2009-07-26,M,2A,Fundamental II,Evadido,Branca,Acima de 10 SM,FALSE,FALSE,Osasco
+fcda45ee-24ff-4080-9b4f-8de85fdcd792,1e8d5fb9-e77d-401e-aa28-0de51ef34e72,Helena Costa Lopes,2009-04-11,F,2B,Ensino Médio,Ativo,Amarela,6-10 SM,FALSE,FALSE,São Bernardo do Campo
+fd7a5478-504f-459e-9e9b-eba963b8a6d3,83c021b5-46f9-4a60-b512-be10433f2228,Gabriel Oliveira Martins,2009-01-16,M,1A,Ensino Médio,Inadimplente,Amarela,6-10 SM,TRUE,FALSE,Campinas
+08c54f4d-5007-4d0e-bf6b-6d33d09d2b7e,1e8d5fb9-e77d-401e-aa28-0de51ef34e72,Helena Ribeiro Lima,2009-01-15,F,1A,Fundamental II,Ativo,Branca,3-6 SM,TRUE,TRUE,Ribeirão Preto
+8e685fc4-3324-43d6-bdec-c4bcf450fbb3,1e8d5fb9-e77d-401e-aa28-0de51ef34e72,João Lopes Costa,2011-05-19,F,1B,Ensino Médio,Inadimplente,Amarela,Até 3 SM,FALSE,FALSE,Campinas
+13fef1e3-8262-4255-8882-349292376275,a2e84a36-a2e3-4ce3-bdd8-7b52233ee058,Vitor Lima Lima,2008-03-06,M,2B,Ensino Médio,Ativo,Não declarado,Acima de 10 SM,FALSE,FALSE,Campinas
+adb0ac18-af0d-412a-8e61-b7f4e21631df,1e8d5fb9-e77d-401e-aa28-0de51ef34e72,Letícia Martins Lima,2012-03-17,F,3B,Ensino Médio,Ativo,Não declarado,3-6 SM,FALSE,FALSE,Campinas
+82c27247-cba4-47bb-b104-9d4f74581512,1e8d5fb9-e77d-401e-aa28-0de51ef34e72,João Rodrigues Ribeiro,2013-07-04,M,1B,Fundamental II,Ativo,Parda,3-6 SM,FALSE,FALSE,Guarulhos
+a83b0f61-83df-407e-b638-1b5b73e051e7,1e8d5fb9-e77d-401e-aa28-0de51ef34e72,Ana Lopes Lima,2011-11-18,M,1B,Fundamental II,Ativo,Branca,Acima de 10 SM,FALSE,FALSE,São Bernardo do Campo
+6de3f527-303d-4e0d-bbf8-2a7f0f20ac53,1e8d5fb9-e77d-401e-aa28-0de51ef34e72,Valentina Ribeiro Alves,2008-06-25,F,3B,Ensino Médio,Evadido,Indígena,3-6 SM,FALSE,FALSE,Ribeirão Preto
+627944a9-e59e-42d1-9bd9-be8034b8e0e4,a2e84a36-a2e3-4ce3-bdd8-7b52233ee058,Luana Almeida Martins,2008-03-03,F,2A,Fundamental II,Ativo,Branca,Acima de 10 SM,FALSE,TRUE,São Bernardo do Campo
+67c1c9b6-2f83-4342-b0bd-da89572536c2,83c021b5-46f9-4a60-b512-be10433f2228,Matheus Silva Martins,2010-12-04,F,2B,Ensino Médio,Evadido,Não declarado,6-10 SM,FALSE,TRUE,São Bernardo do Campo
+d5ccd1c2-4a02-42f3-bf0f-303b66a40df1,83c021b5-46f9-4a60-b512-be10433f2228,Lucas Rodrigues Alves,2010-05-08,M,2A,Fundamental II,Ativo,Preta,Até 3 SM,FALSE,TRUE,Ribeirão Preto
+591597f9-e329-4d67-a382-06f96f10f538,a2e84a36-a2e3-4ce3-bdd8-7b52233ee058,Larissa Lopes Rodrigues,2012-09-27,M,1A,Ensino Médio,Inadimplente,Branca,Até 3 SM,FALSE,TRUE,Osasco
+7be78146-0280-4ac7-a5b1-eb3c6921f96e,1e8d5fb9-e77d-401e-aa28-0de51ef34e72,Bruno Martins Lima,2012-05-03,F,3B,Ensino Médio,Ativo,Não declarado,Acima de 10 SM,FALSE,FALSE,Santos
+a0380a30-b232-46c2-a490-85cc206bea4b,83c021b5-46f9-4a60-b512-be10433f2228,Matheus Lopes Gomes,2012-09-28,F,1A,Ensino Médio,Ativo,Branca,3-6 SM,FALSE,TRUE,Campinas
+ff7e8b45-983d-41ec-b3a0-3508cadb808b,1e8d5fb9-e77d-401e-aa28-0de51ef34e72,João Almeida Alves,2009-06-25,F,1A,Fundamental II,Ativo,Indígena,Acima de 10 SM,FALSE,TRUE,Diadema
+fe541ef9-8f94-439e-ade3-06f93ef58e5e,83c021b5-46f9-4a60-b512-be10433f2228,Rodrigo Gomes Lima,2013-07-28,F,3A,Ensino Médio,Ativo,Branca,6-10 SM,FALSE,FALSE,São Paulo
+e2708446-cf21-4676-819c-9ff3bd56b797,a2e84a36-a2e3-4ce3-bdd8-7b52233ee058,Rodrigo Gomes Gomes,2010-04-17,F,3A,Ensino Médio,Ativo,Indígena,Acima de 10 SM,FALSE,FALSE,Diadema
+7a471971-ec80-48cf-9749-8bec8506e305,83c021b5-46f9-4a60-b512-be10433f2228,Gabriel Rodrigues Oliveira,2010-04-27,F,3A,Ensino Médio,Inadimplente,Não declarado,Até 3 SM,FALSE,TRUE,Ribeirão Preto
+10c82aaa-9e99-4e2d-9e33-c1323722f220,1e8d5fb9-e77d-401e-aa28-0de51ef34e72,Rafael Rodrigues Costa,2011-11-07,F,1A,Fundamental II,Ativo,Branca,Acima de 10 SM,TRUE,FALSE,São Bernardo do Campo
+1b9a87d0-f9c4-4b76-995a-badd1f1b5c90,1e8d5fb9-e77d-401e-aa28-0de51ef34e72,Eduardo Ribeiro Lima,2011-02-16,M,3A,Ensino Médio,Ativo,Parda,Até 3 SM,FALSE,FALSE,Campinas
+f54f1e79-ae5b-4216-844a-2e0ab1f465b4,a2e84a36-a2e3-4ce3-bdd8-7b52233ee058,Guilherme Almeida Carvalho,2012-11-22,F,1A,Fundamental II,Ativo,Não declarado,Até 3 SM,FALSE,FALSE,Santo André
+66945292-f4f8-472a-a74e-b5cb1a7f4e2c,a2e84a36-a2e3-4ce3-bdd8-7b52233ee058,Larissa Santos Ferreira,2012-10-18,F,2A,Ensino Médio,Ativo,Não declarado,Acima de 10 SM,FALSE,FALSE,Ribeirão Preto
+3cba23ab-df6d-4bdf-ae60-c82d0ece9bcf,a2e84a36-a2e3-4ce3-bdd8-7b52233ee058,Larissa Pereira Lopes,2010-11-27,F,1B,Ensino Médio,Evadido,Preta,Acima de 10 SM,TRUE,FALSE,Campinas
+dd3d3f66-483b-4c3c-8733-cb3999841420,83c021b5-46f9-4a60-b512-be10433f2228,Pedro Lima Almeida,2012-02-26,F,3B,Ensino Médio,Ativo,Branca,Acima de 10 SM,TRUE,TRUE,Sorocaba
+6246b660-ae80-4a8b-ae90-b0e28977bfa2,83c021b5-46f9-4a60-b512-be10433f2228,Luana Almeida Ribeiro,2010-04-04,F,1B,Ensino Médio,Inadimplente,Amarela,3-6 SM,TRUE,TRUE,Campinas
+93635692-3718-4b63-b923-6135ea8b83f8,a2e84a36-a2e3-4ce3-bdd8-7b52233ee058,Vitor Souza Alves,2013-04-07,F,1B,Ensino Médio,Ativo,Parda,6-10 SM,FALSE,FALSE,Diadema
+6a76600e-92e6-40a8-ac2e-33afc830e919,83c021b5-46f9-4a60-b512-be10433f2228,Guilherme Souza Almeida,2012-08-09,M,2B,Ensino Médio,Ativo,Amarela,Acima de 10 SM,FALSE,TRUE,Diadema
+dfe0e0fa-5513-4962-a252-958d41dfa6ee,83c021b5-46f9-4a60-b512-be10433f2228,Leonardo Pereira Rodrigues,2009-10-05,M,3A,Ensino Médio,Ativo,Branca,3-6 SM,FALSE,FALSE,Diadema
+fe707f96-e2d3-4095-9f6d-20eb66df9fb9,1e8d5fb9-e77d-401e-aa28-0de51ef34e72,João Santos Carvalho,2010-10-06,M,1B,Fundamental II,Ativo,Preta,Até 3 SM,FALSE,FALSE,Guarulhos
+9c74827a-e7a5-440b-80a4-b08b9fc96675,83c021b5-46f9-4a60-b512-be10433f2228,Eduardo Alves Ribeiro,2008-07-22,F,2A,Fundamental II,Inadimplente,Preta,3-6 SM,TRUE,TRUE,Santo André

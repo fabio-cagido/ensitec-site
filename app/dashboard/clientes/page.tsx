@@ -99,7 +99,7 @@ export default function ClientDashboardPage() {
                                 <Users className="w-6 h-6 text-blue-600" />
                             </div>
                             <span className="bg-green-50 text-green-600 text-xs px-2 py-1 rounded-full font-bold flex items-center gap-1">
-                                <TrendingUp className="w-3 h-3" /> +5%
+                                <TrendingUp className="w-3 h-3" /> {kpis.totalStudentsGrowth}
                             </span>
                         </div>
                         <div>
@@ -151,7 +151,7 @@ export default function ClientDashboardPage() {
                             <div className="p-2 bg-yellow-50 rounded-lg">
                                 <Smile className="w-6 h-6 text-yellow-600" />
                             </div>
-                            <span className="bg-purple-50 text-purple-600 text-xs px-2 py-1 rounded-full font-bold">Zona Qualidade</span>
+                            <span className="bg-purple-50 text-purple-600 text-xs px-2 py-1 rounded-full font-bold">{kpis.npsGrowth}</span>
                         </div>
                         <div>
                             <p className="text-sm font-medium text-gray-500 mt-4">NPS (Satisfação)</p>
@@ -159,7 +159,7 @@ export default function ClientDashboardPage() {
                         </div>
                     </div>
                 </Link>
-            </div>
+            </div >
 
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -193,7 +193,7 @@ export default function ClientDashboardPage() {
                         <div>
                             <p className="text-sm font-medium text-gray-500 mt-4">Famílias com +1 Filho</p>
                             <div className="flex items-baseline gap-2">
-                                <h3 className="text-3xl font-bold text-gray-900">18.5%</h3>
+                                <h3 className="text-3xl font-bold text-gray-900">{kpis.siblingPercentage}%</h3>
                             </div>
                             <p className="text-xs text-gray-400 mt-1">Fidelidade Alta</p>
                         </div>
@@ -220,7 +220,7 @@ export default function ClientDashboardPage() {
 
 
             {/* CHARTS SECTION */}
-            < div className="grid grid-cols-1 lg:grid-cols-2 gap-8" >
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
 
                 {/* Ocupação por Segmento - Click to see details */}
                 <Link href="/dashboard/clientes/ocupacao" className="bg-white p-6 rounded-3xl shadow-sm border border-gray-100 hover:shadow-md hover:border-emerald-200 transition-all cursor-pointer block">
@@ -338,7 +338,7 @@ export default function ClientDashboardPage() {
                 </Link>
 
             </div>
-        </div>
+        </div >
     );
 }
 

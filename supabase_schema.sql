@@ -15,9 +15,13 @@ CREATE TABLE IF NOT EXISTS alunos (
     data_nascimento DATE NOT NULL,
     genero TEXT CHECK (genero IN ('M', 'F', 'Outro')),
     turma TEXT NOT NULL,
+    segmento TEXT, -- Ex: 'Ensino Médio', 'Fundamental II'
     status_matricula TEXT CHECK (status_matricula IN ('Ativo', 'Inadimplente', 'Evadido')),
     cor_raca TEXT CHECK (cor_raca IN ('Branca', 'Preta', 'Parda', 'Amarela', 'Indígena', 'Não declarado')),
     faixa_renda TEXT CHECK (faixa_renda IN ('Até 3 SM', '3-6 SM', '6-10 SM', 'Acima de 10 SM')),
+    bolsista BOOLEAN DEFAULT FALSE,
+    tem_irmaos BOOLEAN DEFAULT FALSE,
+    cidade_aluno TEXT, 
     created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
 );
 
@@ -83,3 +87,29 @@ CREATE INDEX IF NOT EXISTS idx_desempenho_aluno_id ON desempenho_academico(aluno
 CREATE INDEX IF NOT EXISTS idx_financeiro_aluno_id ON financeiro_mensalidades(aluno_id);
 CREATE INDEX IF NOT EXISTS idx_mes_referencia_despesas ON financeiro_despesas(data_despesa);
 CREATE INDEX IF NOT EXISTS idx_metricas_tipo_mes ON metricas_mensais(tipo_metrica, mes_referencia);
+
+-- 3. Tabelas para o Dashboard do ENEM
+CREATE TABLE IF NOT EXISTS enem_agregado_estado (
+    "SG_UF_PROVA" CHAR(2) PRIMARY KEY,
+    "NU_NOTA_CN" NUMERIC(6,2),
+    "NU_NOTA_CH" NUMERIC(6,2),
+    "NU_NOTA_LC" NUMERIC(6,2),
+    "NU_NOTA_MT" NUMERIC(6,2),
+    "NU_NOTA_REDACAO" NUMERIC(6,2),
+    "total_alunos" INTEGER
+);
+
+CREATE TABLE IF NOT EXISTS enem_agregado_cidade (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    "CO_MUNICIPIO_PROVA" INTEGER,
+    "NO_MUNICIPIO_PROVA" TEXT,
+    "SG_UF_PROVA" CHAR(2),
+    "NU_NOTA_CN" NUMERIC(6,2),
+    "NU_NOTA_CH" NUMERIC(6,2),
+    "NU_NOTA_LC" NUMERIC(6,2),
+    "NU_NOTA_MT" NUMERIC(6,2),
+    "NU_NOTA_REDACAO" NUMERIC(6,2),
+    "total_alunos" INTEGER
+);
+
+CREATE INDEX IF NOT EXISTS idx_enem_cidade_uf ON enem_agregado_cidade("SG_UF_PROVA");
