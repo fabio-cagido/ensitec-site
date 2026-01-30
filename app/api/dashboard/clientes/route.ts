@@ -78,7 +78,21 @@ export async function GET() {
         const ageResult = await query(ageQuery);
 
 
-        // 6. Transformando os resultados para o formato do dashboard
+        // 6. Métricas KPIs (NPS, Health Score, Bolsistas)
+        const metricsQuery = `
+            SELECT DISTINCT ON (tipo_metrica) 
+                tipo_metrica, valor
+            FROM metricas_mensais
+            WHERE tipo_metrica IN ('nps', 'health_score', 'bolsistas_total')
+            ORDER BY tipo_metrica, mes_referencia DESC
+        `;
+        const metricsResult = await query(metricsQuery);
+        const metricsMap = metricsResult.rows.reduce((acc: any, curr: any) => {
+            acc[curr.tipo_metrica] = { value: Number(curr.valor) };
+            return acc;
+        }, {});
+
+        // 7. Transformando os resultados para o formato do dashboard
         const totalStudents = statusResult.rows.reduce((acc: number, curr: any) => acc + Number(curr.count), 0);
         const activeStudents = statusResult.rows.find((r: any) => r.status_matricula === 'Ativo')?.count || 0;
         const churnedStudents = statusResult.rows.find((r: any) => r.status_matricula === 'Evadido')?.count || 0;
@@ -116,10 +130,10 @@ export async function GET() {
                 totalStudents: Number(totalStudents),
                 occupancyRate: classResult.rows.length > 0 ? (Number(activeStudents) / (classResult.rows.length * 40) * 100).toFixed(1) : 0,
                 churnRate: totalStudents > 0 ? (Number(churnedStudents) / Number(totalStudents) * 100).toFixed(1) : 0,
-                scholarships: 45, // Mock
-                scholarshipPercentage: 15, // Mock
-                nps: 85, // Mock
-                healthScore: 9.2 // Mock
+                scholarships: metricsMap['bolsistas_total'] ? metricsMap['bolsistas_total'].value : 45,
+                scholarshipPercentage: metricsMap['bolsistas_total'] ? ((Number(metricsMap['bolsistas_total'].value) / totalStudents) * 100).toFixed(1) : 15,
+                nps: metricsMap['nps'] ? metricsMap['nps'].value : 85,
+                healthScore: metricsMap['health_score'] ? metricsMap['health_score'].value : 9.2
             },
             occupancyBySegment,
             genderData,

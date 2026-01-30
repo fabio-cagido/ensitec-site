@@ -56,7 +56,21 @@ export async function GET() {
     `;
         const histogramResult = await query(histogramQuery);
 
-        // 6. Evolução Histórica (Mockado pois não temos histórico mensal de notas na tabela simples)
+        // 6. Métricas Adicionais (para KPIs que faltam)
+        const metricsQuery = `
+            SELECT DISTINCT ON (tipo_metrica) 
+                tipo_metrica, valor
+            FROM metricas_mensais
+            WHERE tipo_metrica IN ('uptime_ti', 'sla_secretaria')
+            ORDER BY tipo_metrica, mes_referencia DESC
+        `;
+        const metricsResult = await query(metricsQuery);
+        const metricsMap = metricsResult.rows.reduce((acc: any, curr: any) => {
+            acc[curr.tipo_metrica] = { value: Number(curr.valor) };
+            return acc;
+        }, {});
+
+        // 7. Evolução Histórica (Mockado pois não temos histórico mensal de notas na tabela simples)
         // Se a tabela tivesse data de registro da nota, poderíamos usar.
         // Vamos manter mockado para não quebrar o gráfico, mas idealmente teríamos uma tabela de histórico.
 
@@ -66,8 +80,10 @@ export async function GET() {
                 approvalRate: Number(approvalRate),
                 riskCount: Number(riskResult.rows[0].risk_count),
                 attendance: Number(frequenciaMedia),
-                digitalEngagement: 68, // Mock - sem dados na base
-                feedbackTime: 2.5 // Mock - sem dados na base
+                // Usando métricas correlatas pois não temos engajamento digital específico ainda
+                digitalEngagement: metricsMap['uptime_ti'] ? metricsMap['uptime_ti'].value : 68,
+                // Usando SLA da secretaria como proxy para tempo de resposta/feedback
+                feedbackTime: metricsMap['sla_secretaria'] ? metricsMap['sla_secretaria'].value : 2.5
             },
             disciplinePerformance: disciplineResult.rows.map((r: any) => ({
                 ...r,

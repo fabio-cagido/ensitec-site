@@ -40,16 +40,22 @@ export async function GET() {
     const kpiResult = await query(kpiQuery);
     const kpis = kpiResult.rows[0];
 
-    // 3. Distribuição (Mockando categorias já que não tem na tabela mas tem no layout)
-    // No mundo real, você teria uma tabela de despesas. 
-    // Como a tabela financeiro_mensalidades só tem mensalidades, vou simular as despesas como 70% da receita.
-    const expenseDistribution = [
-      { name: 'Pessoal (Salários)', value: Number(kpis.total_pago) * 0.4 },
-      { name: 'Infraestrutura', value: Number(kpis.total_pago) * 0.15 },
-      { name: 'Marketing', value: Number(kpis.total_pago) * 0.05 },
-      { name: 'Materiais', value: Number(kpis.total_pago) * 0.05 },
-      { name: 'Outros', value: Number(kpis.total_pago) * 0.05 },
-    ];
+    // 3. Distribuição de Despesas
+    // Deixando de ser mockado e buscando do banco
+    const expensesQuery = `
+      SELECT 
+        categoria as name,
+        SUM(valor) as value
+      FROM financeiro_despesas
+      GROUP BY categoria
+      ORDER BY value DESC
+    `;
+    const expensesResult = await query(expensesQuery);
+
+    // Se não tiver despesas cadastradas ainda, retorna array vazio para não quebrar o gráfico (ou mantém um fallback)
+    const expenseDistribution = expensesResult.rows.length > 0
+      ? expensesResult.rows.map((r: any) => ({ name: r.name, value: Number(r.value) }))
+      : [];
 
     // 4. Transações Recentes
     const recentTransactionsQuery = `
