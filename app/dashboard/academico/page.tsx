@@ -69,7 +69,7 @@ export default function AcademicoPage() {
             />
 
             {/* KPI GRID */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
 
                 {/* 1. Média Global */}
                 <Link href="/dashboard/academico/media-global" className="block transition-transform hover:scale-105">
@@ -116,6 +116,81 @@ export default function AcademicoPage() {
                         <p className="text-xs text-gray-400 mt-4">Notas abaixo de 5.0</p>
                     </div>
                 </Link>
+
+                {/* 4. Frequência Média */}
+                <Link href="/dashboard/academico/frequencia" className="block transition-transform hover:scale-105">
+                    <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex flex-col justify-between h-full cursor-pointer hover:shadow-md transition-shadow">
+                        <div className="flex justify-between items-start">
+                            <div>
+                                <p className="text-sm font-medium text-gray-500">Frequência</p>
+                                <h3 className="text-3xl font-bold text-gray-900 mt-2">{kpis.attendance}%</h3>
+                            </div>
+                            <span className="bg-purple-50 text-purple-600 text-xs px-2 py-1 rounded-full font-bold">+0.5%</span>
+                        </div>
+                        <div className="mt-4 w-full bg-gray-100 h-1.5 rounded-full overflow-hidden">
+                            <div className="bg-purple-500 h-full transition-all duration-1000" style={{ width: `${kpis.attendance}%` }}></div>
+                        </div>
+                    </div>
+                </Link>
+
+                {/* 5. Engajamento Digital */}
+                <Link href="/dashboard/academico/engajamento" className="block transition-transform hover:scale-105">
+                    <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex flex-col justify-between h-full cursor-pointer hover:shadow-md transition-shadow">
+                        <div className="flex justify-between items-start">
+                            <div>
+                                <p className="text-sm font-medium text-gray-500">Engajamento</p>
+                                <h3 className="text-3xl font-bold text-gray-900 mt-2">{kpis.digitalEngagement}%</h3>
+                            </div>
+                        </div>
+                        <p className="text-xs text-gray-400 mt-4">Plataforma Digital</p>
+                    </div>
+                </Link>
+
+                {/* 6. Histórico */}
+                <Link href="/dashboard/academico/historico" className="block transition-transform hover:scale-105">
+                    <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex flex-col justify-between h-full cursor-pointer hover:shadow-md transition-shadow">
+                        <div className="flex justify-between items-start">
+                            <div>
+                                <p className="text-sm font-medium text-gray-500">Histórico Escolar</p>
+                                <h3 className="text-xl font-bold text-gray-900 mt-2">Consultar</h3>
+                            </div>
+                            <span className="bg-gray-100 p-2 rounded-full">
+                                <TrendingUp className="w-4 h-4 text-gray-600" />
+                            </span>
+                        </div>
+                        <p className="text-xs text-gray-400 mt-4">Visualizar registros passados</p>
+                    </div>
+                </Link>
+
+                {/* 7. Entregas de Trabalhos (Eficiência) */}
+                <Link href="/dashboard/academico/entregas" className="block transition-transform hover:scale-105">
+                    <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex flex-col justify-between h-full cursor-pointer hover:shadow-md transition-shadow">
+                        <div className="flex justify-between items-start">
+                            <div>
+                                <p className="text-sm font-medium text-gray-500">Entregas</p>
+                                <h3 className="text-xl font-bold text-gray-900 mt-2">Pendências</h3>
+                            </div>
+                            <span className="bg-orange-50 text-orange-600 text-xs px-2 py-1 rounded-full font-bold">Atenção</span>
+                        </div>
+                        <p className="text-xs text-gray-400 mt-4">Acompanhar prazos</p>
+                    </div>
+                </Link>
+
+                {/* 8. Eficiência Operacional (Pedagógica) */}
+                <Link href="/dashboard/academico/eficiencia" className="block transition-transform hover:scale-105">
+                    <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex flex-col justify-between h-full cursor-pointer hover:shadow-md transition-shadow">
+                        <div className="flex justify-between items-start">
+                            <div>
+                                <p className="text-sm font-medium text-gray-500">Eficiência</p>
+                                <h3 className="text-3xl font-bold text-gray-900 mt-2">91%</h3>
+                            </div>
+                        </div>
+                        <div className="mt-4 w-full bg-gray-100 h-1.5 rounded-full overflow-hidden">
+                            <div className="bg-teal-500 h-full transition-all duration-1000" style={{ width: '91%' }}></div>
+                        </div>
+                    </div>
+                </Link>
+
             </div>
 
             {/* SEÇÃO VISUAL E GRÁFICOS */}
