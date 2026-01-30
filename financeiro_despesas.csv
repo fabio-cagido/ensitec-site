@@ -1,31 +1,31 @@
 ﻿id,categoria,valor,data_despesa,descricao
-6f0ab438-19fe-459e-a408-bd2fc8048382,Pessoal,42000,2026-01-05,Salários Funcionários
-91fbf3a1-b488-40dc-8f49-ea930ed4572e,Energia,13107,2026-01-15,Conta de Energia Elétrica
-980876ed-be12-46f0-9053-d3759e19d4bd,Manutenção,4366,2026-01-20,Manutenção Predial e Reparos
-d7b0b291-adc8-43e6-8ac7-725727757917,Insumos,4950,2026-01-10,Materiais de Escritório e Limpeza
-746a16e6-8fa6-4dff-a07d-9dd87f2ea846,Marketing,2500,2026-01-02,Anúncios Redes Sociais
-08917df4-8bc6-4421-acca-59297ceae501,Pessoal,42000,2026-02-05,Salários Funcionários
-9e286252-28c6-485f-aaf6-99c79149fb73,Energia,11310,2026-02-15,Conta de Energia Elétrica
-8067a861-d281-434c-8dbc-3f6d4b552f74,Manutenção,2525,2026-02-20,Manutenção Predial e Reparos
-17a89f66-8529-48f2-943a-d4ff86bc47bd,Insumos,5629,2026-02-10,Materiais de Escritório e Limpeza
-cff5da4f-ff13-4d24-a54d-589eff11b464,Marketing,2500,2026-02-02,Anúncios Redes Sociais
-b3a7cba1-b2f8-44de-9dc6-a8e848394810,Pessoal,42000,2026-03-05,Salários Funcionários
-14ef644d-7aa4-4ee1-8595-dee4e56b47f4,Energia,12370,2026-03-15,Conta de Energia Elétrica
-0a75cac6-4ac2-4939-8c17-7285510ac333,Manutenção,3044,2026-03-20,Manutenção Predial e Reparos
-386f0227-af03-4a8e-b4bf-7ce8b4fafb71,Insumos,3547,2026-03-10,Materiais de Escritório e Limpeza
-26716c82-8862-4054-affb-a931bda10c1f,Marketing,2500,2026-03-02,Anúncios Redes Sociais
-95508dce-27eb-4226-80e8-311e37838694,Pessoal,42000,2026-04-05,Salários Funcionários
-1f5642de-e50d-4f67-8159-cbe3e6fc2d1f,Energia,13281,2026-04-15,Conta de Energia Elétrica
-646eba21-c339-48ea-ae33-7f4278502053,Manutenção,3646,2026-04-20,Manutenção Predial e Reparos
-9bbcb233-029a-4172-829a-05a6fc16ef3f,Insumos,4040,2026-04-10,Materiais de Escritório e Limpeza
-dab963be-11a1-4bf2-9c58-5595f9167ba2,Marketing,2500,2026-04-02,Anúncios Redes Sociais
-24d6c6c9-5f49-48c4-87a7-898054563a0e,Pessoal,42000,2026-05-05,Salários Funcionários
-0bd0009f-58e8-40ec-9dd8-4c46a7683e66,Energia,13113,2026-05-15,Conta de Energia Elétrica
-b8f1ce1c-bd70-4ca0-8cdd-8dfa442862ae,Manutenção,4640,2026-05-20,Manutenção Predial e Reparos
-efbd035f-b002-424c-ba1e-18099bf4e468,Insumos,4609,2026-05-10,Materiais de Escritório e Limpeza
-3117b212-9087-4698-8083-95225675f014,Marketing,2500,2026-05-02,Anúncios Redes Sociais
-321fe7aa-5f5d-4c7f-9265-ac51f6db23c5,Pessoal,42000,2026-06-05,Salários Funcionários
-6d8436d0-0405-4bed-b95f-9f999cb6b1a7,Energia,11181,2026-06-15,Conta de Energia Elétrica
-3f908156-e1f9-424a-9358-df3aef5df3c4,Manutenção,4368,2026-06-20,Manutenção Predial e Reparos
-b4ca5f29-0954-42f1-a330-992f06472dc9,Insumos,4452,2026-06-10,Materiais de Escritório e Limpeza
-66592ada-4eae-46ac-a511-7a039573a367,Marketing,2500,2026-06-02,Anúncios Redes Sociais
+96b1d666-2eed-4a5f-9ba8-e5c6a51218c9,Pessoal,125000,2026-01-05,Salários Funcionários (3 Unidades)
+2513d097-1318-478f-b227-28e131698f36,Energia,30153,2026-01-15,Energia Elétrica (Consolidado)
+ef7ffc10-fe7d-49b9-8800-376b5a94031e,Manutenção,11333,2026-01-20,Reparos Prediais Gerais
+e790a486-bea3-42ac-9a03-0977c073a5ad,Insumos,16257,2026-01-10,Materiais de Uso e Consumo
+b40df73f-039a-4e70-a382-333f6838de9c,Marketing,7500,2026-01-02,Campanhas Regionais
+293d594f-d05f-45e3-91b7-ef64a6ab224e,Pessoal,125000,2026-02-05,Salários Funcionários (3 Unidades)
+ffab7d9b-3497-4199-aaf3-fd93101f38f2,Energia,35800,2026-02-15,Energia Elétrica (Consolidado)
+cc4457ce-1385-47fa-9b42-3a52d8b8a490,Manutenção,13110,2026-02-20,Reparos Prediais Gerais
+d0dc2ca6-359b-4ba8-9813-52f81ceebc0e,Insumos,11336,2026-02-10,Materiais de Uso e Consumo
+207d1db1-5498-42b0-ad6e-54c154eff295,Marketing,7500,2026-02-02,Campanhas Regionais
+9a92fe5f-7f57-44f2-b3ed-2585c26b3746,Pessoal,125000,2026-03-05,Salários Funcionários (3 Unidades)
+157c192e-c227-433a-a16e-7fd44d72d8b6,Energia,35815,2026-03-15,Energia Elétrica (Consolidado)
+bce8659d-3060-4c6a-a5f2-41685d0c9ff0,Manutenção,13712,2026-03-20,Reparos Prediais Gerais
+0b96a17f-73d2-48ce-acc7-ccdb59b7e888,Insumos,9001,2026-03-10,Materiais de Uso e Consumo
+0d55afcf-c0a5-4e11-a210-a11c8c576ab2,Marketing,7500,2026-03-02,Campanhas Regionais
+a7684835-6ee8-4841-840d-114592c75bc7,Pessoal,125000,2026-04-05,Salários Funcionários (3 Unidades)
+df0299f4-09cc-4bcf-ae0c-edcdaa504eed,Energia,32149,2026-04-15,Energia Elétrica (Consolidado)
+d29c6351-b6ed-487e-bd35-5af00cb56487,Manutenção,7632,2026-04-20,Reparos Prediais Gerais
+f3c34d2a-f57b-4987-9d9d-162e5a7adc7a,Insumos,10347,2026-04-10,Materiais de Uso e Consumo
+57d62db1-a0f9-41ea-991d-04ec19d220c1,Marketing,7500,2026-04-02,Campanhas Regionais
+b5b1e7de-cbc0-4d3c-8888-8bc4d6987023,Pessoal,125000,2026-05-05,Salários Funcionários (3 Unidades)
+a19e013f-a0bb-43fb-a90e-54c3adc71b86,Energia,31266,2026-05-15,Energia Elétrica (Consolidado)
+5ba81acc-dab1-447c-938d-45fc626391cc,Manutenção,11394,2026-05-20,Reparos Prediais Gerais
+618c788d-99d5-43e1-b3ec-3bc7ac3eb288,Insumos,13392,2026-05-10,Materiais de Uso e Consumo
+4d766c78-8e92-45c9-90f1-fa1354f019fa,Marketing,7500,2026-05-02,Campanhas Regionais
+d7b9350a-7c09-4777-8481-18fbfc94017c,Pessoal,125000,2026-06-05,Salários Funcionários (3 Unidades)
+d8a12e54-bcc2-4f22-a489-6ff14aef3d92,Energia,39321,2026-06-15,Energia Elétrica (Consolidado)
+ff41704e-8d1d-4188-9202-1a61fddbd0bf,Manutenção,6719,2026-06-20,Reparos Prediais Gerais
+6690797f-1a1f-4e95-b28e-284684a1f10e,Insumos,16080,2026-06-10,Materiais de Uso e Consumo
+6dd1602f-a0bc-4e6b-9c18-30f205a722ee,Marketing,7500,2026-06-02,Campanhas Regionais
