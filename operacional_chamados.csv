@@ -1,0 +1,151 @@
+﻿id,categoria,descricao,prioridade,status,data_abertura,data_resolucao
+51efb72f-3b48-4cb8-8ccf-c7e3ab3a4d02,Manutenção,Solicitação #1000 - Unidade PR,Baixa,Em Andamento,2026-04-08T19:38:24.026Z,
+86cc17e0-3528-47f4-89c4-ab1ff05da06f,Segurança,Solicitação #1001 - Unidade PR,Baixa,Resolvido,2026-03-20T20:05:07.764Z,2026-03-22T19:05:07.764Z
+1784e479-7825-4f49-b762-8ad172d4d5e8,Manutenção,Solicitação #1002 - Unidade PR,Baixa,Resolvido,2026-02-24T04:59:22.707Z,2026-02-25T00:59:22.707Z
+f86a4727-3ed7-4fac-a0f4-36c1c25848b1,Limpeza,Solicitação #1003 - Unidade RJ,Média,Aberto,2026-06-21T04:01:14.870Z,
+0271e064-23ba-4fad-9e8c-e9313c04102e,Segurança,Solicitação #1004 - Unidade RJ,Média,Resolvido,2026-04-25T07:10:55.081Z,2026-04-26T11:10:55.081Z
+fd17d6cd-72d2-4b61-adf2-b90392702956,TI,Solicitação #1005 - Unidade RJ,Alta,Resolvido,2026-04-06T15:03:02.337Z,2026-04-07T11:03:02.337Z
+f4fe2e32-f0bf-4ffe-ab0a-331778e6dca6,Manutenção,Solicitação #1006 - Unidade PR,Baixa,Em Andamento,2026-02-14T20:08:05.166Z,
+fd4fa0bb-ecfc-4309-a054-e5dabf30f410,TI,Solicitação #1007 - Unidade SP,Média,Resolvido,2026-04-04T06:24:26.255Z,2026-04-04T23:24:26.255Z
+46028f08-e26b-4db3-98ef-33b813a6abdc,Segurança,Solicitação #1008 - Unidade PR,Alta,Resolvido,2026-06-07T18:46:12.220Z,2026-06-08T22:46:12.220Z
+cdc6de12-4d70-4f70-b0b3-4fa73379eb5c,TI,Solicitação #1009 - Unidade PR,Baixa,Aberto,2026-04-26T18:54:34.310Z,
+ba3c3c9c-f86e-414a-9792-e8162a6c34e0,Manutenção,Solicitação #1010 - Unidade PR,Média,Em Andamento,2026-04-17T04:08:33.032Z,
+bb863c28-24ea-4b51-8004-9c0644d9e040,Limpeza,Solicitação #1011 - Unidade PR,Alta,Aberto,2026-01-16T23:47:18.158Z,
+727490b5-8d80-47d2-99e5-2a73697a5b89,Limpeza,Solicitação #1012 - Unidade RJ,Baixa,Resolvido,2026-05-18T01:48:54.238Z,2026-05-19T15:48:54.238Z
+eabedc4d-6925-4fa7-ad28-161ac376dc1f,Limpeza,Solicitação #1013 - Unidade PR,Baixa,Aberto,2026-04-15T13:31:47.094Z,
+1241e64b-741b-410d-86d7-6bc09491899a,Segurança,Solicitação #1014 - Unidade SP,Baixa,Em Andamento,2026-05-07T13:26:24.098Z,
+b63fb7a3-b9de-4cbf-92c7-7faeb933ae54,Manutenção,Solicitação #1015 - Unidade SP,Baixa,Resolvido,2026-01-12T06:12:07.748Z,2026-01-12T22:12:07.748Z
+3565fb77-ea48-4f51-8d3f-fb7912852269,TI,Solicitação #1016 - Unidade SP,Média,Resolvido,2026-05-23T01:55:57.586Z,2026-05-24T13:55:57.586Z
+82d08384-d08b-4564-89b0-24357397cc0f,TI,Solicitação #1017 - Unidade RJ,Baixa,Resolvido,2026-06-22T17:43:24.335Z,2026-06-23T04:43:24.335Z
+3c49ab18-b5df-4b24-aaad-30c1efac1178,Limpeza,Solicitação #1018 - Unidade PR,Alta,Em Andamento,2026-03-08T21:04:06.404Z,
+3260c9f0-9460-4560-89b3-4b7e6b2e32c9,Limpeza,Solicitação #1019 - Unidade PR,Baixa,Aberto,2026-03-11T22:42:01.178Z,
+59a648fe-910c-4050-b256-07ce01db52b8,Manutenção,Solicitação #1020 - Unidade RJ,Alta,Resolvido,2026-06-20T04:29:11.240Z,2026-06-20T18:29:11.240Z
+0b10f917-2dda-43c9-9956-ac8307f01d97,Limpeza,Solicitação #1021 - Unidade RJ,Alta,Resolvido,2026-01-28T02:03:03.626Z,2026-01-29T13:03:03.626Z
+e660855c-22fa-4a26-b72c-c2f0996893f8,TI,Solicitação #1022 - Unidade PR,Média,Resolvido,2026-03-24T11:32:43.755Z,2026-03-24T15:32:43.755Z
+fc6ca7ed-8f3b-4632-9d0f-04724392fbf9,Segurança,Solicitação #1023 - Unidade PR,Baixa,Em Andamento,2026-01-04T07:33:48.706Z,
+eee22726-83ba-445d-b9d3-cdee664eb8e1,TI,Solicitação #1024 - Unidade SP,Média,Em Andamento,2026-01-13T11:02:52.321Z,
+809db607-a6a7-49d2-90cd-fe3adb2720fb,Segurança,Solicitação #1025 - Unidade SP,Média,Resolvido,2026-03-19T04:29:33.103Z,2026-03-19T22:29:33.103Z
+ff98f338-c46a-4178-a356-7c593bbdeaeb,Segurança,Solicitação #1026 - Unidade RJ,Média,Em Andamento,2026-03-06T03:38:17.468Z,
+3014d70b-da6e-4a0d-9c1e-697f874db278,Segurança,Solicitação #1027 - Unidade PR,Baixa,Resolvido,2026-03-18T16:01:26.090Z,2026-03-20T14:01:26.090Z
+02955c8a-144a-4d54-81e7-4a0f1cdd2df6,Manutenção,Solicitação #1028 - Unidade RJ,Média,Resolvido,2026-04-30T05:37:03.191Z,2026-04-30T21:37:03.191Z
+48104039-637d-4837-a25a-b61a9f73f2ff,Limpeza,Solicitação #1029 - Unidade RJ,Média,Em Andamento,2026-05-11T19:28:05.662Z,
+2d2b78ff-fcec-4fc7-a2b3-5a1f8ce1495a,Manutenção,Solicitação #1030 - Unidade RJ,Média,Resolvido,2026-04-10T16:12:15.861Z,2026-04-11T02:12:15.861Z
+a12951d0-a146-4897-89a7-7f6e182d4b39,TI,Solicitação #1031 - Unidade RJ,Baixa,Resolvido,2026-03-17T00:02:17.292Z,2026-03-17T05:02:17.292Z
+e4688de1-2255-4541-98c3-88541afc9879,TI,Solicitação #1032 - Unidade PR,Média,Resolvido,2026-02-14T14:06:22.911Z,2026-02-15T13:06:22.911Z
+b8a358f3-8194-4b71-8940-f77415409f4c,Segurança,Solicitação #1033 - Unidade RJ,Média,Aberto,2026-01-01T02:41:13.290Z,
+ffcc9d19-f8c7-4daa-868d-eb7d9a362a8c,Limpeza,Solicitação #1034 - Unidade RJ,Baixa,Resolvido,2026-06-22T17:57:35.667Z,2026-06-24T13:57:35.667Z
+1c4631e1-0b90-44ad-8448-ce7e07574200,TI,Solicitação #1035 - Unidade RJ,Alta,Em Andamento,2026-05-01T05:36:13.287Z,
+27582472-7675-46fe-9f5b-69f4bd5547a1,Segurança,Solicitação #1036 - Unidade SP,Alta,Resolvido,2026-01-18T01:57:52.071Z,2026-01-18T12:57:52.071Z
+727a4b42-5f23-4a82-8683-5fe9d3f03b33,TI,Solicitação #1037 - Unidade PR,Alta,Resolvido,2026-02-23T04:23:47.889Z,2026-02-23T11:23:47.889Z
+f9e91239-20d4-4ddf-8318-ec35dcca34b7,TI,Solicitação #1038 - Unidade PR,Baixa,Resolvido,2026-03-07T08:58:49.877Z,2026-03-08T14:58:49.877Z
+47137588-3fb4-406f-b1c9-179dd4ab4ae9,Manutenção,Solicitação #1039 - Unidade SP,Média,Resolvido,2026-05-26T20:29:09.210Z,2026-05-28T12:29:09.210Z
+679e962d-5444-4b96-8979-e3dadeea83e9,Limpeza,Solicitação #1040 - Unidade RJ,Alta,Resolvido,2026-05-08T12:19:26.909Z,2026-05-09T07:19:26.909Z
+1e712d57-c1cd-484a-b43c-bc88f4dfc818,Limpeza,Solicitação #1041 - Unidade SP,Alta,Aberto,2026-03-13T11:12:25.278Z,
+c215421a-f7b8-4da2-9c02-702e1bd923ff,Limpeza,Solicitação #1042 - Unidade RJ,Baixa,Aberto,2026-01-27T16:04:32.879Z,
+5bb2b52e-341e-493f-913b-1a63931cada0,Segurança,Solicitação #1043 - Unidade RJ,Baixa,Aberto,2026-06-09T16:31:19.269Z,
+ef9dfc03-2090-459e-9a5f-480f37ec8516,TI,Solicitação #1044 - Unidade RJ,Alta,Resolvido,2026-05-19T05:24:55.776Z,2026-05-20T14:24:55.776Z
+b477f9bf-c42a-42db-bc2f-ef05c49e4f0e,Segurança,Solicitação #1045 - Unidade SP,Baixa,Resolvido,2026-03-11T12:44:09.677Z,2026-03-12T09:44:09.677Z
+4c38796e-0285-40c8-8c7c-f8e7e521d541,TI,Solicitação #1046 - Unidade SP,Alta,Aberto,2026-03-01T20:18:40.052Z,
+7acd51d1-57f0-48e8-8dd3-f9712d3a7e34,Manutenção,Solicitação #1047 - Unidade RJ,Baixa,Em Andamento,2026-01-13T11:33:05.681Z,
+b6c8b16a-4382-4aa4-b6ce-aa7c20aea350,Limpeza,Solicitação #1048 - Unidade SP,Média,Resolvido,2026-02-25T05:06:02.220Z,2026-02-26T22:06:02.220Z
+80595733-e9fe-4710-9dfb-56a36adbe700,Segurança,Solicitação #1049 - Unidade RJ,Média,Resolvido,2026-03-08T17:04:41.029Z,2026-03-08T21:04:41.029Z
+39fc3169-4135-4fc2-948e-174d9d91f5ca,TI,Solicitação #1050 - Unidade PR,Alta,Aberto,2026-03-17T16:21:37.367Z,
+9441e45d-d6ec-47f2-bbbf-ba88a05c3441,TI,Solicitação #1051 - Unidade PR,Baixa,Resolvido,2026-05-16T16:02:03.306Z,2026-05-18T06:02:03.306Z
+0550e469-6070-41ce-8af0-ebee3596fede,Limpeza,Solicitação #1052 - Unidade SP,Alta,Aberto,2026-01-29T12:32:14.423Z,
+fc8fea80-5fe3-4ab1-b535-0488f8673614,TI,Solicitação #1053 - Unidade SP,Baixa,Em Andamento,2026-01-10T14:03:06.219Z,
+8403e998-6832-4376-aed7-409e46aea8b7,TI,Solicitação #1054 - Unidade PR,Baixa,Em Andamento,2026-06-18T10:22:04.726Z,
+f0c1b7c2-74e6-426e-ae46-bf70938bf89b,Segurança,Solicitação #1055 - Unidade RJ,Média,Resolvido,2026-06-23T06:42:48.868Z,2026-06-23T12:42:48.868Z
+501cdabe-c607-42c3-8246-f88d268882f9,Manutenção,Solicitação #1056 - Unidade RJ,Alta,Em Andamento,2026-04-17T14:00:09.404Z,
+ac16de29-6c3a-4793-839c-c623a9ef7688,Segurança,Solicitação #1057 - Unidade SP,Alta,Resolvido,2026-03-30T16:37:13.866Z,2026-04-01T12:37:13.866Z
+a377a5ca-c0d6-4e0a-a7cf-3e37ccaaecee,Segurança,Solicitação #1058 - Unidade SP,Média,Resolvido,2026-03-31T12:18:25.132Z,2026-04-02T01:18:25.132Z
+7ea16220-22f0-43ee-ab90-07d84cffb155,Segurança,Solicitação #1059 - Unidade RJ,Média,Em Andamento,2026-06-15T22:11:49.305Z,
+55f097ab-1d2a-4efa-9650-e12c0980997b,Limpeza,Solicitação #1060 - Unidade SP,Baixa,Em Andamento,2026-04-24T22:15:52.607Z,
+1526bfa4-c3a8-46c1-8d4d-b3fbdc7bf8e7,Limpeza,Solicitação #1061 - Unidade PR,Alta,Resolvido,2026-05-18T22:55:39.412Z,2026-05-20T00:55:39.412Z
+b0f114df-da63-43cf-acd6-e8ed33da0088,Manutenção,Solicitação #1062 - Unidade SP,Alta,Resolvido,2026-01-15T14:47:23.409Z,2026-01-16T13:47:23.409Z
+cbeb1960-2300-4a12-93c6-029e640e4b46,Manutenção,Solicitação #1063 - Unidade RJ,Média,Resolvido,2026-04-08T21:35:17.038Z,2026-04-10T14:35:17.038Z
+c3a734c1-8634-41fc-b33e-fd7c18cf87f9,Segurança,Solicitação #1064 - Unidade SP,Média,Em Andamento,2026-04-14T09:26:53.826Z,
+59a00bdd-1997-4e2a-bca2-576bfe81a332,Manutenção,Solicitação #1065 - Unidade PR,Baixa,Aberto,2026-06-06T10:18:39.992Z,
+f45631ee-5ab2-4f64-bd5d-11cedf3cab59,TI,Solicitação #1066 - Unidade RJ,Alta,Resolvido,2026-01-12T11:30:44.911Z,2026-01-12T13:30:44.911Z
+d73167e2-33f0-421a-a758-d7566f8fe971,TI,Solicitação #1067 - Unidade PR,Alta,Resolvido,2026-04-17T05:34:24.443Z,2026-04-17T09:34:24.443Z
+07ab3c94-dde0-4443-9cf6-63f5b67d24d6,TI,Solicitação #1068 - Unidade PR,Alta,Aberto,2026-03-04T16:44:14.359Z,
+0c687513-6132-4a65-a519-39a1fe31959b,TI,Solicitação #1069 - Unidade PR,Baixa,Aberto,2026-05-21T10:42:15.402Z,
+5c8d43b6-7629-4d90-9635-6d77d0b50496,TI,Solicitação #1070 - Unidade SP,Baixa,Em Andamento,2026-01-09T12:14:29.240Z,
+3313f4d5-c7ba-4cd0-816a-633ad57c10e0,TI,Solicitação #1071 - Unidade SP,Alta,Resolvido,2026-01-27T18:50:53.472Z,2026-01-29T03:50:53.472Z
+c9751166-6fc7-4bf0-b693-27a76978900d,Segurança,Solicitação #1072 - Unidade PR,Baixa,Em Andamento,2026-04-28T18:43:41.535Z,
+d6029b71-f5d2-47cf-909e-f38c729fea11,TI,Solicitação #1073 - Unidade PR,Baixa,Resolvido,2026-02-20T03:51:37.702Z,2026-02-21T18:51:37.702Z
+d41cf207-3877-4aeb-9ace-735530853608,Manutenção,Solicitação #1074 - Unidade PR,Média,Resolvido,2026-02-23T16:38:04.177Z,2026-02-25T09:38:04.177Z
+dc12d6bc-b2ac-4d7e-a113-dd478aaace88,TI,Solicitação #1075 - Unidade SP,Alta,Aberto,2026-05-29T10:58:07.667Z,
+b95f182a-a8df-4d8e-b632-c7e42860baea,Manutenção,Solicitação #1076 - Unidade PR,Baixa,Em Andamento,2026-02-05T18:39:39.540Z,
+e817974f-4d48-488d-83a5-d58b906b2b0b,Manutenção,Solicitação #1077 - Unidade SP,Média,Aberto,2026-03-27T15:58:21.442Z,
+df4d9386-8e70-493b-9933-2e1442a55342,Segurança,Solicitação #1078 - Unidade RJ,Baixa,Em Andamento,2026-06-17T18:27:54.629Z,
+a8829b64-2e0c-416d-81d7-abb9d8c2ccd5,Limpeza,Solicitação #1079 - Unidade PR,Baixa,Em Andamento,2026-04-16T10:49:00.183Z,
+2413a840-3df8-41cd-964b-ba8fbedeadb6,Manutenção,Solicitação #1080 - Unidade RJ,Baixa,Resolvido,2026-03-30T03:31:54.447Z,2026-03-30T06:31:54.447Z
+de618496-c31d-45ad-89ce-6bac6b8fc723,Segurança,Solicitação #1081 - Unidade SP,Média,Aberto,2026-04-09T04:18:55.380Z,
+fe37f469-ff8a-4e6b-ad77-bd183119e582,Manutenção,Solicitação #1082 - Unidade RJ,Alta,Aberto,2026-01-18T13:45:01.411Z,
+67e9fcac-e773-41a1-9176-d74b022c8fa8,TI,Solicitação #1083 - Unidade PR,Média,Resolvido,2026-02-14T07:17:34.517Z,2026-02-15T18:17:34.517Z
+53f035d0-8230-48fa-9dc0-02ab0c1fcd6e,Segurança,Solicitação #1084 - Unidade RJ,Alta,Aberto,2026-04-06T01:57:30.083Z,
+ad5eca16-bb1e-4837-ab78-fef843b0afbc,Segurança,Solicitação #1085 - Unidade PR,Média,Resolvido,2026-06-15T16:08:31.591Z,2026-06-16T10:08:31.591Z
+2fcb04fe-08d5-4d52-bba9-ed18e4a4cc60,Limpeza,Solicitação #1086 - Unidade SP,Alta,Aberto,2026-01-10T21:06:44.405Z,
+dcd033e9-641a-476a-a720-1979fec1c98e,Segurança,Solicitação #1087 - Unidade RJ,Alta,Resolvido,2026-05-11T21:51:12.284Z,2026-05-13T12:51:12.284Z
+4850b048-ac2b-4afc-98c6-c812e4439800,TI,Solicitação #1088 - Unidade SP,Alta,Resolvido,2026-06-17T21:08:30.438Z,2026-06-18T07:08:30.438Z
+084a53a0-b63c-4508-bf2d-efb921bbaea6,Limpeza,Solicitação #1089 - Unidade SP,Baixa,Resolvido,2026-04-22T14:18:05.731Z,2026-04-24T03:18:05.731Z
+d5d88a07-5719-4b28-addc-7d2ad153fdd7,Manutenção,Solicitação #1090 - Unidade PR,Média,Em Andamento,2026-03-25T22:10:06.613Z,
+fe776f10-812a-4659-be08-7e1ec208fa6d,Manutenção,Solicitação #1091 - Unidade RJ,Alta,Resolvido,2026-06-09T04:39:00.480Z,2026-06-10T16:39:00.480Z
+7d091866-9545-4e7f-9ba4-ec99b0be8df9,Segurança,Solicitação #1092 - Unidade RJ,Baixa,Em Andamento,2026-06-04T09:46:59.774Z,
+b32437f9-4d4d-463e-8493-306f04f784ad,Limpeza,Solicitação #1093 - Unidade PR,Alta,Em Andamento,2026-03-28T18:17:51.341Z,
+e59c028c-47eb-4c6b-8754-2d88497fd6c2,Limpeza,Solicitação #1094 - Unidade PR,Alta,Aberto,2026-03-27T10:03:50.136Z,
+b201ccf9-10e9-4cb9-a4a0-d970a9d3a6b4,Segurança,Solicitação #1095 - Unidade PR,Baixa,Resolvido,2026-02-25T07:16:50.266Z,2026-02-26T01:16:50.266Z
+00b3eb61-b04c-4d72-b2ba-1232ecdc4044,Segurança,Solicitação #1096 - Unidade RJ,Média,Em Andamento,2026-03-07T05:19:52.268Z,
+470bc5fb-0206-4830-bf9f-09fcd86afeb1,Limpeza,Solicitação #1097 - Unidade PR,Média,Em Andamento,2026-05-24T16:00:13.766Z,
+cfaa8bc8-291c-4bb5-a533-3221eeac5d5b,Segurança,Solicitação #1098 - Unidade PR,Alta,Aberto,2026-04-10T15:46:27.322Z,
+49ccc28a-f6c4-4ca4-afca-4e2461275c91,Limpeza,Solicitação #1099 - Unidade SP,Baixa,Resolvido,2026-02-13T02:42:30.591Z,2026-02-14T23:42:30.591Z
+80874974-d3cf-4398-9de2-69e1148f3838,Limpeza,Solicitação #1100 - Unidade PR,Alta,Em Andamento,2026-01-27T00:41:39.623Z,
+d297d221-c37e-4c5a-aba2-d9512b975010,Manutenção,Solicitação #1101 - Unidade PR,Média,Resolvido,2026-05-16T02:23:01.366Z,2026-05-17T18:23:01.366Z
+c2611d31-0cd9-4c72-8ff0-e00505770e81,Segurança,Solicitação #1102 - Unidade RJ,Baixa,Resolvido,2026-06-04T06:18:13.528Z,2026-06-05T03:18:13.528Z
+cca51c23-07c3-46d8-b077-738adc77768a,Manutenção,Solicitação #1103 - Unidade SP,Média,Resolvido,2026-05-22T02:36:47.520Z,2026-05-22T21:36:47.520Z
+c80b4243-e42d-4ae0-96b3-e50fbaefbc4c,Segurança,Solicitação #1104 - Unidade RJ,Alta,Resolvido,2026-05-22T20:03:11.289Z,2026-05-24T16:03:11.289Z
+0754051f-5fdc-4236-8965-03b69cbe67ef,Limpeza,Solicitação #1105 - Unidade PR,Alta,Resolvido,2026-03-18T13:40:12.738Z,2026-03-19T12:40:12.738Z
+d3e8c4ef-c738-43e9-9984-2ed45d4bf15b,Limpeza,Solicitação #1106 - Unidade PR,Média,Aberto,2026-06-11T19:21:28.806Z,
+297a44c7-38db-43ad-ad5f-579e88de0d85,TI,Solicitação #1107 - Unidade RJ,Baixa,Resolvido,2026-03-25T04:13:43.827Z,2026-03-26T03:13:43.827Z
+47bce13f-9a70-4b8b-b4a4-e5a8d39aeb1f,Manutenção,Solicitação #1108 - Unidade SP,Baixa,Em Andamento,2026-03-31T19:13:54.783Z,
+5ab58765-1aa1-4c5b-aea0-040afb3544e4,TI,Solicitação #1109 - Unidade SP,Baixa,Em Andamento,2026-03-19T02:12:55.457Z,
+7059f4d3-46d5-4427-9d98-eb510007ffd4,Manutenção,Solicitação #1110 - Unidade RJ,Média,Aberto,2026-05-06T09:19:27.406Z,
+ea02f055-1ffe-44ac-af6b-521380bb448e,Manutenção,Solicitação #1111 - Unidade PR,Alta,Em Andamento,2026-06-05T04:49:47.789Z,
+78bd183b-3845-42fa-8469-c6be34853e3d,Limpeza,Solicitação #1112 - Unidade SP,Baixa,Resolvido,2026-06-23T14:52:31.802Z,2026-06-25T11:52:31.802Z
+8d146dfc-d314-460c-834c-b16ec9b2e3b4,Segurança,Solicitação #1113 - Unidade RJ,Alta,Aberto,2026-06-15T07:55:46.431Z,
+088df7b6-47cb-4297-a785-c87d25753a34,Segurança,Solicitação #1114 - Unidade SP,Média,Resolvido,2026-04-12T13:47:22.684Z,2026-04-13T05:47:22.684Z
+c0eeea9d-26e2-439c-ae4d-429086954cfb,Limpeza,Solicitação #1115 - Unidade SP,Alta,Resolvido,2026-01-12T06:20:36.935Z,2026-01-13T21:20:36.935Z
+1455ef22-afb3-4ec8-8739-60373870d90d,Limpeza,Solicitação #1116 - Unidade RJ,Baixa,Aberto,2026-02-01T13:19:11.344Z,
+f6b1c10f-7ecd-4162-8b99-cecfebc7950f,Limpeza,Solicitação #1117 - Unidade SP,Baixa,Aberto,2026-06-23T18:15:52.509Z,
+bbed03a3-553a-4206-bd3a-36a9baaaadc6,TI,Solicitação #1118 - Unidade RJ,Média,Resolvido,2026-06-10T16:20:44.751Z,2026-06-11T19:20:44.751Z
+be222b96-5ec4-4732-8326-fe6fd60d1bf7,Limpeza,Solicitação #1119 - Unidade PR,Média,Aberto,2026-03-12T04:10:55.796Z,
+1e6c092d-428f-4587-af44-7e6e9df9f7aa,Limpeza,Solicitação #1120 - Unidade RJ,Média,Resolvido,2026-01-26T15:39:40.249Z,2026-01-26T18:39:40.249Z
+5f733c4b-67f7-4851-afa4-ba28af09d3b1,Segurança,Solicitação #1121 - Unidade PR,Alta,Aberto,2026-04-10T19:54:17.329Z,
+2b5ce5a8-b3b6-43ed-b549-15cbb1592e4b,Segurança,Solicitação #1122 - Unidade SP,Baixa,Aberto,2026-03-22T00:06:04.387Z,
+af69983b-cc70-4cdb-ad6a-648525ab018c,TI,Solicitação #1123 - Unidade RJ,Baixa,Em Andamento,2026-04-04T20:33:43.060Z,
+2109f671-b277-4a8e-89ba-46ba183c9f3a,TI,Solicitação #1124 - Unidade SP,Alta,Aberto,2026-03-17T04:55:44.506Z,
+1f4765f4-0c37-44cb-bbe8-5c56e94d0d49,TI,Solicitação #1125 - Unidade PR,Baixa,Em Andamento,2026-04-01T05:58:57.268Z,
+d989aaf5-852a-4807-b01e-4451b1cd88ca,Segurança,Solicitação #1126 - Unidade RJ,Baixa,Aberto,2026-01-29T12:01:42.820Z,
+dbdd5cd1-2cb1-4b7f-8c2a-852c7621e2e3,Limpeza,Solicitação #1127 - Unidade RJ,Alta,Em Andamento,2026-06-05T01:29:45.585Z,
+6b79bca4-ea67-4b1a-a537-44de13a78935,Segurança,Solicitação #1128 - Unidade SP,Baixa,Resolvido,2026-06-03T23:14:53.064Z,2026-06-04T10:14:53.064Z
+b975f0a7-dabf-494e-8fea-c432e69604be,TI,Solicitação #1129 - Unidade SP,Média,Resolvido,2026-04-24T04:48:57.247Z,2026-04-25T11:48:57.247Z
+2101cb02-570c-42ee-8c8d-da528151c514,Manutenção,Solicitação #1130 - Unidade SP,Alta,Em Andamento,2026-06-04T02:53:16.518Z,
+f9626188-59b4-4df4-a24e-5dd5b0c5807c,Manutenção,Solicitação #1131 - Unidade SP,Alta,Em Andamento,2026-03-25T15:29:50.537Z,
+c83c8fdf-ce99-41d5-b4b1-92b562629eb9,TI,Solicitação #1132 - Unidade SP,Média,Em Andamento,2026-05-17T12:03:00.303Z,
+8600e96c-bea5-46a2-9cfb-8a80558e2694,Segurança,Solicitação #1133 - Unidade PR,Média,Em Andamento,2026-01-26T04:16:46.425Z,
+8f86ca61-7474-44c9-ae5c-3a90994afbcf,Limpeza,Solicitação #1134 - Unidade PR,Alta,Resolvido,2026-02-22T19:57:39.025Z,2026-02-24T13:57:39.025Z
+a8c26873-aa20-42f8-9f0b-1c4e5f67ccb0,TI,Solicitação #1135 - Unidade SP,Alta,Em Andamento,2026-03-11T20:41:14.903Z,
+21698637-ac63-4180-aaae-e7f4849bc405,Segurança,Solicitação #1136 - Unidade RJ,Alta,Resolvido,2026-02-26T00:41:24.908Z,2026-02-27T14:41:24.908Z
+7cb173fe-1fad-464d-ab0f-7b056e98922a,Limpeza,Solicitação #1137 - Unidade SP,Baixa,Resolvido,2026-01-21T07:23:25.674Z,2026-01-23T01:23:25.674Z
+d5f8da65-8e3d-48b9-9a6b-271960a4f315,Manutenção,Solicitação #1138 - Unidade RJ,Alta,Em Andamento,2026-06-24T07:21:20.444Z,
+20f894b9-1ded-4404-bf99-319c9132ffc4,TI,Solicitação #1139 - Unidade RJ,Alta,Resolvido,2026-04-12T10:40:44.800Z,2026-04-13T21:40:44.800Z
+8e42af73-7d69-4bf0-80b6-9a748eb7aaa8,Manutenção,Solicitação #1140 - Unidade SP,Média,Em Andamento,2026-02-16T00:55:45.332Z,
+59cf5e3e-46e1-49d4-aea9-054c9548dae8,Limpeza,Solicitação #1141 - Unidade RJ,Média,Resolvido,2026-02-25T21:36:19.178Z,2026-02-27T01:36:19.178Z
+7b896d04-9f3f-4907-aa99-04903225a15b,Manutenção,Solicitação #1142 - Unidade RJ,Baixa,Aberto,2026-03-21T04:17:55.231Z,
+853bb719-d971-4d8e-8966-964df18f01ea,Segurança,Solicitação #1143 - Unidade SP,Média,Resolvido,2026-04-27T00:36:39.446Z,2026-04-27T08:36:39.446Z
+75934604-7352-4f08-ad6b-7f25d8ec5493,Limpeza,Solicitação #1144 - Unidade SP,Baixa,Aberto,2026-04-03T23:48:44.794Z,
+94074d80-4240-4576-9f22-30912cbf9707,Segurança,Solicitação #1145 - Unidade SP,Média,Aberto,2026-01-24T23:19:14.705Z,
+5facbd63-68c4-489a-b004-7bbe98ad3353,Segurança,Solicitação #1146 - Unidade PR,Alta,Resolvido,2026-03-05T13:11:51.328Z,2026-03-05T22:11:51.328Z
+6670d246-04eb-4ee9-8287-1d557dc2dfff,TI,Solicitação #1147 - Unidade SP,Baixa,Resolvido,2026-01-26T19:09:26.036Z,2026-01-28T06:09:26.036Z
+6b22fa24-c837-47ee-a986-d7843f2a2eb3,TI,Solicitação #1148 - Unidade RJ,Alta,Aberto,2026-06-10T05:21:27.215Z,
+3e154c6a-0ee1-4aad-83c1-2f3f28831fd3,TI,Solicitação #1149 - Unidade RJ,Média,Resolvido,2026-06-08T16:47:07.845Z,2026-06-09T09:47:07.845Z

@@ -1,5 +1,6 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import {
     LayoutGrid,
     Clock,
@@ -10,7 +11,8 @@ import {
     Utensils,
     ShieldCheck,
     ArrowRight,
-    TrendingUp
+    TrendingUp,
+    Loader2
 } from "lucide-react";
 import Link from "next/link";
 import PageHeader from "@/components/dashboard/PageHeader";
@@ -24,111 +26,110 @@ import {
     ResponsiveContainer,
     LineChart,
     Line,
-    PieChart,
-    Pie,
-    Cell,
     Area,
     AreaChart,
     ComposedChart,
     Legend
 } from 'recharts';
 
-// --- MOCK DATA ---
-const OPERATIONAL_KPIS = [
-    {
-        id: "espacos",
-        title: "Eficiência de Espaço",
-        value: "88%",
-        subtext: "Ocupação de Salas",
-        icon: LayoutGrid,
-        color: "blue",
-        path: "/dashboard/operacional/espacos"
-    },
-    {
-        id: "secretaria",
-        title: "SLA de Atendimento",
-        value: "1.8 dias",
-        subtext: "Secretaria",
-        icon: Clock,
-        color: "green",
-        path: "/dashboard/operacional/secretaria"
-    },
-    {
-        id: "manutencao",
-        title: "Manutenção",
-        value: "12 Tickets",
-        subtext: "3 Críticos",
-        icon: Wrench,
-        color: "orange",
-        path: "/dashboard/operacional/manutencao"
-    },
-    {
-        id: "docentes",
-        title: "Absenteísmo Docente",
-        value: "2.4%",
-        subtext: "Substituições",
-        icon: UserX,
-        color: "purple",
-        path: "/dashboard/operacional/docentes"
-    },
-    {
-        id: "ti",
-        title: "Gestão de TI",
-        value: "99.8%",
-        subtext: "Uptime Rede/Wi-Fi",
-        icon: Wifi,
-        color: "cyan",
-        path: "/dashboard/operacional/ti"
-    },
-    {
-        id: "impressao",
-        title: "Custos de Impressão",
-        value: "R$ 12,50",
-        subtext: "Custo Médio/Aluno",
-        icon: Printer,
-        color: "red",
-        path: "/dashboard/operacional/impressao"
-    },
-    {
-        id: "alimentacao",
-        title: "Alimentação",
-        value: "4.2%",
-        subtext: "Taxa de Desperdício",
-        icon: Utensils,
-        color: "yellow",
-        path: "/dashboard/operacional/alimentacao"
-    },
-    {
-        id: "seguranca",
-        title: "Segurança",
-        value: "Normal",
-        subtext: "Fluxo Controlado",
-        icon: ShieldCheck,
-        color: "emerald",
-        path: "/dashboard/operacional/seguranca"
-    },
-];
+const ICON_MAP: Record<string, any> = {
+    espacos: LayoutGrid,
+    secretaria: Clock,
+    manutencao: Wrench,
+    docentes: UserX,
+    ti: Wifi,
+    impressao: Printer,
+    alimentacao: Utensils,
+    seguranca: ShieldCheck,
+};
 
-// Mock Chart Data
-// --- MOCK CHART DATA ---
-const COST_HISTORY = [
-    { month: 'Jan', energia: 12500, manutencao: 4200, insumos: 3100 },
-    { month: 'Fev', energia: 14200, manutencao: 3800, insumos: 8500 }, // Volta às aulas (insumos up)
-    { month: 'Mar', energia: 13800, manutencao: 2100, insumos: 4200 },
-    { month: 'Abr', energia: 13500, manutencao: 5400, insumos: 3800 },
-    { month: 'Mai', energia: 12900, manutencao: 3200, insumos: 3500 },
-    { month: 'Jun', energia: 11800, manutencao: 2800, insumos: 3100 },
-];
+const COLOR_MAP: Record<string, string> = {
+    espacos: "blue",
+    secretaria: "green",
+    manutencao: "orange",
+    docentes: "purple",
+    ti: "cyan",
+    impressao: "red",
+    alimentacao: "yellow",
+    seguranca: "emerald",
+};
 
-const TICKET_PERFORMANCE = [
-    { name: 'Seg', abertos: 14, resolvidos: 12 },
-    { name: 'Ter', abertos: 25, resolvidos: 20 },
-    { name: 'Qua', abertos: 18, resolvidos: 18 },
-    { name: 'Qui', abertos: 12, resolvidos: 15 }, // Resolveu backlog
-    { name: 'Sex', abertos: 9, resolvidos: 11 },
-];
+const PATH_MAP: Record<string, string> = {
+    espacos: "/dashboard/operacional/espacos",
+    secretaria: "/dashboard/operacional/secretaria",
+    manutencao: "/dashboard/operacional/manutencao",
+    docentes: "/dashboard/operacional/docentes",
+    ti: "/dashboard/operacional/ti",
+    impressao: "/dashboard/operacional/impressao",
+    alimentacao: "/dashboard/operacional/alimentacao",
+    seguranca: "/dashboard/operacional/seguranca",
+};
+
+const TITLE_MAP: Record<string, string> = {
+    espacos: "Eficiência de Espaço",
+    secretaria: "SLA de Atendimento",
+    manutencao: "Manutenção",
+    docentes: "Absenteísmo Docente",
+    ti: "Gestão de TI",
+    impressao: "Custos de Impressão",
+    alimentacao: "Alimentação",
+    seguranca: "Segurança",
+};
+
+const SUBTEXT_MAP: Record<string, string> = {
+    espacos: "Ocupação de Salas",
+    secretaria: "Secretaria",
+    manutencao: "3 Críticos",
+    docentes: "Substituições",
+    ti: "Uptime Rede/Wi-Fi",
+    impressao: "Custo Médio/Aluno",
+    alimentacao: "Taxa de Desperdício",
+    seguranca: "Fluxo Controlado",
+};
 
 export default function OperationalPage() {
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState<string | null>(null);
+    const [data, setData] = useState<any>(null);
+
+    useEffect(() => {
+        async function fetchData() {
+            try {
+                const res = await fetch('/api/dashboard/operacional');
+                if (!res.ok) throw new Error('Falha ao carregar dados operacionais');
+                const json = await res.json();
+                setData(json);
+            } catch (err: any) {
+                setError(err.message);
+            } finally {
+                setLoading(false);
+            }
+        }
+        fetchData();
+    }, []);
+
+    if (loading) {
+        return (
+            <div className="flex flex-col items-center justify-center min-h-[60vh] gap-4">
+                <Loader2 className="w-12 h-12 text-indigo-600 animate-spin" />
+                <p className="text-gray-600 font-medium">Carregando indicadores operacionais...</p>
+            </div>
+        );
+    }
+
+    if (error || !data) {
+        return (
+            <div className="flex flex-col items-center justify-center min-h-[60vh] px-4">
+                <div className="bg-red-50 border border-red-200 rounded-2xl p-8 max-w-lg text-center">
+                    <h2 className="text-red-700 font-bold text-xl mb-2">Erro no Carregamento</h2>
+                    <p className="text-red-600 text-sm">{error}</p>
+                </div>
+            </div>
+        );
+    }
+
+    const { kpis, costHistory, ticketPerformance } = data;
+
     return (
         <div className="space-y-8 pb-10">
             <PageHeader
@@ -139,13 +140,14 @@ export default function OperationalPage() {
 
             {/* KPI GRID */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                {OPERATIONAL_KPIS.map((kpi) => {
-                    const Icon = kpi.icon;
+                {Object.entries(kpis).map(([key, value]: [string, any]) => {
+                    const Icon = ICON_MAP[key] || LayoutGrid;
+                    const color = COLOR_MAP[key] || "blue";
                     return (
-                        <Link href={kpi.path} key={kpi.id} className="block group">
+                        <Link href={PATH_MAP[key] || "#"} key={key} className="block group">
                             <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 h-full hover:shadow-md transition-all hover:-translate-y-1">
                                 <div className="flex justify-between items-start mb-4">
-                                    <div className={`p-3 rounded-xl bg-${kpi.color}-50 text-${kpi.color}-600`}>
+                                    <div className={`p-3 rounded-xl bg-${color}-50 text-${color}-600`}>
                                         <Icon className="w-6 h-6" />
                                     </div>
                                     <div className="opacity-0 group-hover:opacity-100 transition-opacity text-gray-400">
@@ -153,10 +155,10 @@ export default function OperationalPage() {
                                     </div>
                                 </div>
                                 <div>
-                                    <p className="text-sm font-medium text-gray-500">{kpi.title}</p>
-                                    <h3 className="text-2xl font-bold text-gray-900 mt-1">{kpi.value}</h3>
-                                    <p className={`text-xs mt-1 font-medium text-${kpi.color}-600`}>
-                                        {kpi.subtext}
+                                    <p className="text-sm font-medium text-gray-500">{TITLE_MAP[key]}</p>
+                                    <h3 className="text-2xl font-bold text-gray-900 mt-1">{value}</h3>
+                                    <p className={`text-xs mt-1 font-medium text-${color}-600`}>
+                                        {SUBTEXT_MAP[key]}
                                     </p>
                                 </div>
                             </div>
@@ -165,7 +167,7 @@ export default function OperationalPage() {
                 })}
             </div>
 
-            {/* CHARTS SECTION - UPGRADED */}
+            {/* CHARTS SECTION */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
 
                 {/* 1. Evolução de Custos (Area Chart) */}
@@ -175,14 +177,10 @@ export default function OperationalPage() {
                             <TrendingUp className="w-5 h-5 text-emerald-500" />
                             Evolução de Custos Operacionais
                         </h3>
-                        <select className="text-xs border-gray-200 rounded-lg text-gray-500 py-1">
-                            <option>Últimos 6 meses</option>
-                            <option>Ano Atual</option>
-                        </select>
                     </div>
                     <div className="h-80 w-full">
                         <ResponsiveContainer width="100%" height="100%">
-                            <AreaChart data={COST_HISTORY} margin={{ top: 10, right: 10, left: 0, bottom: 0 }}>
+                            <AreaChart data={costHistory} margin={{ top: 10, right: 10, left: 0, bottom: 0 }}>
                                 <defs>
                                     <linearGradient id="colorEnergia" x1="0" y1="0" x2="0" y2="1">
                                         <stop offset="5%" stopColor="#f59e0b" stopOpacity={0.8} />
@@ -217,7 +215,7 @@ export default function OperationalPage() {
                     </h3>
                     <div className="h-80 w-full">
                         <ResponsiveContainer width="100%" height="100%">
-                            <ComposedChart data={TICKET_PERFORMANCE} margin={{ top: 10, right: 10, left: 0, bottom: 0 }}>
+                            <ComposedChart data={ticketPerformance} margin={{ top: 10, right: 10, left: 0, bottom: 0 }}>
                                 <CartesianGrid vertical={false} strokeDasharray="3 3" stroke="#f3f4f6" />
                                 <XAxis dataKey="name" axisLine={false} tickLine={false} />
                                 <YAxis axisLine={false} tickLine={false} />
