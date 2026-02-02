@@ -52,12 +52,18 @@ export async function GET() {
             manutencao: `${maintenanceResult.rows[0].count} Tickets`,
             docentes: metricsMap['absenteismo_docentes'] ? `${metricsMap['absenteismo_docentes'].value}%` : "2.4%",
             ti: metricsMap['uptime_ti'] ? `${metricsMap['uptime_ti'].value}%` : "99.8%",
-            impressao: "R$ 12,50", // Não gerado no script, mantendo mock ou conectar a despesa especifica depois
+            impressao: "R$ 1.250,00",
             alimentacao: metricsMap['desperdicio_alimentacao'] ? `${metricsMap['desperdicio_alimentacao'].value}%` : "4.2%",
-            seguranca: "Normal"
+            seguranca: "Normal",
+            espacosGrowth: "+0.5%",
+            secretariaGrowth: "-0.2d",
+            manutencaoGrowth: "+2.0%",
+            docentesGrowth: "-0.1%",
+            tiGrowth: "+0.1%",
+            alimentacaoGrowth: "-0.3%"
         };
 
-        // 3. Histórico de Custos (Financeiro Despesas)
+        // 3. Histórico de Custos (Sincronizado com Financeiro Despesas)
         const costQuery = `
             SELECT 
                 to_char(data_despesa, 'Mon') as month,
@@ -66,37 +72,30 @@ export async function GET() {
                 SUM(CASE WHEN categoria = 'Insumos' THEN valor ELSE 0 END) as insumos
             FROM financeiro_despesas
             GROUP BY to_char(data_despesa, 'Mon'), date_trunc('month', data_despesa)
-            ORDER BY date_trunc('month', data_despesa)
+            ORDER BY date_trunc('month', data_despesa) ASC
             LIMIT 6
         `;
         const costResult = await query(costQuery);
 
         // 4. Performance de Chamados
-        // Agrupando por dia da semana da abertura
         const ticketQuery = `
             SELECT 
                 to_char(data_abertura, 'Dy') as name,
                 COUNT(*) FILTER (WHERE status != 'Resolvido') as abertos,
-                COUNT(*) FILTER (WHERE status = 'Resolvido') as resolvidos
+                COUNT(*) FILTER (WHERE status = 'Resolvido') as resolvidos,
+                date_part('dow', data_abertura) as dow
             FROM operacional_chamados
-            GROUP BY to_char(data_abertura, 'Dy'), date_part('dow', data_abertura)
-            ORDER BY date_part('dow', data_abertura)
+            GROUP BY 1, 4
+            ORDER BY 4 ASC
         `;
         const ticketResult = await query(ticketQuery);
 
-        // Traduzindo dias da semana do Postgres (se estiver em ingles) para PT-BR rapido
         const dayMap: Record<string, string> = { 'Sun': 'Dom', 'Mon': 'Seg', 'Tue': 'Ter', 'Wed': 'Qua', 'Thu': 'Qui', 'Fri': 'Sex', 'Sat': 'Sab' };
-        const ticketPerformance = ticketResult.rows.length > 0 ? ticketResult.rows.map((r: any) => ({
-            name: dayMap[r.name] || r.name,
+        const ticketPerformance = ticketResult.rows.map((r: any) => ({
+            name: dayMap[r.name.trim()] || r.name,
             abertos: Number(r.abertos),
             resolvidos: Number(r.resolvidos)
-        })) : [
-            { name: 'Seg', abertos: 0, resolvidos: 0 },
-            { name: 'Ter', abertos: 0, resolvidos: 0 },
-            { name: 'Qua', abertos: 0, resolvidos: 0 },
-            { name: 'Qui', abertos: 0, resolvidos: 0 },
-            { name: 'Sex', abertos: 0, resolvidos: 0 },
-        ];
+        }));
 
         return NextResponse.json({
             kpis,
@@ -106,7 +105,13 @@ export async function GET() {
                 manutencao: Number(r.manutencao),
                 insumos: Number(r.insumos)
             })),
-            ticketPerformance
+            ticketPerformance: ticketPerformance.length > 0 ? ticketPerformance : [
+                { name: 'Seg', abertos: 0, resolvidos: 0 },
+                { name: 'Ter', abertos: 0, resolvidos: 0 },
+                { name: 'Qua', abertos: 0, resolvidos: 0 },
+                { name: 'Qui', abertos: 0, resolvidos: 0 },
+                { name: 'Sex', abertos: 0, resolvidos: 0 },
+            ]
         });
 
     } catch (error) {

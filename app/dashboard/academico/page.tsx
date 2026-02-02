@@ -79,7 +79,7 @@ export default function AcademicoPage() {
                                 <p className="text-sm font-medium text-gray-500">Média Global</p>
                                 <h3 className="text-3xl font-bold text-gray-900 mt-2">{kpis.mediaGlobal}</h3>
                             </div>
-                            <span className="bg-blue-50 text-blue-600 text-xs px-2 py-1 rounded-full font-bold">+0.2%</span>
+                            <span className="bg-blue-50 text-blue-600 text-xs px-2 py-1 rounded-full font-bold">{kpis.mediaGlobalGrowth}</span>
                         </div>
                         <div className="mt-4 w-full bg-gray-100 h-1.5 rounded-full overflow-hidden">
                             <div className="bg-blue-600 h-full transition-all duration-1000" style={{ width: `${kpis.mediaGlobal * 10}%` }}></div>
@@ -95,7 +95,7 @@ export default function AcademicoPage() {
                                 <p className="text-sm font-medium text-gray-500">Taxa de Aprovação</p>
                                 <h3 className="text-3xl font-bold text-gray-900 mt-2">{kpis.approvalRate}%</h3>
                             </div>
-                            <span className="bg-emerald-50 text-emerald-600 text-xs px-2 py-1 rounded-full font-bold">+1.5%</span>
+                            <span className="bg-emerald-50 text-emerald-600 text-xs px-2 py-1 rounded-full font-bold">{kpis.approvalRateGrowth}</span>
                         </div>
                         <div className="mt-4 w-full bg-gray-100 h-1.5 rounded-full overflow-hidden">
                             <div className="bg-emerald-500 h-full transition-all duration-1000" style={{ width: `${kpis.approvalRate}%` }}></div>
@@ -237,7 +237,7 @@ export default function AcademicoPage() {
                         <div className="flex items-center gap-2">
                             <span className="flex items-center text-xs font-bold text-green-600 bg-green-50 px-2 py-1 rounded-full">
                                 <TrendingUp className="w-3 h-3 mr-1" />
-                                +8.2%
+                                {kpis.mediaGlobalGrowth}
                             </span>
                         </div>
                     </div>

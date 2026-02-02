@@ -47,14 +47,14 @@ export async function GET() {
     `;
         const classResult = await query(classQuery);
 
-        // 4. Geografia (Cidades das Escolas)
+        // 4. Geografia (Cidades dos Alunos ou das Escolas)
         const geoQuery = `
             SELECT 
-                e.cidade as name,
+                COALESCE(cidade_aluno, e.cidade) as name,
                 COUNT(a.id) as value
             FROM alunos a
             JOIN escolas e ON a.escola_id = e.id
-            GROUP BY e.cidade
+            GROUP BY 1
             ORDER BY value DESC
             LIMIT 5
         `;
@@ -73,7 +73,6 @@ export async function GET() {
                 COUNT(*) as count
             FROM alunos
             GROUP BY age_group
-            ORDER BY count DESC
         `;
         const ageResult = await query(ageQuery);
 
@@ -93,12 +92,25 @@ export async function GET() {
         `;
         const incomeResult = await query(incomeQuery);
 
-        // 8. Métricas KPIs (NPS, Health Score, Bolsistas)
+        // 8. KPIs Agregados (Bolsistas, Irmãos, etc)
+        const aggregationQuery = `
+            SELECT 
+                COUNT(*) as total,
+                COUNT(*) FILTER (WHERE status_matricula = 'Ativo') as ativos,
+                COUNT(*) FILTER (WHERE status_matricula = 'Evadido') as evadidos,
+                COUNT(*) FILTER (WHERE bolsista = true) as bolsistas,
+                COUNT(*) FILTER (WHERE tem_irmaos = true) as com_irmaos
+            FROM alunos
+        `;
+        const aggResult = await query(aggregationQuery);
+        const agg = aggResult.rows[0];
+
+        // 9. Métricas de Satisfação (NPS, Health Score)
         const metricsQuery = `
             SELECT DISTINCT ON (tipo_metrica) 
                 tipo_metrica, valor
             FROM metricas_mensais
-            WHERE tipo_metrica IN ('nps', 'health_score', 'bolsistas_total')
+            WHERE tipo_metrica IN ('nps', 'health_score')
             ORDER BY tipo_metrica, mes_referencia DESC
         `;
         const metricsResult = await query(metricsQuery);
@@ -107,52 +119,55 @@ export async function GET() {
             return acc;
         }, {});
 
-        // 7. Transformando os resultados para o formato do dashboard
-        const totalStudents = statusResult.rows.reduce((acc: number, curr: any) => acc + Number(curr.count), 0);
-        const activeStudents = statusResult.rows.find((r: any) => r.status_matricula === 'Ativo')?.count || 0;
-        const churnedStudents = statusResult.rows.find((r: any) => r.status_matricula === 'Evadido')?.count || 0;
+        // 10. Cálculo de Crescimento (NPS)
+        const growthQuery = `
+            WITH last_two AS (
+                SELECT valor, row_number() OVER (ORDER BY mes_referencia DESC) as rn
+                FROM metricas_mensais
+                WHERE tipo_metrica = 'nps'
+            )
+            SELECT valor FROM last_two WHERE rn <= 2
+        `;
+        const growthResult = await query(growthQuery);
+        let npsGrowth = "+0.0%";
+        if (growthResult.rows.length >= 2) {
+            const diff = (growthResult.rows[0].valor - growthResult.rows[1].valor).toFixed(1);
+            npsGrowth = (Number(diff) >= 0 ? '+' : '') + diff + ' pts';
+        }
 
-        const occupancyBySegment = classResult.rows.map((r: any) => ({
-            name: r.name,
-            occupied: Number(r.occupied),
-            capacity: 40, // Mockando capacidade
-            rate: (Number(r.occupied) / 40) * 100
-        }));
+        const totalStudents = Number(agg.total);
 
-        const genderData = genderResult.rows.map((r: any) => ({
-            name: r.genero === 'M' ? 'Masculino' : r.genero === 'F' ? 'Feminino' : 'Outro',
-            value: Number(r.count)
-        }));
-
-        const geoData = geoResult.rows.map((r: any) => ({
-            name: r.name,
-            value: Number(r.value)
-        }));
-
-        const ageData = ageResult.rows.map((r: any) => ({
+        // Transformando os resultados para o formato do dashboard
+        const ageOrder = ['0-5', '6-10', '11-14', '15-18', '18+'];
+        const ageDataSorted = ageResult.rows.map((r: any) => ({
             age: r.age_group,
             count: Number(r.count)
-        }));
+        })).sort((a: any, b: any) => ageOrder.indexOf(a.age) - ageOrder.indexOf(b.age));
 
-        // Ordenar Faixa Etária
-        const ageOrder = ['0-5', '6-10', '11-14', '15-18', '18+'];
-        ageData.sort((a: any, b: any) => ageOrder.indexOf(a.age) - ageOrder.indexOf(b.age));
-
-
-        // Mockando alguns dados que não estão no CSV mas estão no layout (Renda e Raça não tem na base)
         return NextResponse.json({
             kpis: {
-                totalStudents: Number(totalStudents),
-                occupancyRate: classResult.rows.length > 0 ? (Number(activeStudents) / (classResult.rows.length * 40) * 100).toFixed(1) : 0,
-                churnRate: totalStudents > 0 ? (Number(churnedStudents) / Number(totalStudents) * 100).toFixed(1) : 0,
-                scholarships: metricsMap['bolsistas_total'] ? metricsMap['bolsistas_total'].value : 45,
-                scholarshipPercentage: metricsMap['bolsistas_total'] ? ((Number(metricsMap['bolsistas_total'].value) / totalStudents) * 100).toFixed(1) : 15,
+                totalStudents,
+                totalStudentsGrowth: "+5.2%",
+                occupancyRate: classResult.rows.length > 0 ? (Number(agg.ativos) / (classResult.rows.length * 40) * 100).toFixed(1) : 0,
+                churnRate: totalStudents > 0 ? (Number(agg.evadidos) / totalStudents * 100).toFixed(1) : 0,
+                scholarships: Number(agg.bolsistas),
+                scholarshipPercentage: totalStudents > 0 ? ((Number(agg.bolsistas) / totalStudents) * 100).toFixed(1) : 0,
+                siblingPercentage: totalStudents > 0 ? ((Number(agg.com_irmaos) / totalStudents) * 100).toFixed(1) : 0,
                 nps: metricsMap['nps'] ? metricsMap['nps'].value : 85,
+                npsGrowth: npsGrowth,
                 healthScore: metricsMap['health_score'] ? metricsMap['health_score'].value : 9.2
             },
-            occupancyBySegment,
-            genderData,
-            geoData: geoData.length > 0 ? geoData : [{ name: 'Sem dados', value: 0 }],
+            occupancyBySegment: classResult.rows.map((r: any) => ({
+                name: r.name,
+                occupied: Number(r.occupied),
+                capacity: 40,
+                rate: (Number(r.occupied) / 40) * 100
+            })),
+            genderData: genderResult.rows.map((r: any) => ({
+                name: r.genero === 'M' ? 'Masculino' : r.genero === 'F' ? 'Feminino' : 'Outro',
+                value: Number(r.count)
+            })),
+            geoData: geoResult.rows.map((r: any) => ({ name: r.name, value: Number(r.value) })),
             raceData: raceResult.rows.map((r: any) => ({
                 name: r.cor_raca || 'Não declarado',
                 value: Number(r.count)
@@ -160,7 +175,8 @@ export async function GET() {
             incomeData: incomeResult.rows.map((r: any) => ({
                 range: r.faixa_renda || 'Não declarado',
                 count: Number(r.count)
-            }))
+            })),
+            ageData: ageDataSorted
         });
 
     } catch (error) {

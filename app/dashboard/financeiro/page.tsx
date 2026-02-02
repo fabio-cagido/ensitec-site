@@ -80,7 +80,7 @@ export default function FinancialDashboard() {
                         </div>
                         <span className="flex items-center text-xs font-bold text-green-600 bg-green-50 px-2 py-1 rounded-full">
                             <ArrowUpRight className="w-3 h-3 mr-1" />
-                            +12.5%
+                            {kpis.receitaTotalGrowth}
                         </span>
                     </div>
                     <span className="text-sm font-medium text-gray-500">Receita Total</span>
@@ -97,7 +97,7 @@ export default function FinancialDashboard() {
                         </div>
                         <span className="flex items-center text-xs font-bold text-green-600 bg-green-50 px-2 py-1 rounded-full">
                             <ArrowUpRight className="w-3 h-3 mr-1" />
-                            +4.2%
+                            {kpis.receitaRecebidaGrowth}
                         </span>
                     </div>
                     <span className="text-sm font-medium text-gray-500">Receita Recebida</span>
@@ -127,7 +127,7 @@ export default function FinancialDashboard() {
                         </div>
                         <span className="flex items-center text-xs font-bold text-green-600 bg-green-50 px-2 py-1 rounded-full">
                             <ArrowDownRight className="w-3 h-3 mr-1" />
-                            -2.5%
+                            {kpis.inadimplenciaGrowth}
                         </span>
                     </div>
                     <span className="text-sm font-medium text-gray-500">Inadimplência</span>

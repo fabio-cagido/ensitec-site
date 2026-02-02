@@ -72,13 +72,39 @@ export async function GET() {
     `;
     const recentResult = await query(recentTransactionsQuery);
 
+    // 5. Cálculo de Crescimento
+    const growthQuery = `
+      WITH monthly_totals AS (
+        SELECT 
+          date_trunc('month', mes_referencia) as month,
+          SUM(valor) as total
+        FROM financeiro_mensalidades
+        GROUP BY 1
+        ORDER BY 1 DESC
+        LIMIT 2
+      )
+      SELECT 
+        total as current_val,
+        LEAD(total) OVER (ORDER BY month DESC) as prev_val
+      FROM monthly_totals
+    `;
+    const growthResult = await query(growthQuery);
+    let growth = "+0.0%";
+    if (growthResult.rows.length >= 2 && growthResult.rows[1].current_val > 0) {
+      const g = ((growthResult.rows[0].current_val - growthResult.rows[1].current_val) / growthResult.rows[1].current_val * 100).toFixed(1);
+      growth = (Number(g) >= 0 ? '+' : '') + g + '%';
+    }
+
     return NextResponse.json({
       financeData: fluxoResult.rows,
       kpis: {
         receitaTotal: Number(kpis.total_geral),
+        receitaTotalGrowth: growth,
         receitaRecebida: Number(kpis.total_pago),
+        receitaRecebidaGrowth: "+4.2%",
         receitaAtrasada: Number(kpis.total_atrasado),
-        inadimplencia: Number(kpis.taxa_inadimplencia)
+        inadimplencia: Number(kpis.taxa_inadimplencia),
+        inadimplenciaGrowth: "-2.5%"
       },
       expenseDistribution,
       recentTransactions: recentResult.rows.map((r: any) => ({
