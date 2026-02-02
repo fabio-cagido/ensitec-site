@@ -1,12 +1,27 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { ArrowLeft, TrendingUp, Calculator, Users, Loader2, MessageSquare, BarChart2, MapPin, ChevronDown, Trophy, Building2 } from "lucide-react";
+import { ArrowLeft, TrendingUp, Calculator, Users, Loader2, MessageSquare, BarChart2, MapPin, ChevronDown, Trophy, Building2, School } from "lucide-react";
 import Link from "next/link";
 import {
     BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Cell,
-    RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar
+    RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar, Legend, LabelList
 } from 'recharts';
+
+// --- MOCK DADOS DA ESCOLA (BENCHMARK) ---
+const SCHOOL_DATA = {
+    nome: "Colégio Modelo",
+    medias: {
+        matematica: 468, // Reduzido ~20% (era 585)
+        linguagens: 448, // Reduzido ~20% (era 560)
+        humanas: 456,    // Reduzido ~20% (era 570)
+        natureza: 440,   // Reduzido ~20% (era 550)
+        redacao: 576,    // Reduzido ~20% (era 720)
+        geral: 477       // Média ajustada
+    },
+    total_participantes: 85
+};
+// ----------------------------------------
 
 interface EnemStats {
     total: number;
@@ -45,7 +60,7 @@ interface EstadoDetail {
     topCidades: CidadeData[];
 }
 
-const COLORS = ['#6366f1', '#8b5cf6', '#a855f7', '#d946ef', '#ec4899'];
+const COLORS = ['#6366f1', '#10b981']; // Nacional (Indigo), Escola (Verde)
 const BAR_COLORS = [
     '#6366f1', '#7c3aed', '#8b5cf6', '#a855f7', '#c026d3',
     '#d946ef', '#e879f9', '#ec4899', '#f43f5e', '#fb7185',
@@ -64,6 +79,41 @@ const UF_NAMES: Record<string, string> = {
     'RS': 'Rio Grande do Sul', 'RO': 'Rondônia', 'RR': 'Roraima', 'SC': 'Santa Catarina',
     'SP': 'São Paulo', 'SE': 'Sergipe', 'TO': 'Tocantins'
 };
+
+// COMPONENTE CUSTOMIZADO PARA O RÓTULO (ÍCONE)
+const CustomBarLabel = (props: any) => {
+    const { x, y, width, value } = props;
+
+    // O 'value' vem do dataKey="uf" do LabelList
+    if (value === 'COL. MODELO') {
+        return (
+            <g>
+                <School
+                    x={x + width / 2 - 12}
+                    y={y - 35} // Subimos um pouco mais para garantir que não sobreponha
+                    width={24}
+                    height={24}
+                    color="#4f46e5"
+                    fill="white" // Preenchimento branco para destacar sobre as linhas de grade se houver
+                    strokeWidth={2}
+                />
+                <text
+                    x={x + width / 2}
+                    y={y - 10}
+                    fill="#4f46e5"
+                    textAnchor="middle"
+                    fontSize={11}
+                    fontWeight="bold"
+                >
+                    Você
+                </text>
+            </g>
+        );
+    }
+    return null;
+};
+
+// ----------------------------------------
 
 export default function EnemPage() {
     const [loading, setLoading] = useState(true);
@@ -136,15 +186,50 @@ export default function EnemPage() {
     }
 
     const radarData = [
-        { subject: 'Matemática', value: stats.medias.matematica, fullMark: 1000 },
-        { subject: 'Linguagens', value: stats.medias.linguagens, fullMark: 1000 },
-        { subject: 'Humanas', value: stats.medias.humanas, fullMark: 1000 },
-        { subject: 'Natureza', value: stats.medias.natureza, fullMark: 1000 },
-        { subject: 'Redação', value: stats.medias.redacao, fullMark: 1000 },
+        { subject: 'Matemática', value: stats.medias.matematica, school: SCHOOL_DATA.medias.matematica, fullMark: 1000 },
+        { subject: 'Linguagens', value: stats.medias.linguagens, school: SCHOOL_DATA.medias.linguagens, fullMark: 1000 },
+        { subject: 'Humanas', value: stats.medias.humanas, school: SCHOOL_DATA.medias.humanas, fullMark: 1000 },
+        { subject: 'Natureza', value: stats.medias.natureza, school: SCHOOL_DATA.medias.natureza, fullMark: 1000 },
+        { subject: 'Redação', value: stats.medias.redacao, school: SCHOOL_DATA.medias.redacao, fullMark: 1000 },
     ];
+
+    // Combinar dados da escola nos gráficos de área
+    const areaDataComparison = stats.areas.map(a => {
+        let schoolVal = 0;
+        if (a.sigla === 'MT') schoolVal = SCHOOL_DATA.medias.matematica;
+        if (a.sigla === 'CH') schoolVal = SCHOOL_DATA.medias.humanas;
+        if (a.sigla === 'CN') schoolVal = SCHOOL_DATA.medias.natureza;
+        if (a.sigla === 'LC') schoolVal = SCHOOL_DATA.medias.linguagens;
+        if (a.sigla === 'RED') schoolVal = SCHOOL_DATA.medias.redacao;
+        return {
+            ...a,
+            escola: schoolVal
+        };
+    });
+
+    // Injetar escola no gráfico de estados e ORDENAR por nota (descrescente)
+    const stateChartData = [
+        { uf: 'COL. MODELO', media_mt: SCHOOL_DATA.medias.matematica, isSchool: true },
+        ...stats.estados
+    ].sort((a, b) => b.media_mt - a.media_mt);
+
+    // Calcula média nacional geral
+    const mediaGeralNacional = Math.round((stats.medias.matematica + stats.medias.linguagens + stats.medias.humanas + stats.medias.natureza + stats.medias.redacao) / 5);
 
     return (
         <div className="space-y-8 pb-10">
+            {/* INJEÇÃO DE ESTILO PARA ANIMAÇÃO DA BARRA */}
+            <style jsx global>{`
+                @keyframes blinkBlue {
+                    0% { fill: #4f46e5; }
+                    50% { fill: #c7d2fe; } /* Azul bem claro (quase branco) */
+                    100% { fill: #4f46e5; }
+                }
+                .school-bar-anim {
+                    animation: blinkBlue 1.5s infinite ease-in-out;
+                }
+            `}</style>
+
             {/* Cabeçalho */}
             <div className="flex items-center gap-4">
                 <Link href="/dashboard" className="p-2 hover:bg-gray-100 rounded-lg transition-colors">
@@ -152,52 +237,66 @@ export default function EnemPage() {
                 </Link>
                 <div>
                     <h1 className="text-3xl font-bold tracking-tight text-gray-900">ENEM 2024</h1>
-                    <p className="text-gray-500">Panorama Nacional ({stats.total.toLocaleString('pt-BR')} participantes)</p>
+                    <p className="text-gray-500">Panorama Nacional e Comparativo Escolar</p>
                 </div>
             </div>
 
-            {/* KPIs Principais */}
+            {/* KPIs Principais - VOLTA AO LAYOUT MACRO */}
             <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+                {/* Card 1: Total Inscritos Nacional */}
                 <div className="bg-gradient-to-br from-indigo-500 to-indigo-700 p-6 rounded-3xl shadow-lg text-white">
                     <div className="flex items-center gap-3 mb-3">
                         <div className="p-2 bg-white/20 rounded-xl"><Users className="w-6 h-6" /></div>
-                        <p className="text-indigo-100 text-sm font-medium">Total de Participantes</p>
+                        <p className="text-indigo-100 text-sm font-medium">Inscritos Totais (Brasil)</p>
                     </div>
                     <h2 className="text-3xl font-bold">{stats.total.toLocaleString('pt-BR')}</h2>
-                    <p className="text-xs text-indigo-200 mt-2">Dados agregados por região</p>
+                    <div className="mt-4 pt-4 border-t border-white/20 flex justify-between items-center text-sm">
+                        <span className="text-indigo-200">Colégio Modelo</span>
+                        <span className="font-bold bg-white/20 px-2 py-1 rounded">{SCHOOL_DATA.total_participantes} Alunos</span>
+                    </div>
                 </div>
 
+                {/* Card 2: Matemática Nacional */}
                 <div className="bg-white p-6 rounded-3xl shadow-sm border border-gray-100">
                     <div className="flex items-center gap-3 mb-2">
                         <div className="p-2 bg-purple-50 rounded-lg"><Calculator className="w-5 h-5 text-purple-600" /></div>
-                        <p className="text-sm font-medium text-gray-500">Matemática</p>
+                        <p className="text-sm font-medium text-gray-500">Média Brasil (Mat)</p>
                     </div>
                     <h3 className="text-3xl font-bold text-gray-900">{stats.medias.matematica}</h3>
-                    <p className="text-xs text-gray-400 mt-1">Média Nacional</p>
+                    <div className="flex items-center gap-2 mt-3 p-2 bg-gray-50 rounded-lg border border-gray-100">
+                        <School className="w-3 h-3 text-purple-600" />
+                        <span className="text-xs text-gray-500">Colégio Modelo: <strong className="text-purple-700">{SCHOOL_DATA.medias.matematica}</strong></span>
+                    </div>
                 </div>
 
+                {/* Card 3: Redação Nacional */}
                 <div className="bg-white p-6 rounded-3xl shadow-sm border border-gray-100">
                     <div className="flex items-center gap-3 mb-2">
                         <div className="p-2 bg-pink-50 rounded-lg"><MessageSquare className="w-5 h-5 text-pink-600" /></div>
-                        <p className="text-sm font-medium text-gray-500">Redação</p>
+                        <p className="text-sm font-medium text-gray-500">Média Brasil (Red)</p>
                     </div>
                     <h3 className="text-3xl font-bold text-gray-900">{stats.medias.redacao}</h3>
-                    <p className="text-xs text-gray-400 mt-1">Média Nacional</p>
+                    <div className="flex items-center gap-2 mt-3 p-2 bg-gray-50 rounded-lg border border-gray-100">
+                        <School className="w-3 h-3 text-pink-600" />
+                        <span className="text-xs text-gray-500">Colégio Modelo: <strong className="text-pink-700">{SCHOOL_DATA.medias.redacao}</strong></span>
+                    </div>
                 </div>
 
+                {/* Card 4: Média Geral Nacional */}
                 <div className="bg-white p-6 rounded-3xl shadow-sm border border-gray-100">
                     <div className="flex items-center gap-3 mb-2">
                         <div className="p-2 bg-green-50 rounded-lg"><TrendingUp className="w-5 h-5 text-green-600" /></div>
-                        <p className="text-sm font-medium text-gray-500">Média Geral</p>
+                        <p className="text-sm font-medium text-gray-500">Média Geral (BR)</p>
                     </div>
-                    <h3 className="text-3xl font-bold text-gray-900">
-                        {Math.round((stats.medias.matematica + stats.medias.linguagens + stats.medias.humanas + stats.medias.natureza + stats.medias.redacao) / 5)}
-                    </h3>
-                    <p className="text-xs text-gray-400 mt-1">Considerando 5 áreas</p>
+                    <h3 className="text-3xl font-bold text-gray-900">{mediaGeralNacional}</h3>
+                    <div className="flex items-center gap-2 mt-3 p-2 bg-gray-50 rounded-lg border border-gray-100">
+                        <School className="w-3 h-3 text-green-600" />
+                        <span className="text-xs text-gray-500">Colégio Modelo: <strong className="text-green-700">{SCHOOL_DATA.medias.geral}</strong></span>
+                    </div>
                 </div>
             </div>
 
-            {/* Gráfico de Barras por Estado */}
+            {/* Gráfico de Barras por Estado + Escola */}
             <div className="bg-white p-6 rounded-3xl shadow-sm border border-gray-100">
                 <div className="flex items-center justify-between mb-6">
                     <h3 className="font-bold text-gray-900 text-lg flex items-center gap-2">
@@ -210,19 +309,22 @@ export default function EnemPage() {
                 </div>
                 <div className="h-96 w-full">
                     <ResponsiveContainer width="100%" height="100%">
-                        <BarChart data={stats.estados} margin={{ top: 20, right: 30, left: 20, bottom: 60 }}>
+                        <BarChart data={stateChartData} margin={{ top: 30, right: 30, left: 20, bottom: 60 }}>
                             <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#f3f4f6" />
                             <XAxis
                                 dataKey="uf"
-                                tick={{ fontSize: 11, fill: '#6b7280' }}
+                                tick={({ x, y, payload }) => (
+                                    <text x={x} y={y} dy={16} textAnchor="end" transform={`rotate(-45, ${x}, ${y})`} fill={payload.value === 'COL. MODELO' ? '#4f46e5' : '#6b7280'} fontWeight={payload.value === 'COL. MODELO' ? 'bold' : 'normal'} fontSize={11}>
+                                        {payload.value}
+                                    </text>
+                                )}
                                 axisLine={false}
                                 tickLine={false}
-                                angle={-45}
-                                textAnchor="end"
                                 height={60}
                             />
+                            {/* Ajuste do Eixo Y para 'auto' ou range dinâmico para evitar achatamento */}
                             <YAxis
-                                domain={[400, 600]}
+                                domain={[350, 'auto']} // Começa em 350 para amplificar as diferenças
                                 axisLine={false}
                                 tickLine={false}
                                 tick={{ fontSize: 11, fill: '#6b7280' }}
@@ -234,13 +336,19 @@ export default function EnemPage() {
                                     boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)',
                                     padding: '12px'
                                 }}
-                                formatter={(value: any) => [`${value} pts`, 'Média MT']}
+                                formatter={(value: any, name: any, props: any) => [`${value} pts`, props.payload.uf === 'COL. MODELO' ? 'Sua Escola' : 'Média Estado']}
                                 labelFormatter={(label) => UF_NAMES[label] || label}
                             />
                             <Bar dataKey="media_mt" radius={[6, 6, 0, 0]} animationDuration={1500}>
-                                {stats.estados?.map((_, index) => (
-                                    <Cell key={`cell-${index}`} fill={BAR_COLORS[index % BAR_COLORS.length]} />
+                                {stateChartData.map((entry: any, index: number) => (
+                                    <Cell
+                                        key={`cell-${index}`}
+                                        fill={entry.isSchool ? '#4f46e5' : BAR_COLORS[index % BAR_COLORS.length]}
+                                        className={entry.isSchool ? 'school-bar-anim' : ''}
+                                    />
                                 ))}
+                                {/* LabelList customizada: passamos o array de dados para o componente saber quem é quem */}
+                                <LabelList dataKey="uf" content={(props: any) => <CustomBarLabel {...props} chartData={stateChartData} />} />
                             </Bar>
                         </BarChart>
                     </ResponsiveContainer>
@@ -313,7 +421,7 @@ export default function EnemPage() {
                             </div>
                         )}
 
-                        {/* Top 10 Cidades */}
+                        {/* Top 10 Cidades + ESCOLA FIXA */}
                         <div>
                             <h4 className="text-white font-semibold mb-4 flex items-center gap-2">
                                 <Trophy className="w-4 h-4 text-amber-400" />
@@ -324,7 +432,7 @@ export default function EnemPage() {
                                     <thead>
                                         <tr className="text-left text-white/60 border-b border-white/10">
                                             <th className="pb-3 pl-4">#</th>
-                                            <th className="pb-3">Cidade</th>
+                                            <th className="pb-3">Localidade</th>
                                             <th className="pb-3 text-center">MT</th>
                                             <th className="pb-3 text-center">Redação</th>
                                             <th className="pb-3 text-center">LC</th>
@@ -334,6 +442,20 @@ export default function EnemPage() {
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        {/* LINHA DA ESCOLA (FIXA) */}
+                                        <tr className="bg-indigo-500/20 border-b border-indigo-500/30">
+                                            <td className="py-3 pl-4">
+                                                <School className="w-5 h-5 text-indigo-400" />
+                                            </td>
+                                            <td className="py-3 text-white font-bold text-indigo-300">{SCHOOL_DATA.nome} <span className="text-xs font-normal opacity-70">(Você)</span></td>
+                                            <td className="py-3 text-center font-bold text-white">{SCHOOL_DATA.medias.matematica}</td>
+                                            <td className="py-3 text-center font-bold text-white">{SCHOOL_DATA.medias.redacao}</td>
+                                            <td className="py-3 text-center font-bold text-white">{SCHOOL_DATA.medias.linguagens}</td>
+                                            <td className="py-3 text-center font-bold text-white">{SCHOOL_DATA.medias.humanas}</td>
+                                            <td className="py-3 text-center font-bold text-white">{SCHOOL_DATA.medias.natureza}</td>
+                                            <td className="py-3 text-right pr-4 font-bold text-white">{SCHOOL_DATA.total_participantes}</td>
+                                        </tr>
+
                                         {estadoDetail.topCidades.map((cidade, index) => (
                                             <tr
                                                 key={cidade.cidade}
@@ -350,7 +472,7 @@ export default function EnemPage() {
                                                 </td>
                                                 <td className="py-3 text-white font-medium">{cidade.cidade}</td>
                                                 <td className="py-3 text-center">
-                                                    <span className="bg-indigo-500/30 text-indigo-300 px-2 py-1 rounded-lg font-semibold">
+                                                    <span className="bg-white/10 text-white/80 px-2 py-1 rounded-lg">
                                                         {cidade.media_mt}
                                                     </span>
                                                 </td>
@@ -369,51 +491,58 @@ export default function EnemPage() {
                 )}
             </div>
 
-            {/* Gráficos de Área */}
+            {/* Gráficos de Área Compataivos */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                {/* Barras por Área */}
+                {/* Barras por Área (Agrupadas) */}
                 <div className="bg-white p-6 rounded-3xl shadow-sm border border-gray-100">
                     <h3 className="font-bold text-gray-900 text-lg mb-6 flex items-center gap-2">
                         <BarChart2 className="w-5 h-5 text-indigo-500" />
-                        Médias por Área do Conhecimento
+                        Benchmark por Área do Conhecimento
                     </h3>
                     <div className="h-80 w-full">
                         <ResponsiveContainer width="100%" height="100%">
-                            <BarChart data={stats.areas} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
+                            <BarChart data={areaDataComparison} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
                                 <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#f3f4f6" />
                                 <XAxis dataKey="sigla" tick={{ fontSize: 12 }} axisLine={false} tickLine={false} />
                                 <YAxis domain={[0, 1000]} axisLine={false} tickLine={false} />
                                 <Tooltip
                                     contentStyle={{ borderRadius: '12px', border: 'none', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)' }}
-                                    formatter={(value: any) => [`${value} pts`, 'Média']}
+                                    formatter={(value: any, name: number | string | undefined) => [`${value} pts`, name === 'media' ? 'Média Brasil' : 'Sua Escola']}
                                     labelFormatter={(label) => stats.areas.find(a => a.sigla === label)?.area || label}
                                 />
-                                <Bar dataKey="media" radius={[8, 8, 0, 0]} animationDuration={1500}>
-                                    {stats.areas.map((_, index) => (
-                                        <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-                                    ))}
-                                </Bar>
+                                <Legend wrapperStyle={{ paddingTop: '20px' }} />
+                                <Bar dataKey="media" name="Média Brasil" fill="#94a3b8" radius={[4, 4, 0, 0]} />
+                                <Bar dataKey="escola" name="Sua Escola" fill="#4f46e5" radius={[4, 4, 0, 0]} />
                             </BarChart>
                         </ResponsiveContainer>
                     </div>
                 </div>
 
-                {/* Radar */}
+                {/* Radar Comparativo */}
                 <div className="bg-white p-6 rounded-3xl shadow-sm border border-gray-100">
-                    <h3 className="font-bold text-gray-900 text-lg mb-6">Perfil de Desempenho Nacional</h3>
+                    <h3 className="font-bold text-gray-900 text-lg mb-6">Perfil: Escola vs Brasil</h3>
                     <div className="h-80 w-full">
                         <ResponsiveContainer width="100%" height="100%">
                             <RadarChart outerRadius={100} data={radarData}>
                                 <PolarGrid stroke="#e5e7eb" />
                                 <PolarAngleAxis dataKey="subject" tick={{ fill: '#6b7280', fontSize: 11 }} />
                                 <PolarRadiusAxis angle={30} domain={[0, 1000]} tick={false} axisLine={false} />
+
                                 <Radar
                                     name="Média Nacional"
                                     dataKey="value"
-                                    stroke="#6366f1"
-                                    fill="#6366f1"
-                                    fillOpacity={0.6}
+                                    stroke="#94a3b8"
+                                    fill="#94a3b8"
+                                    fillOpacity={0.3}
                                 />
+                                <Radar
+                                    name="Sua Escola"
+                                    dataKey="school"
+                                    stroke="#4f46e5"
+                                    fill="#4f46e5"
+                                    fillOpacity={0.5}
+                                />
+                                <Legend />
                                 <Tooltip formatter={(value: any) => [`${value} pts`, 'Média']} />
                             </RadarChart>
                         </ResponsiveContainer>

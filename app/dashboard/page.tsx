@@ -2,8 +2,9 @@
 import { useState, useEffect } from "react";
 import dynamic from "next/dynamic";
 import "leaflet/dist/leaflet.css";
-import Link from "next/link"; // Adicionar import Link
+import Link from "next/link";
 import PageHeader from "@/components/dashboard/PageHeader";
+import { Loader2 } from "lucide-react";
 
 // 1. Criamos um componente de carregamento simples
 const MapPlaceholder = () => (
@@ -14,7 +15,7 @@ const MapPlaceholder = () => (
 
 // 2. Importamos o mapa SEM tipagem complexa para não travar o build da Vercel
 const MapWithNoSSR = dynamic(
-  () => import("./map-component"), // Vamos criar este arquivo abaixo
+  () => import("./map-component"),
   {
     ssr: false,
     loading: () => <MapPlaceholder />
@@ -23,9 +24,30 @@ const MapWithNoSSR = dynamic(
 
 export default function DashboardPage() {
   const [isMounted, setIsMounted] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [data, setData] = useState<any>({
+    academico: { frequencia: '0.0', media: '0.0' },
+    financeiro: { margem: '0.0', execucao: '0%' },
+    clientes: { total: 0, bolsistas: 0 },
+    operacional: { chamados: 0, criticos: '0%' }
+  });
 
   useEffect(() => {
     setIsMounted(true);
+    async function fetchOverview() {
+      try {
+        const res = await fetch('/api/dashboard/overview');
+        if (res.ok) {
+          const json = await res.json();
+          setData(json);
+        }
+      } catch (error) {
+        console.error("Failed to fetch overview data", error);
+      } finally {
+        setLoading(false);
+      }
+    }
+    fetchOverview();
   }, []);
 
   return (
@@ -39,45 +61,70 @@ export default function DashboardPage() {
       {/* INDICADORES (Cards) */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 mb-10">
         {/* Card Acadêmico */}
-        <div className="bg-white p-5 rounded-2xl shadow-sm border border-gray-100 border-t-4 border-t-blue-500">
-          <span className="text-xs font-bold text-gray-400 uppercase">Acadêmico</span>
-          <div className="text-3xl font-bold mt-2 text-gray-900">94.2%</div>
-          <p className="text-xs text-blue-500 font-medium mb-1">Frequência Geral</p> {/* Legenda Adicionada */}
-          <div className="mt-4 pt-4 border-t border-gray-50 text-[11px]">
-            <div className="flex justify-between mb-1 text-gray-500"><span>Média Gl.</span><span className="text-blue-600 font-bold">7.8</span></div>
-            <div className="w-full bg-gray-100 h-1.5 rounded-full overflow-hidden"><div className="bg-blue-500 h-full w-[78%]"></div></div>
+        <Link href="/dashboard/academico" className="block transition-transform hover:scale-105">
+          <div className="bg-white p-5 rounded-2xl shadow-sm border border-gray-100 border-t-4 border-t-blue-500 h-full">
+            <span className="text-xs font-bold text-gray-400 uppercase">Acadêmico</span>
+            <div className="text-3xl font-bold mt-2 text-gray-900">
+              {loading ? <Loader2 className="w-6 h-6 animate-spin text-blue-500" /> : `${data.academico.frequencia}%`}
+            </div>
+            <p className="text-xs text-blue-500 font-medium mb-1">Frequência Geral</p>
+            <div className="mt-4 pt-4 border-t border-gray-50 text-[11px]">
+              <div className="flex justify-between mb-1 text-gray-500"><span>Média Gl.</span><span className="text-blue-600 font-bold">{data.academico.media}</span></div>
+              <div className="w-full bg-gray-100 h-1.5 rounded-full overflow-hidden">
+                <div className="bg-blue-500 h-full transition-all duration-1000" style={{ width: `${parseFloat(data.academico.frequencia)}%` }}></div>
+              </div>
+            </div>
           </div>
-        </div>
+        </Link>
+
         {/* Card Financeiro */}
-        <div className="bg-white p-5 rounded-2xl shadow-sm border border-gray-100 border-t-4 border-t-emerald-500">
-          <span className="text-xs font-bold text-gray-400 uppercase">Financeiro</span>
-          <div className="text-3xl font-bold mt-2 text-gray-900">12.5%</div>
-          <p className="text-xs text-emerald-500 font-medium mb-1">Margem Líquida</p> {/* Legenda Adicionada */}
-          <div className="mt-4 pt-4 border-t border-gray-50 text-[11px]">
-            <div className="flex justify-between mb-1 text-gray-500"><span>Execução</span><span className="text-emerald-600 font-bold">64%</span></div>
-            <div className="w-full bg-gray-100 h-1.5 rounded-full overflow-hidden"><div className="bg-emerald-500 h-full w-[64%]"></div></div>
+        <Link href="/dashboard/financeiro" className="block transition-transform hover:scale-105">
+          <div className="bg-white p-5 rounded-2xl shadow-sm border border-gray-100 border-t-4 border-t-emerald-500 h-full">
+            <span className="text-xs font-bold text-gray-400 uppercase">Financeiro</span>
+            <div className="text-3xl font-bold mt-2 text-gray-900">
+              {loading ? <Loader2 className="w-6 h-6 animate-spin text-emerald-500" /> : `${data.financeiro.margem}%`}
+            </div>
+            <p className="text-xs text-emerald-500 font-medium mb-1">Margem Líquida</p>
+            <div className="mt-4 pt-4 border-t border-gray-50 text-[11px]">
+              <div className="flex justify-between mb-1 text-gray-500"><span>Saúde Fin.</span><span className="text-emerald-600 font-bold">Positiva</span></div>
+              <div className="w-full bg-gray-100 h-1.5 rounded-full overflow-hidden">
+                <div className="bg-emerald-500 h-full transition-all duration-1000" style={{ width: '70%' }}></div>
+              </div>
+            </div>
           </div>
-        </div>
+        </Link>
+
         {/* Card Clientes */}
-        <div className="bg-white p-5 rounded-2xl shadow-sm border border-gray-100 border-t-4 border-t-orange-500">
-          <span className="text-xs font-bold text-gray-400 uppercase">Clientes</span>
-          <div className="text-3xl font-bold mt-2 text-gray-900">450</div>
-          <p className="text-xs text-orange-500 font-medium mb-1">Total de Alunos</p> {/* Legenda Adicionada */}
-          <div className="mt-4 pt-4 border-t border-gray-50 text-[11px]">
-            <div className="flex justify-between mb-1 text-gray-500"><span>Bolsistas</span><span className="text-orange-600 font-bold">18%</span></div>
-            <div className="w-full bg-gray-100 h-1.5 rounded-full overflow-hidden"><div className="bg-orange-500 h-full w-[18%]"></div></div>
+        <Link href="/dashboard/clientes" className="block transition-transform hover:scale-105">
+          <div className="bg-white p-5 rounded-2xl shadow-sm border border-gray-100 border-t-4 border-t-orange-500 h-full">
+            <span className="text-xs font-bold text-gray-400 uppercase">Clientes</span>
+            <div className="text-3xl font-bold mt-2 text-gray-900">
+              {loading ? <Loader2 className="w-6 h-6 animate-spin text-orange-500" /> : data.clientes.total}
+            </div>
+            <p className="text-xs text-orange-500 font-medium mb-1">Total de Alunos</p>
+            <div className="mt-4 pt-4 border-t border-gray-50 text-[11px]">
+              <div className="flex justify-between mb-1 text-gray-500"><span>Ativos</span><span className="text-orange-600 font-bold">100%</span></div>
+              <div className="w-full bg-gray-100 h-1.5 rounded-full overflow-hidden"><div className="bg-orange-500 h-full w-[100%]"></div></div>
+            </div>
           </div>
-        </div>
+        </Link>
+
         {/* Card Operacional */}
-        <div className="bg-white p-5 rounded-2xl shadow-sm border border-gray-100 border-t-4 border-t-purple-500">
-          <span className="text-xs font-bold text-gray-400 uppercase">Operacional</span>
-          <div className="text-3xl font-bold mt-2 text-gray-900">24</div>
-          <p className="text-xs text-purple-500 font-medium mb-1">Chamados Abertos</p> {/* Legenda Adicionada */}
-          <div className="mt-4 pt-4 border-t border-gray-50 flex items-center gap-2">
-            <div className="flex-1 bg-gray-100 h-1.5 rounded-full overflow-hidden"><div className="bg-purple-500 h-full w-[40%]"></div></div>
-            <span className="text-[10px] font-bold text-purple-600">40% CRÍTICOS</span>
+        <Link href="/dashboard/operacional" className="block transition-transform hover:scale-105">
+          <div className="bg-white p-5 rounded-2xl shadow-sm border border-gray-100 border-t-4 border-t-purple-500 h-full">
+            <span className="text-xs font-bold text-gray-400 uppercase">Operacional</span>
+            <div className="text-3xl font-bold mt-2 text-gray-900">
+              {loading ? <Loader2 className="w-6 h-6 animate-spin text-purple-500" /> : data.operacional.chamados}
+            </div>
+            <p className="text-xs text-purple-500 font-medium mb-1">Chamados Abertos</p>
+            <div className="mt-4 pt-4 border-t border-gray-50 flex items-center gap-2">
+              <div className="flex-1 bg-gray-100 h-1.5 rounded-full overflow-hidden">
+                <div className="bg-purple-500 h-full" style={{ width: '40%' }}></div>
+              </div>
+              <span className="text-[10px] font-bold text-purple-600">FILA ATIVA</span>
+            </div>
           </div>
-        </div>
+        </Link>
 
 
         {/* Card ENEM (Novo) */}
