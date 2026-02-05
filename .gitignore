@@ -18,3 +18,13 @@ build/
 .DS_Store
 Thumbs.db
 .vercel
+
+# Test/Diagnostic Scripts
+check_*.ts
+check_*.js
+verify_*.ts
+verify_*.js
+test_*.ts
+test_*.js
+test_schema.*
+
