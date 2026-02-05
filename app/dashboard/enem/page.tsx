@@ -32,7 +32,14 @@ interface EnemStats {
         natureza: number;
         redacao: number;
     };
-    areas: Array<{ area: string; sigla: string; media: number }>;
+    counts: {
+        matematica: number;
+        linguagens: number;
+        humanas: number;
+        natureza: number;
+        redacao: number;
+    };
+    areas: Array<{ area: string; sigla: string; media: number; count: number }>;
     estados: Array<{ uf: string; media_mt: number; media_redacao: number; total_alunos: number }>;
     listaUFs: string[];
 }
@@ -241,57 +248,105 @@ export default function EnemPage() {
                 </div>
             </div>
 
-            {/* KPIs Principais - VOLTA AO LAYOUT MACRO */}
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-                {/* Card 1: Total Inscritos Nacional */}
-                <div className="bg-gradient-to-br from-indigo-500 to-indigo-700 p-6 rounded-3xl shadow-lg text-white">
+            {/* KPIs Principais - NOVA GRID PARA 7 CARDS */}
+            {/* Linha 1: Destaques Gerais */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                {/* Card 1: Total Inscritos (Usando count_redacao como proxy de inscritos ativos) */}
+                <div className="bg-gradient-to-br from-indigo-600 to-indigo-800 p-6 rounded-3xl shadow-lg text-white">
                     <div className="flex items-center gap-3 mb-3">
                         <div className="p-2 bg-white/20 rounded-xl"><Users className="w-6 h-6" /></div>
-                        <p className="text-indigo-100 text-sm font-medium">Inscritos Totais (Brasil)</p>
+                        <p className="text-indigo-100 text-sm font-medium">Participantes Ativos (Brasil)</p>
                     </div>
-                    <h2 className="text-3xl font-bold">{stats.total.toLocaleString('pt-BR')}</h2>
+                    <h2 className="text-4xl font-bold">{stats.total.toLocaleString('pt-BR')}</h2>
                     <div className="mt-4 pt-4 border-t border-white/20 flex justify-between items-center text-sm">
                         <span className="text-indigo-200">Colégio Modelo</span>
                         <span className="font-bold bg-white/20 px-2 py-1 rounded">{SCHOOL_DATA.total_participantes} Alunos</span>
                     </div>
                 </div>
 
-                {/* Card 2: Matemática Nacional */}
-                <div className="bg-white p-6 rounded-3xl shadow-sm border border-gray-100">
-                    <div className="flex items-center gap-3 mb-2">
-                        <div className="p-2 bg-purple-50 rounded-lg"><Calculator className="w-5 h-5 text-purple-600" /></div>
-                        <p className="text-sm font-medium text-gray-500">Média Brasil (Mat)</p>
-                    </div>
-                    <h3 className="text-3xl font-bold text-gray-900">{stats.medias.matematica}</h3>
-                    <div className="flex items-center gap-2 mt-3 p-2 bg-gray-50 rounded-lg border border-gray-100">
-                        <School className="w-3 h-3 text-purple-600" />
-                        <span className="text-xs text-gray-500">Colégio Modelo: <strong className="text-purple-700">{SCHOOL_DATA.medias.matematica}</strong></span>
-                    </div>
-                </div>
-
-                {/* Card 3: Redação Nacional */}
-                <div className="bg-white p-6 rounded-3xl shadow-sm border border-gray-100">
-                    <div className="flex items-center gap-3 mb-2">
-                        <div className="p-2 bg-pink-50 rounded-lg"><MessageSquare className="w-5 h-5 text-pink-600" /></div>
-                        <p className="text-sm font-medium text-gray-500">Média Brasil (Red)</p>
-                    </div>
-                    <h3 className="text-3xl font-bold text-gray-900">{stats.medias.redacao}</h3>
-                    <div className="flex items-center gap-2 mt-3 p-2 bg-gray-50 rounded-lg border border-gray-100">
-                        <School className="w-3 h-3 text-pink-600" />
-                        <span className="text-xs text-gray-500">Colégio Modelo: <strong className="text-pink-700">{SCHOOL_DATA.medias.redacao}</strong></span>
-                    </div>
-                </div>
-
-                {/* Card 4: Média Geral Nacional */}
-                <div className="bg-white p-6 rounded-3xl shadow-sm border border-gray-100">
+                {/* Card 2: Média Geral Nacional (Ponderada das áreas) */}
+                <div className="bg-white p-6 rounded-3xl shadow-sm border border-gray-100 border-l-4 border-l-green-500">
                     <div className="flex items-center gap-3 mb-2">
                         <div className="p-2 bg-green-50 rounded-lg"><TrendingUp className="w-5 h-5 text-green-600" /></div>
-                        <p className="text-sm font-medium text-gray-500">Média Geral (BR)</p>
+                        <p className="text-sm font-medium text-gray-500">Média Geral Brasil (5 Áreas)</p>
                     </div>
-                    <h3 className="text-3xl font-bold text-gray-900">{mediaGeralNacional}</h3>
-                    <div className="flex items-center gap-2 mt-3 p-2 bg-gray-50 rounded-lg border border-gray-100">
-                        <School className="w-3 h-3 text-green-600" />
-                        <span className="text-xs text-gray-500">Colégio Modelo: <strong className="text-green-700">{SCHOOL_DATA.medias.geral}</strong></span>
+                    <h3 className="text-4xl font-bold text-gray-900">{mediaGeralNacional}</h3>
+                    <div className="flex items-center gap-2 mt-4 p-2 bg-gray-50 rounded-lg border border-gray-100 w-fit">
+                        <School className="w-4 h-4 text-green-600" />
+                        <span className="text-xs text-gray-600">Sua Escola: <strong className="text-green-700 font-bold text-sm">{SCHOOL_DATA.medias.geral}</strong></span>
+                    </div>
+                </div>
+            </div>
+
+            {/* Linha 2: Indicadores por Área (5 Cards) */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+                {/* Matemática */}
+                <div className="bg-white p-5 rounded-2xl shadow-sm border border-gray-100">
+                    <div className="flex items-center justify-between mb-2">
+                        <p className="text-xs font-bold text-purple-600 uppercase">Matemática</p>
+                        <Calculator className="w-4 h-4 text-purple-400" />
+                    </div>
+                    <h3 className="text-2xl font-bold text-gray-900">{stats.medias.matematica}</h3>
+                    <p className="text-[10px] text-gray-400 mt-1 mb-3">{stats.counts?.matematica?.toLocaleString()} participantes</p>
+                    <div className="pt-2 border-t border-gray-50 flex justify-between items-center text-xs">
+                        <span className="text-gray-500">Escola</span>
+                        <span className="font-bold text-purple-700">{SCHOOL_DATA.medias.matematica}</span>
+                    </div>
+                </div>
+
+                {/* Redação */}
+                <div className="bg-white p-5 rounded-2xl shadow-sm border border-gray-100">
+                    <div className="flex items-center justify-between mb-2">
+                        <p className="text-xs font-bold text-pink-600 uppercase">Redação</p>
+                        <MessageSquare className="w-4 h-4 text-pink-400" />
+                    </div>
+                    <h3 className="text-2xl font-bold text-gray-900">{stats.medias.redacao}</h3>
+                    <p className="text-[10px] text-gray-400 mt-1 mb-3">{stats.counts?.redacao?.toLocaleString()} participantes</p>
+                    <div className="pt-2 border-t border-gray-50 flex justify-between items-center text-xs">
+                        <span className="text-gray-500">Escola</span>
+                        <span className="font-bold text-pink-700">{SCHOOL_DATA.medias.redacao}</span>
+                    </div>
+                </div>
+
+                {/* Linguagens */}
+                <div className="bg-white p-5 rounded-2xl shadow-sm border border-gray-100">
+                    <div className="flex items-center justify-between mb-2">
+                        <p className="text-xs font-bold text-cyan-600 uppercase">Linguagens</p>
+                        <TrendingUp className="w-4 h-4 text-cyan-400" />
+                    </div>
+                    <h3 className="text-2xl font-bold text-gray-900">{stats.medias.linguagens}</h3>
+                    <p className="text-[10px] text-gray-400 mt-1 mb-3">{stats.counts?.linguagens?.toLocaleString()} participantes</p>
+                    <div className="pt-2 border-t border-gray-50 flex justify-between items-center text-xs">
+                        <span className="text-gray-500">Escola</span>
+                        <span className="font-bold text-cyan-700">{SCHOOL_DATA.medias.linguagens}</span>
+                    </div>
+                </div>
+
+                {/* Humanas */}
+                <div className="bg-white p-5 rounded-2xl shadow-sm border border-gray-100">
+                    <div className="flex items-center justify-between mb-2">
+                        <p className="text-xs font-bold text-amber-600 uppercase">Humanas</p>
+                        <Users className="w-4 h-4 text-amber-400" />
+                    </div>
+                    <h3 className="text-2xl font-bold text-gray-900">{stats.medias.humanas}</h3>
+                    <p className="text-[10px] text-gray-400 mt-1 mb-3">{stats.counts?.humanas?.toLocaleString()} participantes</p>
+                    <div className="pt-2 border-t border-gray-50 flex justify-between items-center text-xs">
+                        <span className="text-gray-500">Escola</span>
+                        <span className="font-bold text-amber-700">{SCHOOL_DATA.medias.humanas}</span>
+                    </div>
+                </div>
+
+                {/* Natureza */}
+                <div className="bg-white p-5 rounded-2xl shadow-sm border border-gray-100">
+                    <div className="flex items-center justify-between mb-2">
+                        <p className="text-xs font-bold text-emerald-600 uppercase">Natureza</p>
+                        <Trophy className="w-4 h-4 text-emerald-400" />
+                    </div>
+                    <h3 className="text-2xl font-bold text-gray-900">{stats.medias.natureza}</h3>
+                    <p className="text-[10px] text-gray-400 mt-1 mb-3">{stats.counts?.natureza?.toLocaleString()} participantes</p>
+                    <div className="pt-2 border-t border-gray-50 flex justify-between items-center text-xs">
+                        <span className="text-gray-500">Escola</span>
+                        <span className="font-bold text-emerald-700">{SCHOOL_DATA.medias.natureza}</span>
                     </div>
                 </div>
             </div>

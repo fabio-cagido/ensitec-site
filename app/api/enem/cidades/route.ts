@@ -29,27 +29,38 @@ export async function GET(request: Request) {
             const cidadesQuery = `
                 SELECT 
                     "NO_MUNICIPIO_PROVA" as cidade,
-                    CAST("NU_NOTA_MT" AS INTEGER) as media_mt,
-                    CAST("NU_NOTA_CN" AS INTEGER) as media_cn,
-                    CAST("NU_NOTA_CH" AS INTEGER) as media_ch,
-                    CAST("NU_NOTA_LC" AS INTEGER) as media_lc,
-                    CAST("NU_NOTA_REDACAO" AS INTEGER) as media_redacao,
-                    "total_alunos"
+                    ROUND("avg_mt")::INTEGER as media_mt,
+                    "count_mt",
+                    ROUND("avg_cn")::INTEGER as media_cn,
+                    "count_cn",
+                    ROUND("avg_ch")::INTEGER as media_ch,
+                    "count_ch",
+                    ROUND("avg_lc")::INTEGER as media_lc,
+                    "count_lc",
+                    ROUND("avg_redacao")::INTEGER as media_redacao,
+                    "count_redacao",
+                    "count_redacao" as total_alunos
                 FROM enem_agregado_cidade
                 WHERE "SG_UF_PROVA" = $1
-                ORDER BY "NU_NOTA_MT" DESC
+                  AND "avg_mt" > 0 AND "avg_cn" > 0 AND "avg_ch" > 0 AND "avg_lc" > 0 AND "avg_redacao" > 0
+                ORDER BY "avg_mt" DESC
                 LIMIT 10
             `;
 
             // Query para média do estado
             const estadoQuery = `
                 SELECT 
-                    CAST("NU_NOTA_MT" AS INTEGER) as media_mt,
-                    CAST("NU_NOTA_CN" AS INTEGER) as media_cn,
-                    CAST("NU_NOTA_CH" AS INTEGER) as media_ch,
-                    CAST("NU_NOTA_LC" AS INTEGER) as media_lc,
-                    CAST("NU_NOTA_REDACAO" AS INTEGER) as media_redacao,
-                    "total_alunos"
+                    ROUND("avg_mt")::INTEGER as media_mt,
+                    "count_mt",
+                    ROUND("avg_cn")::INTEGER as media_cn,
+                    "count_cn",
+                    ROUND("avg_ch")::INTEGER as media_ch,
+                    "count_ch",
+                    ROUND("avg_lc")::INTEGER as media_lc,
+                    "count_lc",
+                    ROUND("avg_redacao")::INTEGER as media_redacao,
+                    "count_redacao",
+                    "count_redacao" as total_alunos
                 FROM enem_agregado_estado
                 WHERE "SG_UF_PROVA" = $1
             `;
@@ -68,7 +79,7 @@ export async function GET(request: Request) {
                 media_ch: safeNumber(c.media_ch),
                 media_lc: safeNumber(c.media_lc),
                 media_redacao: safeNumber(c.media_redacao),
-                total_alunos: safeNumber(c.total_alunos)
+                total_alunos: safeNumber(c.count_redacao) // Redação como proxy
             }));
 
             const estadoData = estadoResult.rows[0] ? {
@@ -77,7 +88,7 @@ export async function GET(request: Request) {
                 media_ch: safeNumber(estadoResult.rows[0].media_ch),
                 media_lc: safeNumber(estadoResult.rows[0].media_lc),
                 media_redacao: safeNumber(estadoResult.rows[0].media_redacao),
-                total_alunos: safeNumber(estadoResult.rows[0].total_alunos)
+                total_alunos: safeNumber(estadoResult.rows[0].count_redacao)
             } : null;
 
             return NextResponse.json({
