@@ -149,7 +149,7 @@ export default function AprovacaoPage() {
                 <div className="flex justify-between items-center mb-6">
                     <div>
                         <h3 className="font-bold text-gray-900">Evolução da Taxa de Aprovação</h3>
-                        <p className="text-xs text-gray-400">Últimos 6 meses vs Meta de 90%</p>
+                        <p className="text-xs text-gray-400">Últimos 12 meses vs Meta de 90%</p>
                     </div>
                     <div className="flex items-center gap-2 text-xs text-gray-500">
                         <Calendar size={14} />

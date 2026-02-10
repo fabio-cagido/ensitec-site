@@ -41,6 +41,12 @@ const MOCK_DATA = [
 
 // Dados mensais
 const MONTHLY_EVOLUTION = [
+    { mes: "Mar", cumprimento: 85, planejado: 500, executado: 425 },
+    { mes: "Abr", cumprimento: 87, planejado: 520, executado: 452 },
+    { mes: "Mai", cumprimento: 86, planejado: 515, executado: 443 },
+    { mes: "Jun", cumprimento: 89, planejado: 540, executado: 480 },
+    { mes: "Jul", cumprimento: 75, planejado: 380, executado: 285 },
+    { mes: "Ago", cumprimento: 90, planejado: 530, executado: 477 },
     { mes: "Set", cumprimento: 88, planejado: 520, executado: 458 },
     { mes: "Out", cumprimento: 90, planejado: 540, executado: 486 },
     { mes: "Nov", cumprimento: 85, planejado: 530, executado: 450 },

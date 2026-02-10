@@ -157,7 +157,7 @@ export default function MediaGlobalPage() {
                 <div className="flex justify-between items-center mb-6">
                     <div>
                         <h3 className="font-bold text-gray-900">Evolução Mensal</h3>
-                        <p className="text-xs text-gray-400">Últimos 6 meses vs Meta Institucional</p>
+                        <p className="text-xs text-gray-400">Últimos 12 meses vs Meta Institucional</p>
                     </div>
                     <div className="flex items-center gap-2 text-xs text-gray-500">
                         <Calendar size={14} />

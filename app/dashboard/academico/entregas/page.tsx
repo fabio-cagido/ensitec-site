@@ -34,6 +34,12 @@ const MOCK_DATA = [
 
 // Dados mensais
 const MONTHLY_EVOLUTION = [
+    { mes: "Mar", prazo: 80, atraso: 20, total: 1100 },
+    { mes: "Abr", prazo: 82, atraso: 18, total: 1250 },
+    { mes: "Mai", prazo: 81, atraso: 19, total: 1180 },
+    { mes: "Jun", prazo: 78, atraso: 22, total: 1300 },
+    { mes: "Jul", prazo: 72, atraso: 28, total: 850 },
+    { mes: "Ago", prazo: 83, atraso: 17, total: 1050 },
     { mes: "Set", prazo: 78, atraso: 22, total: 1250 },
     { mes: "Out", prazo: 80, atraso: 20, total: 1340 },
     { mes: "Nov", prazo: 82, atraso: 18, total: 1420 },
