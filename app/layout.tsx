@@ -16,8 +16,13 @@ export const metadata: Metadata = {
   title: "EnsiTec BI",
   description: "Business Intelligence para Escolas - Transforme dados em decisões estratégicas",
   icons: {
-    icon: "/icon.png",
-    apple: "/icon.png",
+    icon: [
+      { url: "/favicon.jpg" },
+      { url: "/favicon.ico" },
+      { url: "/icon.png" }
+    ],
+    apple: "/favicon.jpg",
+    shortcut: "/favicon.ico",
   },
 };
 

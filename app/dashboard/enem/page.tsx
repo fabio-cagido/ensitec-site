@@ -127,13 +127,16 @@ export default function EnemPage() {
     const [error, setError] = useState<string | null>(null);
     const [stats, setStats] = useState<EnemStats | null>(null);
     const [selectedUF, setSelectedUF] = useState<string>("");
+    const [schoolType, setSchoolType] = useState<string>("Todas"); // State para o filtro
     const [estadoDetail, setEstadoDetail] = useState<EstadoDetail | null>(null);
     const [loadingCidades, setLoadingCidades] = useState(false);
 
     useEffect(() => {
         async function fetchData() {
+            setLoading(true); // Reinicia loading ao trocar o filtro
             try {
-                const res = await fetch('/api/enem/stats');
+                // Adiciona o param tp_escola na query
+                const res = await fetch(`/api/enem/stats?tp_escola=${schoolType}`);
                 if (!res.ok) throw new Error('Falha ao conectar com servidor');
                 const data = await res.json();
 
@@ -146,7 +149,7 @@ export default function EnemPage() {
             }
         }
         fetchData();
-    }, []);
+    }, [schoolType]); // Re-executa quando schoolType muda
 
     // Fetch dados do estado quando selecionado
     useEffect(() => {
@@ -158,7 +161,8 @@ export default function EnemPage() {
         async function fetchCidades() {
             setLoadingCidades(true);
             try {
-                const res = await fetch(`/api/enem/cidades?uf=${selectedUF}`);
+                // Passa o filtro de escola para a API de cidades (para corrigir o KPI do estado)
+                const res = await fetch(`/api/enem/cidades?uf=${selectedUF}&tp_escola=${schoolType}`);
                 if (!res.ok) throw new Error('Falha ao carregar cidades');
                 const data = await res.json();
                 setEstadoDetail(data);
@@ -169,14 +173,16 @@ export default function EnemPage() {
             }
         }
         fetchCidades();
-    }, [selectedUF]);
+    }, [selectedUF, schoolType]);
 
     if (loading) {
         return (
             <div className="flex flex-col items-center justify-center min-h-[60vh] gap-4">
                 <Loader2 className="w-12 h-12 text-indigo-600 animate-spin" />
                 <p className="text-gray-600 font-medium">Carregando dados do ENEM...</p>
-                <p className="text-xs text-gray-400">Consultando tabelas agregadas</p>
+                <p className="text-xs text-gray-400">
+                    {schoolType === 'Todas' ? 'Consolidando dados nacionais...' : `Filtrando por escolas ${schoolType.toLowerCase()}s...`}
+                </p>
             </div>
         );
     }
@@ -187,6 +193,12 @@ export default function EnemPage() {
                 <div className="bg-red-50 border border-red-200 rounded-2xl p-8 max-w-lg text-center">
                     <h2 className="text-red-700 font-bold text-xl mb-2">Falha no Carregamento</h2>
                     <p className="text-red-600 text-sm">{error}</p>
+                    <button
+                        onClick={() => window.location.reload()}
+                        className="mt-4 px-4 py-2 bg-red-100 text-red-700 rounded-lg hover:bg-red-200 transition-colors"
+                    >
+                        Tentar Novamente
+                    </button>
                 </div>
             </div>
         );
@@ -237,14 +249,35 @@ export default function EnemPage() {
                 }
             `}</style>
 
-            {/* Cabeçalho */}
-            <div className="flex items-center gap-4">
-                <Link href="/dashboard" className="p-2 hover:bg-gray-100 rounded-lg transition-colors">
-                    <ArrowLeft className="w-5 h-5 text-gray-500" />
-                </Link>
-                <div>
-                    <h1 className="text-3xl font-bold tracking-tight text-gray-900">ENEM 2024</h1>
-                    <p className="text-gray-500">Panorama Nacional e Comparativo Escolar</p>
+            {/* Cabeçalho com Filtro */}
+            <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                <div className="flex items-center gap-4">
+                    <Link href="/dashboard" className="p-2 hover:bg-gray-100 rounded-lg transition-colors">
+                        <ArrowLeft className="w-5 h-5 text-gray-500" />
+                    </Link>
+                    <div>
+                        <h1 className="text-3xl font-bold tracking-tight text-gray-900">ENEM 2024</h1>
+                        <p className="text-gray-500">Panorama Nacional e Comparativo Escolar</p>
+                    </div>
+                </div>
+
+                {/* Filtro de Tipo de Escola */}
+                <div className="flex items-center gap-3 bg-white p-2 pr-4 rounded-xl shadow-sm border border-gray-100">
+                    <div className="p-2 bg-indigo-50 rounded-lg">
+                        <School className="w-5 h-5 text-indigo-600" />
+                    </div>
+                    <div className="flex flex-col">
+                        <label className="text-[10px] text-gray-400 font-bold uppercase tracking-wider">Tipo de Escola</label>
+                        <select
+                            value={schoolType}
+                            onChange={(e) => setSchoolType(e.target.value)}
+                            className="bg-transparent font-bold text-gray-700 text-sm outline-none cursor-pointer min-w-[140px]"
+                        >
+                            <option value="Todas">Todas as Escolas</option>
+                            <option value="Pública">Pública</option>
+                            <option value="Privada">Privada</option>
+                        </select>
+                    </div>
                 </div>
             </div>
 
