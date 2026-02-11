@@ -49,7 +49,6 @@ export async function GET(request: Request) {
                   AND ($2::text IS NULL OR "tp_escola_label" = $2)
                 GROUP BY "NO_MUNICIPIO_PROVA"
                 ORDER BY media_mt DESC
-                LIMIT 10
             `;
 
             // Query para média do estado (KPIs)

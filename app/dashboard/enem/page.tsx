@@ -40,7 +40,7 @@ interface EnemStats {
         redacao: number;
     };
     areas: Array<{ area: string; sigla: string; media: number; count: number }>;
-    estados: Array<{ uf: string; media_mt: number; media_redacao: number; total_alunos: number }>;
+    estados: Array<{ uf: string; media_mt: number; media_cn: number; media_ch: number; media_lc: number; media_redacao: number; total_alunos: number }>;
     listaUFs: string[];
 }
 
@@ -69,12 +69,7 @@ interface EstadoDetail {
 
 const COLORS = ['#6366f1', '#10b981']; // Nacional (Indigo), Escola (Verde)
 const BAR_COLORS = [
-    '#6366f1', '#7c3aed', '#8b5cf6', '#a855f7', '#c026d3',
-    '#d946ef', '#e879f9', '#ec4899', '#f43f5e', '#fb7185',
-    '#f97316', '#fbbf24', '#facc15', '#a3e635', '#22c55e',
-    '#10b981', '#14b8a6', '#06b6d4', '#0ea5e9', '#3b82f6',
-    '#2563eb', '#4f46e5', '#6366f1', '#7c3aed', '#8b5cf6',
-    '#9333ea', '#a855f7'
+    '#6366f1', '#7c3aed', '#8b5cf6', '#a855f7', '#c026d3', '#a855f7', '#8b5cf6', '#7c3aed', '#6366f1'
 ];
 
 const UF_NAMES: Record<string, string> = {
@@ -130,6 +125,7 @@ export default function EnemPage() {
     const [schoolType, setSchoolType] = useState<string>("Todas"); // State para o filtro
     const [estadoDetail, setEstadoDetail] = useState<EstadoDetail | null>(null);
     const [loadingCidades, setLoadingCidades] = useState(false);
+    const [minParticipants, setMinParticipants] = useState<number>(0);
 
     useEffect(() => {
         async function fetchData() {
@@ -228,9 +224,12 @@ export default function EnemPage() {
 
     // Injetar escola no gráfico de estados e ORDENAR por nota (descrescente)
     const stateChartData = [
-        { uf: 'COL. MODELO', media_mt: SCHOOL_DATA.medias.matematica, isSchool: true },
-        ...stats.estados
-    ].sort((a, b) => b.media_mt - a.media_mt);
+        { uf: 'COL. MODELO', media_total: SCHOOL_DATA.medias.geral, isSchool: true },
+        ...stats.estados.map(e => ({
+            ...e,
+            media_total: Math.round((e.media_mt + e.media_cn + e.media_ch + e.media_lc + e.media_redacao) / 5)
+        }))
+    ].sort((a, b) => b.media_total - a.media_total);
 
     // Calcula média nacional geral
     const mediaGeralNacional = Math.round((stats.medias.matematica + stats.medias.linguagens + stats.medias.humanas + stats.medias.natureza + stats.medias.redacao) / 5);
@@ -391,7 +390,7 @@ export default function EnemPage() {
                 <div className="flex items-center justify-between mb-6">
                     <h3 className="font-bold text-gray-900 text-lg flex items-center gap-2">
                         <MapPin className="w-5 h-5 text-indigo-500" />
-                        Média de Matemática por Estado
+                        Média Geral por Estado
                     </h3>
                     <span className="text-xs text-gray-400 bg-gray-100 px-3 py-1 rounded-full">
                         {stats.estados?.length || 0} estados
@@ -426,14 +425,24 @@ export default function EnemPage() {
                                     boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)',
                                     padding: '12px'
                                 }}
-                                formatter={(value: any, name: any, props: any) => [`${value} pts`, props.payload.uf === 'COL. MODELO' ? 'Sua Escola' : 'Média Estado']}
+                                formatter={(value: any, name: any, props: any) => [`${value} pts`, props.payload.uf === 'COL. MODELO' ? 'Sua Escola' : 'Média Geral Estado']}
                                 labelFormatter={(label) => UF_NAMES[label] || label}
                             />
-                            <Bar dataKey="media_mt" radius={[6, 6, 0, 0]} animationDuration={1500}>
+                            <defs>
+                                <linearGradient id="barGradient" x1="0" y1="0" x2="0" y2="1">
+                                    <stop offset="0%" stopColor="#9333ea" stopOpacity={1} />
+                                    <stop offset="100%" stopColor="#1d4ed8" stopOpacity={1} />
+                                </linearGradient>
+                                <linearGradient id="schoolGradient" x1="0" y1="0" x2="0" y2="1">
+                                    <stop offset="0%" stopColor="#4f46e5" stopOpacity={1} />
+                                    <stop offset="100%" stopColor="#818cf8" stopOpacity={1} />
+                                </linearGradient>
+                            </defs>
+                            <Bar dataKey="media_total" radius={[6, 6, 0, 0]} animationDuration={1500}>
                                 {stateChartData.map((entry: any, index: number) => (
                                     <Cell
                                         key={`cell-${index}`}
-                                        fill={entry.isSchool ? '#4f46e5' : BAR_COLORS[index % BAR_COLORS.length]}
+                                        fill={entry.isSchool ? 'url(#schoolGradient)' : 'url(#barGradient)'}
                                         className={entry.isSchool ? 'school-bar-anim' : ''}
                                     />
                                 ))}
@@ -511,24 +520,45 @@ export default function EnemPage() {
                             </div>
                         )}
 
-                        {/* Top 10 Cidades + ESCOLA FIXA */}
+                        {/* Cidades + ESCOLA FIXA */}
                         <div>
-                            <h4 className="text-white font-semibold mb-4 flex items-center gap-2">
-                                <Trophy className="w-4 h-4 text-amber-400" />
-                                Top 10 Cidades - {UF_NAMES[selectedUF] || selectedUF}
-                            </h4>
-                            <div className="overflow-x-auto">
+                            <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-4">
+                                <h4 className="text-white font-semibold flex items-center gap-2">
+                                    <Trophy className="w-4 h-4 text-amber-400" />
+                                    Ranking de Cidades - {UF_NAMES[selectedUF] || selectedUF}
+                                </h4>
+
+                                <div className="flex items-center gap-3 bg-white/5 border border-white/10 px-3 py-1.5 rounded-xl">
+                                    <Users className="w-4 h-4 text-indigo-400" />
+                                    <div className="flex flex-col">
+                                        <label className="text-[9px] text-white/40 font-bold uppercase tracking-wider">Mín. Alunos</label>
+                                        <select
+                                            value={minParticipants}
+                                            onChange={(e) => setMinParticipants(Number(e.target.value))}
+                                            className="bg-transparent text-xs font-bold text-white outline-none cursor-pointer"
+                                        >
+                                            <option value={0} className="bg-slate-800">Todos</option>
+                                            <option value={10} className="bg-slate-800">10+ alunos</option>
+                                            <option value={50} className="bg-slate-800">50+ alunos</option>
+                                            <option value={100} className="bg-slate-800">100+ alunos</option>
+                                            <option value={500} className="bg-slate-800">500+ alunos</option>
+                                            <option value={1000} className="bg-slate-800">1000+ alunos</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="overflow-x-auto max-h-[500px] overflow-y-auto custom-scrollbar pr-2">
                                 <table className="w-full text-sm">
-                                    <thead>
+                                    <thead className="sticky top-0 bg-slate-800 z-10 shadow-sm">
                                         <tr className="text-left text-white/60 border-b border-white/10">
-                                            <th className="pb-3 pl-4">#</th>
-                                            <th className="pb-3">Localidade</th>
-                                            <th className="pb-3 text-center">MT</th>
-                                            <th className="pb-3 text-center">Redação</th>
-                                            <th className="pb-3 text-center">LC</th>
-                                            <th className="pb-3 text-center">CH</th>
-                                            <th className="pb-3 text-center">CN</th>
-                                            <th className="pb-3 text-right pr-4">Participantes</th>
+                                            <th className="py-3 pl-4 bg-slate-800">#</th>
+                                            <th className="py-3 bg-slate-800">Localidade</th>
+                                            <th className="py-3 text-center bg-slate-800">MT</th>
+                                            <th className="py-3 text-center bg-slate-800">Redação</th>
+                                            <th className="py-3 text-center bg-slate-800">LC</th>
+                                            <th className="py-3 text-center bg-slate-800">CH</th>
+                                            <th className="py-3 text-center bg-slate-800">CN</th>
+                                            <th className="py-3 text-right pr-4 bg-slate-800">Participantes</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -546,33 +576,35 @@ export default function EnemPage() {
                                             <td className="py-3 text-right pr-4 font-bold text-white">{SCHOOL_DATA.total_participantes}</td>
                                         </tr>
 
-                                        {estadoDetail.topCidades.map((cidade, index) => (
-                                            <tr
-                                                key={cidade.cidade}
-                                                className="border-b border-white/5 hover:bg-white/5 transition-colors"
-                                            >
-                                                <td className="py-3 pl-4">
-                                                    <span className={`inline-flex items-center justify-center w-6 h-6 rounded-full text-xs font-bold ${index === 0 ? 'bg-amber-500 text-white' :
-                                                        index === 1 ? 'bg-gray-400 text-white' :
-                                                            index === 2 ? 'bg-amber-700 text-white' :
-                                                                'bg-white/10 text-white/60'
-                                                        }`}>
-                                                        {index + 1}
-                                                    </span>
-                                                </td>
-                                                <td className="py-3 text-white font-medium">{cidade.cidade}</td>
-                                                <td className="py-3 text-center">
-                                                    <span className="bg-white/10 text-white/80 px-2 py-1 rounded-lg">
-                                                        {cidade.media_mt}
-                                                    </span>
-                                                </td>
-                                                <td className="py-3 text-center text-white/80">{cidade.media_redacao}</td>
-                                                <td className="py-3 text-center text-white/80">{cidade.media_lc}</td>
-                                                <td className="py-3 text-center text-white/80">{cidade.media_ch}</td>
-                                                <td className="py-3 text-center text-white/80">{cidade.media_cn}</td>
-                                                <td className="py-3 text-right pr-4 text-white/60">{cidade.total_alunos.toLocaleString('pt-BR')}</td>
-                                            </tr>
-                                        ))}
+                                        {estadoDetail.topCidades
+                                            .filter(c => c.total_alunos >= minParticipants)
+                                            .map((cidade, index) => (
+                                                <tr
+                                                    key={cidade.cidade}
+                                                    className="border-b border-white/5 hover:bg-white/5 transition-colors"
+                                                >
+                                                    <td className="py-3 pl-4">
+                                                        <span className={`inline-flex items-center justify-center w-6 h-6 rounded-full text-xs font-bold ${index === 0 ? 'bg-amber-500 text-white' :
+                                                            index === 1 ? 'bg-gray-400 text-white' :
+                                                                index === 2 ? 'bg-amber-700 text-white' :
+                                                                    'bg-white/10 text-white/60'
+                                                            }`}>
+                                                            {index + 1}
+                                                        </span>
+                                                    </td>
+                                                    <td className="py-3 text-white font-medium">{cidade.cidade}</td>
+                                                    <td className="py-3 text-center">
+                                                        <span className="bg-white/10 text-white/80 px-2 py-1 rounded-lg">
+                                                            {cidade.media_mt}
+                                                        </span>
+                                                    </td>
+                                                    <td className="py-3 text-center text-white/80">{cidade.media_redacao}</td>
+                                                    <td className="py-3 text-center text-white/80">{cidade.media_lc}</td>
+                                                    <td className="py-3 text-center text-white/80">{cidade.media_ch}</td>
+                                                    <td className="py-3 text-center text-white/80">{cidade.media_cn}</td>
+                                                    <td className="py-3 text-right pr-4 text-white/60">{cidade.total_alunos.toLocaleString('pt-BR')}</td>
+                                                </tr>
+                                            ))}
                                     </tbody>
                                 </table>
                             </div>
