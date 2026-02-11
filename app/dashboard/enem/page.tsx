@@ -12,12 +12,12 @@ import {
 const SCHOOL_DATA = {
     nome: "Colégio Modelo",
     medias: {
-        matematica: 468, // Reduzido ~20% (era 585)
-        linguagens: 448, // Reduzido ~20% (era 560)
-        humanas: 456,    // Reduzido ~20% (era 570)
-        natureza: 440,   // Reduzido ~20% (era 550)
-        redacao: 576,    // Reduzido ~20% (era 720)
-        geral: 477       // Média ajustada
+        matematica: 622, // Ajustado (-5%)
+        linguagens: 596, // Ajustado (-5%)
+        humanas: 606,    // Ajustado (-5%)
+        natureza: 585,   // Ajustado (-5%)
+        redacao: 766,    // Ajustado (-5%)
+        geral: 635       // Média ajustada
     },
     total_participantes: 85
 };
@@ -293,7 +293,9 @@ export default function EnemPage() {
                     <h2 className="text-4xl font-bold">{stats.total.toLocaleString('pt-BR')}</h2>
                     <div className="mt-4 pt-4 border-t border-white/20 flex justify-between items-center text-sm">
                         <span className="text-indigo-200">Colégio Modelo</span>
-                        <span className="font-bold bg-white/20 px-2 py-1 rounded">{SCHOOL_DATA.total_participantes} Alunos</span>
+                        <Link href="/dashboard/enem/tracking" className="font-bold bg-white/20 px-2 py-1 rounded hover:bg-white/30 transition-colors cursor-pointer">
+                            {SCHOOL_DATA.total_participantes} Alunos
+                        </Link>
                     </div>
                 </div>
 

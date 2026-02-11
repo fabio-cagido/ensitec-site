@@ -68,8 +68,11 @@ const MENU_ITEMS = [
         name: "Enem",
         path: "/dashboard/enem",
         icon: FileText,
-        exactMatch: true,
-        subpages: []
+        exactMatch: false,
+        subpages: [
+            { name: "Análise Geral", path: "/dashboard/enem" },
+            { name: "Tracking de Alunos", path: "/dashboard/enem/tracking" },
+        ]
     },
     {
         id: "financeiro",

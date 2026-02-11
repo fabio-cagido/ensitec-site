@@ -16,9 +16,9 @@ export default function Hero() {
           transition={{ duration: 0.6 }}
           className="text-5xl font-bold mb-6 leading-tight text-gray-900"
         >
-          Business Intelligence
+          Assessoria Estratégica
           <br />
-          para decisões melhores
+          em Business Intelligence
         </motion.h1>
 
         <motion.p
@@ -29,8 +29,7 @@ export default function Hero() {
           transition={{ delay: 0.15, duration: 0.6 }}
           className="text-xl text-gray-700 max-w-2xl mb-8"
         >
-          Projetos de BI sob medida, com foco em clareza, impacto e
-          adaptação à realidade da sua empresa — especialmente escolas.
+          Tenha um BI eficiente e assessoria estratégica para as suas decisões
         </motion.p>
 
         <motion.a
