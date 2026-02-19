@@ -38,12 +38,18 @@ const MOCK_DATA = [
 
 // Dados mensais para acompanhamento do diretor
 const MONTHLY_DATA = [
-    { mes: "Set", media: 7.2, meta: 7.5 },
-    { mes: "Out", media: 7.4, meta: 7.5 },
-    { mes: "Nov", media: 7.6, meta: 7.5 },
-    { mes: "Dez", media: 7.3, meta: 7.5 },
     { mes: "Jan", media: 7.5, meta: 7.5 },
     { mes: "Fev", media: 7.8, meta: 7.5 },
+    { mes: "Mar", media: 7.2, meta: 7.5 },
+    { mes: "Abr", media: 7.4, meta: 7.5 },
+    { mes: "Mai", media: 7.6, meta: 7.5 },
+    { mes: "Jun", media: 7.5, meta: 7.5 },
+    { mes: "Jul", media: 7.0, meta: 7.5 },
+    { mes: "Ago", media: 7.3, meta: 7.5 },
+    { mes: "Set", media: 7.5, meta: 7.5 },
+    { mes: "Out", media: 7.7, meta: 7.5 },
+    { mes: "Nov", media: 7.8, meta: 7.5 },
+    { mes: "Dez", media: 7.6, meta: 7.5 },
 ];
 
 export default function MediaGlobalPage() {

@@ -37,6 +37,8 @@ const ALL_STUDENTS = generateStudents();
 
 // Dados mensais
 const MONTHLY_EVOLUTION = [
+    { mes: "Jan", risco: 20, total: 450 },
+    { mes: "Fev", risco: 16, total: 450 },
     { mes: "Mar", risco: 15, total: 450 },
     { mes: "Abr", risco: 16, total: 450 },
     { mes: "Mai", risco: 14, total: 450 },
@@ -47,8 +49,6 @@ const MONTHLY_EVOLUTION = [
     { mes: "Out", risco: 22, total: 450 },
     { mes: "Nov", risco: 28, total: 450 },
     { mes: "Dez", risco: 25, total: 450 },
-    { mes: "Jan", risco: 20, total: 450 },
-    { mes: "Fev", risco: 16, total: 450 },
 ];
 
 // Alunos em risco detalhados

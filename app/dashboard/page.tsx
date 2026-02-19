@@ -80,16 +80,16 @@ export default function DashboardPage() {
           <div className="bg-white p-5 rounded-2xl shadow-sm border border-gray-100 border-t-4 border-t-blue-500 h-full">
             <span className="text-xs font-bold text-gray-400 uppercase">Acadêmico</span>
             <div className="text-3xl font-bold mt-2 text-gray-900">
-              {data.academic ? `${data.academic.kpis.attendance}%` : '...'}
+              {data.academic?.kpis ? `${data.academic.kpis.attendance}%` : '...'}
             </div>
             <p className="text-xs text-blue-500 font-medium mb-1">Frequência Geral</p>
             <div className="mt-4 pt-4 border-t border-gray-50 text-[11px]">
               <div className="flex justify-between mb-1 text-gray-500">
                 <span>Média Gl.</span>
-                <span className="text-blue-600 font-bold">{data.academic ? data.academic.kpis.mediaGlobal : '-'}</span>
+                <span className="text-blue-600 font-bold">{data.academic?.kpis ? data.academic.kpis.mediaGlobal : '-'}</span>
               </div>
               <div className="w-full bg-gray-100 h-1.5 rounded-full overflow-hidden">
-                <div className="bg-blue-500 h-full" style={{ width: data.academic ? `${data.academic.kpis.mediaGlobal * 10}%` : '0%' }}></div>
+                <div className="bg-blue-500 h-full" style={{ width: data.academic?.kpis ? `${data.academic.kpis.mediaGlobal * 10}%` : '0%' }}></div>
               </div>
             </div>
           </div>
@@ -100,16 +100,16 @@ export default function DashboardPage() {
           <div className="bg-white p-5 rounded-2xl shadow-sm border border-gray-100 border-t-4 border-t-emerald-500 h-full">
             <span className="text-xs font-bold text-gray-400 uppercase">Financeiro</span>
             <div className="text-3xl font-bold mt-2 text-gray-900">
-              {data.financial ? `R$ ${(data.financial.kpis.receitaTotal / 1000).toFixed(0)}k` : '...'}
+              {data.financial?.kpis ? `R$ ${(data.financial.kpis.receitaTotal / 1000).toFixed(0)}k` : '...'}
             </div>
             <p className="text-xs text-emerald-500 font-medium mb-1">Faturamento Total</p>
             <div className="mt-4 pt-4 border-t border-gray-50 text-[11px]">
               <div className="flex justify-between mb-1 text-gray-500">
                 <span>Inadimplência</span>
-                <span className="text-emerald-600 font-bold">{data.financial ? `${data.financial.kpis.inadimplencia}%` : '-'}</span>
+                <span className="text-emerald-600 font-bold">{data.financial?.kpis ? `${data.financial.kpis.inadimplencia}%` : '-'}</span>
               </div>
               <div className="w-full bg-gray-100 h-1.5 rounded-full overflow-hidden">
-                <div className="bg-emerald-500 h-full" style={{ width: data.financial ? `${100 - data.financial.kpis.inadimplencia}%` : '0%' }}></div>
+                <div className="bg-emerald-500 h-full" style={{ width: data.financial?.kpis ? `${100 - data.financial.kpis.inadimplencia}%` : '0%' }}></div>
               </div>
             </div>
           </div>
@@ -120,16 +120,16 @@ export default function DashboardPage() {
           <div className="bg-white p-5 rounded-2xl shadow-sm border border-gray-100 border-t-4 border-t-orange-500 h-full">
             <span className="text-xs font-bold text-gray-400 uppercase">Clientes</span>
             <div className="text-3xl font-bold mt-2 text-gray-900">
-              {data.clients ? data.clients.kpis.totalStudents : '...'}
+              {data.clients?.kpis ? data.clients.kpis.totalStudents : '...'}
             </div>
             <p className="text-xs text-orange-500 font-medium mb-1">Total de Alunos</p>
             <div className="mt-4 pt-4 border-t border-gray-50 text-[11px]">
               <div className="flex justify-between mb-1 text-gray-500">
                 <span>NPS</span>
-                <span className="text-orange-600 font-bold">{data.clients ? data.clients.kpis.nps : '-'}</span>
+                <span className="text-orange-600 font-bold">{data.clients?.kpis ? data.clients.kpis.nps : '-'}</span>
               </div>
               <div className="w-full bg-gray-100 h-1.5 rounded-full overflow-hidden">
-                <div className="bg-orange-500 h-full" style={{ width: data.clients ? `${data.clients.kpis.nps}%` : '0%' }}></div>
+                <div className="bg-orange-500 h-full" style={{ width: data.clients?.kpis ? `${data.clients.kpis.nps}%` : '0%' }}></div>
               </div>
             </div>
           </div>
@@ -140,7 +140,7 @@ export default function DashboardPage() {
           <div className="bg-white p-5 rounded-2xl shadow-sm border border-gray-100 border-t-4 border-t-purple-500 h-full">
             <span className="text-xs font-bold text-gray-400 uppercase">Operacional</span>
             <div className="text-3xl font-bold mt-2 text-gray-900">
-              {data.operational ? data.operational.kpis.manutencao.split(' ')[0] : '...'}
+              {data.operational?.kpis ? data.operational.kpis.manutencao.split(' ')[0] : '...'}
             </div>
             <p className="text-xs text-purple-500 font-medium mb-1">Chamados Ativos</p>
             <div className="mt-4 pt-4 border-t border-gray-50 flex items-center gap-2">

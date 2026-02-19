@@ -36,6 +36,8 @@ const MOCK_DATA = [
 
 // Dados mensais
 const MONTHLY_EVOLUTION = [
+    { mes: "Jan", freq: 88.1, meta: 75, faltas: 356 },
+    { mes: "Fev", freq: 90.5, meta: 75, faltas: 278 },
     { mes: "Mar", freq: 88.5, meta: 75, faltas: 290 },
     { mes: "Abr", freq: 90.2, meta: 75, faltas: 245 },
     { mes: "Mai", freq: 89.1, meta: 75, faltas: 280 },
@@ -46,8 +48,6 @@ const MONTHLY_EVOLUTION = [
     { mes: "Out", freq: 89.5, meta: 75, faltas: 312 },
     { mes: "Nov", freq: 87.8, meta: 75, faltas: 398 },
     { mes: "Dez", freq: 85.2, meta: 75, faltas: 445 },
-    { mes: "Jan", freq: 88.1, meta: 75, faltas: 356 },
-    { mes: "Fev", freq: 90.5, meta: 75, faltas: 278 },
 ];
 
 // Turmas com baixa frequência

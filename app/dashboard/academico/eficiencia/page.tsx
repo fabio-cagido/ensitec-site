@@ -41,6 +41,8 @@ const MOCK_DATA = [
 
 // Dados mensais
 const MONTHLY_EVOLUTION = [
+    { mes: "Jan", cumprimento: 91, planejado: 510, executado: 464 },
+    { mes: "Fev", cumprimento: 93, planejado: 550, executado: 512 },
     { mes: "Mar", cumprimento: 85, planejado: 500, executado: 425 },
     { mes: "Abr", cumprimento: 87, planejado: 520, executado: 452 },
     { mes: "Mai", cumprimento: 86, planejado: 515, executado: 443 },
@@ -51,8 +53,6 @@ const MONTHLY_EVOLUTION = [
     { mes: "Out", cumprimento: 90, planejado: 540, executado: 486 },
     { mes: "Nov", cumprimento: 85, planejado: 530, executado: 450 },
     { mes: "Dez", cumprimento: 82, planejado: 480, executado: 394 },
-    { mes: "Jan", cumprimento: 91, planejado: 510, executado: 464 },
-    { mes: "Fev", cumprimento: 93, planejado: 550, executado: 512 },
 ];
 
 // Professores com pendências

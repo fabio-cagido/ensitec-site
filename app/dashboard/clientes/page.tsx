@@ -42,8 +42,15 @@ export default function ClientDashboardPage() {
 
     useEffect(() => {
         async function fetchData() {
+            setLoading(true);
             try {
-                const res = await fetch('/api/dashboard/clientes');
+                const params = new URLSearchParams();
+                if (filters) {
+                    if (filters.unidades.length) params.append('unidades', filters.unidades.join(','));
+                    if (filters.segmentos.length) params.append('segmentos', filters.segmentos.join(','));
+                    if (filters.anos.length) params.append('anos', filters.anos.join(','));
+                }
+                const res = await fetch(`/api/dashboard/clientes?${params.toString()}`);
                 if (!res.ok) throw new Error('Falha ao carregar dados de clientes');
                 const json = await res.json();
                 setData(json);
@@ -54,7 +61,7 @@ export default function ClientDashboardPage() {
             }
         }
         fetchData();
-    }, []);
+    }, [filters]);
 
     if (loading) {
         return (

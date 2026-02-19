@@ -73,7 +73,7 @@ export async function GET() {
             FROM financeiro_despesas
             GROUP BY to_char(data_despesa, 'Mon'), date_trunc('month', data_despesa)
             ORDER BY date_trunc('month', data_despesa) ASC
-            LIMIT 6
+            LIMIT 12
         `;
         const costResult = await query(costQuery);
 

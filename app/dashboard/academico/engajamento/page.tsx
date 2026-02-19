@@ -39,6 +39,8 @@ const MOCK_DATA = [
 
 // Dados mensais
 const MONTHLY_EVOLUTION = [
+    { mes: "Jan", engajamento: 70, acessos: 11200, tempoMedio: 20 },
+    { mes: "Fev", engajamento: 78, acessos: 16500, tempoMedio: 28 },
     { mes: "Mar", engajamento: 65, acessos: 11800, tempoMedio: 15 },
     { mes: "Abr", engajamento: 69, acessos: 12400, tempoMedio: 18 },
     { mes: "Mai", engajamento: 70, acessos: 13100, tempoMedio: 19 },
@@ -49,8 +51,6 @@ const MONTHLY_EVOLUTION = [
     { mes: "Out", engajamento: 72, acessos: 14200, tempoMedio: 22 },
     { mes: "Nov", engajamento: 75, acessos: 15800, tempoMedio: 25 },
     { mes: "Dez", engajamento: 65, acessos: 9800, tempoMedio: 15 },
-    { mes: "Jan", engajamento: 70, acessos: 11200, tempoMedio: 20 },
-    { mes: "Fev", engajamento: 78, acessos: 16500, tempoMedio: 28 },
 ];
 
 // Recursos mais utilizados

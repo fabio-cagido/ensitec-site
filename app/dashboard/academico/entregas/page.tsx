@@ -34,6 +34,8 @@ const MOCK_DATA = [
 
 // Dados mensais
 const MONTHLY_EVOLUTION = [
+    { mes: "Jan", prazo: 84, atraso: 16, total: 1180 },
+    { mes: "Fev", prazo: 86, atraso: 14, total: 1350 },
     { mes: "Mar", prazo: 80, atraso: 20, total: 1100 },
     { mes: "Abr", prazo: 82, atraso: 18, total: 1250 },
     { mes: "Mai", prazo: 81, atraso: 19, total: 1180 },
@@ -44,8 +46,6 @@ const MONTHLY_EVOLUTION = [
     { mes: "Out", prazo: 80, atraso: 20, total: 1340 },
     { mes: "Nov", prazo: 82, atraso: 18, total: 1420 },
     { mes: "Dez", prazo: 79, atraso: 21, total: 980 },
-    { mes: "Jan", prazo: 84, atraso: 16, total: 1180 },
-    { mes: "Fev", prazo: 86, atraso: 14, total: 1350 },
 ];
 
 // Turmas com mais atrasos

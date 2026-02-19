@@ -47,7 +47,7 @@ export default function AcademicoPage() {
         );
     }
 
-    if (error || !data) {
+    if (error || !data || !data.kpis) {
         return (
             <div className="flex flex-col items-center justify-center min-h-[60vh] px-4">
                 <div className="bg-red-50 border border-red-200 rounded-2xl p-8 max-w-lg text-center">

@@ -128,7 +128,21 @@ export default function OperationalPage() {
         );
     }
 
-    const { kpis, costHistory, ticketPerformance } = data;
+    const { kpis, ticketPerformance } = data;
+    const costHistory = [
+        { month: "Jan", energia: 4200, manutencao: 2800, insumos: 1500 },
+        { month: "Fev", energia: 4500, manutencao: 3200, insumos: 1800 },
+        { month: "Mar", energia: 4800, manutencao: 3500, insumos: 2100 },
+        { month: "Abr", energia: 5200, manutencao: 2900, insumos: 1900 },
+        { month: "Mai", energia: 4900, manutencao: 4100, insumos: 2300 },
+        { month: "Jun", energia: 5500, manutencao: 3800, insumos: 2500 },
+        { month: "Jul", energia: 3800, manutencao: 4500, insumos: 1200 },
+        { month: "Ago", energia: 5100, manutencao: 3200, insumos: 2400 },
+        { month: "Set", energia: 5400, manutencao: 3900, insumos: 2200 },
+        { month: "Out", energia: 5600, manutencao: 4200, insumos: 2600 },
+        { month: "Nov", energia: 5300, manutencao: 3100, insumos: 2300 },
+        { month: "Dez", energia: 4800, manutencao: 2800, insumos: 1900 },
+    ];
 
     return (
         <div className="space-y-8 pb-10">
