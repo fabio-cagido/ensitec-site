@@ -85,7 +85,7 @@ const getMockDemography = (type: string) => {
 const getMockLocations = () => {
     const segments = ['Infantil', 'Fundamental II', 'Ensino Médio'];
     return Array.from({ length: 50 }, (_, i) => ({
-        id: `#${Math.floor(Math.random() * 900) + 100}`,
+        id: `mock-loc-${i}-${Math.floor(Math.random() * 1000)}`,
         lat: -25.4297 + (Math.random() - 0.5) * 0.05,
         lng: -49.2719 + (Math.random() - 0.5) * 0.05,
         segment: segments[Math.floor(Math.random() * segments.length)],
@@ -165,17 +165,87 @@ export async function GET(request: Request) {
         let params: any[] = [];
         // Note: Real SQL would incorporate the filters here
         if (metric === 'total-students') {
-            sql = `SELECT e.nome as unit_label, a.turma as class_label, COUNT(*) as value FROM alunos a JOIN escolas e ON a.escola_id = e.id GROUP BY e.nome, a.turma`;
+            sql = `SELECT e.nome as unit_label, a.turma as class_label, COUNT(*) as value FROM alunos a JOIN escolas e ON a.escola_id = e.id WHERE a.status_matricula != 'Evadido' GROUP BY e.nome, a.turma`;
         } else if (metric === 'scholarships') {
-            sql = `SELECT e.nome as unit_label, a.turma as class_label, COUNT(*) as value FROM alunos a JOIN escolas e ON a.escola_id = e.id WHERE a.bolsista = true GROUP BY e.nome, a.turma`;
+            sql = `SELECT e.nome as unit_label, a.turma as class_label, COUNT(*) as value FROM alunos a JOIN escolas e ON a.escola_id = e.id WHERE a.bolsista = true AND a.status_matricula != 'Evadido' GROUP BY e.nome, a.turma`;
         } else if (metric === 'occupancy') {
-            sql = `SELECT turma as class_label, COUNT(*) as value FROM alunos WHERE status_matricula = 'Ativo' GROUP BY turma`;
+            sql = `SELECT turma as class_label, COUNT(*) as value FROM alunos WHERE status_matricula != 'Evadido' GROUP BY turma`;
+        } else if (metric === 'demography') {
+            const type = searchParams.get('type') || 'gender';
+            if (type === 'gender') {
+                sql = `SELECT e.nome as unit_label, a.genero as name, COUNT(*) as value FROM alunos a JOIN escolas e ON a.escola_id = e.id WHERE a.status_matricula != 'Evadido' GROUP BY e.nome, a.genero`;
+            } else if (type === 'race') {
+                sql = `SELECT e.nome as unit_label, a.cor_raca as name, COUNT(*) as value FROM alunos a JOIN escolas e ON a.escola_id = e.id WHERE a.status_matricula != 'Evadido' GROUP BY e.nome, a.cor_raca`;
+            } else if (type === 'income') {
+                sql = `SELECT e.nome as unit_label, a.faixa_renda as name, COUNT(*) as value FROM alunos a JOIN escolas e ON a.escola_id = e.id WHERE a.status_matricula != 'Evadido' GROUP BY e.nome, a.faixa_renda`;
+            } else if (type === 'age') {
+                sql = `
+                    SELECT 
+                        e.nome as unit_label,
+                        CASE 
+                            WHEN extract(year from age(current_date, data_nascimento)) BETWEEN 0 AND 6 THEN '4-6 anos'
+                            WHEN extract(year from age(current_date, data_nascimento)) BETWEEN 7 AND 10 THEN '7-10 anos'
+                            WHEN extract(year from age(current_date, data_nascimento)) BETWEEN 11 AND 14 THEN '11-14 anos'
+                            ELSE '15-18 anos'
+                        END as name,
+                        COUNT(*) as value
+                    FROM alunos a JOIN escolas e ON a.escola_id = e.id 
+                    WHERE a.status_matricula != 'Evadido'
+                    GROUP BY e.nome, name
+                 `;
+            } else if (type === 'neighborhood') {
+                sql = `SELECT e.nome as unit_label, a.cidade_aluno as name, COUNT(*) as value FROM alunos a JOIN escolas e ON a.escola_id = e.id WHERE a.status_matricula != 'Evadido' GROUP BY e.nome, a.cidade_aluno`;
+            }
+        } else if (metric === 'locations') {
+            sql = `SELECT a.id, a.latitude as lat, a.longitude as lng, a.segmento as segment, extract(year from age(current_date, a.data_nascimento)) as age FROM alunos a WHERE a.status_matricula != 'Evadido' AND a.latitude IS NOT NULL`;
         }
 
         if (sql) {
             try {
                 const result = await query(sql);
                 if (result.rows.length > 0) {
+                    if (metric === 'locations') {
+                        return NextResponse.json(result.rows.map(r => ({
+                            id: r.id,
+                            lat: Number(r.lat),
+                            lng: Number(r.lng),
+                            segment: r.segment,
+                            age: Number(r.age)
+                        })));
+                    }
+
+                    if (metric === 'demography') {
+                        let mapped = result.rows.map(r => ({
+                            unitLabel: r.unit_label || 'Geral',
+                            name: r.name,
+                            value: Number(r.value)
+                        }));
+
+                        const unitMap: Record<string, string> = { 'u1': 'Unidade Centro', 'u2': 'Unidade Norte', 'u3': 'Unidade Sul' };
+                        const selectedUnits = units.map(u => unitMap[u] || u);
+
+                        if (selectedUnits.length > 0) {
+                            mapped = mapped.filter(m => selectedUnits.some(u => m.unitLabel.toLowerCase().includes(u.toLowerCase()) || u === m.unitLabel));
+                        }
+
+                        const aggregated = mapped.reduce((acc, curr) => {
+                            const existing = acc.find((item: any) => item.name === curr.name);
+                            if (existing) {
+                                existing.value += curr.value;
+                            } else {
+                                acc.push({ name: curr.name, value: curr.value });
+                            }
+                            return acc;
+                        }, [] as any[]);
+
+                        aggregated.forEach((item: any) => {
+                            if (item.name === 'M') item.name = 'Masculino';
+                            if (item.name === 'F') item.name = 'Feminino';
+                        });
+
+                        return NextResponse.json(aggregated);
+                    }
+
                     let mapped = result.rows.map(r => ({
                         unitLabel: r.unit_label || 'Geral',
                         classLabel: r.class_label || 'Geral',
@@ -190,6 +260,9 @@ export async function GET(request: Request) {
                     }
 
                     return NextResponse.json(mapped);
+                } else if (metric === 'demography') {
+                    // Empty state fallback for demography from real DB avoiding mock override
+                    return NextResponse.json([]);
                 }
             } catch (dbErr) {
                 console.warn(`Query failed for ${metric}: ${dbErr}`);
