@@ -235,16 +235,18 @@ export default function PerfilAlunoPage() {
                                     </linearGradient>
                                 </defs>
                                 <Pie
-                                    activeIndex={activeIndexGender}
-                                    activeShape={renderActiveShape}
-                                    data={genderData}
-                                    cx="50%"
-                                    cy="50%"
-                                    innerRadius={70}
-                                    outerRadius={95}
-                                    paddingAngle={5}
-                                    dataKey="value"
-                                    onMouseEnter={(_, index) => setActiveIndexGender(index)}
+                                    {...({
+                                        activeIndex: activeIndexGender,
+                                        activeShape: renderActiveShape,
+                                        data: genderData,
+                                        cx: "50%",
+                                        cy: "50%",
+                                        innerRadius: 70,
+                                        outerRadius: 95,
+                                        paddingAngle: 5,
+                                        dataKey: "value",
+                                        onMouseEnter: (_: any, index: number) => setActiveIndexGender(index)
+                                    } as any)}
                                 >
                                     {genderData.map((entry, index) => (
                                         <Cell
