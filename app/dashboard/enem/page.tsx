@@ -54,6 +54,29 @@ interface CidadeData {
     total_alunos: number;
 }
 
+interface BairroData {
+    bairro: string;
+    media_mt: number;
+    media_cn: number;
+    media_ch: number;
+    media_lc: number;
+    media_redacao: number;
+    media_geral: number;
+    total_alunos: number;
+}
+
+interface EscolaData {
+    escola: string;
+    bairro: string;
+    media_mt: number;
+    media_cn: number;
+    media_ch: number;
+    media_lc: number;
+    media_redacao: number;
+    media_geral: number;
+    total_alunos: number;
+}
+
 interface EstadoDetail {
     uf: string;
     estado: {
@@ -122,10 +145,42 @@ export default function EnemPage() {
     const [error, setError] = useState<string | null>(null);
     const [stats, setStats] = useState<EnemStats | null>(null);
     const [selectedUF, setSelectedUF] = useState<string>("");
-    const [schoolType, setSchoolType] = useState<string>("Todas"); // State para o filtro
+    const [schoolType, setSchoolType] = useState<string>("Todas");
     const [estadoDetail, setEstadoDetail] = useState<EstadoDetail | null>(null);
     const [loadingCidades, setLoadingCidades] = useState(false);
     const [minParticipants, setMinParticipants] = useState<number>(0);
+
+    // --- Drill-down: Cidade → Bairro ---
+    const [selectedCidadeBairro, setSelectedCidadeBairro] = useState<string>("");
+    const [bairros, setBairros] = useState<BairroData[]>([]);
+    const [loadingBairros, setLoadingBairros] = useState(false);
+    const [minParticipantsBairro, setMinParticipantsBairro] = useState<number>(0);
+
+    // --- Drill-down: Bairro → Escola ---
+    const [selectedBairros, setSelectedBairros] = useState<Set<string>>(new Set());
+    const [escolas, setEscolas] = useState<EscolaData[]>([]);
+    const [loadingEscolas, setLoadingEscolas] = useState(false);
+
+    // Helper: toggle bairro na seleção
+    const toggleBairro = (bairro: string) => {
+        setSelectedBairros(prev => {
+            const next = new Set(prev);
+            if (next.has(bairro)) next.delete(bairro);
+            else next.add(bairro);
+            return next;
+        });
+    };
+
+    // Helper: selecionar/desselecionar todos os bairros visíveis
+    const toggleTodos = (bairrosVisiveis: BairroData[]) => {
+        const todosIds = bairrosVisiveis.map(b => b.bairro);
+        const todosSelecionados = todosIds.every(id => selectedBairros.has(id));
+        if (todosSelecionados) {
+            setSelectedBairros(new Set());
+        } else {
+            setSelectedBairros(new Set(todosIds));
+        }
+    };
 
     useEffect(() => {
         async function fetchData() {
@@ -170,6 +225,68 @@ export default function EnemPage() {
         }
         fetchCidades();
     }, [selectedUF, schoolType]);
+
+    // Fetch bairros quando selecionada cidade no drill-down
+    useEffect(() => {
+        // Reset downstream ao trocar cidade
+        setSelectedBairros(new Set());
+        setEscolas([]);
+        setBairros([]);
+        if (!selectedUF || !selectedCidadeBairro) return;
+
+        async function fetchBairros() {
+            setLoadingBairros(true);
+            try {
+                const res = await fetch(
+                    `/api/enem/bairros?uf=${encodeURIComponent(selectedUF)}&cidade=${encodeURIComponent(selectedCidadeBairro)}`
+                );
+                if (!res.ok) throw new Error('Falha ao carregar bairros');
+                const data = await res.json();
+                setBairros(data.bairros || []);
+            } catch (err) {
+                console.error('Erro ao carregar bairros:', err);
+            } finally {
+                setLoadingBairros(false);
+            }
+        }
+        fetchBairros();
+    }, [selectedUF, selectedCidadeBairro]);
+
+    // Fetch escolas quando seleção de bairros muda
+    useEffect(() => {
+        setEscolas([]);
+        if (!selectedUF || !selectedCidadeBairro || selectedBairros.size === 0) return;
+
+        async function fetchEscolas() {
+            setLoadingEscolas(true);
+            try {
+                // Monta query string com múltiplos bairros: bairros=A&bairros=B
+                const params = new URLSearchParams({
+                    uf: selectedUF,
+                    cidade: selectedCidadeBairro,
+                });
+                selectedBairros.forEach(b => params.append('bairros', b));
+
+                const res = await fetch(`/api/enem/escolas?${params.toString()}`);
+                if (!res.ok) throw new Error('Falha ao carregar escolas');
+                const data = await res.json();
+                setEscolas(data.escolas || []);
+            } catch (err) {
+                console.error('Erro ao carregar escolas:', err);
+            } finally {
+                setLoadingEscolas(false);
+            }
+        }
+        fetchEscolas();
+    }, [selectedUF, selectedCidadeBairro, selectedBairros]);
+
+    // Reset drill-downs dependentes ao trocar estado
+    useEffect(() => {
+        setSelectedCidadeBairro("");
+        setSelectedBairros(new Set());
+        setBairros([]);
+        setEscolas([]);
+    }, [selectedUF]);
 
     if (loading) {
         return (
@@ -608,6 +725,310 @@ export default function EnemPage() {
                                     </tbody>
                                 </table>
                             </div>
+                        </div>
+                    </div>
+                )}
+            </div>
+
+            {/* ===== DRILL-DOWN: CIDADE → BAIRRO ===== */}
+            <div className="bg-gradient-to-br from-violet-900 to-indigo-900 p-6 rounded-3xl shadow-lg">
+                <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
+                    <h3 className="font-bold text-white text-lg flex items-center gap-2">
+                        <MapPin className="w-5 h-5 text-violet-300" />
+                        Análise por Cidade — Ranking de Bairros
+                    </h3>
+                    <div className="flex flex-wrap gap-3">
+                        {/* Seletor de Cidade (populado pelos dados do drill-down de estado) */}
+                        <div className="relative">
+                            <select
+                                value={selectedCidadeBairro}
+                                onChange={(e) => setSelectedCidadeBairro(e.target.value)}
+                                disabled={!selectedUF || !estadoDetail}
+                                className="appearance-none bg-white/10 border border-white/20 text-white rounded-xl px-4 py-2.5 pr-10 focus:outline-none focus:ring-2 focus:ring-violet-500 cursor-pointer min-w-[220px] disabled:opacity-40 disabled:cursor-not-allowed"
+                            >
+                                <option value="" className="bg-violet-900">
+                                    {!selectedUF ? 'Selecione um estado acima...' : 'Selecione uma cidade...'}
+                                </option>
+                                {estadoDetail?.topCidades?.map((c) => (
+                                    <option key={c.cidade} value={c.cidade} className="bg-violet-900">
+                                        {c.cidade}
+                                    </option>
+                                ))}
+                            </select>
+                            <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-white/60 pointer-events-none" />
+                        </div>
+
+                        {/* Filtro mínimo de participantes */}
+                        {bairros.length > 0 && (
+                            <div className="flex items-center gap-2 bg-white/5 border border-white/10 px-3 py-1.5 rounded-xl">
+                                <Users className="w-4 h-4 text-violet-300" />
+                                <div className="flex flex-col">
+                                    <label className="text-[9px] text-white/40 font-bold uppercase tracking-wider">Mín. Alunos</label>
+                                    <select
+                                        value={minParticipantsBairro}
+                                        onChange={(e) => setMinParticipantsBairro(Number(e.target.value))}
+                                        className="bg-transparent text-xs font-bold text-white outline-none cursor-pointer"
+                                    >
+                                        <option value={0} className="bg-violet-900">Todos</option>
+                                        <option value={5} className="bg-violet-900">5+ alunos</option>
+                                        <option value={10} className="bg-violet-900">10+ alunos</option>
+                                        <option value={50} className="bg-violet-900">50+ alunos</option>
+                                        <option value={100} className="bg-violet-900">100+ alunos</option>
+                                    </select>
+                                </div>
+                            </div>
+                        )}
+                    </div>
+                </div>
+
+                {/* Estado vazio */}
+                {!selectedUF && (
+                    <div className="text-center py-12 text-white/50">
+                        <Building2 className="w-12 h-12 mx-auto mb-3 opacity-30" />
+                        <p className="text-sm">Selecione um estado no componente acima para desbloquear esta análise</p>
+                    </div>
+                )}
+
+                {selectedUF && !selectedCidadeBairro && (
+                    <div className="text-center py-12 text-white/50">
+                        <MapPin className="w-12 h-12 mx-auto mb-3 opacity-30" />
+                        <p className="text-sm">Selecione uma cidade para ver o ranking dos bairros</p>
+                    </div>
+                )}
+
+                {loadingBairros && (
+                    <div className="flex items-center justify-center py-12 gap-3">
+                        <Loader2 className="w-6 h-6 text-violet-300 animate-spin" />
+                        <p className="text-white/60">Carregando bairros...</p>
+                    </div>
+                )}
+
+                {selectedCidadeBairro && !loadingBairros && bairros.length === 0 && (
+                    <div className="text-center py-10 text-white/50">
+                        <p className="text-sm">Nenhum bairro encontrado para <strong className="text-white/80">{selectedCidadeBairro}</strong></p>
+                        <p className="text-xs mt-1 opacity-60">Os dados de bairro podem não estar disponíveis para esta cidade</p>
+                    </div>
+                )}
+
+                {selectedCidadeBairro && !loadingBairros && bairros.length > 0 && (
+                    <div>
+                        <div className="flex items-center justify-between mb-3">
+                            <h4 className="text-white font-semibold flex items-center gap-2">
+                                <Trophy className="w-4 h-4 text-amber-400" />
+                                Ranking de Bairros — {selectedCidadeBairro}
+                            </h4>
+                            <span className="text-xs text-white/40 bg-white/5 px-3 py-1 rounded-full">
+                                {bairros.filter(b => b.total_alunos >= minParticipantsBairro).length} bairros
+                            </span>
+                        </div>
+                        <div className="overflow-x-auto max-h-[480px] overflow-y-auto pr-2">
+                            <table className="w-full text-sm">
+                                <thead className="sticky top-0 z-10 shadow-sm">
+                                    <tr className="text-left text-white/60 border-b border-white/10">
+                                        <th className="py-3 pl-3 bg-indigo-900">
+                                            {/* Checkbox selecionar todos */}
+                                            <input
+                                                type="checkbox"
+                                                className="w-4 h-4 rounded accent-violet-400 cursor-pointer"
+                                                checked={
+                                                    bairros.filter(b => b.total_alunos >= minParticipantsBairro).length > 0 &&
+                                                    bairros.filter(b => b.total_alunos >= minParticipantsBairro).every(b => selectedBairros.has(b.bairro))
+                                                }
+                                                onChange={() => toggleTodos(bairros.filter(b => b.total_alunos >= minParticipantsBairro))}
+                                                title="Selecionar todos"
+                                            />
+                                        </th>
+                                        <th className="py-3 bg-indigo-900">#</th>
+                                        <th className="py-3 bg-indigo-900">Bairro</th>
+                                        <th className="py-3 text-center bg-indigo-900 text-violet-300">⭐ Geral</th>
+                                        <th className="py-3 text-center bg-indigo-900">MT</th>
+                                        <th className="py-3 text-center bg-indigo-900">Redação</th>
+                                        <th className="py-3 text-center bg-indigo-900">LC</th>
+                                        <th className="py-3 text-center bg-indigo-900">CH</th>
+                                        <th className="py-3 text-center bg-indigo-900">CN</th>
+                                        <th className="py-3 text-right pr-4 bg-indigo-900">Participantes</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {bairros
+                                        .filter(b => b.total_alunos >= minParticipantsBairro)
+                                        .sort((a, b) => b.media_geral - a.media_geral)
+                                        .map((b, index) => (
+                                            <tr
+                                                key={b.bairro}
+                                                onClick={() => toggleBairro(b.bairro)}
+                                                className={`border-b border-white/5 cursor-pointer transition-colors ${selectedBairros.has(b.bairro)
+                                                    ? 'bg-violet-500/20 border-violet-400/30'
+                                                    : 'hover:bg-white/5'
+                                                    }`}
+                                            >
+                                                <td className="py-3 pl-3" onClick={e => e.stopPropagation()}>
+                                                    <input
+                                                        type="checkbox"
+                                                        checked={selectedBairros.has(b.bairro)}
+                                                        onChange={() => toggleBairro(b.bairro)}
+                                                        className="w-4 h-4 rounded accent-violet-400 cursor-pointer"
+                                                    />
+                                                </td>
+                                                <td className="py-3">
+                                                    <span className={`inline-flex items-center justify-center w-6 h-6 rounded-full text-xs font-bold ${index === 0 ? 'bg-amber-500 text-white' :
+                                                        index === 1 ? 'bg-gray-400 text-white' :
+                                                            index === 2 ? 'bg-amber-700 text-white' :
+                                                                'bg-white/10 text-white/60'
+                                                        }`}>
+                                                        {index + 1}
+                                                    </span>
+                                                </td>
+                                                <td className="py-3 text-white font-medium">
+                                                    {b.bairro}
+                                                </td>
+                                                <td className="py-3 text-center">
+                                                    <span className="bg-violet-500/30 text-violet-200 font-bold px-2 py-1 rounded-lg">
+                                                        {b.media_geral}
+                                                    </span>
+                                                </td>
+                                                <td className="py-3 text-center">
+                                                    <span className="bg-white/10 text-white/80 px-2 py-1 rounded-lg">{b.media_mt}</span>
+                                                </td>
+                                                <td className="py-3 text-center text-white/80">{b.media_redacao}</td>
+                                                <td className="py-3 text-center text-white/80">{b.media_lc}</td>
+                                                <td className="py-3 text-center text-white/80">{b.media_ch}</td>
+                                                <td className="py-3 text-center text-white/80">{b.media_cn}</td>
+                                                <td className="py-3 text-right pr-4 text-white/60">{b.total_alunos.toLocaleString('pt-BR')}</td>
+                                            </tr>
+                                        ))
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                        <p className="text-xs text-white/30 mt-3 text-center">
+                            Marque um ou mais bairros para ver o ranking de escolas abaixo
+                        </p>
+                    </div>
+                )}
+            </div>
+
+            {/* ===== DRILL-DOWN: BAIRRO → ESCOLA ===== */}
+            <div className="bg-gradient-to-br from-emerald-900 to-teal-900 p-6 rounded-3xl shadow-lg">
+                <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
+                    <h3 className="font-bold text-white text-lg flex items-center gap-2">
+                        <School className="w-5 h-5 text-emerald-300" />
+                        Análise por Bairro — Ranking de Escolas
+                    </h3>
+                    {selectedBairros.size > 0 && (
+                        <div className="flex flex-wrap items-center gap-2">
+                            <span className="text-white/50 text-xs">Bairros:</span>
+                            {Array.from(selectedBairros).map(bairro => (
+                                <span
+                                    key={bairro}
+                                    className="flex items-center gap-1.5 bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 px-2.5 py-1 rounded-full text-xs font-semibold"
+                                >
+                                    {bairro}
+                                    <button
+                                        onClick={() => toggleBairro(bairro)}
+                                        className="text-emerald-400/60 hover:text-emerald-200 transition-colors leading-none"
+                                        title={`Remover ${bairro}`}
+                                    >
+                                        ✕
+                                    </button>
+                                </span>
+                            ))}
+                            <button
+                                onClick={() => setSelectedBairros(new Set())}
+                                className="text-white/30 hover:text-white/70 transition-colors text-xs border border-white/10 px-2 py-1 rounded-full"
+                            >
+                                Limpar todos
+                            </button>
+                        </div>
+                    )}
+                </div>
+
+                {selectedBairros.size === 0 && (
+                    <div className="text-center py-12 text-white/50">
+                        <School className="w-12 h-12 mx-auto mb-3 opacity-30" />
+                        <p className="text-sm">Marque um ou mais bairros na tabela acima para ver o ranking de escolas</p>
+                    </div>
+                )}
+
+                {loadingEscolas && (
+                    <div className="flex items-center justify-center py-12 gap-3">
+                        <Loader2 className="w-6 h-6 text-emerald-300 animate-spin" />
+                        <p className="text-white/60">Carregando escolas...</p>
+                    </div>
+                )}
+
+                {selectedBairros.size > 0 && !loadingEscolas && escolas.length === 0 && (
+                    <div className="text-center py-10 text-white/50">
+                        <p className="text-sm">Nenhuma escola encontrada nos bairros selecionados</p>
+                        <p className="text-xs mt-1 opacity-60">Verifique se os dados de escola estão disponíveis para esses bairros</p>
+                    </div>
+                )}
+
+                {selectedBairros.size > 0 && !loadingEscolas && escolas.length > 0 && (
+                    <div>
+                        <div className="flex items-center justify-between mb-3">
+                            <h4 className="text-white font-semibold flex items-center gap-2">
+                                <Trophy className="w-4 h-4 text-amber-400" />
+                                Ranking de Escolas — {selectedCidadeBairro}
+                            </h4>
+                            <span className="text-xs text-white/40 bg-white/5 px-3 py-1 rounded-full">
+                                {escolas.length} escola{escolas.length !== 1 ? 's' : ''} · {selectedBairros.size} bairro{selectedBairros.size !== 1 ? 's' : ''}
+                            </span>
+                        </div>
+                        <div className="overflow-x-auto max-h-[480px] overflow-y-auto pr-2">
+                            <table className="w-full text-sm">
+                                <thead className="sticky top-0 z-10 shadow-sm">
+                                    <tr className="text-left text-white/60 border-b border-white/10">
+                                        <th className="py-3 pl-4 bg-teal-900">#</th>
+                                        <th className="py-3 bg-teal-900">Escola</th>
+                                        <th className="py-3 text-center bg-teal-900 text-emerald-300">⭐ Geral</th>
+                                        <th className="py-3 text-center bg-teal-900">MT</th>
+                                        <th className="py-3 text-center bg-teal-900">Redação</th>
+                                        <th className="py-3 text-center bg-teal-900">LC</th>
+                                        <th className="py-3 text-center bg-teal-900">CH</th>
+                                        <th className="py-3 text-center bg-teal-900">CN</th>
+                                        <th className="py-3 text-right pr-4 bg-teal-900">Participantes</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {escolas.map((e, index) => (
+                                        <tr
+                                            key={`${e.escola}-${e.bairro}`}
+                                            className="border-b border-white/5 hover:bg-white/5 transition-colors"
+                                        >
+                                            <td className="py-3 pl-4">
+                                                <span className={`inline-flex items-center justify-center w-6 h-6 rounded-full text-xs font-bold ${index === 0 ? 'bg-amber-500 text-white' :
+                                                    index === 1 ? 'bg-gray-400 text-white' :
+                                                        index === 2 ? 'bg-amber-700 text-white' :
+                                                            'bg-white/10 text-white/60'
+                                                    }`}>
+                                                    {index + 1}
+                                                </span>
+                                            </td>
+                                            <td className="py-3">
+                                                <p className="text-white font-medium leading-tight">{e.escola}</p>
+                                                {selectedBairros.size > 1 && (
+                                                    <p className="text-[10px] text-emerald-400/60 mt-0.5">{e.bairro}</p>
+                                                )}
+                                                {selectedBairros.size === 1 && (
+                                                    <p className="text-[10px] text-white/40 mt-0.5">{e.bairro}</p>
+                                                )}
+                                            </td>
+                                            <td className="py-3 text-center">
+                                                <span className="bg-emerald-500/20 text-emerald-300 font-bold px-2 py-1 rounded-lg">{e.media_geral}</span>
+                                            </td>
+                                            <td className="py-3 text-center">
+                                                <span className="bg-white/10 text-white/80 px-2 py-1 rounded-lg">{e.media_mt}</span>
+                                            </td>
+                                            <td className="py-3 text-center text-white/80">{e.media_redacao}</td>
+                                            <td className="py-3 text-center text-white/80">{e.media_lc}</td>
+                                            <td className="py-3 text-center text-white/80">{e.media_ch}</td>
+                                            <td className="py-3 text-center text-white/80">{e.media_cn}</td>
+                                            <td className="py-3 text-right pr-4 text-white/60">{e.total_alunos.toLocaleString('pt-BR')}</td>
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 )}
