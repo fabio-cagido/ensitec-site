@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { ArrowLeft, TrendingUp, Calculator, Users, Loader2, MessageSquare, BarChart2, MapPin, ChevronDown, Trophy, Building2, School } from "lucide-react";
+import { ArrowLeft, TrendingUp, Calculator, Users, Loader2, MessageSquare, BarChart2, MapPin, ChevronDown, Trophy, Building2, School, Printer } from "lucide-react";
 import Link from "next/link";
 import {
     BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Cell,
@@ -140,6 +140,78 @@ const CustomBarLabel = (props: any) => {
 
 // ----------------------------------------
 
+// Função utilitária para impressão de ranking em PDF
+function printSection({
+    title,
+    subtitle,
+    columns,
+    rows,
+}: {
+    title: string;
+    subtitle: string;
+    columns: string[];
+    rows: (string | number)[][];
+}) {
+    const rowsHtml = rows
+        .map(
+            (row, i) => `
+        <tr style="background:${i % 2 === 0 ? '#f9fafb' : '#ffffff'}">
+            ${row
+                    .map(
+                        (cell, ci) =>
+                            `<td style="padding:8px 12px;border-bottom:1px solid #e5e7eb;${ci === 0 ? 'font-weight:600;color:#1f2937' : 'color:#374151'};${ci === row.length - 1 ? 'text-align:right' : ''};${ci > 1 && ci < row.length - 1 ? 'text-align:center' : ''}">${cell}</td>`
+                    )
+                    .join('')}
+        </tr>`
+        )
+        .join('');
+
+    const html = `<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>${title}</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; color: #111827; background: #fff; padding: 32px; }
+    .header { border-bottom: 3px solid #4f46e5; padding-bottom: 16px; margin-bottom: 24px; }
+    .header h1 { font-size: 22px; font-weight: 800; color: #1e1b4b; }
+    .header p { font-size: 13px; color: #6b7280; margin-top: 4px; }
+    .badge { display:inline-block; background:#ede9fe; color:#5b21b6; font-size:11px; font-weight:700; padding:2px 10px; border-radius:999px; margin-top:6px; }
+    table { width: 100%; border-collapse: collapse; margin-top: 8px; font-size: 13px; }
+    thead th { background: #1e1b4b; color: #e0e7ff; padding: 10px 12px; text-align: left; font-size: 11px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; }
+    thead th:last-child { text-align: right; }
+    thead th:not(:first-child):not(:last-child) { text-align: center; }
+    tfoot td { background:#f3f4f6; font-size:11px; color:#9ca3af; padding:8px 12px; text-align:center; border-top:2px solid #e5e7eb; }
+    @media print {
+      body { padding: 16px; }
+      @page { margin: 12mm; size: A4 landscape; }
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1>ENEM 2024 — ${title}</h1>
+    <p>${subtitle}</p>
+    <span class="badge">Ensitec Dashboard · ${new Date().toLocaleDateString('pt-BR', { day: '2-digit', month: 'long', year: 'numeric' })}</span>
+  </div>
+  <table>
+    <thead><tr>${columns.map(c => `<th>${c}</th>`).join('')}</tr></thead>
+    <tbody>${rowsHtml}</tbody>
+    <tfoot><tr><td colspan="${columns.length}">Dados ENEM 2024 · INEP/MEC · Gerado em ${new Date().toLocaleString('pt-BR')}</td></tr></tfoot>
+  </table>
+</body>
+</html>`;
+
+    const w = window.open('', '_blank', 'width=1000,height=700');
+    if (!w) return;
+    w.document.write(html);
+    w.document.close();
+    w.onload = () => { w.focus(); w.print(); };
+}
+
+// ----------------------------------------
+
 export default function EnemPage() {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
@@ -237,8 +309,9 @@ export default function EnemPage() {
         async function fetchBairros() {
             setLoadingBairros(true);
             try {
+                // Normaliza para maiúsculas para garantir match com o banco
                 const res = await fetch(
-                    `/api/enem/bairros?uf=${encodeURIComponent(selectedUF)}&cidade=${encodeURIComponent(selectedCidadeBairro)}`
+                    `/api/enem/bairros?uf=${encodeURIComponent(selectedUF.toUpperCase())}&cidade=${encodeURIComponent(selectedCidadeBairro.toUpperCase())}`
                 );
                 if (!res.ok) throw new Error('Falha ao carregar bairros');
                 const data = await res.json();
@@ -260,12 +333,12 @@ export default function EnemPage() {
         async function fetchEscolas() {
             setLoadingEscolas(true);
             try {
-                // Monta query string com múltiplos bairros: bairros=A&bairros=B
+                // Monta query string com múltiplos bairros, normalizados em maiúsculas
                 const params = new URLSearchParams({
-                    uf: selectedUF,
-                    cidade: selectedCidadeBairro,
+                    uf: selectedUF.toUpperCase(),
+                    cidade: selectedCidadeBairro.toUpperCase(),
                 });
-                selectedBairros.forEach(b => params.append('bairros', b));
+                selectedBairros.forEach(b => params.append('bairros', b.toUpperCase()));
 
                 const res = await fetch(`/api/enem/escolas?${params.toString()}`);
                 if (!res.ok) throw new Error('Falha ao carregar escolas');
@@ -645,23 +718,41 @@ export default function EnemPage() {
                                     Ranking de Cidades - {UF_NAMES[selectedUF] || selectedUF}
                                 </h4>
 
-                                <div className="flex items-center gap-3 bg-white/5 border border-white/10 px-3 py-1.5 rounded-xl">
-                                    <Users className="w-4 h-4 text-indigo-400" />
-                                    <div className="flex flex-col">
-                                        <label className="text-[9px] text-white/40 font-bold uppercase tracking-wider">Mín. Alunos</label>
-                                        <select
-                                            value={minParticipants}
-                                            onChange={(e) => setMinParticipants(Number(e.target.value))}
-                                            className="bg-transparent text-xs font-bold text-white outline-none cursor-pointer"
-                                        >
-                                            <option value={0} className="bg-slate-800">Todos</option>
-                                            <option value={10} className="bg-slate-800">10+ alunos</option>
-                                            <option value={50} className="bg-slate-800">50+ alunos</option>
-                                            <option value={100} className="bg-slate-800">100+ alunos</option>
-                                            <option value={500} className="bg-slate-800">500+ alunos</option>
-                                            <option value={1000} className="bg-slate-800">1000+ alunos</option>
-                                        </select>
+                                <div className="flex items-center gap-2">
+                                    <div className="flex items-center gap-3 bg-white/5 border border-white/10 px-3 py-1.5 rounded-xl">
+                                        <Users className="w-4 h-4 text-indigo-400" />
+                                        <div className="flex flex-col">
+                                            <label className="text-[9px] text-white/40 font-bold uppercase tracking-wider">Mín. Alunos</label>
+                                            <select
+                                                value={minParticipants}
+                                                onChange={(e) => setMinParticipants(Number(e.target.value))}
+                                                className="bg-transparent text-xs font-bold text-white outline-none cursor-pointer"
+                                            >
+                                                <option value={0} className="bg-slate-800">Todos</option>
+                                                <option value={10} className="bg-slate-800">10+ alunos</option>
+                                                <option value={50} className="bg-slate-800">50+ alunos</option>
+                                                <option value={100} className="bg-slate-800">100+ alunos</option>
+                                                <option value={500} className="bg-slate-800">500+ alunos</option>
+                                                <option value={1000} className="bg-slate-800">1000+ alunos</option>
+                                            </select>
+                                        </div>
                                     </div>
+                                    {/* Botão Imprimir PDF - Ranking de Cidades */}
+                                    <button
+                                        onClick={() => printSection({
+                                            title: `Ranking de Cidades — ${UF_NAMES[selectedUF] || selectedUF}`,
+                                            subtitle: `Estado: ${UF_NAMES[selectedUF] || selectedUF} · Mínimo ${minParticipants} participantes`,
+                                            columns: ['#', 'Cidade', 'MT', 'Redação', 'LC', 'CH', 'CN', 'Participantes'],
+                                            rows: estadoDetail!.topCidades
+                                                .filter(c => c.total_alunos >= minParticipants)
+                                                .map((c, i) => [i + 1, c.cidade, c.media_mt, c.media_redacao, c.media_lc, c.media_ch, c.media_cn, c.total_alunos.toLocaleString('pt-BR')]),
+                                        })}
+                                        title="Imprimir ranking em PDF"
+                                        className="flex items-center gap-1.5 bg-white/10 hover:bg-white/20 text-white/70 hover:text-white border border-white/10 px-3 py-1.5 rounded-xl transition-all text-xs font-medium"
+                                    >
+                                        <Printer className="w-3.5 h-3.5" />
+                                        PDF
+                                    </button>
                                 </div>
                             </div>
                             <div className="overflow-x-auto max-h-[500px] overflow-y-auto custom-scrollbar pr-2">
@@ -817,9 +908,28 @@ export default function EnemPage() {
                                 <Trophy className="w-4 h-4 text-amber-400" />
                                 Ranking de Bairros — {selectedCidadeBairro}
                             </h4>
-                            <span className="text-xs text-white/40 bg-white/5 px-3 py-1 rounded-full">
-                                {bairros.filter(b => b.total_alunos >= minParticipantsBairro).length} bairros
-                            </span>
+                            <div className="flex items-center gap-2">
+                                <span className="text-xs text-white/40 bg-white/5 px-3 py-1 rounded-full">
+                                    {bairros.filter(b => b.total_alunos >= minParticipantsBairro).length} bairros
+                                </span>
+                                {/* Botão Imprimir PDF - Ranking de Bairros */}
+                                <button
+                                    onClick={() => printSection({
+                                        title: `Ranking de Bairros \u2014 ${selectedCidadeBairro}`,
+                                        subtitle: `Cidade: ${selectedCidadeBairro} \u00b7 ${UF_NAMES[selectedUF] || selectedUF} \u00b7 M\u00ednimo ${minParticipantsBairro} participantes`,
+                                        columns: ['#', 'Bairro', 'Geral', 'MT', 'Reda\u00e7\u00e3o', 'LC', 'CH', 'CN', 'Participantes'],
+                                        rows: bairros
+                                            .filter(b => b.total_alunos >= minParticipantsBairro)
+                                            .sort((a, b) => b.media_geral - a.media_geral)
+                                            .map((b, i) => [i + 1, b.bairro, b.media_geral, b.media_mt, b.media_redacao, b.media_lc, b.media_ch, b.media_cn, b.total_alunos.toLocaleString('pt-BR')]),
+                                    })}
+                                    title="Imprimir ranking em PDF"
+                                    className="flex items-center gap-1.5 bg-white/10 hover:bg-white/20 text-white/70 hover:text-white border border-white/10 px-3 py-1.5 rounded-xl transition-all text-xs font-medium"
+                                >
+                                    <Printer className="w-3.5 h-3.5" />
+                                    PDF
+                                </button>
+                            </div>
                         </div>
                         <div className="overflow-x-auto max-h-[480px] overflow-y-auto pr-2">
                             <table className="w-full text-sm">
@@ -971,9 +1081,25 @@ export default function EnemPage() {
                                 <Trophy className="w-4 h-4 text-amber-400" />
                                 Ranking de Escolas — {selectedCidadeBairro}
                             </h4>
-                            <span className="text-xs text-white/40 bg-white/5 px-3 py-1 rounded-full">
-                                {escolas.length} escola{escolas.length !== 1 ? 's' : ''} · {selectedBairros.size} bairro{selectedBairros.size !== 1 ? 's' : ''}
-                            </span>
+                            <div className="flex items-center gap-2">
+                                <span className="text-xs text-white/40 bg-white/5 px-3 py-1 rounded-full">
+                                    {escolas.length} escola{escolas.length !== 1 ? 's' : ''} · {selectedBairros.size} bairro{selectedBairros.size !== 1 ? 's' : ''}
+                                </span>
+                                {/* Botão Imprimir PDF - Ranking de Escolas */}
+                                <button
+                                    onClick={() => printSection({
+                                        title: `Ranking de Escolas \u2014 ${selectedCidadeBairro}`,
+                                        subtitle: `Bairros: ${Array.from(selectedBairros).join(', ')} \u00b7 ${UF_NAMES[selectedUF] || selectedUF}`,
+                                        columns: ['#', 'Escola', 'Bairro', 'Geral', 'MT', 'Reda\u00e7\u00e3o', 'LC', 'CH', 'CN', 'Participantes'],
+                                        rows: escolas.map((e, i) => [i + 1, e.escola, e.bairro, e.media_geral, e.media_mt, e.media_redacao, e.media_lc, e.media_ch, e.media_cn, e.total_alunos.toLocaleString('pt-BR')]),
+                                    })}
+                                    title="Imprimir ranking em PDF"
+                                    className="flex items-center gap-1.5 bg-white/10 hover:bg-white/20 text-white/70 hover:text-white border border-white/10 px-3 py-1.5 rounded-xl transition-all text-xs font-medium"
+                                >
+                                    <Printer className="w-3.5 h-3.5" />
+                                    PDF
+                                </button>
+                            </div>
                         </div>
                         <div className="overflow-x-auto max-h-[480px] overflow-y-auto pr-2">
                             <table className="w-full text-sm">

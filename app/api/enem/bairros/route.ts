@@ -28,7 +28,7 @@ export async function GET(request: Request) {
         try {
             const bairrosQuery = `
                 SELECT 
-                    "NO_BAIRRO" as bairro,
+                    UPPER("NO_BAIRRO") as bairro,
                     ROUND(SUM("avg_mt" * "count_mt") / NULLIF(SUM("count_mt"), 0))::INTEGER as media_mt,
                     SUM("count_mt") as count_mt,
                     ROUND(SUM("avg_cn" * "count_cn") / NULLIF(SUM("count_cn"), 0))::INTEGER as media_cn,
@@ -48,12 +48,12 @@ export async function GET(request: Request) {
                         COALESCE(SUM("avg_redacao" * "count_redacao") / NULLIF(SUM("count_redacao"), 0), 0)
                     ) / 5)::INTEGER as media_geral
                 FROM enem_agregado_bairro
-                WHERE "SG_UF_PROVA" = $1
-                  AND "NO_MUNICIPIO_PROVA" = $2
+                WHERE UPPER("SG_UF_PROVA") = UPPER($1)
+                  AND UPPER("NO_MUNICIPIO_PROVA") = UPPER($2)
                   AND "NO_BAIRRO" IS NOT NULL
                   AND "NO_BAIRRO" <> ''
                   AND "avg_mt" > 0
-                GROUP BY "NO_BAIRRO"
+                GROUP BY UPPER("NO_BAIRRO")
                 ORDER BY media_geral DESC NULLS LAST
             `;
 
