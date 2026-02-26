@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { ArrowLeft, TrendingUp, Calculator, Users, Loader2, MessageSquare, BarChart2, MapPin, ChevronDown, Trophy, Building2, School, Printer } from "lucide-react";
+import { ArrowLeft, TrendingUp, Calculator, Users, Loader2, MessageSquare, BarChart2, MapPin, ChevronDown, Trophy, Building2, School, Printer, Search } from "lucide-react";
 import Link from "next/link";
 import {
     BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Cell,
@@ -221,6 +221,8 @@ export default function EnemPage() {
     const [estadoDetail, setEstadoDetail] = useState<EstadoDetail | null>(null);
     const [loadingCidades, setLoadingCidades] = useState(false);
     const [minParticipants, setMinParticipants] = useState<number>(0);
+    const [searchCidade, setSearchCidade] = useState<string>("");
+    const [searchBairro, setSearchBairro] = useState<string>("");
 
     // --- Drill-down: Cidade → Bairro ---
     const [selectedCidadeBairro, setSelectedCidadeBairro] = useState<string>("");
@@ -360,7 +362,13 @@ export default function EnemPage() {
         setSelectedBairros(new Set());
         setBairros([]);
         setEscolas([]);
+        setSearchCidade("");
     }, [selectedUF]);
+
+    // Reset busca de bairro ao trocar cidade
+    useEffect(() => {
+        setSearchBairro("");
+    }, [selectedCidadeBairro]);
 
     if (loading) {
         return (
@@ -719,7 +727,22 @@ export default function EnemPage() {
                                     Ranking de Cidades - {UF_NAMES[selectedUF] || selectedUF}
                                 </h4>
 
-                                <div className="flex items-center gap-2">
+                                <div className="flex flex-wrap items-center gap-2">
+                                    {/* Barra de Busca - Cidades */}
+                                    <div className="flex items-center gap-2 bg-white/5 border border-white/10 hover:border-white/25 focus-within:border-indigo-400/60 focus-within:bg-white/10 px-3 py-1.5 rounded-xl transition-all">
+                                        <Search className="w-3.5 h-3.5 text-white/40 flex-shrink-0" />
+                                        <input
+                                            type="text"
+                                            placeholder="Buscar cidade..."
+                                            value={searchCidade}
+                                            onChange={(e) => setSearchCidade(e.target.value)}
+                                            className="bg-transparent text-xs text-white placeholder-white/30 outline-none w-36"
+                                        />
+                                        {searchCidade && (
+                                            <button onClick={() => setSearchCidade('')} className="text-white/30 hover:text-white/70 transition-colors leading-none text-xs">✕</button>
+                                        )}
+                                    </div>
+
                                     <div className="flex items-center gap-3 bg-white/5 border border-white/10 px-3 py-1.5 rounded-xl">
                                         <Users className="w-4 h-4 text-indigo-400" />
                                         <div className="flex flex-col">
@@ -746,6 +769,7 @@ export default function EnemPage() {
                                             columns: ['#', 'Cidade', 'MT', 'Redação', 'LC', 'CH', 'CN', 'Participantes'],
                                             rows: estadoDetail!.topCidades
                                                 .filter(c => c.total_alunos >= minParticipants)
+                                                .filter(c => c.cidade.toLowerCase().includes(searchCidade.toLowerCase()))
                                                 .map((c, i) => [i + 1, c.cidade, c.media_mt, c.media_redacao, c.media_lc, c.media_ch, c.media_cn, c.total_alunos.toLocaleString('pt-BR')]),
                                         })}
                                         title="Imprimir ranking em PDF"
@@ -787,6 +811,7 @@ export default function EnemPage() {
 
                                         {estadoDetail.topCidades
                                             .filter(c => c.total_alunos >= minParticipants)
+                                            .filter(c => c.cidade.toLowerCase().includes(searchCidade.toLowerCase()))
                                             .map((cidade, index) => (
                                                 <tr
                                                     key={cidade.cidade}
@@ -904,14 +929,28 @@ export default function EnemPage() {
 
                 {selectedCidadeBairro && !loadingBairros && bairros.length > 0 && (
                     <div>
-                        <div className="flex items-center justify-between mb-3">
+                        <div className="flex flex-col md:flex-row md:items-center justify-between gap-3 mb-3">
                             <h4 className="text-white font-semibold flex items-center gap-2">
                                 <Trophy className="w-4 h-4 text-amber-400" />
                                 Ranking de Bairros — {selectedCidadeBairro}
                             </h4>
-                            <div className="flex items-center gap-2">
+                            <div className="flex flex-wrap items-center gap-2">
+                                {/* Barra de Busca - Bairros */}
+                                <div className="flex items-center gap-2 bg-white/5 border border-white/10 hover:border-white/25 focus-within:border-violet-400/60 focus-within:bg-white/10 px-3 py-1.5 rounded-xl transition-all">
+                                    <Search className="w-3.5 h-3.5 text-white/40 flex-shrink-0" />
+                                    <input
+                                        type="text"
+                                        placeholder="Buscar bairro..."
+                                        value={searchBairro}
+                                        onChange={(e) => setSearchBairro(e.target.value)}
+                                        className="bg-transparent text-xs text-white placeholder-white/30 outline-none w-32"
+                                    />
+                                    {searchBairro && (
+                                        <button onClick={() => setSearchBairro('')} className="text-white/30 hover:text-white/70 transition-colors leading-none text-xs">✕</button>
+                                    )}
+                                </div>
                                 <span className="text-xs text-white/40 bg-white/5 px-3 py-1 rounded-full">
-                                    {bairros.filter(b => b.total_alunos >= minParticipantsBairro).length} bairros
+                                    {bairros.filter(b => b.total_alunos >= minParticipantsBairro && b.bairro.toLowerCase().includes(searchBairro.toLowerCase())).length} bairros
                                 </span>
                                 {/* Botão Imprimir PDF - Ranking de Bairros */}
                                 <button
@@ -921,6 +960,7 @@ export default function EnemPage() {
                                         columns: ['#', 'Bairro', 'Geral', 'MT', 'Reda\u00e7\u00e3o', 'LC', 'CH', 'CN', 'Participantes'],
                                         rows: bairros
                                             .filter(b => b.total_alunos >= minParticipantsBairro)
+                                            .filter(b => b.bairro.toLowerCase().includes(searchBairro.toLowerCase()))
                                             .sort((a, b) => b.media_geral - a.media_geral)
                                             .map((b, i) => [i + 1, b.bairro, b.media_geral, b.media_mt, b.media_redacao, b.media_lc, b.media_ch, b.media_cn, b.total_alunos.toLocaleString('pt-BR')]),
                                     })}
@@ -942,10 +982,10 @@ export default function EnemPage() {
                                                 type="checkbox"
                                                 className="w-4 h-4 rounded accent-violet-400 cursor-pointer"
                                                 checked={
-                                                    bairros.filter(b => b.total_alunos >= minParticipantsBairro).length > 0 &&
-                                                    bairros.filter(b => b.total_alunos >= minParticipantsBairro).every(b => selectedBairros.has(b.bairro))
+                                                    bairros.filter(b => b.total_alunos >= minParticipantsBairro && b.bairro.toLowerCase().includes(searchBairro.toLowerCase())).length > 0 &&
+                                                    bairros.filter(b => b.total_alunos >= minParticipantsBairro && b.bairro.toLowerCase().includes(searchBairro.toLowerCase())).every(b => selectedBairros.has(b.bairro))
                                                 }
-                                                onChange={() => toggleTodos(bairros.filter(b => b.total_alunos >= minParticipantsBairro))}
+                                                onChange={() => toggleTodos(bairros.filter(b => b.total_alunos >= minParticipantsBairro && b.bairro.toLowerCase().includes(searchBairro.toLowerCase())))}
                                                 title="Selecionar todos"
                                             />
                                         </th>
@@ -963,6 +1003,7 @@ export default function EnemPage() {
                                 <tbody>
                                     {bairros
                                         .filter(b => b.total_alunos >= minParticipantsBairro)
+                                        .filter(b => b.bairro.toLowerCase().includes(searchBairro.toLowerCase()))
                                         .sort((a, b) => b.media_geral - a.media_geral)
                                         .map((b, index) => (
                                             <tr
