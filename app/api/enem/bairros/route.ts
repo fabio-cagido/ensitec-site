@@ -7,6 +7,8 @@ export async function GET(request: Request) {
     const { searchParams } = new URL(request.url);
     const uf = searchParams.get('uf');
     const cidade = searchParams.get('cidade');
+    const tpEscola = searchParams.get('tp_escola');
+    const filterValue = (tpEscola && tpEscola !== 'Todas') ? tpEscola : null;
 
     if (!uf || !cidade) {
         return NextResponse.json(
@@ -50,6 +52,7 @@ export async function GET(request: Request) {
                 FROM enem_agregado_bairro
                 WHERE UPPER("SG_UF_PROVA") = UPPER($1)
                   AND UPPER("NO_MUNICIPIO_PROVA") = UPPER($2)
+                  AND ($3::text IS NULL OR "tp_escola_label" = $3)
                   AND "NO_BAIRRO" IS NOT NULL
                   AND "NO_BAIRRO" <> ''
                   AND "avg_mt" > 0
@@ -57,7 +60,7 @@ export async function GET(request: Request) {
                 ORDER BY media_geral DESC NULLS LAST
             `;
 
-            const result = await client.query(bairrosQuery, [uf, cidade]);
+            const result = await client.query(bairrosQuery, [uf, cidade, filterValue]);
 
             const safeNumber = (val: any) => (val !== null && val !== undefined ? Number(val) : 0);
 

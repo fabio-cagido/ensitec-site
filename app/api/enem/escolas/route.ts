@@ -7,6 +7,9 @@ export async function GET(request: Request) {
     const { searchParams } = new URL(request.url);
     const uf = searchParams.get('uf');
     const cidade = searchParams.get('cidade');
+    const tpEscola = searchParams.get('tp_escola');
+    const filterValue = (tpEscola && tpEscola !== 'Todas') ? tpEscola : null;
+
     // Aceita múltiplos: ?bairros=A&bairros=B  ou  legado: ?bairro=A
     const bairros = searchParams.getAll('bairros');
     const bairroLegado = searchParams.get('bairro');
@@ -31,8 +34,8 @@ export async function GET(request: Request) {
         const client = await pool.connect();
         try {
             // Gera os placeholders dinâmicos para o IN (...)
-            // $1 = uf, $2 = cidade, $3...$N = bairros
-            const placeholders = bairrosList.map((_, i) => `$${i + 3}`).join(', ');
+            // $1 = uf, $2 = cidade, $3 = tpEscola, $4...$N = bairros
+            const placeholders = bairrosList.map((_, i) => `$${i + 4}`).join(', ');
 
             const escolasQuery = `
                 SELECT 
@@ -58,13 +61,14 @@ export async function GET(request: Request) {
                 FROM enem_agregado_escola
                 WHERE UPPER("SG_UF_PROVA") = UPPER($1)
                   AND UPPER("NO_MUNICIPIO_PROVA") = UPPER($2)
+                  AND ($3::text IS NULL OR "tp_escola_label" = $3)
                   AND UPPER("NO_BAIRRO") IN (${placeholders})
                   AND "NO_ENTIDADE" IS NOT NULL
                 GROUP BY "NO_ENTIDADE", UPPER("NO_BAIRRO")
                 ORDER BY media_geral DESC NULLS LAST
             `;
 
-            const result = await client.query(escolasQuery, [uf, cidade, ...bairrosList]);
+            const result = await client.query(escolasQuery, [uf, cidade, filterValue, ...bairrosList]);
 
             const safeNumber = (val: any) => (val !== null && val !== undefined ? Number(val) : 0);
 

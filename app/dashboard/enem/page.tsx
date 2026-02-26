@@ -311,7 +311,7 @@ export default function EnemPage() {
             try {
                 // Normaliza para maiúsculas para garantir match com o banco
                 const res = await fetch(
-                    `/api/enem/bairros?uf=${encodeURIComponent(selectedUF.toUpperCase())}&cidade=${encodeURIComponent(selectedCidadeBairro.toUpperCase())}`
+                    `/api/enem/bairros?uf=${encodeURIComponent(selectedUF.toUpperCase())}&cidade=${encodeURIComponent(selectedCidadeBairro.toUpperCase())}&tp_escola=${schoolType}`
                 );
                 if (!res.ok) throw new Error('Falha ao carregar bairros');
                 const data = await res.json();
@@ -323,7 +323,7 @@ export default function EnemPage() {
             }
         }
         fetchBairros();
-    }, [selectedUF, selectedCidadeBairro]);
+    }, [selectedUF, selectedCidadeBairro, schoolType]);
 
     // Fetch escolas quando seleção de bairros muda
     useEffect(() => {
@@ -337,6 +337,7 @@ export default function EnemPage() {
                 const params = new URLSearchParams({
                     uf: selectedUF.toUpperCase(),
                     cidade: selectedCidadeBairro.toUpperCase(),
+                    tp_escola: schoolType,
                 });
                 selectedBairros.forEach(b => params.append('bairros', b.toUpperCase()));
 
@@ -351,7 +352,7 @@ export default function EnemPage() {
             }
         }
         fetchEscolas();
-    }, [selectedUF, selectedCidadeBairro, selectedBairros]);
+    }, [selectedUF, selectedCidadeBairro, selectedBairros, schoolType]);
 
     // Reset drill-downs dependentes ao trocar estado
     useEffect(() => {
