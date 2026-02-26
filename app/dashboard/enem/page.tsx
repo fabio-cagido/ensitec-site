@@ -223,6 +223,7 @@ export default function EnemPage() {
     const [minParticipants, setMinParticipants] = useState<number>(0);
     const [searchCidade, setSearchCidade] = useState<string>("");
     const [searchBairro, setSearchBairro] = useState<string>("");
+    const [searchEscola, setSearchEscola] = useState<string>("");
 
     // --- Drill-down: Cidade → Bairro ---
     const [selectedCidadeBairro, setSelectedCidadeBairro] = useState<string>("");
@@ -330,6 +331,7 @@ export default function EnemPage() {
     // Fetch escolas quando seleção de bairros muda
     useEffect(() => {
         setEscolas([]);
+        setSearchEscola("");
         if (!selectedUF || !selectedCidadeBairro || selectedBairros.size === 0) return;
 
         async function fetchEscolas() {
@@ -1118,14 +1120,28 @@ export default function EnemPage() {
 
                 {selectedBairros.size > 0 && !loadingEscolas && escolas.length > 0 && (
                     <div>
-                        <div className="flex items-center justify-between mb-3">
+                        <div className="flex flex-col md:flex-row md:items-center justify-between gap-3 mb-3">
                             <h4 className="text-white font-semibold flex items-center gap-2">
                                 <Trophy className="w-4 h-4 text-amber-400" />
                                 Ranking de Escolas — {selectedCidadeBairro}
                             </h4>
-                            <div className="flex items-center gap-2">
+                            <div className="flex flex-wrap items-center gap-2">
+                                {/* Barra de Busca - Escolas */}
+                                <div className="flex items-center gap-2 bg-white/5 border border-white/10 hover:border-white/25 focus-within:border-emerald-400/60 focus-within:bg-white/10 px-3 py-1.5 rounded-xl transition-all">
+                                    <Search className="w-3.5 h-3.5 text-white/40 flex-shrink-0" />
+                                    <input
+                                        type="text"
+                                        placeholder="Buscar escola..."
+                                        value={searchEscola}
+                                        onChange={(e) => setSearchEscola(e.target.value)}
+                                        className="bg-transparent text-xs text-white placeholder-white/30 outline-none w-36"
+                                    />
+                                    {searchEscola && (
+                                        <button onClick={() => setSearchEscola('')} className="text-white/30 hover:text-white/70 transition-colors leading-none text-xs">✕</button>
+                                    )}
+                                </div>
                                 <span className="text-xs text-white/40 bg-white/5 px-3 py-1 rounded-full">
-                                    {escolas.length} escola{escolas.length !== 1 ? 's' : ''} · {selectedBairros.size} bairro{selectedBairros.size !== 1 ? 's' : ''}
+                                    {escolas.filter(e => e.escola.toLowerCase().includes(searchEscola.toLowerCase())).length} escola{escolas.filter(e => e.escola.toLowerCase().includes(searchEscola.toLowerCase())).length !== 1 ? 's' : ''} · {selectedBairros.size} bairro{selectedBairros.size !== 1 ? 's' : ''}
                                 </span>
                                 {/* Botão Imprimir PDF - Ranking de Escolas */}
                                 <button
@@ -1133,7 +1149,9 @@ export default function EnemPage() {
                                         title: `Ranking de Escolas \u2014 ${selectedCidadeBairro}`,
                                         subtitle: `Bairros: ${Array.from(selectedBairros).join(', ')} \u00b7 ${UF_NAMES[selectedUF] || selectedUF}`,
                                         columns: ['#', 'Escola', 'Bairro', 'Geral', 'MT', 'Reda\u00e7\u00e3o', 'LC', 'CH', 'CN', 'Participantes'],
-                                        rows: escolas.map((e, i) => [i + 1, e.escola, e.bairro, e.media_geral, e.media_mt, e.media_redacao, e.media_lc, e.media_ch, e.media_cn, e.total_alunos.toLocaleString('pt-BR')]),
+                                        rows: escolas
+                                            .filter(e => e.escola.toLowerCase().includes(searchEscola.toLowerCase()))
+                                            .map((e, i) => [i + 1, e.escola, e.bairro, e.media_geral, e.media_mt, e.media_redacao, e.media_lc, e.media_ch, e.media_cn, e.total_alunos.toLocaleString('pt-BR')]),
                                     })}
                                     title="Imprimir ranking em PDF"
                                     className="flex items-center gap-1.5 bg-white/10 hover:bg-white/20 text-white/70 hover:text-white border border-white/10 px-3 py-1.5 rounded-xl transition-all text-xs font-medium"
@@ -1159,42 +1177,44 @@ export default function EnemPage() {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {escolas.map((e, index) => (
-                                        <tr
-                                            key={`${e.escola}-${e.bairro}`}
-                                            className="border-b border-white/5 hover:bg-white/5 transition-colors"
-                                        >
-                                            <td className="py-3 pl-4">
-                                                <span className={`inline-flex items-center justify-center w-6 h-6 rounded-full text-xs font-bold ${index === 0 ? 'bg-amber-500 text-white' :
-                                                    index === 1 ? 'bg-gray-400 text-white' :
-                                                        index === 2 ? 'bg-amber-700 text-white' :
-                                                            'bg-white/10 text-white/60'
-                                                    }`}>
-                                                    {index + 1}
-                                                </span>
-                                            </td>
-                                            <td className="py-3">
-                                                <p className="text-white font-medium leading-tight">{e.escola}</p>
-                                                {selectedBairros.size > 1 && (
-                                                    <p className="text-[10px] text-emerald-400/60 mt-0.5">{e.bairro}</p>
-                                                )}
-                                                {selectedBairros.size === 1 && (
-                                                    <p className="text-[10px] text-white/40 mt-0.5">{e.bairro}</p>
-                                                )}
-                                            </td>
-                                            <td className="py-3 text-center">
-                                                <span className="bg-emerald-500/20 text-emerald-300 font-bold px-2 py-1 rounded-lg">{e.media_geral}</span>
-                                            </td>
-                                            <td className="py-3 text-center">
-                                                <span className="bg-white/10 text-white/80 px-2 py-1 rounded-lg">{e.media_mt}</span>
-                                            </td>
-                                            <td className="py-3 text-center text-white/80">{e.media_redacao}</td>
-                                            <td className="py-3 text-center text-white/80">{e.media_lc}</td>
-                                            <td className="py-3 text-center text-white/80">{e.media_ch}</td>
-                                            <td className="py-3 text-center text-white/80">{e.media_cn}</td>
-                                            <td className="py-3 text-right pr-4 text-white/60">{e.total_alunos.toLocaleString('pt-BR')}</td>
-                                        </tr>
-                                    ))}
+                                    {escolas
+                                        .filter(e => e.escola.toLowerCase().includes(searchEscola.toLowerCase()))
+                                        .map((e, index) => (
+                                            <tr
+                                                key={`${e.escola}-${e.bairro}`}
+                                                className="border-b border-white/5 hover:bg-white/5 transition-colors"
+                                            >
+                                                <td className="py-3 pl-4">
+                                                    <span className={`inline-flex items-center justify-center w-6 h-6 rounded-full text-xs font-bold ${index === 0 ? 'bg-amber-500 text-white' :
+                                                        index === 1 ? 'bg-gray-400 text-white' :
+                                                            index === 2 ? 'bg-amber-700 text-white' :
+                                                                'bg-white/10 text-white/60'
+                                                        }`}>
+                                                        {index + 1}
+                                                    </span>
+                                                </td>
+                                                <td className="py-3">
+                                                    <p className="text-white font-medium leading-tight">{e.escola}</p>
+                                                    {selectedBairros.size > 1 && (
+                                                        <p className="text-[10px] text-emerald-400/60 mt-0.5">{e.bairro}</p>
+                                                    )}
+                                                    {selectedBairros.size === 1 && (
+                                                        <p className="text-[10px] text-white/40 mt-0.5">{e.bairro}</p>
+                                                    )}
+                                                </td>
+                                                <td className="py-3 text-center">
+                                                    <span className="bg-emerald-500/20 text-emerald-300 font-bold px-2 py-1 rounded-lg">{e.media_geral}</span>
+                                                </td>
+                                                <td className="py-3 text-center">
+                                                    <span className="bg-white/10 text-white/80 px-2 py-1 rounded-lg">{e.media_mt}</span>
+                                                </td>
+                                                <td className="py-3 text-center text-white/80">{e.media_redacao}</td>
+                                                <td className="py-3 text-center text-white/80">{e.media_lc}</td>
+                                                <td className="py-3 text-center text-white/80">{e.media_ch}</td>
+                                                <td className="py-3 text-center text-white/80">{e.media_cn}</td>
+                                                <td className="py-3 text-right pr-4 text-white/60">{e.total_alunos.toLocaleString('pt-BR')}</td>
+                                            </tr>
+                                        ))}
                                 </tbody>
                             </table>
                         </div>
