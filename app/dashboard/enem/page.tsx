@@ -1005,9 +1005,10 @@ export default function EnemPage() {
                                 <tbody>
                                     {bairros
                                         .filter(b => b.total_alunos >= minParticipantsBairro)
-                                        .filter(b => b.bairro.toLowerCase().includes(searchBairro.toLowerCase()))
                                         .sort((a, b) => b.media_geral - a.media_geral)
-                                        .map((b, index) => (
+                                        .map((b, rankIndex) => ({ ...b, rankIndex }))
+                                        .filter(b => b.bairro.toLowerCase().includes(searchBairro.toLowerCase()))
+                                        .map((b) => (
                                             <tr
                                                 key={b.bairro}
                                                 onClick={() => toggleBairro(b.bairro)}
@@ -1025,12 +1026,12 @@ export default function EnemPage() {
                                                     />
                                                 </td>
                                                 <td className="py-3">
-                                                    <span className={`inline-flex items-center justify-center w-6 h-6 rounded-full text-xs font-bold ${index === 0 ? 'bg-amber-500 text-white' :
-                                                        index === 1 ? 'bg-gray-400 text-white' :
-                                                            index === 2 ? 'bg-amber-700 text-white' :
+                                                    <span className={`inline-flex items-center justify-center w-6 h-6 rounded-full text-xs font-bold ${b.rankIndex === 0 ? 'bg-amber-500 text-white' :
+                                                        b.rankIndex === 1 ? 'bg-gray-400 text-white' :
+                                                            b.rankIndex === 2 ? 'bg-amber-700 text-white' :
                                                                 'bg-white/10 text-white/60'
                                                         }`}>
-                                                        {index + 1}
+                                                        {b.rankIndex + 1}
                                                     </span>
                                                 </td>
                                                 <td className="py-3 text-white font-medium">
@@ -1178,19 +1179,20 @@ export default function EnemPage() {
                                 </thead>
                                 <tbody>
                                     {escolas
+                                        .map((e, rankIndex) => ({ ...e, rankIndex }))
                                         .filter(e => e.escola.toLowerCase().includes(searchEscola.toLowerCase()))
-                                        .map((e, index) => (
+                                        .map((e) => (
                                             <tr
                                                 key={`${e.escola}-${e.bairro}`}
                                                 className="border-b border-white/5 hover:bg-white/5 transition-colors"
                                             >
                                                 <td className="py-3 pl-4">
-                                                    <span className={`inline-flex items-center justify-center w-6 h-6 rounded-full text-xs font-bold ${index === 0 ? 'bg-amber-500 text-white' :
-                                                        index === 1 ? 'bg-gray-400 text-white' :
-                                                            index === 2 ? 'bg-amber-700 text-white' :
+                                                    <span className={`inline-flex items-center justify-center w-6 h-6 rounded-full text-xs font-bold ${e.rankIndex === 0 ? 'bg-amber-500 text-white' :
+                                                        e.rankIndex === 1 ? 'bg-gray-400 text-white' :
+                                                            e.rankIndex === 2 ? 'bg-amber-700 text-white' :
                                                                 'bg-white/10 text-white/60'
                                                         }`}>
-                                                        {index + 1}
+                                                        {e.rankIndex + 1}
                                                     </span>
                                                 </td>
                                                 <td className="py-3">
