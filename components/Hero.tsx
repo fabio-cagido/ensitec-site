@@ -32,19 +32,35 @@ export default function Hero() {
           Tenha um BI eficiente e assessoria estratégica para as suas decisões
         </motion.p>
 
-        <motion.a
-          href="/bi-para-escolas"
-          variants={fadeUp}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true }}
-          transition={{ delay: 0.3, duration: 0.6 }}
-          whileHover={{ scale: 1.04 }}
-          whileTap={{ scale: 0.97 }}
-          className="inline-block bg-black text-white px-6 py-3 rounded-md"
-        >
-          BI para Escolas
-        </motion.a>
+        <div className="flex gap-4 flex-wrap">
+          <motion.a
+            href="/bi-para-escolas"
+            variants={fadeUp}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true }}
+            transition={{ delay: 0.3, duration: 0.6 }}
+            whileHover={{ scale: 1.04 }}
+            whileTap={{ scale: 0.97 }}
+            className="inline-block bg-black text-white px-6 py-3 rounded-md"
+          >
+            BI para Escolas
+          </motion.a>
+
+          <motion.a
+            href="/bi-corporativo"
+            variants={fadeUp}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true }}
+            transition={{ delay: 0.4, duration: 0.6 }}
+            whileHover={{ scale: 1.04 }}
+            whileTap={{ scale: 0.97 }}
+            className="inline-block bg-black text-white px-6 py-3 rounded-md"
+          >
+            BI Corporativo
+          </motion.a>
+        </div>
 
       </div>
     </section>

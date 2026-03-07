@@ -23,6 +23,10 @@ export default function Header() {
           <Link href="/bi-para-escolas" className="text-sm font-medium text-gray-300 hover:text-white transition-colors">
             BI para Escolas
           </Link>
+
+          <Link href="/bi-corporativo" className="text-sm font-medium text-gray-300 hover:text-white transition-colors">
+            BI Corporativo
+          </Link>
         </div>
 
         <Link
