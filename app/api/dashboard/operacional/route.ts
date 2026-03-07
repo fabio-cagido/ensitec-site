@@ -1,10 +1,17 @@
 import { NextResponse } from 'next/server';
-import { query } from '@/lib/db';
+import { queryWithTenant } from '@/lib/db';
+import { auth } from '@clerk/nextjs/server';
 
 export const dynamic = 'force-dynamic';
 
 export async function GET() {
     try {
+        const { sessionClaims } = await auth();
+        const metadata = sessionClaims?.metadata as any;
+
+        if (!metadata?.escola_id) {
+            return NextResponse.json({ error: 'Tenant ID missing.' }, { status: 403 });
+        }
         // Para o dashboard operacional, os dados são majoritariamente de gestão de recursos e infraestrutura.
         // Como o schema atual é focado em alunos/financeiro/academico, vou mockar os indicadores operacionais
         // mas basear o que for possível em dados reais (ex: ocupação baseada em alunos ativos).
@@ -18,7 +25,7 @@ export async function GET() {
       WHERE status_matricula = 'Ativo'
       GROUP BY turma
     `;
-        const classResult = await query(classOccupationQuery);
+        const classResult = await queryWithTenant(classOccupationQuery, [], sessionClaims);
         const avgOccupation = classResult.rows.length > 0
             ? Math.min(100, Math.round((classResult.rows.reduce((acc: number, curr: any) => acc + Number(curr.count), 0) / (classResult.rows.length * 40)) * 100))
             : 0;
@@ -31,7 +38,7 @@ export async function GET() {
             FROM metricas_mensais
             ORDER BY tipo_metrica, mes_referencia DESC
         `;
-        const metricsResult = await query(metricsQuery);
+        const metricsResult = await queryWithTenant(metricsQuery, [], sessionClaims);
         const metricsMap = metricsResult.rows.reduce((acc: any, curr: any) => {
             acc[curr.tipo_metrica] = { value: curr.valor, unit: curr.unidade };
             return acc;
@@ -43,7 +50,7 @@ export async function GET() {
             FROM operacional_chamados 
             WHERE status != 'Resolvido'
         `;
-        const maintenanceResult = await query(maintenanceQuery);
+        const maintenanceResult = await queryWithTenant(maintenanceQuery, [], sessionClaims);
 
         // Mapeando para o formato do dashboard
         const kpis = {
@@ -75,7 +82,7 @@ export async function GET() {
             ORDER BY date_trunc('month', data_despesa) ASC
             LIMIT 12
         `;
-        const costResult = await query(costQuery);
+        const costResult = await queryWithTenant(costQuery, [], sessionClaims);
 
         // 4. Performance de Chamados
         const ticketQuery = `
@@ -88,7 +95,7 @@ export async function GET() {
             GROUP BY 1, 4
             ORDER BY 4 ASC
         `;
-        const ticketResult = await query(ticketQuery);
+        const ticketResult = await queryWithTenant(ticketQuery, [], sessionClaims);
 
         const dayMap: Record<string, string> = { 'Sun': 'Dom', 'Mon': 'Seg', 'Tue': 'Ter', 'Wed': 'Qua', 'Thu': 'Qui', 'Fri': 'Sex', 'Sat': 'Sab' };
         const ticketPerformance = ticketResult.rows.map((r: any) => ({

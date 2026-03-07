@@ -1,6 +1,6 @@
-
 import { NextResponse } from 'next/server';
-import { query } from '@/lib/db';
+import { queryWithTenant } from '@/lib/db';
+import { auth } from '@clerk/nextjs/server';
 
 export const dynamic = 'force-dynamic';
 
@@ -58,10 +58,16 @@ export async function GET(request: Request) {
     const years = searchParams.get('anos')?.split(',').filter(Boolean) || [];
 
     try {
+        const { sessionClaims } = await auth();
+        const metadata = sessionClaims?.metadata as any;
+
+        if (!metadata?.escola_id) {
+            return NextResponse.json({ error: 'Tenant ID missing.' }, { status: 403 });
+        }
         const studentStatusQuery = `SELECT status_matricula, COUNT(*) as count FROM alunos GROUP BY status_matricula`;
         const genderQuery = `SELECT genero, COUNT(*) as count FROM alunos GROUP BY genero`;
         const classQuery = `SELECT turma as name, COUNT(*) as occupied FROM alunos WHERE status_matricula = 'Ativo' GROUP BY turma ORDER BY turma`;
-        const geoQuery = `SELECT COALESCE(cidade_aluno, e.cidade) as name, COUNT(a.id) as value FROM alunos a JOIN escolas e ON a.escola_id = e.id GROUP BY 1 ORDER BY value DESC LIMIT 5`;
+        const geoQuery = `SELECT COALESCE(nullif(trim(cidade_aluno), ''), unidade, 'Indefinido') as name, COUNT(id) as value FROM alunos GROUP BY 1 ORDER BY value DESC LIMIT 5`;
         const ageQuery = `SELECT CASE WHEN EXTRACT(YEAR FROM age(data_nascimento)) BETWEEN 0 AND 5 THEN '0-5' WHEN EXTRACT(YEAR FROM age(data_nascimento)) BETWEEN 6 AND 10 THEN '6-10' WHEN EXTRACT(YEAR FROM age(data_nascimento)) BETWEEN 11 AND 14 THEN '11-14' WHEN EXTRACT(YEAR FROM age(data_nascimento)) BETWEEN 15 AND 18 THEN '15-18' ELSE '18+' END as age_group, COUNT(*) as count FROM alunos GROUP BY age_group`;
         const raceQuery = `SELECT cor_raca, COUNT(*) as count FROM alunos GROUP BY cor_raca`;
         const incomeQuery = `SELECT faixa_renda, COUNT(*) as count FROM alunos GROUP BY faixa_renda`;
@@ -70,8 +76,8 @@ export async function GET(request: Request) {
 
         try {
             const [statusResult, genderResult, classResult, geoResult, ageResult, raceResult, incomeResult, aggResult, metricsResult] = await Promise.all([
-                query(studentStatusQuery), query(genderQuery), query(classQuery), query(geoQuery),
-                query(ageQuery), query(raceQuery), query(incomeQuery), query(aggregationQuery), query(metricsQuery)
+                queryWithTenant(studentStatusQuery, [], sessionClaims), queryWithTenant(genderQuery, [], sessionClaims), queryWithTenant(classQuery, [], sessionClaims), queryWithTenant(geoQuery, [], sessionClaims),
+                queryWithTenant(ageQuery, [], sessionClaims), queryWithTenant(raceQuery, [], sessionClaims), queryWithTenant(incomeQuery, [], sessionClaims), queryWithTenant(aggregationQuery, [], sessionClaims), queryWithTenant(metricsQuery, [], sessionClaims)
             ]);
 
             if (aggResult.rows.length > 0 && aggResult.rows[0].total > 0) {

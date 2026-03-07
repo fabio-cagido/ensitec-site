@@ -3,12 +3,13 @@
 import Link from "next/link";
 import { UserCircle } from "lucide-react";
 import { usePathname } from "next/navigation";
+import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
 
 export default function Header() {
   const pathname = usePathname();
 
-  // Don't show header on login or dashboard pages
-  if (pathname === "/login" || pathname?.startsWith("/dashboard")) {
+  // Don't show header on login, sign-in, sign-up, cadastro or dashboard pages
+  if (pathname?.startsWith("/login") || pathname?.startsWith("/sign-in") || pathname?.startsWith("/sign-up") || pathname?.startsWith("/dashboard")) {
     return null;
   }
 
@@ -29,13 +30,29 @@ export default function Header() {
           </Link>
         </div>
 
-        <Link
-          href="/login"
-          className="flex items-center gap-2 px-3 py-1.5 text-xs font-bold text-gray-300 hover:text-white transition-colors border border-gray-700 rounded-lg hover:border-gray-500"
-        >
-          <UserCircle size={18} />
-          Área do Gestor
-        </Link>
+        {/* Utilizador não autenticado: mostra link para sign-in */}
+        <SignedOut>
+          <Link
+            href="/login"
+            className="flex items-center gap-2 px-3 py-1.5 text-xs font-bold text-gray-300 hover:text-white transition-colors border border-gray-700 rounded-lg hover:border-gray-500"
+          >
+            <UserCircle size={18} />
+            Área do Gestor
+          </Link>
+        </SignedOut>
+
+        {/* Utilizador autenticado: mostra UserButton do Clerk */}
+        <SignedIn>
+          <div className="flex items-center gap-3">
+            <Link
+              href="/dashboard"
+              className="text-xs font-bold text-gray-300 hover:text-white transition-colors"
+            >
+              Dashboard
+            </Link>
+            <UserButton afterSignOutUrl="/" />
+          </div>
+        </SignedIn>
       </nav>
     </header>
   );

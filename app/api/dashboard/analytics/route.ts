@@ -1,6 +1,7 @@
 
 import { NextResponse } from 'next/server';
-import { query } from '@/lib/db';
+import { queryWithTenant } from '@/lib/db';
+import { auth } from '@clerk/nextjs/server';
 
 export const dynamic = 'force-dynamic';
 
@@ -131,6 +132,13 @@ export async function GET(request: Request) {
     const years = searchParams.get('anos')?.split(',').filter(Boolean) || [];
 
     try {
+        const { sessionClaims } = await auth();
+        const metadata = sessionClaims?.metadata as any;
+
+        if (!metadata?.escola_id) {
+            return NextResponse.json({ error: 'Tenant ID missing.' }, { status: 403 });
+        }
+
         if (compare && metric) {
             let data = getMockComparison(metric, compare);
 
@@ -165,23 +173,23 @@ export async function GET(request: Request) {
         let params: any[] = [];
         // Note: Real SQL would incorporate the filters here
         if (metric === 'total-students') {
-            sql = `SELECT e.nome as unit_label, a.turma as class_label, COUNT(*) as value FROM alunos a JOIN escolas e ON a.escola_id = e.id WHERE a.status_matricula != 'Evadido' GROUP BY e.nome, a.turma`;
+            sql = `SELECT a.unidade as unit_label, a.turma as class_label, COUNT(*) as value FROM alunos a WHERE a.status_matricula != 'Evadido' GROUP BY a.unidade, a.turma`;
         } else if (metric === 'scholarships') {
-            sql = `SELECT e.nome as unit_label, a.turma as class_label, COUNT(*) as value FROM alunos a JOIN escolas e ON a.escola_id = e.id WHERE a.bolsista = true AND a.status_matricula != 'Evadido' GROUP BY e.nome, a.turma`;
+            sql = `SELECT a.unidade as unit_label, a.turma as class_label, COUNT(*) as value FROM alunos a WHERE a.bolsista = true AND a.status_matricula != 'Evadido' GROUP BY a.unidade, a.turma`;
         } else if (metric === 'occupancy') {
             sql = `SELECT turma as class_label, COUNT(*) as value FROM alunos WHERE status_matricula != 'Evadido' GROUP BY turma`;
         } else if (metric === 'demography') {
             const type = searchParams.get('type') || 'gender';
             if (type === 'gender') {
-                sql = `SELECT e.nome as unit_label, a.genero as name, COUNT(*) as value FROM alunos a JOIN escolas e ON a.escola_id = e.id WHERE a.status_matricula != 'Evadido' GROUP BY e.nome, a.genero`;
+                sql = `SELECT a.unidade as unit_label, a.genero as name, COUNT(*) as value FROM alunos a WHERE a.status_matricula != 'Evadido' GROUP BY a.unidade, a.genero`;
             } else if (type === 'race') {
-                sql = `SELECT e.nome as unit_label, a.cor_raca as name, COUNT(*) as value FROM alunos a JOIN escolas e ON a.escola_id = e.id WHERE a.status_matricula != 'Evadido' GROUP BY e.nome, a.cor_raca`;
+                sql = `SELECT a.unidade as unit_label, a.cor_raca as name, COUNT(*) as value FROM alunos a WHERE a.status_matricula != 'Evadido' GROUP BY a.unidade, a.cor_raca`;
             } else if (type === 'income') {
-                sql = `SELECT e.nome as unit_label, a.faixa_renda as name, COUNT(*) as value FROM alunos a JOIN escolas e ON a.escola_id = e.id WHERE a.status_matricula != 'Evadido' GROUP BY e.nome, a.faixa_renda`;
+                sql = `SELECT a.unidade as unit_label, a.faixa_renda as name, COUNT(*) as value FROM alunos a WHERE a.status_matricula != 'Evadido' GROUP BY a.unidade, a.faixa_renda`;
             } else if (type === 'age') {
                 sql = `
                     SELECT 
-                        e.nome as unit_label,
+                        a.unidade as unit_label,
                         CASE 
                             WHEN extract(year from age(current_date, data_nascimento)) BETWEEN 0 AND 6 THEN '4-6 anos'
                             WHEN extract(year from age(current_date, data_nascimento)) BETWEEN 7 AND 10 THEN '7-10 anos'
@@ -189,12 +197,12 @@ export async function GET(request: Request) {
                             ELSE '15-18 anos'
                         END as name,
                         COUNT(*) as value
-                    FROM alunos a JOIN escolas e ON a.escola_id = e.id 
+                    FROM alunos a 
                     WHERE a.status_matricula != 'Evadido'
-                    GROUP BY e.nome, name
+                    GROUP BY a.unidade, name
                  `;
             } else if (type === 'neighborhood') {
-                sql = `SELECT e.nome as unit_label, a.cidade_aluno as name, COUNT(*) as value FROM alunos a JOIN escolas e ON a.escola_id = e.id WHERE a.status_matricula != 'Evadido' GROUP BY e.nome, a.cidade_aluno`;
+                sql = `SELECT a.unidade as unit_label, a.cidade_aluno as name, COUNT(*) as value FROM alunos a WHERE a.status_matricula != 'Evadido' GROUP BY a.unidade, a.cidade_aluno`;
             }
         } else if (metric === 'locations') {
             sql = `SELECT a.id, a.latitude as lat, a.longitude as lng, a.segmento as segment, extract(year from age(current_date, a.data_nascimento)) as age FROM alunos a WHERE a.status_matricula != 'Evadido' AND a.latitude IS NOT NULL`;
@@ -202,7 +210,7 @@ export async function GET(request: Request) {
 
         if (sql) {
             try {
-                const result = await query(sql);
+                const result = await queryWithTenant(sql, [], sessionClaims);
                 if (result.rows.length > 0) {
                     if (metric === 'locations') {
                         return NextResponse.json(result.rows.map(r => ({

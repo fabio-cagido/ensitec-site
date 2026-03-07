@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
-import { query } from '@/lib/db';
+import { queryWithTenant } from '@/lib/db';
+import { auth } from '@clerk/nextjs/server';
 
 export const dynamic = 'force-dynamic';
 
@@ -13,6 +14,12 @@ interface Transaction {
 
 export async function GET() {
   try {
+    const { sessionClaims } = await auth();
+    const metadata = sessionClaims?.metadata as any;
+
+    if (!metadata?.escola_id) {
+      return NextResponse.json({ error: 'Tenant ID missing.' }, { status: 403 });
+    }
     // 1. Receita por mês (Fluxo de Caixa)
     const fluxodeCaixaQuery = `
       SELECT 
@@ -25,7 +32,7 @@ export async function GET() {
       ORDER BY mes_referencia ASC
       LIMIT 12
     `;
-    const fluxoResult = await query(fluxodeCaixaQuery);
+    const fluxoResult = await queryWithTenant(fluxodeCaixaQuery, [], sessionClaims);
 
     // 2. KPIs
     const kpiQuery = `
@@ -37,7 +44,7 @@ export async function GET() {
         CAST(SUM(CASE WHEN status_pagamento = 'Atrasado' THEN 1 ELSE 0 END) * 100.0 / COUNT(*) AS NUMERIC(10,2)) as taxa_inadimplencia
       FROM financeiro_mensalidades
     `;
-    const kpiResult = await query(kpiQuery);
+    const kpiResult = await queryWithTenant(kpiQuery, [], sessionClaims);
     const kpis = kpiResult.rows[0];
 
     // 3. Distribuição de Despesas
@@ -50,7 +57,7 @@ export async function GET() {
       GROUP BY categoria
       ORDER BY value DESC
     `;
-    const expensesResult = await query(expensesQuery);
+    const expensesResult = await queryWithTenant(expensesQuery, [], sessionClaims);
 
     // Se não tiver despesas cadastradas ainda, retorna array vazio para não quebrar o gráfico (ou mantém um fallback)
     const expenseDistribution = expensesResult.rows.length > 0
@@ -70,7 +77,7 @@ export async function GET() {
       ORDER BY f.created_at DESC
       LIMIT 5
     `;
-    const recentResult = await query(recentTransactionsQuery);
+    const recentResult = await queryWithTenant(recentTransactionsQuery, [], sessionClaims);
 
     // 5. Cálculo de Crescimento
     const growthQuery = `
@@ -88,7 +95,7 @@ export async function GET() {
         LEAD(total) OVER (ORDER BY month DESC) as prev_val
       FROM monthly_totals
     `;
-    const growthResult = await query(growthQuery);
+    const growthResult = await queryWithTenant(growthQuery, [], sessionClaims);
     let growth = "+0.0%";
     if (growthResult.rows.length >= 2 && growthResult.rows[1].current_val > 0) {
       const g = ((growthResult.rows[0].current_val - growthResult.rows[1].current_val) / growthResult.rows[1].current_val * 100).toFixed(1);

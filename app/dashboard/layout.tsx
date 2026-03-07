@@ -1,11 +1,11 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
+import { useUser, UserButton, useClerk } from "@clerk/nextjs";
 import {
-    LogOut,
     Menu,
     X,
     ChevronDown,
@@ -16,8 +16,20 @@ import {
     DollarSign,
     Settings,
     ChevronLeft,
-    ChevronRight
+    ChevronRight,
+    LogOut
 } from "lucide-react";
+
+// ============================================
+// RBAC — Roles permitidas por secção
+// ============================================
+// admin      → Tudo + Gestão de Org
+// manager    → Todos os Dashboards
+// financeiro → Visão Geral, Financeiro, Operacional
+// academico  → Visão Geral, Acadêmico, Clientes, Enem
+// secretaria → Visão Geral, Clientes
+// ============================================
+type UserRole = 'admin' | 'manager' | 'financeiro' | 'academico' | 'secretaria';
 
 // Definição dos menus com subpáginas
 const MENU_ITEMS = [
@@ -26,8 +38,9 @@ const MENU_ITEMS = [
         name: "Visão Geral",
         path: "/dashboard",
         icon: LayoutDashboard,
-        exactMatch: true, // Só fica ativo quando está exatamente nessa rota
-        subpages: []
+        exactMatch: true,
+        subpages: [],
+        allowedRoles: ['admin', 'manager', 'financeiro', 'academico', 'secretaria'] as UserRole[],
     },
     {
         id: "academico",
@@ -44,7 +57,8 @@ const MENU_ITEMS = [
             { name: "Entrega de Atividades", path: "/dashboard/academico/entregas" },
             { name: "Engajamento Digital", path: "/dashboard/academico/engajamento" },
             { name: "Eficiência Operacional", path: "/dashboard/academico/eficiencia" },
-        ]
+        ],
+        allowedRoles: ['admin', 'manager', 'academico'] as UserRole[],
     },
     {
         id: "clientes",
@@ -61,7 +75,8 @@ const MENU_ITEMS = [
             { name: "Famílias com Irmãos", path: "/dashboard/clientes/irmaos" },
             { name: "Satisfação (NPS)", path: "/dashboard/clientes/nps" },
             { name: "Taxa de Evasão", path: "/dashboard/clientes/evasao" },
-        ]
+        ],
+        allowedRoles: ['admin', 'manager', 'academico', 'secretaria'] as UserRole[],
     },
     {
         id: "enem",
@@ -72,7 +87,8 @@ const MENU_ITEMS = [
         subpages: [
             { name: "Análise Geral", path: "/dashboard/enem" },
             { name: "Tracking de Alunos", path: "/dashboard/enem/tracking" },
-        ]
+        ],
+        allowedRoles: ['admin', 'manager', 'academico'] as UserRole[],
     },
     {
         id: "financeiro",
@@ -80,7 +96,8 @@ const MENU_ITEMS = [
         path: "/dashboard/financeiro",
         icon: DollarSign,
         exactMatch: true,
-        subpages: []
+        subpages: [],
+        allowedRoles: ['admin', 'manager', 'financeiro'] as UserRole[],
     },
     {
         id: "operacional",
@@ -97,7 +114,8 @@ const MENU_ITEMS = [
             { name: "Custos de Impressão", path: "/dashboard/operacional/impressao" },
             { name: "Alimentação", path: "/dashboard/operacional/alimentacao" },
             { name: "Segurança e Acesso", path: "/dashboard/operacional/seguranca" },
-        ]
+        ],
+        allowedRoles: ['admin', 'manager', 'financeiro'] as UserRole[],
     },
 ];
 
@@ -108,6 +126,18 @@ export default function DashboardLayout({
 }) {
     const pathname = usePathname();
     const router = useRouter();
+    const { user } = useUser();
+    const { signOut } = useClerk();
+
+    // Role do utilizador baseada nos publicMetadata definidos no painel do Clerk
+    const userRole = (user?.publicMetadata?.role as UserRole) || null;
+
+    // Filtra menus visíveis com base na role do utilizador
+    const visibleMenuItems = useMemo(() => {
+        // Se não tem role, mostra apenas Visão Geral (ou o que estiver no array)
+        if (!userRole) return MENU_ITEMS.filter(item => item.allowedRoles.includes('sem-role' as unknown as UserRole)); // ou return [];
+        return MENU_ITEMS.filter(item => item.allowedRoles.includes(userRole));
+    }, [userRole]);
 
     // Estados para controle da sidebar
     const [sidebarCollapsed, setSidebarCollapsed] = useState(false); // Desktop: collapsed/expanded
@@ -245,37 +275,61 @@ export default function DashboardLayout({
 
             {/* NAVEGAÇÃO */}
             <nav className="flex-1 space-y-1.5 overflow-y-auto pr-1 custom-scrollbar">
-                {MENU_ITEMS.map((item) => (
+                {visibleMenuItems.map((item) => (
                     <MenuItem key={item.id} item={item} collapsed={collapsed} />
                 ))}
             </nav>
 
-            {/* PERFIL & LOGOUT */}
+            {/* PERFIL & LOGOUT (Clerk UserButton) */}
             <div className={`border-t border-gray-800 pt-4 mt-4 ${collapsed ? "flex flex-col items-center" : ""}`}>
-                <Link
-                    href="/login"
-                    className={`flex items-center gap-3 text-gray-400 hover:text-red-400 hover:bg-gray-800 px-3 py-2.5 rounded-xl transition-all text-sm font-medium group mb-3
-                        ${collapsed ? "justify-center w-10 h-10 p-0" : "w-full"}
-                    `}
-                    title={collapsed ? "Sair da Conta" : undefined}
-                >
-                    <LogOut className="w-5 h-5 group-hover:text-red-400" />
-                    {!collapsed && <span>Sair da Conta</span>}
-                </Link>
-
                 <div className={`flex items-center gap-3 px-2 py-2 rounded-xl transition-colors
                     ${collapsed ? "justify-center" : ""}
                 `}>
-                    <div className="w-9 h-9 min-w-[2.25rem] rounded-full bg-blue-600 flex items-center justify-center text-white font-bold text-xs shadow-md ring-2 ring-gray-800">
-                        AD
-                    </div>
+                    <UserButton
+                        afterSignOutUrl="/"
+                        appearance={{
+                            elements: {
+                                avatarBox: 'w-9 h-9 ring-2 ring-gray-800 shadow-md',
+                                userButtonPopoverCard: 'bg-gray-900 border border-gray-700 text-white shadow-2xl',
+                                userButtonPopoverActionButton: 'text-gray-300 hover:text-white hover:bg-gray-800',
+                                userButtonPopoverActionButtonText: 'text-gray-300',
+                                userButtonPopoverActionButtonIcon: 'text-gray-400',
+                                userButtonPopoverFooter: 'hidden',
+                            },
+                        }}
+                    />
                     {!collapsed && (
                         <div className="flex-1 min-w-0">
-                            <p className="text-sm font-bold text-white truncate">Administrador</p>
-                            <p className="text-[10px] text-gray-400 truncate">Diretor Pedagógico</p>
+                            <p className="text-sm font-bold text-white truncate">
+                                {userRole === 'admin' && 'Administrador'}
+                                {userRole === 'manager' && 'Gestor'}
+                                {userRole === 'financeiro' && 'Financeiro'}
+                                {userRole === 'academico' && 'Acadêmico'}
+                                {userRole === 'secretaria' && 'Secretaria'}
+                                {!userRole && 'S/ Permissão'}
+                            </p>
+                            <p className="text-[10px] text-gray-400 truncate">
+                                {userRole === 'admin' && 'Acesso Total'}
+                                {userRole === 'manager' && 'Todos os Dashboards'}
+                                {userRole === 'financeiro' && 'Financeiro & Operacional'}
+                                {userRole === 'academico' && 'Acadêmico & Clientes'}
+                                {userRole === 'secretaria' && 'Clientes'}
+                                {!userRole && 'Aguardando Aprovação'}
+                            </p>
                         </div>
                     )}
                 </div>
+                {!collapsed && (
+                    <div className="w-full px-2 pb-2">
+                        <button
+                            onClick={() => signOut({ redirectUrl: '/' })}
+                            className="w-full mt-2 flex items-center justify-center gap-2 py-2 text-sm text-red-400 hover:text-red-300 hover:bg-red-500/10 rounded-lg transition-colors font-medium border border-red-500/20"
+                        >
+                            <LogOut className="w-4 h-4" />
+                            Sair da Conta
+                        </button>
+                    </div>
+                )}
             </div>
         </>
     );

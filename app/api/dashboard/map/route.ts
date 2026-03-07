@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
-import { query } from '@/lib/db';
+import { queryWithTenant } from '@/lib/db';
+import { auth } from '@clerk/nextjs/server';
 
 export const dynamic = 'force-dynamic';
 
@@ -11,17 +12,23 @@ const CITY_COORDS: Record<string, [number, number]> = {
 
 export async function GET() {
     try {
+        const { sessionClaims } = await auth();
+        const metadata = sessionClaims?.metadata as any;
+
+        if (!metadata?.escola_id) {
+            return NextResponse.json({ error: 'Tenant ID missing.' }, { status: 403 });
+        }
         const schoolsQuery = `
             SELECT 
-                e.id, 
-                e.nome as name, 
-                e.cidade as city,
+                a.unidade as id, 
+                a.unidade as name, 
+                MAX(COALESCE(nullif(trim(a.cidade_aluno), ''), e.cidade)) as city,
                 COUNT(a.id) as students
-            FROM escolas e
-            LEFT JOIN alunos a ON e.id = a.escola_id
-            GROUP BY e.id, e.nome, e.cidade
+            FROM alunos a
+            JOIN escolas e ON e.id = a.escola_id
+            GROUP BY a.unidade
         `;
-        const result = await query(schoolsQuery);
+        const result = await queryWithTenant(schoolsQuery, [], sessionClaims);
 
         const schools = result.rows.map(r => ({
             id: r.id,

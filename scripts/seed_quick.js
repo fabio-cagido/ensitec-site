@@ -57,6 +57,7 @@ const NAMES = ["Arthur", "Miguel", "Heitor", "Gael", "Théo", "Davi", "Gabriel",
 const SURNAMES = ["Silva", "Santos", "Oliveira", "Souza", "Rodrigues", "Ferreira", "Alves", "Pereira", "Lima", "Gomes", "Costa", "Ribeiro", "Martins", "Carvalho", "Almeida"];
 const SUBJECTS = ["Matemática", "Português", "História", "Física", "Química", "Biologia", "Geografia"];
 const CLASSES = ["1A", "1B", "2A", "2B", "3A", "3B"];
+const UNIDADES = ["Centro", "Sul", "Norte"];
 
 function randomChoice(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
 function randomInt(min, max) { return Math.floor(Math.random() * (max - min) + min); }
@@ -101,6 +102,7 @@ async function seed() {
             const yearOfBirth = randomInt(2008, 2012);
             const dob = `${yearOfBirth}-${randomInt(1, 12)}-${randomInt(1, 28)}`;
             const turma = randomChoice(CLASSES);
+            const unidade = randomChoice(UNIDADES);
 
             let status = 'Ativo';
             const r = Math.random();
@@ -108,7 +110,7 @@ async function seed() {
             if (r > 0.98) status = 'Evadido';
 
             // We must quote strings properly for SQL values
-            students.push(`('${studentId}', '${schoolId}', '${fullName}', '${dob}', '${gender}', '${turma}', '${status}')`);
+            students.push(`('${studentId}', '${schoolId}', '${unidade}', '${fullName}', '${dob}', '${gender}', '${turma}', '${status}')`);
 
             if (status !== 'Evadido') {
                 for (const subj of SUBJECTS) {
@@ -116,7 +118,7 @@ async function seed() {
                     let presenca = randomFloat(70, 100);
                     if (presenca < 75) media *= 0.8;
                     if (Math.random() > 0.9) media = randomFloat(2, 6);
-                    performances.push(`('${randomUUID()}', '${studentId}', '${subj}', ${media.toFixed(1)}, ${presenca.toFixed(1)}, 2026)`);
+                    performances.push(`('${randomUUID()}', '${schoolId}', '${unidade}', '${studentId}', '${subj}', ${media.toFixed(1)}, ${presenca.toFixed(1)}, 2026)`);
                 }
             }
 
@@ -129,7 +131,7 @@ async function seed() {
                 } else if (Math.random() > 0.9) {
                     payStatus = 'Atrasado';
                 }
-                financials.push(`('${randomUUID()}', '${studentId}', '${mesRef}', ${val}, '${payStatus}')`);
+                financials.push(`('${randomUUID()}', '${schoolId}', '${unidade}', '${studentId}', '${mesRef}', ${val}, '${payStatus}')`);
             }
         }
 
@@ -137,7 +139,7 @@ async function seed() {
         console.log(`🚀 Inserting ${students.length} Students...`);
         if (students.length) {
             await client.query(`
-                INSERT INTO alunos (id, escola_id, nome_completo, data_nascimento, genero, turma, status_matricula) 
+                INSERT INTO alunos (id, escola_id, unidade, nome_completo, data_nascimento, genero, turma, status_matricula) 
                 VALUES ${students.join(',')}
             `);
         }
@@ -147,7 +149,7 @@ async function seed() {
         for (let i = 0; i < performances.length; i += chunkSize) {
             const chunk = performances.slice(i, i + chunkSize);
             await client.query(`
-                INSERT INTO desempenho_academico (id, aluno_id, disciplina, media_final, percentual_presenca, ano_letivo) 
+                INSERT INTO desempenho_academico (id, escola_id, unidade, aluno_id, disciplina, media_final, percentual_presenca, ano_letivo) 
                 VALUES ${chunk.join(',')}
             `);
         }
@@ -156,7 +158,7 @@ async function seed() {
         for (let i = 0; i < financials.length; i += chunkSize) {
             const chunk = financials.slice(i, i + chunkSize);
             await client.query(`
-                INSERT INTO financeiro_mensalidades (id, aluno_id, mes_referencia, valor, status_pagamento) 
+                INSERT INTO financeiro_mensalidades (id, escola_id, unidade, aluno_id, mes_referencia, valor, status_pagamento) 
                 VALUES ${chunk.join(',')}
             `);
         }
@@ -169,25 +171,33 @@ async function seed() {
             const cat = randomChoice(CATEGORIES);
             const val = randomFloat(500, 5000);
             const date = `2026-${randomInt(1, 3)}-${randomInt(1, 28)}`;
-            expenses.push(`('${randomUUID()}', '${cat}', ${val.toFixed(2)}, '${date}', 'Despesa de ${cat}')`);
+            const unidade = randomChoice(UNIDADES);
+            expenses.push(`('${randomUUID()}', '${schoolId}', '${unidade}', '${cat}', ${val.toFixed(2)}, '${date}', 'Despesa de ${cat}')`);
         }
         await client.query(`
-            INSERT INTO financeiro_despesas (id, categoria, valor, data_despesa, descricao)
+            INSERT INTO financeiro_despesas (id, escola_id, unidade, categoria, valor, data_despesa, descricao)
             VALUES ${expenses.join(',')}
         `);
 
         // 6. Metrics
         console.log('📊 Inserting Metrics...');
         const METRICS = [
-            { type: 'uptime_ti', val: 99.8, unit: '%' },
-            { type: 'sla_secretaria', val: 2.5, unit: 'dias' },
-            { type: 'absenteismo_docentes', val: 3.2, unit: '%' },
-            { type: 'nps', val: 75, unit: 'score' }, // Added NPS
-            { type: 'health_score', val: 8.5, unit: 'score' } // Added Health Score
+            { type: 'uptime_ti', val: 99.8, suffix: '%' },
+            { type: 'sla_secretaria', val: 2.5, suffix: 'dias' },
+            { type: 'absenteismo_docentes', val: 3.2, suffix: '%' },
+            { type: 'nps', val: 75, suffix: 'score' }, // Added NPS
+            { type: 'health_score', val: 8.5, suffix: 'score' } // Added Health Score
         ];
-        const metrics = METRICS.map(m => `('${randomUUID()}', '2026-03-01', '${m.type}', ${m.val}, '${m.unit}')`);
+        const metrics = [];
+        for (const m of METRICS) {
+            for (const u of UNIDADES) {
+                // slightly randomize per unit so charts don't look perfectly flat if compared
+                const adjVal = m.val * randomFloat(0.9, 1.1);
+                metrics.push(`('${randomUUID()}', '${schoolId}', '${u}', '2026-03-01', '${m.type}', ${adjVal.toFixed(2)}, '${m.suffix}')`);
+            }
+        }
         await client.query(`
-            INSERT INTO metricas_mensais (id, mes_referencia, tipo_metrica, valor, unidade)
+            INSERT INTO metricas_mensais (id, escola_id, unidade, mes_referencia, tipo_metrica, valor, desc_unidade)
             VALUES ${metrics.join(',')}
         `);
 

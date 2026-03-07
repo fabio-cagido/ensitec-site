@@ -1,10 +1,17 @@
 import { NextResponse } from 'next/server';
-import { query } from '@/lib/db';
+import { queryWithTenant } from '@/lib/db';
+import { auth } from '@clerk/nextjs/server';
 
 export const dynamic = 'force-dynamic';
 
 export async function GET() {
     try {
+        const { sessionClaims } = await auth();
+        const metadata = sessionClaims?.metadata as any;
+
+        if (!metadata?.escola_id) {
+            return NextResponse.json({ error: 'Tenant ID missing.' }, { status: 403 });
+        }
         // 1. Média Global por Disciplina
         const disciplinePerformanceQuery = `
       SELECT 
@@ -14,7 +21,7 @@ export async function GET() {
       GROUP BY disciplina
       ORDER BY val DESC
     `;
-        const disciplineResult = await query(disciplinePerformanceQuery);
+        const disciplineResult = await queryWithTenant(disciplinePerformanceQuery, [], sessionClaims);
 
         // 2. Média Geral e Frequência Média
         const globalMetricsQuery = `
@@ -23,7 +30,7 @@ export async function GET() {
                 CAST(AVG(percentual_presenca) AS NUMERIC(10,1)) as frequencia_media
             FROM desempenho_academico
         `;
-        const globalMetricsResult = await query(globalMetricsQuery);
+        const globalMetricsResult = await queryWithTenant(globalMetricsQuery, [], sessionClaims);
         const mediaGlobal = globalMetricsResult.rows[0]?.media_global || 0;
         const frequenciaMedia = globalMetricsResult.rows[0]?.frequencia_media || 0;
 
@@ -34,7 +41,7 @@ export async function GET() {
             SUM(CASE WHEN media_final >= 6.0 AND percentual_presenca >= 75 THEN 1 ELSE 0 END) as aprovados
         FROM desempenho_academico
     `;
-        const approvalResult = await query(approvalCountQuery);
+        const approvalResult = await queryWithTenant(approvalCountQuery, [], sessionClaims);
         const approvalRate = ((Number(approvalResult.rows[0]?.aprovados) || 0) / (Number(approvalResult.rows[0]?.total) || 1) * 100).toFixed(1);
 
         // 4. Alunos em Risco (Média < 6.0 ou Frequência < 75%)
@@ -43,7 +50,7 @@ export async function GET() {
         FROM desempenho_academico 
         WHERE media_final < 6.0 OR percentual_presenca < 75
     `;
-        const riskResult = await query(riskQuery);
+        const riskResult = await queryWithTenant(riskQuery, [], sessionClaims);
 
         // 5. Histograma de Notas
         const histogramQuery = `
@@ -54,7 +61,7 @@ export async function GET() {
         GROUP BY floor(media_final)
         ORDER BY bucket
     `;
-        const histogramResult = await query(histogramQuery);
+        const histogramResult = await queryWithTenant(histogramQuery, [], sessionClaims);
 
         // 6. Métricas Adicionais e Evolução (Buscando de metricas_mensais)
         const evolutionQuery = `
@@ -66,7 +73,7 @@ export async function GET() {
             ORDER BY mes_referencia ASC
             LIMIT 12
         `;
-        const evolutionResult = await query(evolutionQuery);
+        const evolutionResult = await queryWithTenant(evolutionQuery, [], sessionClaims);
 
         // 7. Cálculo de Crescimento (Comparando os dois últimos meses)
         const growthQuery = `
@@ -82,7 +89,7 @@ export async function GET() {
             FROM last_two
             WHERE rn <= 2
         `;
-        const growthResult = await query(growthQuery);
+        const growthResult = await queryWithTenant(growthQuery, [], sessionClaims);
         const growthData = growthResult.rows.reduce((acc: any, curr: any) => {
             if (curr.prev_val) {
                 const growth = ((curr.current_val - curr.prev_val) / curr.prev_val * 100).toFixed(1);
