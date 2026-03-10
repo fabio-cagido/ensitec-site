@@ -58,7 +58,7 @@ export default function BiCorporativoPage() {
                                 controls
                                 playsInline
                             >
-                                <source src="/videos/corporate-bi-platform-introduction.mp4" type="video/mp4" />
+                                <source src="/videos/company-bi-platform-introduction.mp4" type="video/mp4" />
                                 Seu navegador não suporta a tag de vídeo.
                             </video>
                         </div>
