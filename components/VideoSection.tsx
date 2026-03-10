@@ -40,14 +40,13 @@ export default function VideoSection() {
           className="rounded-2xl overflow-hidden shadow-lg border border-gray-200"
         >
           <div className="relative w-full aspect-video rounded-xl overflow-hidden">
-            <video
-              className="absolute top-0 left-0 w-full h-full object-cover"
-              controls
-              playsInline
-            >
-              <source src="/videos/school-bi-platform-introduction.mp4" type="video/mp4" />
-              Seu navegador não suporta a tag de vídeo.
-            </video>
+            <iframe
+              className="absolute top-0 left-0 w-full h-full"
+              src="https://www.youtube.com/embed/ZqCc_IituTs"
+              title="BI para Escolas"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            />
           </div>
         </motion.div>
 
