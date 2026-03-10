@@ -51,16 +51,15 @@ export default function BiCorporativoPage() {
                             </ul>
                         </div>
 
-                        {/* Vídeo */}
+                        {/* Vídeo YouTube */}
                         <div className="relative w-full aspect-video rounded-2xl overflow-hidden shadow-xl">
-                            <video
-                                className="absolute top-0 left-0 w-full h-full object-cover"
-                                controls
-                                playsInline
-                            >
-                                <source src="/videos/company-bi-platform-introduction.mp4" type="video/mp4" />
-                                Seu navegador não suporta a tag de vídeo.
-                            </video>
+                            <iframe
+                                className="absolute top-0 left-0 w-full h-full"
+                                src="https://www.youtube.com/embed/IrPN_vXKEwU"
+                                title="BI Corporativo"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowFullScreen
+                            />
                         </div>
                     </div>
                 </div>
