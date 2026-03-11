@@ -35,19 +35,25 @@ export async function queryWithTenant(text: string, params: any[] = [], sessionC
     try {
         await client.query('BEGIN');
 
-        // Se temos Identity JWT do Clerk passamos pro Postgres
-        // Desta forma o RLS (Row Level Security) fará o resto do trabalho!
-        if (sessionClaims) {
-            const configQuery = `SET LOCAL "request.jwt.claims" = $1`;
-            await client.query(configQuery, [JSON.stringify(sessionClaims)]);
+        if (sessionClaims && sessionClaims.metadata?.escola_id) {
+            // Usamos set_config para passar o JSON de forma segura e compatível com parâmetros
+            await client.query("SELECT set_config('request.jwt.claims', $1, true)", [JSON.stringify(sessionClaims)]);
+        } else {
+            await client.query("SELECT set_config('request.jwt.claims', '', true)");
         }
 
         const res = await client.query(text, params);
-
         await client.query('COMMIT');
         return res;
-    } catch (e) {
+    } catch (e: any) {
         await client.query('ROLLBACK');
+        console.error('--- DATABASE ERROR DETECTED ---');
+        console.error('Query:', text);
+        console.error('Error Message:', e.message);
+        console.error('Error Code:', e.code);
+        if (e.message.includes('permission denied')) {
+            console.error('HINT: This looks like a Row Level Security (RLS) issue.');
+        }
         throw e;
     } finally {
         client.release();

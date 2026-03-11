@@ -58,29 +58,50 @@ export async function GET(request: Request) {
     const years = searchParams.get('anos')?.split(',').filter(Boolean) || [];
 
     try {
-        const { sessionClaims } = await auth();
+        const { sessionClaims, userId } = await auth();
         const metadata = sessionClaims?.metadata as any;
 
-        if (!metadata?.escola_id) {
-            return NextResponse.json({ error: 'Tenant ID missing.' }, { status: 403 });
+        // Fallback se as claims não estiverem no JWT
+        let escolaId = metadata?.escola_id;
+        if (!escolaId && userId) {
+            try {
+                const { clerkClient } = await import('@clerk/nextjs/server');
+                const client = await clerkClient();
+                const user = await client.users.getUser(userId);
+                escolaId = user.publicMetadata?.escola_id;
+                if (sessionClaims) {
+                    if (!sessionClaims.metadata) (sessionClaims as any).metadata = {};
+                    (sessionClaims.metadata as any).escola_id = escolaId;
+                }
+            } catch (err) {
+                console.error("Erro fallback Clerk Clientes:", err);
+            }
         }
+
         const studentStatusQuery = `SELECT status_matricula, COUNT(*) as count FROM alunos GROUP BY status_matricula`;
         const genderQuery = `SELECT genero, COUNT(*) as count FROM alunos GROUP BY genero`;
-        const classQuery = `SELECT turma as name, COUNT(*) as occupied FROM alunos WHERE status_matricula = 'Ativo' GROUP BY turma ORDER BY turma`;
-        const geoQuery = `SELECT COALESCE(nullif(trim(cidade_aluno), ''), unidade, 'Indefinido') as name, COUNT(id) as value FROM alunos GROUP BY 1 ORDER BY value DESC LIMIT 5`;
+        const classQuery = `SELECT turma as name, COUNT(*) as occupied FROM alunos WHERE status_matricula ILIKE 'ativo' GROUP BY turma ORDER BY turma`;
+        const geoQuery = `SELECT COALESCE(nullif(trim(cidade_aluno), ''), 'Unidade', 'Indefinido') as name, COUNT(id) as value FROM alunos GROUP BY 1 ORDER BY value DESC LIMIT 5`;
         const ageQuery = `SELECT CASE WHEN EXTRACT(YEAR FROM age(data_nascimento)) BETWEEN 0 AND 5 THEN '0-5' WHEN EXTRACT(YEAR FROM age(data_nascimento)) BETWEEN 6 AND 10 THEN '6-10' WHEN EXTRACT(YEAR FROM age(data_nascimento)) BETWEEN 11 AND 14 THEN '11-14' WHEN EXTRACT(YEAR FROM age(data_nascimento)) BETWEEN 15 AND 18 THEN '15-18' ELSE '18+' END as age_group, COUNT(*) as count FROM alunos GROUP BY age_group`;
         const raceQuery = `SELECT cor_raca, COUNT(*) as count FROM alunos GROUP BY cor_raca`;
         const incomeQuery = `SELECT faixa_renda, COUNT(*) as count FROM alunos GROUP BY faixa_renda`;
-        const aggregationQuery = `SELECT COUNT(*) as total, COUNT(*) FILTER (WHERE status_matricula = 'Ativo') as ativos, COUNT(*) FILTER (WHERE status_matricula = 'Evadido') as evadidos, COUNT(*) FILTER (WHERE bolsista = true) as bolsistas, COUNT(*) FILTER (WHERE tem_irmaos = true) as com_irmaos FROM alunos`;
+        const aggregationQuery = `SELECT COUNT(*) as total, COUNT(*) FILTER (WHERE status_matricula ILIKE 'ativo') as ativos, COUNT(*) FILTER (WHERE status_matricula ILIKE 'evadido') as evadidos, COUNT(*) FILTER (WHERE bolsista = true) as bolsistas, COUNT(*) FILTER (WHERE tem_irmaos = true) as com_irmaos FROM alunos`;
         const metricsQuery = `SELECT DISTINCT ON (tipo_metrica) tipo_metrica, valor FROM metricas_mensais WHERE tipo_metrica IN ('nps', 'health_score') ORDER BY tipo_metrica, mes_referencia DESC`;
 
         try {
             const [statusResult, genderResult, classResult, geoResult, ageResult, raceResult, incomeResult, aggResult, metricsResult] = await Promise.all([
-                queryWithTenant(studentStatusQuery, [], sessionClaims), queryWithTenant(genderQuery, [], sessionClaims), queryWithTenant(classQuery, [], sessionClaims), queryWithTenant(geoQuery, [], sessionClaims),
-                queryWithTenant(ageQuery, [], sessionClaims), queryWithTenant(raceQuery, [], sessionClaims), queryWithTenant(incomeQuery, [], sessionClaims), queryWithTenant(aggregationQuery, [], sessionClaims), queryWithTenant(metricsQuery, [], sessionClaims)
+                queryWithTenant(studentStatusQuery, [], sessionClaims),
+                queryWithTenant(genderQuery, [], sessionClaims),
+                queryWithTenant(classQuery, [], sessionClaims),
+                queryWithTenant(geoQuery, [], sessionClaims),
+                queryWithTenant(ageQuery, [], sessionClaims),
+                queryWithTenant(raceQuery, [], sessionClaims),
+                queryWithTenant(incomeQuery, [], sessionClaims),
+                queryWithTenant(aggregationQuery, [], sessionClaims),
+                queryWithTenant(metricsQuery, [], sessionClaims)
             ]);
 
-            if (aggResult.rows.length > 0 && aggResult.rows[0].total > 0) {
+            if (aggResult.rows.length > 0 && Number(aggResult.rows[0].total) > 0) {
                 const agg = aggResult.rows[0];
                 const totalStudents = Number(agg.total);
                 const metricsMap = metricsResult.rows.reduce((acc: any, curr: any) => {
@@ -92,8 +113,8 @@ export async function GET(request: Request) {
                     kpis: {
                         totalStudents,
                         totalStudentsGrowth: "+5.2%",
-                        occupancyRate: classResult.rows.length > 0 ? (Number(agg.ativos) / (classResult.rows.length * 40) * 100).toFixed(1) : 0,
-                        churnRate: totalStudents > 0 ? (Number(agg.evadidos) / totalStudents * 100).toFixed(1) : 0,
+                        occupancyRate: classResult.rows.length > 0 ? ((Number(agg.ativos) / (classResult.rows.length * 40)) * 100).toFixed(1) : 0,
+                        churnRate: totalStudents > 0 ? ((Number(agg.evadidos) / totalStudents) * 100).toFixed(1) : 0,
                         scholarships: Number(agg.bolsistas),
                         scholarshipPercentage: totalStudents > 0 ? ((Number(agg.bolsistas) / totalStudents) * 100).toFixed(1) : 0,
                         siblingPercentage: totalStudents > 0 ? ((Number(agg.com_irmaos) / totalStudents) * 100).toFixed(1) : 0,
@@ -101,31 +122,31 @@ export async function GET(request: Request) {
                         npsGrowth: "+2 pts",
                         healthScore: metricsMap['health_score'] ? metricsMap['health_score'].value : 9.2
                     },
-                    occupancyBySegment: classResult.rows.map((r: any) => ({
+                    occupancyBySegment: (classResult.rows || []).map((r: any) => ({
                         name: r.name,
                         rate: (Number(r.occupied) / 40) * 100
                     })),
-                    genderData: genderResult.rows.map((r: any) => ({
+                    genderData: (genderResult.rows || []).map((r: any) => ({
                         name: r.genero === 'M' ? 'Masculino' : 'Feminino',
                         value: Number(r.count)
                     })),
-                    geoData: geoResult.rows.map((r: any) => ({ name: r.name, value: Number(r.value) })),
-                    raceData: raceResult.rows.map((r: any) => ({
+                    geoData: (geoResult.rows || []).map((r: any) => ({ name: r.name, value: Number(r.value) })),
+                    raceData: (raceResult.rows || []).map((r: any) => ({
                         name: r.cor_raca || 'Outros',
                         value: Number(r.count)
                     })),
-                    incomeData: incomeResult.rows.map((r: any) => ({
+                    incomeData: (incomeResult.rows || []).map((r: any) => ({
                         range: r.faixa_renda || 'Outros',
                         count: Number(r.count)
                     })),
-                    ageData: ageResult.rows.map((r: any) => ({
+                    ageData: (ageResult.rows || []).map((r: any) => ({
                         age: r.age_group,
                         count: Number(r.count)
                     }))
                 });
             }
         } catch (dbErr) {
-            console.warn("DB Fallback triggered for Clients Menu:", dbErr);
+            console.warn("DB Fallback triggered or no data for Clients:", dbErr);
         }
 
         return NextResponse.json(getMockData());

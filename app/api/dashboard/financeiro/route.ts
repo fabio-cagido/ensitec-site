@@ -14,22 +14,36 @@ interface Transaction {
 
 export async function GET() {
   try {
-    const { sessionClaims } = await auth();
+    const { sessionClaims, userId } = await auth();
     const metadata = sessionClaims?.metadata as any;
 
-    if (!metadata?.escola_id) {
-      return NextResponse.json({ error: 'Tenant ID missing.' }, { status: 403 });
+    // Fallback se as claims não estiverem no JWT
+    let escolaId = metadata?.escola_id;
+    if (!escolaId && userId) {
+      try {
+        const { clerkClient } = await import('@clerk/nextjs/server');
+        const client = await clerkClient();
+        const user = await client.users.getUser(userId);
+        escolaId = user.publicMetadata?.escola_id;
+        if (sessionClaims) {
+          if (!sessionClaims.metadata) (sessionClaims as any).metadata = {};
+          (sessionClaims.metadata as any).escola_id = escolaId;
+        }
+      } catch (err) {
+        console.error("Erro fallback Clerk Financeiro:", err);
+      }
     }
+
     // 1. Receita por mês (Fluxo de Caixa)
     const fluxodeCaixaQuery = `
       SELECT 
         to_char(mes_referencia, 'Mon') as month,
-        SUM(CASE WHEN status_pagamento = 'Pago' THEN valor ELSE 0 END) as receita,
-        SUM(CASE WHEN status_pagamento != 'Pago' THEN valor ELSE 0 END) as pendente,
+        SUM(CASE WHEN status_pagamento ILIKE 'pago' THEN valor ELSE 0 END) as receita,
+        SUM(CASE WHEN status_pagamento NOT ILIKE 'pago' THEN valor ELSE 0 END) as pendente,
         SUM(valor) as total
       FROM financeiro_mensalidades
-      GROUP BY mes_referencia
-      ORDER BY mes_referencia ASC
+      GROUP BY mes_referencia, to_char(mes_referencia, 'Mon')
+      ORDER BY MIN(mes_referencia) ASC
       LIMIT 12
     `;
     const fluxoResult = await queryWithTenant(fluxodeCaixaQuery, [], sessionClaims);
@@ -38,17 +52,16 @@ export async function GET() {
     const kpiQuery = `
       SELECT 
         SUM(valor) as total_geral,
-        SUM(CASE WHEN status_pagamento = 'Pago' THEN valor ELSE 0 END) as total_pago,
-        SUM(CASE WHEN status_pagamento = 'Atrasado' THEN valor ELSE 0 END) as total_atrasado,
+        SUM(CASE WHEN status_pagamento ILIKE 'pago' THEN valor ELSE 0 END) as total_pago,
+        SUM(CASE WHEN status_pagamento ILIKE 'atrasado' THEN valor ELSE 0 END) as total_atrasado,
         COUNT(*) as total_transacoes,
-        CAST(SUM(CASE WHEN status_pagamento = 'Atrasado' THEN 1 ELSE 0 END) * 100.0 / COUNT(*) AS NUMERIC(10,2)) as taxa_inadimplencia
+        CAST(SUM(CASE WHEN status_pagamento ILIKE 'atrasado' THEN 1 ELSE 0 END) * 100.0 / NULLIF(COUNT(*), 0) AS NUMERIC(10,2)) as taxa_inadimplencia
       FROM financeiro_mensalidades
     `;
     const kpiResult = await queryWithTenant(kpiQuery, [], sessionClaims);
-    const kpis = kpiResult.rows[0];
+    const kpis = kpiResult.rows[0] || { total_geral: 0, total_pago: 0, total_atrasado: 0, taxa_inadimplencia: 0 };
 
     // 3. Distribuição de Despesas
-    // Deixando de ser mockado e buscando do banco
     const expensesQuery = `
       SELECT 
         categoria as name,
@@ -58,11 +71,7 @@ export async function GET() {
       ORDER BY value DESC
     `;
     const expensesResult = await queryWithTenant(expensesQuery, [], sessionClaims);
-
-    // Se não tiver despesas cadastradas ainda, retorna array vazio para não quebrar o gráfico (ou mantém um fallback)
-    const expenseDistribution = expensesResult.rows.length > 0
-      ? expensesResult.rows.map((r: any) => ({ name: r.name, value: Number(r.value) }))
-      : [];
+    const expenseDistribution = (expensesResult.rows || []).map((r: any) => ({ name: r.name, value: Number(r.value) }));
 
     // 4. Transações Recentes
     const recentTransactionsQuery = `
@@ -103,21 +112,21 @@ export async function GET() {
     }
 
     return NextResponse.json({
-      financeData: fluxoResult.rows,
+      financeData: fluxoResult.rows || [],
       kpis: {
-        receitaTotal: Number(kpis.total_geral),
+        receitaTotal: Number(kpis.total_geral || 0),
         receitaTotalGrowth: growth,
-        receitaRecebida: Number(kpis.total_pago),
+        receitaRecebida: Number(kpis.total_pago || 0),
         receitaRecebidaGrowth: "+4.2%",
-        receitaAtrasada: Number(kpis.total_atrasado),
-        inadimplencia: Number(kpis.taxa_inadimplencia),
+        receitaAtrasada: Number(kpis.total_atrasado || 0),
+        inadimplencia: Number(kpis.taxa_inadimplencia || 0),
         inadimplenciaGrowth: "-2.5%"
       },
       expenseDistribution,
-      recentTransactions: recentResult.rows.map((r: any) => ({
+      recentTransactions: (recentResult.rows || []).map((r: any) => ({
         ...r,
-        amount: (r.type === 'Pago' ? '+' : '-') + ' R$ ' + Number(r.amount).toLocaleString('pt-BR', { minimumFractionDigits: 2 }),
-        type: r.type === 'Pago' ? 'income' : 'expense'
+        amount: (r.type?.toLowerCase() === 'pago' ? '+' : '-') + ' R$ ' + Number(r.amount).toLocaleString('pt-BR', { minimumFractionDigits: 2 }),
+        type: r.type?.toLowerCase() === 'pago' ? 'income' : 'expense'
       }))
     });
 

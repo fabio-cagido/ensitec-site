@@ -9,9 +9,34 @@ export async function GET() {
         const { sessionClaims } = await auth();
         const metadata = sessionClaims?.metadata as any;
 
-        if (!metadata?.escola_id) {
-            return NextResponse.json({ error: 'Tenant ID missing.' }, { status: 403 });
+        console.log('--- DEBUG ACADEMICO API ---');
+        console.log('Escola ID recebido:', metadata?.escola_id);
+        console.log('Role recebida:', metadata?.role);
+
+        // Local dev allowance + Fallback se as claims não estiverem no JWT
+        let escolaId = metadata?.escola_id;
+        let userRole = metadata?.role;
+
+        // Se estivermos logados mas o JWT não tem as claims (falta configurar JWT Template no Clerk)
+        // buscamos direto via SDK
+        const { userId } = await auth();
+        if (!escolaId && userId) {
+            try {
+                const { clerkClient } = await import('@clerk/nextjs/server');
+                const client = await clerkClient();
+                const user = await client.users.getUser(userId);
+                escolaId = user.publicMetadata?.escola_id;
+                userRole = user.publicMetadata?.role;
+
+                // Injetamos de volta no objeto para o queryWithTenant usar
+                if (!sessionClaims.metadata) (sessionClaims as any).metadata = {};
+                (sessionClaims.metadata as any).escola_id = escolaId;
+                (sessionClaims.metadata as any).role = userRole;
+            } catch (err) {
+                console.error("Erro ao buscar fallback de metadata no Clerk:", err);
+            }
         }
+
         // 1. Média Global por Disciplina
         const disciplinePerformanceQuery = `
       SELECT 
@@ -42,7 +67,9 @@ export async function GET() {
         FROM desempenho_academico
     `;
         const approvalResult = await queryWithTenant(approvalCountQuery, [], sessionClaims);
-        const approvalRate = ((Number(approvalResult.rows[0]?.aprovados) || 0) / (Number(approvalResult.rows[0]?.total) || 1) * 100).toFixed(1);
+        const totalAlunos = Number(approvalResult.rows[0]?.total) || 0;
+        const totalAprovados = Number(approvalResult.rows[0]?.aprovados) || 0;
+        const approvalRate = totalAlunos > 0 ? ((totalAprovados / totalAlunos) * 100).toFixed(1) : "0.0";
 
         // 4. Alunos em Risco (Média < 6.0 ou Frequência < 75%)
         const riskQuery = `
@@ -51,6 +78,7 @@ export async function GET() {
         WHERE media_final < 6.0 OR percentual_presenca < 75
     `;
         const riskResult = await queryWithTenant(riskQuery, [], sessionClaims);
+        const riskCount = riskResult.rows[0]?.risk_count || 0;
 
         // 5. Histograma de Notas
         const histogramQuery = `
@@ -104,10 +132,11 @@ export async function GET() {
                 mediaGlobalGrowth: growthData['health_score'] || '+0.2%',
                 approvalRate: Number(approvalRate),
                 approvalRateGrowth: '+1.5%',
-                riskCount: Number(riskResult.rows[0].risk_count),
+                riskCount: Number(riskCount),
                 attendance: Number(frequenciaMedia),
+                digitalEngagement: 85 // Mocked for now as it's static in UI
             },
-            disciplinePerformance: disciplineResult.rows.map((r: any) => ({
+            disciplinePerformance: (disciplineResult.rows || []).map((r: any) => ({
                 ...r,
                 val: Number(r.val),
                 color: Number(r.val) < 6 ? "bg-red-500" : Number(r.val) < 8 ? "bg-yellow-500" : "bg-emerald-500"
@@ -116,7 +145,7 @@ export async function GET() {
                 bucket: i,
                 count: histogramResult.rows.find((r: any) => Number(r.bucket) === i)?.count || 0
             })),
-            evolution: evolutionResult.rows.map((r: any) => ({
+            evolution: (evolutionResult.rows || []).map((r: any) => ({
                 month: r.month,
                 media: Number(r.media)
             }))

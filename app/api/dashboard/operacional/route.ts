@@ -6,17 +6,27 @@ export const dynamic = 'force-dynamic';
 
 export async function GET() {
     try {
-        const { sessionClaims } = await auth();
+        const { sessionClaims, userId } = await auth();
         const metadata = sessionClaims?.metadata as any;
 
-        if (!metadata?.escola_id) {
-            return NextResponse.json({ error: 'Tenant ID missing.' }, { status: 403 });
+        // Fallback se as claims não estiverem no JWT
+        let escolaId = metadata?.escola_id;
+        if (!escolaId && userId) {
+            try {
+                const { clerkClient } = await import('@clerk/nextjs/server');
+                const client = await clerkClient();
+                const user = await client.users.getUser(userId);
+                escolaId = user.publicMetadata?.escola_id;
+                if (sessionClaims) {
+                    if (!sessionClaims.metadata) (sessionClaims as any).metadata = {};
+                    (sessionClaims.metadata as any).escola_id = escolaId;
+                }
+            } catch (err) {
+                console.error("Erro fallback Clerk Operacional:", err);
+            }
         }
-        // Para o dashboard operacional, os dados são majoritariamente de gestão de recursos e infraestrutura.
-        // Como o schema atual é focado em alunos/financeiro/academico, vou mockar os indicadores operacionais
-        // mas basear o que for possível em dados reais (ex: ocupação baseada em alunos ativos).
 
-        // 1. Ocupação de Salas (Baseado em alunos ativos vs turmas)
+        // 1. Ocupação de Salas
         const classOccupationQuery = `
       SELECT 
         turma,
@@ -30,8 +40,7 @@ export async function GET() {
             ? Math.min(100, Math.round((classResult.rows.reduce((acc: number, curr: any) => acc + Number(curr.count), 0) / (classResult.rows.length * 40)) * 100))
             : 0;
 
-        // 2. KPIs (Métricas Mensais + Alunos)
-        // Buscando as metricas mais recentes para cada tipo
+        // 2. KPIs
         const metricsQuery = `
             SELECT DISTINCT ON (tipo_metrica) 
                 tipo_metrica, valor, unidade
@@ -44,19 +53,18 @@ export async function GET() {
             return acc;
         }, {});
 
-        // Calculando Manutenção (Chamados abertos/em andamento)
         const maintenanceQuery = `
             SELECT COUNT(*) as count 
             FROM operacional_chamados 
-            WHERE status != 'Resolvido'
+            WHERE status NOT ILIKE 'resolvido'
         `;
         const maintenanceResult = await queryWithTenant(maintenanceQuery, [], sessionClaims);
+        const ticketsCount = maintenanceResult.rows[0]?.count || 0;
 
-        // Mapeando para o formato do dashboard
         const kpis = {
             espacos: `${avgOccupation}%`,
             secretaria: metricsMap['sla_secretaria'] ? `${metricsMap['sla_secretaria'].value} dias` : "1.8 dias",
-            manutencao: `${maintenanceResult.rows[0].count} Tickets`,
+            manutencao: `${ticketsCount} Tickets`,
             docentes: metricsMap['absenteismo_docentes'] ? `${metricsMap['absenteismo_docentes'].value}%` : "2.4%",
             ti: metricsMap['uptime_ti'] ? `${metricsMap['uptime_ti'].value}%` : "99.8%",
             impressao: "R$ 1.250,00",
@@ -70,7 +78,7 @@ export async function GET() {
             alimentacaoGrowth: "-0.3%"
         };
 
-        // 3. Histórico de Custos (Sincronizado com Financeiro Despesas)
+        // 3. Histórico de Custos
         const costQuery = `
             SELECT 
                 to_char(data_despesa, 'Mon') as month,
@@ -98,7 +106,7 @@ export async function GET() {
         const ticketResult = await queryWithTenant(ticketQuery, [], sessionClaims);
 
         const dayMap: Record<string, string> = { 'Sun': 'Dom', 'Mon': 'Seg', 'Tue': 'Ter', 'Wed': 'Qua', 'Thu': 'Qui', 'Fri': 'Sex', 'Sat': 'Sab' };
-        const ticketPerformance = ticketResult.rows.map((r: any) => ({
+        const ticketPerformance = (ticketResult.rows || []).map((r: any) => ({
             name: dayMap[r.name.trim()] || r.name,
             abertos: Number(r.abertos),
             resolvidos: Number(r.resolvidos)
@@ -106,7 +114,7 @@ export async function GET() {
 
         return NextResponse.json({
             kpis,
-            costHistory: costResult.rows.map((r: any) => ({
+            costHistory: (costResult.rows || []).map((r: any) => ({
                 month: r.month,
                 energia: Number(r.energia),
                 manutencao: Number(r.manutencao),

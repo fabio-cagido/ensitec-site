@@ -87,10 +87,10 @@ export async function GET(request: NextRequest) {
                 client.query(estadosQuery, [filterValue])
             ]);
 
-            const stats = nacionalResult.rows[0];
-            const estados = estadosResult.rows;
+            const stats = nacionalResult.rows[0] || {};
+            const estados = estadosResult.rows || [];
 
-            const safeNumber = (val: any) => val ? Number(val) : 0;
+            const safeNumber = (val: any) => (val !== undefined && val !== null) ? Number(val) : 0;
 
             const areas = [
                 { area: 'Matemática', sigla: 'MT', media: safeNumber(stats.media_mt), count: safeNumber(stats.count_mt) },
@@ -108,10 +108,9 @@ export async function GET(request: NextRequest) {
                 media_ch: safeNumber(e.media_ch),
                 media_lc: safeNumber(e.media_lc),
                 media_redacao: safeNumber(e.media_redacao),
-                total_alunos: safeNumber(e.count_redacao) // Redação como proxy de total
+                total_alunos: safeNumber(e.count_redacao)
             }));
 
-            // Lista de UFs para o filtro (pode vir de todos os dados ou dados filtrados - vou manter dinâmico)
             const listaUFs = estados.map((e: any) => e.uf).sort();
 
             return NextResponse.json({

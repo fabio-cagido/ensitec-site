@@ -55,7 +55,7 @@ export default function BiCorporativoPage() {
                         <div className="relative w-full aspect-video rounded-2xl overflow-hidden shadow-xl">
                             <iframe
                                 className="absolute top-0 left-0 w-full h-full"
-                                src="https://www.youtube.com/embed/IrPN_vXKEwU"
+                                src="https://www.youtube.com/embed/kQsn-0q6vP4"
                                 title="BI Corporativo"
                                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                 allowFullScreen
