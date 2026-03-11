@@ -29,9 +29,11 @@ export async function GET() {
                 userRole = user.publicMetadata?.role;
 
                 // Injetamos de volta no objeto para o queryWithTenant usar
-                if (!sessionClaims.metadata) (sessionClaims as any).metadata = {};
-                (sessionClaims.metadata as any).escola_id = escolaId;
-                (sessionClaims.metadata as any).role = userRole;
+                if (sessionClaims) {
+                    if (!sessionClaims.metadata) (sessionClaims as any).metadata = {};
+                    (sessionClaims.metadata as any).escola_id = escolaId;
+                    (sessionClaims.metadata as any).role = userRole;
+                }
             } catch (err) {
                 console.error("Erro ao buscar fallback de metadata no Clerk:", err);
             }
