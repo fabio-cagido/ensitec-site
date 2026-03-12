@@ -51,6 +51,24 @@ export default function VideoSection() {
         </motion.div>
 
       </div>
+
+      {/* Botão de WhatsApp Centralizado */}
+      <motion.div 
+        variants={fadeUp}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true }}
+        className="mt-16 flex justify-center px-6"
+      >
+        <a
+          href="https://w.app/ensitecsolutions"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-2 bg-black text-white font-bold px-10 py-5 rounded-2xl hover:bg-gray-900 transition-all shadow-xl shadow-black/20 active:scale-95 hover:scale-105"
+        >
+          Quero otimizar meus dados
+        </a>
+      </motion.div>
     </section>
   );
 }

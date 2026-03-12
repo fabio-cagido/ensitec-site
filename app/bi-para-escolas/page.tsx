@@ -60,6 +60,18 @@ export default function BiEscolasPage() {
               />
             </div>
           </div>
+
+          {/* Botão de WhatsApp Centralizado */}
+          <div className="mt-16 flex justify-center">
+            <a
+              href="https://w.app/ensitecsolutions"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 bg-black text-white font-bold px-8 py-4 rounded-xl hover:bg-gray-900 transition shadow-lg shadow-black/20 active:scale-95"
+            >
+            Quero otimizar meus dados
+          </a>
+          </div>
         </div>
       </section>
 
@@ -152,23 +164,31 @@ export default function BiEscolasPage() {
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="py-24 bg-gray-900">
+      <section id="contato" className="py-24 bg-gray-950">
         <div className="max-w-4xl mx-auto px-6 text-center">
           <h2 className="text-4xl font-bold text-white mb-6">
             Dados claros. Decisões melhores.
           </h2>
-          <p className="text-lg text-gray-300 mb-10">
+          <p className="text-lg text-gray-400 mb-10">
             Desenvolvemos soluções de BI sob medida para a realidade da sua
             instituição de ensino.
           </p>
 
-          <a
-            href="/contato"
-            className="inline-block bg-white text-gray-900 font-semibold px-8 py-4 rounded-xl hover:bg-gray-100 transition"
-          >
-            Falar com a Ensitec
-          </a>
+          <div className="flex flex-col items-center gap-8">
+            <a
+              href="https://w.app/ensitecsolutions"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 bg-white text-black font-bold px-8 py-4 rounded-xl hover:bg-gray-100 transition shadow-lg shadow-white/10 active:scale-95"
+            >
+              Falar com a Ensitec
+            </a>
+
+            <div className="flex gap-6 text-gray-400">
+              <a href="https://www.instagram.com/ensitecbi/" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">Instagram</a>
+              <a href="mailto:fabio.cagido@ensinetecnologia.com.br" className="hover:text-white transition-colors">Email</a>
+            </div>
+          </div>
         </div>
       </section>
     </main>

@@ -4,6 +4,7 @@ import { ClerkProvider } from "@clerk/nextjs";
 import { ptBR } from "@clerk/localizations";
 import "./globals.css";
 import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -53,9 +54,9 @@ export default function RootLayout({
     >
       <html lang="pt-BR">
         <body className={`${geistSans.variable} ${geistMono.variable}`}>
-          {/* AQUI é onde o Header precisa estar */}
           <Header />
           {children}
+          <Footer />
         </body>
       </html>
     </ClerkProvider>
