@@ -61,7 +61,7 @@ export default function VideoSection() {
         className="mt-16 flex justify-center px-6"
       >
         <a
-          href="https://w.app/ensitecsolutions"
+          href="https://wa.me/5521998275770?text=Oi!+Tenho+interesse+em+implementar+o+Ensitec+BI+na+minha+institui%C3%A7%C3%A3o.+Gostaria+de+agendar+uma+demonstra%C3%A7%C3%A3o+r%C3%A1pida+para+ver+o+painel+funcionando+na+pr%C3%A1tica+e+entender+os+pr%C3%B3ximos+passos.+Como+podemos+seguir%3F"
           target="_blank"
           rel="noopener noreferrer"
           className="inline-flex items-center gap-2 bg-black text-white font-bold px-10 py-5 rounded-2xl hover:bg-gray-900 transition-all shadow-xl shadow-black/20 active:scale-95 hover:scale-105"
