@@ -45,11 +45,6 @@ export default clerkMiddleware(async (auth, req) => {
     const allowedNiches = rawNicho.split(',').map(n => n.trim().toLowerCase());
     const path = req.nextUrl.pathname;
 
-    // Se o user tem multiplos nichos e entra no /dashboard pela primeira vez (pós-login), manda para o hub
-    if (allowedNiches.length > 1 && path === '/dashboard') {
-        return NextResponse.redirect(new URL('/dashboard-hub', req.url));
-    }
-
     // Se tentar acessar o hub mas só tem um nicho, manda pro nicho específico
     if (path.startsWith('/dashboard-hub') && allowedNiches.length === 1) {
         if (allowedNiches.includes('restaurante')) return NextResponse.redirect(new URL('/dashboard-restaurante', req.url));
