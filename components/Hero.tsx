@@ -48,12 +48,26 @@ export default function Hero() {
           </motion.a>
 
           <motion.a
-            href="/bi-corporativo"
+            href="/bi-para-restaurantes"
             variants={fadeUp}
             initial="hidden"
             whileInView="show"
             viewport={{ once: true }}
             transition={{ delay: 0.4, duration: 0.6 }}
+            whileHover={{ scale: 1.04 }}
+            whileTap={{ scale: 0.97 }}
+            className="inline-block bg-black text-white px-6 py-3 rounded-md"
+          >
+            BI para Restaurantes
+          </motion.a>
+
+          <motion.a
+            href="/bi-corporativo"
+            variants={fadeUp}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true }}
+            transition={{ delay: 0.5, duration: 0.6 }}
             whileHover={{ scale: 1.04 }}
             whileTap={{ scale: 0.97 }}
             className="inline-block bg-black text-white px-6 py-3 rounded-md"
