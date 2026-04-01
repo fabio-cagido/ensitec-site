@@ -1,0 +1,32 @@
+﻿app/dashboard-restaurante/clientes/page.tsx(111,38): error TS2322: Type '(v: number) => string' is not assignable to type 'Formatter<number, NameType>'.
+  Types of parameters 'v' and 'value' are incompatible.
+    Type 'number | undefined' is not assignable to type 'number'.
+      Type 'undefined' is not assignable to type 'number'.
+app/dashboard-restaurante/clientes/page.tsx(135,38): error TS2322: Type '(v: number) => string' is not assignable to type 'Formatter<number, NameType>'.
+  Types of parameters 'v' and 'value' are incompatible.
+    Type 'number | undefined' is not assignable to type 'number'.
+      Type 'undefined' is not assignable to type 'number'.
+app/dashboard-restaurante/faturamento/page.tsx(86,38): error TS2322: Type '(v: number) => string' is not assignable to type 'Formatter<number, NameType>'.
+  Types of parameters 'v' and 'value' are incompatible.
+    Type 'number | undefined' is not assignable to type 'number'.
+      Type 'undefined' is not assignable to type 'number'.
+app/dashboard-restaurante/faturamento/page.tsx(101,38): error TS2322: Type '(v: number) => string' is not assignable to type 'Formatter<number, NameType>'.
+  Types of parameters 'v' and 'value' are incompatible.
+    Type 'number | undefined' is not assignable to type 'number'.
+      Type 'undefined' is not assignable to type 'number'.
+app/dashboard-restaurante/mercado/page.tsx(74,42): error TS2322: Type '(v: number) => [string, "Total"]' is not assignable to type 'Formatter<number, "Total">'.
+  Types of parameters 'v' and 'value' are incompatible.
+    Type 'number | undefined' is not assignable to type 'number'.
+      Type 'undefined' is not assignable to type 'number'.
+app/dashboard-restaurante/page.tsx(231,33): error TS2322: Type '(value: number) => [string, "Faturamento"]' is not assignable to type 'Formatter<number, "Faturamento">'.
+  Types of parameters 'value' and 'value' are incompatible.
+    Type 'number | undefined' is not assignable to type 'number'.
+      Type 'undefined' is not assignable to type 'number'.
+app/dashboard-restaurante/page.tsx(256,38): error TS2322: Type '(value: number) => string' is not assignable to type 'Formatter<number, NameType>'.
+  Types of parameters 'value' and 'value' are incompatible.
+    Type 'number | undefined' is not assignable to type 'number'.
+      Type 'undefined' is not assignable to type 'number'.
+app/dashboard-restaurante/page.tsx(294,37): error TS2322: Type '(value: number) => [string, "Total"]' is not assignable to type 'Formatter<number, "Total">'.
+  Types of parameters 'value' and 'value' are incompatible.
+    Type 'number | undefined' is not assignable to type 'number'.
+      Type 'undefined' is not assignable to type 'number'.

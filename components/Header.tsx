@@ -21,6 +21,7 @@ export default function Header() {
 
   const navLinks = [
     { href: "/bi-para-escolas", label: "BI para Escolas" },
+    { href: "/bi-para-restaurantes", label: "BI para Restaurantes" },
     { href: "/bi-corporativo", label: "BI Corporativo" },
   ];
 

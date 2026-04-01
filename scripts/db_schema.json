@@ -1,0 +1,1377 @@
+[
+  {
+    "name": "amostra_catalog",
+    "columns": [
+      {
+        "name": "description",
+        "type": "character varying"
+      },
+      {
+        "name": "details",
+        "type": "text"
+      },
+      {
+        "name": "unit_original_price",
+        "type": "numeric"
+      },
+      {
+        "name": "unit_price",
+        "type": "numeric"
+      },
+      {
+        "name": "unit_min_price",
+        "type": "numeric"
+      },
+      {
+        "name": "merchant_id",
+        "type": "character varying"
+      },
+      {
+        "name": "updated_at",
+        "type": "timestamp with time zone"
+      },
+      {
+        "name": "menu_name",
+        "type": "character varying"
+      },
+      {
+        "name": "garnish_list",
+        "type": "text"
+      },
+      {
+        "name": "fts_vector",
+        "type": "tsvector"
+      },
+      {
+        "name": "restaurant_name",
+        "type": "character varying"
+      },
+      {
+        "name": "main_category",
+        "type": "character varying"
+      }
+    ],
+    "sample": [
+      {
+        "description": "frango grelhado",
+        "details": "frango grelhado\narroz\nfeijao\nfarofa \nsalada\nacompanhamento",
+        "unit_original_price": "31.90",
+        "unit_price": "27.90",
+        "unit_min_price": "27.90",
+        "merchant_id": "cc908592-d56d-4200-899b-2e4a1ce6a9d1",
+        "updated_at": "2025-03-23T15:15:54.000Z",
+        "menu_name": "Do tamanho da sua fome",
+        "garnish_list": "batata frita pure de batatasbatata batatas salada legumes no azeite",
+        "fts_vector": "'acompanh':19C 'arroz':15C 'azeit':12B 'batat':3B,8B 'batatasbatat':7B 'farof':17C 'feija':16C 'fom':24 'frang':1A,13C 'frit':4B 'grelh':2A,14C 'legum':10B 'pur':5B 'sal':9B,18C 'tamanh':21",
+        "restaurant_name": "Gostinho Caseiro",
+        "main_category": "Brasileira"
+      },
+      {
+        "description": "frango a milanesa",
+        "details": "frango a milanesa\narroz\nfeijao\nfarofa e \nsalada de alface \n+ acompanhamento",
+        "unit_original_price": "32.90",
+        "unit_price": "27.90",
+        "unit_min_price": "27.90",
+        "merchant_id": "cc908592-d56d-4200-899b-2e4a1ce6a9d1",
+        "updated_at": "2025-03-23T15:15:54.000Z",
+        "menu_name": "Do tamanho da sua fome",
+        "garnish_list": "batata frita pure de batatasbatata batatas salada legumes no azeite",
+        "fts_vector": "'acompanh':24C 'alfac':23C 'arroz':17C 'azeit':13B 'batat':4B,9B 'batatasbatat':8B 'farof':19C 'feija':18C 'fom':29 'frang':1A,14C 'frit':5B 'legum':11B 'milanes':3A,16C 'pur':6B 'sal':10B,21C 'tamanh':26",
+        "restaurant_name": "Gostinho Caseiro",
+        "main_category": "Brasileira"
+      }
+    ]
+  },
+  {
+    "name": "amostra_password_reset_tokens",
+    "columns": [
+      {
+        "name": "id",
+        "type": "integer"
+      },
+      {
+        "name": "username",
+        "type": "character varying"
+      },
+      {
+        "name": "token",
+        "type": "uuid"
+      },
+      {
+        "name": "created_at",
+        "type": "timestamp with time zone"
+      },
+      {
+        "name": "is_used",
+        "type": "boolean"
+      }
+    ],
+    "sample": [
+      {
+        "id": 1,
+        "username": "guilherme",
+        "token": "c10d3cbc-87cb-497b-af08-b0467058a7ab",
+        "created_at": "2025-04-02T02:36:21.653Z",
+        "is_used": false
+      },
+      {
+        "id": 2,
+        "username": "guilherme",
+        "token": "154e1084-d1c8-4061-bad9-62c332d72d23",
+        "created_at": "2025-04-02T02:52:11.888Z",
+        "is_used": true
+      }
+    ]
+  },
+  {
+    "name": "amostra_petshop",
+    "columns": [
+      {
+        "name": "id",
+        "type": "integer"
+      },
+      {
+        "name": "action",
+        "type": "text"
+      },
+      {
+        "name": "adsmetadata",
+        "type": "character varying"
+      },
+      {
+        "name": "available",
+        "type": "boolean"
+      },
+      {
+        "name": "currency",
+        "type": "character varying"
+      },
+      {
+        "name": "delivery_type",
+        "type": "character varying"
+      },
+      {
+        "name": "delivery_fee",
+        "type": "integer"
+      },
+      {
+        "name": "delivery_min_minutes",
+        "type": "integer"
+      },
+      {
+        "name": "delivery_max_minutes",
+        "type": "integer"
+      },
+      {
+        "name": "delivery_mode",
+        "type": "character varying"
+      },
+      {
+        "name": "distance",
+        "type": "numeric"
+      },
+      {
+        "name": "image_url",
+        "type": "text"
+      },
+      {
+        "name": "is_ifood_delivery",
+        "type": "boolean"
+      },
+      {
+        "name": "is_new",
+        "type": "boolean"
+      },
+      {
+        "name": "is_super_restaurant",
+        "type": "boolean"
+      },
+      {
+        "name": "main_category",
+        "type": "character varying"
+      },
+      {
+        "name": "name",
+        "type": "character varying"
+      },
+      {
+        "name": "supports_tracking",
+        "type": "boolean"
+      },
+      {
+        "name": "user_rating",
+        "type": "numeric"
+      },
+      {
+        "name": "is_favorite",
+        "type": "boolean"
+      },
+      {
+        "name": "content_description",
+        "type": "text"
+      },
+      {
+        "name": "date_scrap",
+        "type": "timestamp with time zone"
+      },
+      {
+        "name": "user_rating_count",
+        "type": "integer"
+      },
+      {
+        "name": "district",
+        "type": "character varying"
+      },
+      {
+        "name": "city",
+        "type": "character varying"
+      },
+      {
+        "name": "latitude",
+        "type": "numeric"
+      },
+      {
+        "name": "longitude",
+        "type": "numeric"
+      },
+      {
+        "name": "state",
+        "type": "character varying"
+      },
+      {
+        "name": "street_name",
+        "type": "character varying"
+      },
+      {
+        "name": "street_number",
+        "type": "character varying"
+      },
+      {
+        "name": "zip_code",
+        "type": "character varying"
+      },
+      {
+        "name": "merchant_id",
+        "type": "character varying"
+      },
+      {
+        "name": "cnpj",
+        "type": "character varying"
+      },
+      {
+        "name": "phone_if",
+        "type": "character varying"
+      },
+      {
+        "name": "reviews",
+        "type": "jsonb"
+      },
+      {
+        "name": "catalog",
+        "type": "jsonb"
+      },
+      {
+        "name": "price_range",
+        "type": "character varying"
+      },
+      {
+        "name": "minimum_order_value",
+        "type": "numeric"
+      },
+      {
+        "name": "features",
+        "type": "jsonb"
+      },
+      {
+        "name": "categories",
+        "type": "jsonb"
+      },
+      {
+        "name": "groups",
+        "type": "jsonb"
+      },
+      {
+        "name": "merchant_chain",
+        "type": "character varying"
+      }
+    ],
+    "sample": [
+      {
+        "id": 1,
+        "action": "groceries?alias=MERCADO_PETSHOP&channel=IFOOD&deliveryMethodCode=FAST_DELIVERY&delivery_method_overrides=1%3AId%3AEQUAL%3AEXPRESS%2C2%3AId%3AEQUAL%3AEntrega%20R%C3%A1pida%2C3%3AId%3AEQUAL%3ADEFAULT&id=32f8e0a4-1210-4020-9602-bb564b43f43d&identifier=3a531466-ac54-4d9e-b18d-742cda8eae23&latitude=-23.2198396&longitude=-45.8915658&name=Tudo%20de%20Bicho%20-%20Vale%20Sul&size=15&slug=sao-jose-dos-campos-sp%2Ftudo-de-bicho---vale-sul-jardim-satelite",
+        "adsmetadata": null,
+        "available": true,
+        "currency": "BRL",
+        "delivery_type": "DELIVERY",
+        "delivery_fee": 1199,
+        "delivery_min_minutes": 17,
+        "delivery_max_minutes": 27,
+        "delivery_mode": "DEFAULT",
+        "distance": "0.48",
+        "image_url": ":resolution/logosgde/3a531466-ac54-4d9e-b18d-742cda8eae23/202405101541_57Qr_i.jpg",
+        "is_ifood_delivery": true,
+        "is_new": false,
+        "is_super_restaurant": false,
+        "main_category": "Mercado",
+        "name": "Tudo de Bicho - Vale Sul",
+        "supports_tracking": true,
+        "user_rating": "4.800000190734863",
+        "is_favorite": false,
+        "content_description": "Tudo de Bicho - Vale Sul, Nota 4,8 de 5, Mercado, 0,5 Quilômetros de distância, Entrega entre 17 e 27 minutos. Taxa de entrega: 11 reais e 99 centavos. ",
+        "date_scrap": "2025-01-24T22:37:40.000Z",
+        "user_rating_count": 31,
+        "district": "Jardim Satélite",
+        "city": "SAO JOSE DOS CAMPOS",
+        "latitude": "-23.21564",
+        "longitude": "-45.892603",
+        "state": "SP",
+        "street_name": "Avenida Andrômeda",
+        "street_number": "129",
+        "zip_code": "12230000",
+        "merchant_id": "3a531466-ac54-4d9e-b18d-742cda8eae23",
+        "cnpj": "26598157000588",
+        "phone_if": "99282899",
+        "reviews": null,
+        "catalog": null,
+        "price_range": null,
+        "minimum_order_value": null,
+        "features": null,
+        "categories": null,
+        "groups": null,
+        "merchant_chain": null
+      },
+      {
+        "id": 2,
+        "action": "groceries?alias=MERCADO_PETSHOP&channel=IFOOD&deliveryMethodCode=FAST_DELIVERY&delivery_method_overrides=1%3AId%3AEQUAL%3AEXPRESS%2C2%3AId%3AEQUAL%3AEntrega%20R%C3%A1pida%2C3%3AId%3AEQUAL%3ADEFAULT&id=32f8e0a4-1210-4020-9602-bb564b43f43d&identifier=4a1f8781-c161-4f6d-8266-d007be102f55&latitude=-23.2198396&longitude=-45.8915658&name=Cobasi%20-%20S.%20J.%20Campos&size=15&slug=sao-jose-dos-campos-sp%2Fcobasi---s-j-campos-jardim-oswaldo-cruz",
+        "adsmetadata": null,
+        "available": true,
+        "currency": "BRL",
+        "delivery_type": "DELIVERY",
+        "delivery_fee": 1998,
+        "delivery_min_minutes": 32,
+        "delivery_max_minutes": 42,
+        "delivery_mode": "DEFAULT",
+        "distance": "1.51",
+        "image_url": ":resolution/logosgde/4a1f8781-c161-4f6d-8266-d007be102f55/202205101755_YbMw_i.jpg",
+        "is_ifood_delivery": true,
+        "is_new": false,
+        "is_super_restaurant": false,
+        "main_category": "Mercado",
+        "name": "Cobasi - S. J. Campos",
+        "supports_tracking": true,
+        "user_rating": "4.800000190734863",
+        "is_favorite": false,
+        "content_description": "Cobasi - S. J. Campos, Nota 4,8 de 5, Mercado, 1,5 Quilômetros de distância, Entrega entre 32 e 42 minutos. Taxa de entrega: 19 reais e 99 centavos. ",
+        "date_scrap": "2025-01-24T22:37:40.000Z",
+        "user_rating_count": 65,
+        "district": "JARDIM OSWALDO CRUZ",
+        "city": "SAO JOSE DOS CAMPOS",
+        "latitude": "-23.222996",
+        "longitude": "-45.905952",
+        "state": "SP",
+        "street_name": "AV DEPUTADO BENEDITO MATARAZZO",
+        "street_number": "5701",
+        "zip_code": "12216580",
+        "merchant_id": "4a1f8781-c161-4f6d-8266-d007be102f55",
+        "cnpj": "53153938002402",
+        "phone_if": "32587412",
+        "reviews": null,
+        "catalog": null,
+        "price_range": null,
+        "minimum_order_value": null,
+        "features": null,
+        "categories": null,
+        "groups": null,
+        "merchant_chain": null
+      }
+    ]
+  },
+  {
+    "name": "amostra_products",
+    "columns": [
+      {
+        "name": "id",
+        "type": "integer"
+      },
+      {
+        "name": "title",
+        "type": "text"
+      },
+      {
+        "name": "price",
+        "type": "integer"
+      },
+      {
+        "name": "date_scrap",
+        "type": "timestamp with time zone"
+      },
+      {
+        "name": "ranking",
+        "type": "integer"
+      },
+      {
+        "name": "product_type",
+        "type": "character varying"
+      },
+      {
+        "name": "link",
+        "type": "text"
+      },
+      {
+        "name": "stars",
+        "type": "numeric"
+      },
+      {
+        "name": "number_of_reviews",
+        "type": "integer"
+      },
+      {
+        "name": "source",
+        "type": "character varying"
+      },
+      {
+        "name": "site_order",
+        "type": "integer"
+      },
+      {
+        "name": "seller_or_author",
+        "type": "character varying"
+      }
+    ],
+    "sample": [
+      {
+        "id": 1,
+        "title": "Vinho Tinto Chileno Concha Y Toro Reservado Cabernet Sauvignon 750ml",
+        "price": 2231,
+        "date_scrap": "2025-01-04T18:19:56.000Z",
+        "ranking": 1,
+        "product_type": "vinhos e espumantes",
+        "link": "https://www.mercadolivre.com.br/vinho-tinto-chileno-concha-y-toro-reservado-cabernet-sauvignon-750ml/p/MLB18217029#polycard_client=search_best-seller&wid=MLB2633299827&sid=search",
+        "stars": "4.8",
+        "number_of_reviews": 13481,
+        "source": "mercado livre",
+        "site_order": 1,
+        "seller_or_author": null
+      },
+      {
+        "id": 2,
+        "title": "Vinho Tinto Chileno Carmenere Reservado 750ml Concha Y Toro",
+        "price": 2296,
+        "date_scrap": "2025-01-04T18:19:56.000Z",
+        "ranking": 2,
+        "product_type": "vinhos e espumantes",
+        "link": "https://www.mercadolivre.com.br/vinho-tinto-chileno-carmenere-reservado-750ml-concha-y-toro/p/MLB18217262#polycard_client=search_best-seller&wid=MLB2968722604&sid=search",
+        "stars": "4.8",
+        "number_of_reviews": 13481,
+        "source": "mercado livre",
+        "site_order": 2,
+        "seller_or_author": null
+      }
+    ]
+  },
+  {
+    "name": "amostra_restaurants",
+    "columns": [
+      {
+        "name": "id",
+        "type": "integer"
+      },
+      {
+        "name": "action",
+        "type": "text"
+      },
+      {
+        "name": "adsmetadata",
+        "type": "character varying"
+      },
+      {
+        "name": "available",
+        "type": "boolean"
+      },
+      {
+        "name": "currency",
+        "type": "character varying"
+      },
+      {
+        "name": "delivery_type",
+        "type": "character varying"
+      },
+      {
+        "name": "delivery_fee",
+        "type": "integer"
+      },
+      {
+        "name": "delivery_min_minutes",
+        "type": "integer"
+      },
+      {
+        "name": "delivery_max_minutes",
+        "type": "integer"
+      },
+      {
+        "name": "delivery_mode",
+        "type": "character varying"
+      },
+      {
+        "name": "distance",
+        "type": "numeric"
+      },
+      {
+        "name": "image_url",
+        "type": "text"
+      },
+      {
+        "name": "is_ifood_delivery",
+        "type": "boolean"
+      },
+      {
+        "name": "is_new",
+        "type": "boolean"
+      },
+      {
+        "name": "is_super_restaurant",
+        "type": "boolean"
+      },
+      {
+        "name": "main_category",
+        "type": "character varying"
+      },
+      {
+        "name": "name",
+        "type": "character varying"
+      },
+      {
+        "name": "supports_tracking",
+        "type": "boolean"
+      },
+      {
+        "name": "user_rating",
+        "type": "numeric"
+      },
+      {
+        "name": "is_favorite",
+        "type": "boolean"
+      },
+      {
+        "name": "content_description",
+        "type": "text"
+      },
+      {
+        "name": "date_scrap",
+        "type": "timestamp with time zone"
+      },
+      {
+        "name": "user_rating_count",
+        "type": "integer"
+      },
+      {
+        "name": "district",
+        "type": "character varying"
+      },
+      {
+        "name": "city",
+        "type": "character varying"
+      },
+      {
+        "name": "latitude",
+        "type": "numeric"
+      },
+      {
+        "name": "longitude",
+        "type": "numeric"
+      },
+      {
+        "name": "state",
+        "type": "character varying"
+      },
+      {
+        "name": "street_name",
+        "type": "character varying"
+      },
+      {
+        "name": "street_number",
+        "type": "character varying"
+      },
+      {
+        "name": "zip_code",
+        "type": "character varying"
+      },
+      {
+        "name": "merchant_id",
+        "type": "character varying"
+      },
+      {
+        "name": "cnpj",
+        "type": "character varying"
+      },
+      {
+        "name": "phone_if",
+        "type": "character varying"
+      },
+      {
+        "name": "reviews",
+        "type": "jsonb"
+      },
+      {
+        "name": "catalog",
+        "type": "jsonb"
+      },
+      {
+        "name": "price_range",
+        "type": "character varying"
+      },
+      {
+        "name": "minimum_order_value",
+        "type": "numeric"
+      },
+      {
+        "name": "features",
+        "type": "jsonb"
+      },
+      {
+        "name": "categories",
+        "type": "jsonb"
+      },
+      {
+        "name": "groups",
+        "type": "jsonb"
+      },
+      {
+        "name": "merchant_chain",
+        "type": "character varying"
+      },
+      {
+        "name": "ddd",
+        "type": "character varying"
+      }
+    ],
+    "sample": [
+      {
+        "id": 373297,
+        "action": "merchant?alias=HOME_MULTICATEGORY&channel=IFOOD&deliveryMethodCode=DEFAULT&identifier=adf48e04-7bee-42ba-8da3-057524f3638e&latitude=-22.975607351375622&longitude=-43.612604727315606&name=Restaurante%20Delicias%20da%20Karol&remove_reserved_positions=false&size=80&slug=rio-de-janeiro-rj%2Frestaurante-delicias-da-karol-pedra-de-guaratiba&sort=distance%3Aasc&super_categories_in=RESTAURANT",
+        "adsmetadata": null,
+        "available": true,
+        "currency": "BRL",
+        "delivery_type": "DELIVERY",
+        "delivery_fee": 950,
+        "delivery_min_minutes": 70,
+        "delivery_max_minutes": 80,
+        "delivery_mode": "DEFAULT",
+        "distance": "2.74",
+        "image_url": ":resolution/logosgde/adf48e04-7bee-42ba-8da3-057524f3638e/202111171443_prCq_i.png",
+        "is_ifood_delivery": false,
+        "is_new": false,
+        "is_super_restaurant": false,
+        "main_category": "Brasileira",
+        "name": "Restaurante Delicias da Karol",
+        "supports_tracking": false,
+        "user_rating": "4.800000190734863",
+        "is_favorite": false,
+        "content_description": "Restaurante Delicias da Karol, Nota 4,8 de 5, Tipo de comida: Brasileira, 2,7 Quilômetros de distância, Entrega entre 70 e 80 minutos. Taxa de entrega: 9 reais e 50 centavos. ",
+        "date_scrap": "2025-02-13T14:34:14.000Z",
+        "user_rating_count": 311,
+        "district": "Pedra de Guaratiba",
+        "city": "RIO DE JANEIRO",
+        "latitude": "-22.996344",
+        "longitude": "-43.627143",
+        "state": "RJ",
+        "street_name": "Estrada da Matriz",
+        "street_number": "1061",
+        "zip_code": "23020715",
+        "merchant_id": "adf48e04-7bee-42ba-8da3-057524f3638e",
+        "cnpj": "37204970000119",
+        "phone_if": "982936747",
+        "reviews": null,
+        "catalog": null,
+        "price_range": "CHEAPEST",
+        "minimum_order_value": "15.00",
+        "features": [
+          "DELIVERY",
+          "TAKEOUT",
+          "CANCELABLE",
+          "CHAT_CONSUMER_ENABLED",
+          "USES_IFOOD_LOGISTICS"
+        ],
+        "categories": [],
+        "groups": [
+          {
+            "id": "5c0423e7-0f09-4bb4-acde-bf58de62a830",
+            "name": "Rio - Campo Grande",
+            "type": "REGION",
+            "externalId": "82c43d58-08d5-4e15-9656-d4cf41b67855"
+          },
+          {
+            "id": "d107726d-f66f-4c25-bd82-edca0bbacbd2",
+            "name": "IFOOD",
+            "type": "COMPANY",
+            "externalId": "IFO"
+          },
+          {
+            "id": "2b69a2f0-6ac8-4eda-b4b2-9d9d5f578054",
+            "name": "RESTAURANT",
+            "type": "STORE_TYPE",
+            "externalId": "RESTAURANT"
+          },
+          {
+            "id": "820474aa-1b61-4686-b706-02988cf60d21",
+            "name": "Entrega+",
+            "type": "BUSINESS_MODEL",
+            "externalId": "HYBRID_REGION"
+          }
+        ],
+        "merchant_chain": "",
+        "ddd": "21"
+      },
+      {
+        "id": 375806,
+        "action": "merchant?alias=HOME_MULTICATEGORY&channel=IFOOD&deliveryMethodCode=DEFAULT&identifier=87a2c197-f131-4dd1-a169-c411a42e53c6&latitude=-22.96205887519417&longitude=-43.578475422711406&name=Art%20Tortas&remove_reserved_positions=false&size=80&slug=rio-de-janeiro-rj%2Fart-tortas-campo-grande&sort=distance%3Aasc&super_categories_in=RESTAURANT",
+        "adsmetadata": null,
+        "available": true,
+        "currency": "BRL",
+        "delivery_type": "DELIVERY",
+        "delivery_fee": 1200,
+        "delivery_min_minutes": 80,
+        "delivery_max_minutes": 90,
+        "delivery_mode": "DEFAULT",
+        "distance": "2.87",
+        "image_url": ":resolution/logosgde/87a2c197-f131-4dd1-a169-c411a42e53c6/202112011613_U6XM_i.jpg",
+        "is_ifood_delivery": false,
+        "is_new": false,
+        "is_super_restaurant": false,
+        "main_category": "Doces & Bolos",
+        "name": "Art Tortas",
+        "supports_tracking": false,
+        "user_rating": "4.599999904632568",
+        "is_favorite": false,
+        "content_description": "Art Tortas, Nota 4,6 de 5, Tipo de comida: Doces & Bolos, 2,9 Quilômetros de distância, Entrega entre 80 e 90 minutos. Taxa de entrega: 12 reais. ",
+        "date_scrap": "2025-02-13T14:45:53.000Z",
+        "user_rating_count": 13,
+        "district": "CAMPO GRANDE",
+        "city": "RIO DE JANEIRO",
+        "latitude": "-22.947372",
+        "longitude": "-43.601571",
+        "state": "RJ",
+        "street_name": "ESTRADA DO MAGARCA",
+        "street_number": "77",
+        "zip_code": "23035380",
+        "merchant_id": "87a2c197-f131-4dd1-a169-c411a42e53c6",
+        "cnpj": "27846197000130",
+        "phone_if": "972428914",
+        "reviews": null,
+        "catalog": null,
+        "price_range": "CHEAPEST",
+        "minimum_order_value": "20.00",
+        "features": [
+          "DELIVERY",
+          "TAKEOUT",
+          "CANCELABLE",
+          "CHAT_CONSUMER_ENABLED"
+        ],
+        "categories": [],
+        "groups": [
+          {
+            "id": "2b69a2f0-6ac8-4eda-b4b2-9d9d5f578054",
+            "name": "RESTAURANT",
+            "type": "STORE_TYPE",
+            "externalId": "RESTAURANT"
+          },
+          {
+            "id": "56396d4b-50c9-40a3-b964-218eda18924b",
+            "name": "Marketplace",
+            "type": "BUSINESS_MODEL",
+            "externalId": "MKT"
+          },
+          {
+            "id": "d107726d-f66f-4c25-bd82-edca0bbacbd2",
+            "name": "IFOOD",
+            "type": "COMPANY",
+            "externalId": "IFO"
+          }
+        ],
+        "merchant_chain": "",
+        "ddd": "21"
+      }
+    ]
+  },
+  {
+    "name": "amostra_restaurants_stats",
+    "columns": [
+      {
+        "name": "total_restaurants",
+        "type": "bigint"
+      },
+      {
+        "name": "total_new_restaurants",
+        "type": "bigint"
+      },
+      {
+        "name": "total_old_restaurants",
+        "type": "bigint"
+      },
+      {
+        "name": "updated_at",
+        "type": "text"
+      },
+      {
+        "name": "total_growth",
+        "type": "double precision"
+      },
+      {
+        "name": "old_growth",
+        "type": "double precision"
+      },
+      {
+        "name": "new_growth",
+        "type": "double precision"
+      },
+      {
+        "name": "id",
+        "type": "integer"
+      }
+    ],
+    "sample": [
+      {
+        "total_restaurants": "73863",
+        "total_new_restaurants": "15207",
+        "total_old_restaurants": "58656",
+        "updated_at": "2025-03-03 18:58:21",
+        "total_growth": 14.72,
+        "old_growth": 15.53,
+        "new_growth": 11.61,
+        "id": 1
+      },
+      {
+        "total_restaurants": "73863",
+        "total_new_restaurants": "15207",
+        "total_old_restaurants": "58656",
+        "updated_at": "2025-03-03 19:06:03",
+        "total_growth": 14.61,
+        "old_growth": 15.4,
+        "new_growth": 11.54,
+        "id": 2
+      }
+    ]
+  },
+  {
+    "name": "amostra_subscription_coupon_usage",
+    "columns": [
+      {
+        "name": "id",
+        "type": "integer"
+      },
+      {
+        "name": "coupon_id",
+        "type": "integer"
+      },
+      {
+        "name": "user_id",
+        "type": "integer"
+      },
+      {
+        "name": "used_at",
+        "type": "timestamp without time zone"
+      },
+      {
+        "name": "final_price",
+        "type": "numeric"
+      }
+    ],
+    "sample": [
+      {
+        "id": 1,
+        "coupon_id": 3,
+        "user_id": 111,
+        "used_at": "2025-06-11T03:37:30.449Z",
+        "final_price": "79.20"
+      }
+    ]
+  },
+  {
+    "name": "amostra_subscription_coupons",
+    "columns": [
+      {
+        "name": "id",
+        "type": "integer"
+      },
+      {
+        "name": "code",
+        "type": "character varying"
+      },
+      {
+        "name": "description",
+        "type": "text"
+      },
+      {
+        "name": "discount_percent",
+        "type": "numeric"
+      },
+      {
+        "name": "plan_type",
+        "type": "character varying"
+      },
+      {
+        "name": "max_uses",
+        "type": "integer"
+      },
+      {
+        "name": "expires_at",
+        "type": "timestamp without time zone"
+      },
+      {
+        "name": "created_at",
+        "type": "timestamp without time zone"
+      }
+    ],
+    "sample": [
+      {
+        "id": 3,
+        "code": "TESTE33",
+        "description": "Teste",
+        "discount_percent": "20.00",
+        "plan_type": "restaurant",
+        "max_uses": 10,
+        "expires_at": "2025-06-15T03:00:00.000Z",
+        "created_at": "2025-06-10T21:53:02.328Z"
+      }
+    ]
+  },
+  {
+    "name": "amostra_subscription_prices",
+    "columns": [
+      {
+        "name": "id",
+        "type": "integer"
+      },
+      {
+        "name": "plan_type",
+        "type": "character varying"
+      },
+      {
+        "name": "base_price",
+        "type": "numeric"
+      },
+      {
+        "name": "created_at",
+        "type": "timestamp without time zone"
+      }
+    ],
+    "sample": [
+      {
+        "id": 1,
+        "plan_type": "restaurant",
+        "base_price": "99.00",
+        "created_at": "2025-06-10T01:01:41.137Z"
+      },
+      {
+        "id": 2,
+        "plan_type": "franchising",
+        "base_price": "999.00",
+        "created_at": "2025-06-10T01:01:41.137Z"
+      }
+    ]
+  },
+  {
+    "name": "amostra_synonym_cache",
+    "columns": [
+      {
+        "name": "term",
+        "type": "character varying"
+      },
+      {
+        "name": "synonyms",
+        "type": "ARRAY"
+      }
+    ],
+    "sample": [
+      {
+        "term": "hamburguer",
+        "synonyms": [
+          "hamburquer",
+          " hambúrguer",
+          " hamburguer",
+          " ambuguer",
+          " hamburgues"
+        ]
+      },
+      {
+        "term": "carpaccio",
+        "synonyms": [
+          "carpacio",
+          " carpacio",
+          " capaccio",
+          " carpaccioo",
+          " carppaccio",
+          " carne crua",
+          " carne fatiada fina",
+          " prato italiano",
+          " prato de carne crua",
+          " prato de carne fatiada."
+        ]
+      }
+    ]
+  },
+  {
+    "name": "amostra_users_profile",
+    "columns": [
+      {
+        "name": "id",
+        "type": "integer"
+      },
+      {
+        "name": "username",
+        "type": "character varying"
+      },
+      {
+        "name": "restaurants",
+        "type": "ARRAY"
+      },
+      {
+        "name": "email_confirmed",
+        "type": "timestamp without time zone"
+      },
+      {
+        "name": "states",
+        "type": "ARRAY"
+      },
+      {
+        "name": "company",
+        "type": "character varying"
+      },
+      {
+        "name": "active",
+        "type": "boolean"
+      },
+      {
+        "name": "approved",
+        "type": "boolean"
+      },
+      {
+        "name": "company_site",
+        "type": "character varying"
+      },
+      {
+        "name": "email",
+        "type": "character varying"
+      },
+      {
+        "name": "phone",
+        "type": "character varying"
+      },
+      {
+        "name": "user_type",
+        "type": "character varying"
+      },
+      {
+        "name": "payment_status",
+        "type": "character varying"
+      },
+      {
+        "name": "created_at",
+        "type": "timestamp without time zone"
+      },
+      {
+        "name": "cpf_cnpj",
+        "type": "character varying"
+      },
+      {
+        "name": "payment_link",
+        "type": "character varying"
+      },
+      {
+        "name": "name",
+        "type": "character varying"
+      },
+      {
+        "name": "client_id_asaas",
+        "type": "character varying"
+      },
+      {
+        "name": "payment_link_id",
+        "type": "character varying"
+      },
+      {
+        "name": "welcome_email",
+        "type": "boolean"
+      },
+      {
+        "name": "company_name",
+        "type": "character varying"
+      }
+    ],
+    "sample": [
+      {
+        "id": 4,
+        "username": "rodolfo",
+        "restaurants": [
+          "2fa019f0-9791-42e6-aade-98d7260f765a",
+          "407b0710-2b7b-451a-b33b-1af8fa78b810",
+          "407b0710-2b7b-451a-b33b-1af8fa78b810",
+          "24e6af2e-728c-4ae6-ba0b-ff680a0d5993",
+          "bd456dfa-2fb6-424b-9c99-4dd6a4bf4add",
+          "d8df4f39-7e68-483a-affe-bb3ea25b7486",
+          "372af1d0-9d53-4364-8a72-307cc83e0710",
+          "63e81db0-4f08-4858-ac45-ca3b8d8124a6",
+          "3b91567c-be29-4cbc-a807-43ca2806d181",
+          "a2a9655a-5325-4781-ad02-38422630fc8c",
+          "a6e2c16c-d345-4b41-bcbb-a9d0816a7dae",
+          "b1742d0b-9c5e-43b5-a12e-4adc75d66768",
+          "a53d682e-25e6-432d-812d-199ae869faef",
+          "628d51bf-8fc5-4ba9-a22f-2abeca14c5ef",
+          "2d477fc7-f3a7-4003-b486-913e695e6ac6",
+          "bbaca5c1-5f3d-4b17-913d-ab0186e88b12",
+          "2afbd66a-9b82-424c-abc1-13b66f0c97da"
+        ],
+        "email_confirmed": null,
+        "states": [],
+        "company": null,
+        "active": null,
+        "approved": null,
+        "company_site": null,
+        "email": null,
+        "phone": null,
+        "user_type": null,
+        "payment_status": "pending",
+        "created_at": null,
+        "cpf_cnpj": null,
+        "payment_link": null,
+        "name": null,
+        "client_id_asaas": null,
+        "payment_link_id": null,
+        "welcome_email": false,
+        "company_name": null
+      },
+      {
+        "id": 2,
+        "username": "samijomaa",
+        "restaurants": null,
+        "email_confirmed": null,
+        "states": null,
+        "company": null,
+        "active": null,
+        "approved": null,
+        "company_site": null,
+        "email": null,
+        "phone": null,
+        "user_type": null,
+        "payment_status": "pending",
+        "created_at": null,
+        "cpf_cnpj": null,
+        "payment_link": null,
+        "name": null,
+        "client_id_asaas": null,
+        "payment_link_id": null,
+        "welcome_email": false,
+        "company_name": null
+      }
+    ]
+  },
+  {
+    "name": "amostra_whatsapp_campaigns",
+    "columns": [
+      {
+        "name": "id",
+        "type": "integer"
+      },
+      {
+        "name": "title",
+        "type": "text"
+      },
+      {
+        "name": "content",
+        "type": "text"
+      },
+      {
+        "name": "company_id",
+        "type": "text"
+      },
+      {
+        "name": "created_at",
+        "type": "timestamp without time zone"
+      },
+      {
+        "name": "phone_type",
+        "type": "character varying"
+      },
+      {
+        "name": "total_sent",
+        "type": "integer"
+      },
+      {
+        "name": "msgs_limit",
+        "type": "integer"
+      }
+    ],
+    "sample": [
+      {
+        "id": 1,
+        "title": "Tere Teste",
+        "content": "Olá  {{nome}}, tudo bem?\n\nJá conhece a POWER DATA? Com ela você consegue saber qual seu posicionamento de mercado perante seus concorrentes, é bem legal, acessa lá pra ver. \n\npowerdata.tech ou veja os insights que podemos gerar em nosso instagram *instagram.com/powerdata.tech*\n\n",
+        "company_id": "powerdata",
+        "created_at": "2025-05-29T17:00:21.104Z",
+        "phone_type": "new_number",
+        "total_sent": null,
+        "msgs_limit": 10
+      }
+    ]
+  },
+  {
+    "name": "amostra_whatsapp_groups",
+    "columns": [
+      {
+        "name": "id",
+        "type": "integer"
+      },
+      {
+        "name": "group_name",
+        "type": "text"
+      },
+      {
+        "name": "merchant_id",
+        "type": "text"
+      },
+      {
+        "name": "cnpj",
+        "type": "text"
+      },
+      {
+        "name": "merchant_chain",
+        "type": "text"
+      },
+      {
+        "name": "company_id",
+        "type": "text"
+      },
+      {
+        "name": "created_at",
+        "type": "timestamp without time zone"
+      },
+      {
+        "name": "name",
+        "type": "character varying"
+      }
+    ],
+    "sample": [
+      {
+        "id": 1,
+        "group_name": "Tere Teste",
+        "merchant_id": "",
+        "cnpj": "",
+        "merchant_chain": null,
+        "company_id": "powerdata",
+        "created_at": "2025-05-29T16:51:32.887Z",
+        "name": "Nikay Sushi"
+      },
+      {
+        "id": 2,
+        "group_name": "Tere Teste",
+        "merchant_id": "4c9234a0-3fee-45e4-a048-bb62ed77cb83",
+        "cnpj": "59926839000106",
+        "merchant_chain": "",
+        "company_id": "powerdata",
+        "created_at": "2025-05-29T16:51:32.887Z",
+        "name": "GELADÃO GOURMET DA ESTER 2.0"
+      }
+    ]
+  },
+  {
+    "name": "amostra_whatsapp_queue",
+    "columns": [
+      {
+        "name": "id",
+        "type": "integer"
+      },
+      {
+        "name": "merchant_id",
+        "type": "text"
+      },
+      {
+        "name": "cnpj",
+        "type": "text"
+      },
+      {
+        "name": "merchant_chain",
+        "type": "text"
+      },
+      {
+        "name": "phone_number",
+        "type": "text"
+      },
+      {
+        "name": "status",
+        "type": "text"
+      },
+      {
+        "name": "campaign_id",
+        "type": "integer"
+      },
+      {
+        "name": "company_id",
+        "type": "text"
+      },
+      {
+        "name": "attempts",
+        "type": "integer"
+      },
+      {
+        "name": "created_at",
+        "type": "timestamp without time zone"
+      },
+      {
+        "name": "updated_at",
+        "type": "timestamp without time zone"
+      },
+      {
+        "name": "send_date",
+        "type": "date"
+      },
+      {
+        "name": "message",
+        "type": "text"
+      },
+      {
+        "name": "batch_id",
+        "type": "uuid"
+      },
+      {
+        "name": "group_name",
+        "type": "text"
+      }
+    ],
+    "sample": [
+      {
+        "id": 6,
+        "merchant_id": "09b9abce-074e-4934-964f-17052e718073",
+        "cnpj": "59043728000143",
+        "merchant_chain": "",
+        "phone_number": "5521979310593",
+        "status": "sent",
+        "campaign_id": 1,
+        "company_id": "powerdata",
+        "attempts": 0,
+        "created_at": "2025-05-29T17:09:12.139Z",
+        "updated_at": "2025-05-29T17:09:12.139Z",
+        "send_date": "2025-05-29T03:00:00.000Z",
+        "message": "Olá {{nome}, tudo bem?\n\nJá conhece a POWER DATA? Com ela você consegue saber qual seu posicionamento de mercado perante seus concorrentes, é bem legal, acessa lá pra ver. \n\npowerdata.tech ou veja os insights que podemos gera em nosso instagram *instagram.com/powerdata.tech*\n\n",
+        "batch_id": "acce9c2c-1212-4745-ac75-ac144caaba69",
+        "group_name": "Tere Teste"
+      },
+      {
+        "id": 7,
+        "merchant_id": "0ce04900-6155-4bf8-8120-d8dfc262d446",
+        "cnpj": "36462752000111",
+        "merchant_chain": "",
+        "phone_number": "552140032665",
+        "status": "sent",
+        "campaign_id": 1,
+        "company_id": "powerdata",
+        "attempts": 0,
+        "created_at": "2025-05-29T17:09:12.139Z",
+        "updated_at": "2025-05-29T17:09:12.139Z",
+        "send_date": "2025-05-29T03:00:00.000Z",
+        "message": "Olá {{nome}, tudo bem?\n\nJá conhece a POWER DATA? Com ela você consegue saber qual seu posicionamento de mercado perante seus concorrentes, é bem legal, acessa lá pra ver. \n\npowerdata.tech ou veja os insights que podemos gera em nosso instagram *instagram.com/powerdata.tech*\n\n",
+        "batch_id": "acce9c2c-1212-4745-ac75-ac144caaba69",
+        "group_name": "Tere Teste"
+      }
+    ]
+  }
+]
