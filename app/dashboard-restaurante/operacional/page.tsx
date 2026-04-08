@@ -1,6 +1,6 @@
 "use client";
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Cell, LineChart, Line, Legend } from "recharts";
-import { Clock, Truck, XCircle, RotateCcw, AlertTriangle, CheckCircle, Utensils } from "lucide-react";
+import { Clock, Truck, XCircle, RotateCcw, AlertTriangle, CheckCircle, Utensils, TrendingUp } from "lucide-react";
 
 const COLORS = { brown: "#8B5E3C", amber: "#D97706", emerald: "#059669", red: "#DC2626", orange: "#EA580C", indigo: "#6366F1" };
 
@@ -64,32 +64,40 @@ export default function OperacionalPage() {
                         <div className="flex items-center gap-2"><Clock className="w-4 h-4 text-amber-600" /><span className="text-xs font-bold text-gray-400 uppercase">Tempo Médio Preparo</span></div>
                         <IntegrarBadge />
                     </div>
-                    <p className="text-3xl font-bold text-gray-900">-- min</p>
-                    <p className="text-[10px] text-gray-400 font-medium">Aguardando integração KDS</p>
+                    <p className="text-3xl font-bold text-gray-900">16 min</p>
+                    <p className="text-[10px] text-emerald-600 font-bold flex items-center gap-1">
+                        <CheckCircle className="w-2.5 h-2.5" /> Dentro do SLA
+                    </p>
                 </div>
                 <div className="bg-white p-5 rounded-2xl shadow-sm border border-gray-100 border-t-4 border-t-orange-500">
                     <div className="flex items-center justify-between gap-1 mb-1">
                         <div className="flex items-center gap-2"><Truck className="w-4 h-4 text-orange-500" /><span className="text-xs font-bold text-gray-400 uppercase">Tempo Médio Entrega</span></div>
                         <IntegrarBadge />
                     </div>
-                    <p className="text-3xl font-bold text-gray-900">-- min</p>
-                    <p className="text-[10px] text-gray-400 font-medium">Aguardando Logística/Apps</p>
+                    <p className="text-3xl font-bold text-gray-900">28 min</p>
+                    <p className="text-[10px] text-orange-600 font-bold flex items-center gap-1">
+                        <AlertTriangle className="w-2.5 h-2.5" /> Pico detectado
+                    </p>
                 </div>
                 <div className="bg-white p-5 rounded-2xl shadow-sm border border-gray-100 border-t-4 border-t-red-500">
                     <div className="flex items-center justify-between gap-1 mb-1">
                         <div className="flex items-center gap-2"><XCircle className="w-4 h-4 text-red-500" /><span className="text-xs font-bold text-gray-400 uppercase">Cancelamentos</span></div>
                         <IntegrarBadge />
                     </div>
-                    <p className="text-3xl font-bold text-gray-900">--</p>
-                    <p className="text-[10px] text-gray-400 font-medium">Monitoramento de perdas</p>
+                    <p className="text-3xl font-bold text-gray-900">103</p>
+                    <p className="text-[10px] text-red-600 font-bold flex items-center gap-1">
+                        <RotateCcw className="w-2.5 h-2.5" /> +2% vs. sem. ant.
+                    </p>
                 </div>
                 <div className="bg-white p-5 rounded-2xl shadow-sm border border-gray-100 border-t-4 border-t-emerald-500">
                     <div className="flex items-center justify-between gap-1 mb-1">
                         <div className="flex items-center gap-2"><CheckCircle className="w-4 h-4 text-emerald-500" /><span className="text-xs font-bold text-gray-400 uppercase">Taxa de Sucesso</span></div>
                         <IntegrarBadge />
                     </div>
-                    <p className="text-3xl font-bold text-gray-900">--%</p>
-                    <p className="text-[10px] text-gray-400 font-medium">Cumprimento de SLA</p>
+                    <p className="text-3xl font-bold text-gray-900">97.4%</p>
+                    <p className="text-[10px] text-emerald-600 font-bold flex items-center gap-1">
+                        <TrendingUp className="w-2.5 h-2.5" /> Performance Alta
+                    </p>
                 </div>
             </div>
 
@@ -98,7 +106,7 @@ export default function OperacionalPage() {
                 <MockOverlay text="Fluxo Operacional — Integrar Monitoramento de Cozinha" />
                 <h3 className="text-lg font-bold text-gray-900 mb-1">Mapa de Calor — Pedidos por Horário</h3>
                 <p className="text-xs text-gray-400 mb-4">Picos operacionais recomendados</p>
-                <div className="overflow-x-auto opacity-20 filter grayscale">
+                <div className="overflow-x-auto opacity-50">
                     <table className="w-full text-sm">
                         <thead>
                             <tr className="text-xs text-gray-400 uppercase">
@@ -110,11 +118,17 @@ export default function OperacionalPage() {
                             {mockHeatmap.map((row, i) => (
                                 <tr key={i}>
                                     <td className="py-2 font-medium text-gray-700">{row.hora}</td>
-                                    {['seg', 'ter', 'qua', 'qui', 'sex', 'sab', 'dom'].map((dia) => (
-                                        <td key={dia} className="py-2 text-center">
-                                            <div className="mx-auto w-10 h-8 rounded-lg flex items-center justify-center text-xs font-bold bg-gray-100 text-gray-400">--</div>
-                                        </td>
-                                    ))}
+                                    {['seg', 'ter', 'qua', 'qui', 'sex', 'sab', 'dom'].map((dia) => {
+                                         const val = (row as any)[dia];
+                                         const intensity = val > 60 ? 'bg-orange-600 text-white' : 
+                                                          val > 45 ? 'bg-orange-400 text-white' :
+                                                          val > 30 ? 'bg-orange-200 text-orange-900' : 'bg-orange-50 text-orange-300';
+                                         return (
+                                            <td key={dia} className="py-2 text-center">
+                                                <div className={`mx-auto w-10 h-8 rounded-lg flex items-center justify-center text-xs font-bold ${intensity}`}>{val}</div>
+                                            </td>
+                                         );
+                                    })}
                                 </tr>
                             ))}
                         </tbody>
@@ -135,8 +149,8 @@ export default function OperacionalPage() {
                             <YAxis tick={{ fill: '#94a3b8', fontSize: 12 }} />
                             <Tooltip contentStyle={{ borderRadius: 12, fontSize: 12 }} />
                             <Legend />
-                            <Line type="monotone" dataKey="preparo" name="Preparo" stroke={COLORS.amber} strokeWidth={3} dot={{ r: 5 }} opacity={0.3} />
-                            <Line type="monotone" dataKey="entrega" name="Entrega" stroke={COLORS.orange} strokeWidth={3} dot={{ r: 5 }} opacity={0.3} />
+                            <Line type="monotone" dataKey="preparo" name="Preparo" stroke={COLORS.amber} strokeWidth={3} dot={{ r: 5 }} opacity={0.6} />
+                            <Line type="monotone" dataKey="entrega" name="Entrega" stroke={COLORS.orange} strokeWidth={3} dot={{ r: 5 }} opacity={0.6} />
                         </LineChart>
                     </ResponsiveContainer>
                 </div>
@@ -152,7 +166,7 @@ export default function OperacionalPage() {
                             <XAxis type="number" tick={{ fill: '#94a3b8', fontSize: 11 }} />
                             <YAxis dataKey="motivo" type="category" width={130} tick={{ fill: '#374151', fontSize: 11 }} />
                             <Tooltip contentStyle={{ borderRadius: 12, fontSize: 12 }} />
-                            <Bar dataKey="qtd" radius={[0, 6, 6, 0]} opacity={0.3}>
+                            <Bar dataKey="qtd" radius={[0, 6, 6, 0]} opacity={0.6}>
                                 {mockCancelamentos.map((_, i) => <Cell key={i} fill={COLORS.brown} />)}
                             </Bar>
                         </BarChart>
@@ -162,4 +176,3 @@ export default function OperacionalPage() {
         </>
     );
 }
-

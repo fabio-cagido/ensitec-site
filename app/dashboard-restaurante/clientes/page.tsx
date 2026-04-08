@@ -4,6 +4,7 @@ import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContaine
 import { Users, UserPlus, UserCheck, Heart, Star, MapPin, TrendingUp, TrendingDown, Loader2 } from "lucide-react";
 
 const COLORS = { brown: "#8B5E3C", amber: "#D97706", emerald: "#059669", red: "#DC2626", indigo: "#6366F1", orange: "#EA580C" };
+const PIE_COLORS = ["#8B5E3C", "#D97706", "#059669", "#EA580C", "#6366F1", "#DC2626"];
 
 const MockOverlay = ({ text = "Dados de Exemplo — Conecte seu sistema" }) => (
     <div className="absolute inset-0 z-10 flex items-center justify-center bg-white/60 backdrop-blur-[2px] rounded-2xl border-2 border-dashed border-gray-200 m-1 group text-center">
@@ -86,24 +87,26 @@ export default function ClientesPage() {
                         <div className="flex items-center gap-2"><Users className="w-4 h-4" style={{ color: COLORS.brown }} /><span className="text-xs font-bold text-gray-400 uppercase">Clientes Ativos</span></div>
                         <IntegrarBadge />
                     </div>
-                    <p className="text-3xl font-bold text-gray-900">--</p>
-                    <p className="text-[10px] text-gray-400 font-medium">Extraído do PDV/CRM</p>
+                    <p className="text-3xl font-bold text-gray-900">2.385</p>
+                    <p className="text-[10px] text-gray-400 font-medium whitespace-nowrap">Base: Março 2024</p>
                 </div>
                 <div className="bg-white p-5 rounded-2xl shadow-sm border border-gray-100 border-t-4 border-t-emerald-500">
                     <div className="flex items-center justify-between gap-1 mb-1">
                         <div className="flex items-center gap-2"><UserCheck className="w-4 h-4 text-emerald-500" /><span className="text-xs font-bold text-gray-400 uppercase">Taxa Retenção</span></div>
                         <IntegrarBadge />
                     </div>
-                    <p className="text-3xl font-bold text-gray-900">--%</p>
-                    <div className="flex items-center gap-1 mt-1 text-[10px]"><span className="text-gray-400 italic">Requer base histórica</span></div>
+                    <p className="text-3xl font-bold text-gray-900">84.7%</p>
+                    <div className="flex items-center gap-1 mt-1 text-[10px] text-emerald-600 font-bold">
+                        <TrendingUp className="w-3.5 h-3.5" /> +2.1% vs ev.
+                    </div>
                 </div>
                 <div className="bg-white p-5 rounded-2xl shadow-sm border border-gray-100 border-t-4 border-t-amber-600">
                     <div className="flex items-center justify-between gap-1 mb-1">
                         <div className="flex items-center gap-2"><Heart className="w-4 h-4 text-amber-600" /><span className="text-xs font-bold text-gray-400 uppercase">NPS Score</span></div>
                         <IntegrarBadge />
                     </div>
-                    <p className="text-3xl font-bold text-gray-900">--</p>
-                    <p className="text-[10px] text-gray-400 font-medium italic">Aguardando pesquisas</p>
+                    <p className="text-3xl font-bold text-gray-900">49</p>
+                    <p className="text-[10px] text-amber-600 font-bold italic underline">Zona de Qualidade</p>
                 </div>
                 <div className="bg-white p-5 rounded-2xl shadow-sm border border-gray-100 border-t-4 border-t-indigo-500">
                     <div className="flex items-center gap-2 mb-1"><MapPin className="w-4 h-4 text-indigo-500" /><span className="text-xs font-bold text-gray-400 uppercase">Bairros Monitorados</span></div>
@@ -129,8 +132,8 @@ export default function ClientesPage() {
                             <YAxis tick={{ fill: '#94a3b8', fontSize: 12 }} />
                             <Tooltip contentStyle={{ borderRadius: 12, fontSize: 12 }} />
                             <Legend />
-                            <Area type="monotone" dataKey="recorrentes" name="Recorrentes" stroke={COLORS.emerald} fill="url(#gRecor)" strokeWidth={2.5} opacity={0.3} />
-                            <Area type="monotone" dataKey="novos" name="Novos" stroke={COLORS.amber} fill="url(#gNovos)" strokeWidth={2.5} opacity={0.3} />
+                            <Area type="monotone" dataKey="recorrentes" name="Recorrentes" stroke={COLORS.emerald} fill="url(#gRecor)" strokeWidth={2.5} opacity={0.6} />
+                            <Area type="monotone" dataKey="novos" name="Novos" stroke={COLORS.amber} fill="url(#gNovos)" strokeWidth={2.5} opacity={0.6} />
                         </AreaChart>
                     </ResponsiveContainer>
                 </div>
@@ -142,11 +145,20 @@ export default function ClientesPage() {
                     <p className="text-xs text-gray-400 mb-4">Sentimento do cliente</p>
                     <ResponsiveContainer width="100%" height={160}>
                         <PieChart>
-                            <Pie data={mockNPS} cx="50%" cy="50%" innerRadius={40} outerRadius={65} paddingAngle={4} dataKey="value" opacity={0.2}>
-                                {mockNPS.map((e, i) => <Cell key={i} fill={COLORS.brown} />)}
+                            <Pie data={mockNPS} cx="50%" cy="50%" innerRadius={40} outerRadius={65} paddingAngle={4} dataKey="value" opacity={0.6}>
+                                {mockNPS.map((e, i) => <Cell key={i} fill={e.cor} />)}
                             </Pie>
+                            <Tooltip />
                         </PieChart>
                     </ResponsiveContainer>
+                    <div className="flex justify-center gap-4 -mt-4">
+                        {mockNPS.map((n, i) => (
+                            <div key={i} className="text-center">
+                                <p className="text-[10px] font-bold text-gray-400 uppercase">{n.name}</p>
+                                <p className="text-sm font-bold text-gray-900">{n.value}%</p>
+                            </div>
+                        ))}
+                    </div>
                 </div>
             </div>
 
@@ -162,8 +174,8 @@ export default function ClientesPage() {
                             <XAxis dataKey="perfil" tick={{ fill: '#94a3b8', fontSize: 11 }} />
                             <YAxis tickFormatter={(v) => `R$${v}`} tick={{ fill: '#94a3b8', fontSize: 11 }} />
                             <Tooltip formatter={(v: any) => `R$ ${v.toFixed(2)}`} contentStyle={{ borderRadius: 12, fontSize: 12 }} />
-                            <Bar dataKey="ticket" radius={[6, 6, 0, 0]} opacity={0.3}>
-                                {mockTicketPerfil.map((_, i) => <Cell key={i} fill={COLORS.brown} />)}
+                            <Bar dataKey="ticket" radius={[6, 6, 0, 0]} opacity={0.6}>
+                                {mockTicketPerfil.map((_, i) => <Cell key={i} fill={PIE_COLORS[i % PIE_COLORS.length]} />)}
                             </Bar>
                         </BarChart>
                     </ResponsiveContainer>

@@ -70,32 +70,40 @@ export default function FaturamentoPage() {
                         <span className="text-xs font-bold text-gray-400 uppercase">Faturamento Bruto</span>
                         <IntegrarBadge />
                     </div>
-                    <p className="text-3xl font-bold text-gray-900 mt-1">R$ --</p>
-                    <div className="flex items-center gap-1 mt-2 text-[10px] text-gray-400 font-medium italic">Aguardando dados...</div>
+                    <p className="text-3xl font-bold text-gray-900 mt-1">R$ 187.450,00</p>
+                    <div className="flex items-center gap-1 mt-2 text-[10px] text-emerald-600 font-medium whitespace-nowrap">
+                        <ArrowUpRight className="w-3.5 h-3.5" /> +8.9% este mês
+                    </div>
                 </div>
                 <div className="bg-white p-5 rounded-2xl shadow-sm border border-gray-100 border-t-4 border-t-emerald-500">
                     <div className="flex justify-between items-start mb-1">
                         <span className="text-xs font-bold text-gray-400 uppercase">Faturamento Líquido</span>
                         <IntegrarBadge />
                     </div>
-                    <p className="text-3xl font-bold text-gray-900 mt-1">R$ --</p>
-                    <div className="flex items-center gap-1 mt-2 text-[10px] text-gray-400 font-medium italic">Aguardando dados...</div>
+                    <p className="text-3xl font-bold text-gray-900 mt-1">R$ 162.300,00</p>
+                    <div className="flex items-center gap-1 mt-2 text-[10px] text-emerald-600 font-medium whitespace-nowrap">
+                        <ArrowUpRight className="w-3.5 h-3.5" /> Margem: 86.5%
+                    </div>
                 </div>
                 <div className="bg-white p-5 rounded-2xl shadow-sm border border-gray-100 border-t-4" style={{ borderTopColor: COLORS.brown }}>
                     <div className="flex justify-between items-start mb-1">
                         <span className="text-xs font-bold text-gray-400 uppercase">Ticket Médio</span>
                         <IntegrarBadge />
                     </div>
-                    <p className="text-3xl font-bold text-gray-900 mt-1">R$ --</p>
-                    <div className="flex items-center gap-1 mt-2 text-[10px] text-gray-400 font-medium italic">Baseado em vendas</div>
+                    <p className="text-3xl font-bold text-gray-900 mt-1">R$ 48,70</p>
+                    <div className="flex items-center gap-1 mt-2 text-[10px] text-red-500 font-medium whitespace-nowrap">
+                        <ArrowDownRight className="w-3.5 h-3.5" /> -1.2% vs. fev
+                    </div>
                 </div>
                 <div className="bg-white p-5 rounded-2xl shadow-sm border border-gray-100 border-t-4 border-t-indigo-500">
                     <div className="flex justify-between items-start mb-1">
                         <span className="text-xs font-bold text-gray-400 uppercase">Total Pedidos</span>
                         <IntegrarBadge />
                     </div>
-                    <p className="text-3xl font-bold text-gray-900 mt-1">--</p>
-                    <div className="flex items-center gap-1 mt-2 text-[10px] text-gray-400 font-medium italic">Volume do mês</div>
+                    <p className="text-3xl font-bold text-gray-900 mt-1">3.849</p>
+                    <div className="flex items-center gap-1 mt-2 text-[10px] text-emerald-600 font-medium whitespace-nowrap">
+                        <TrendingUp className="w-3.5 h-3.5" /> +12.5% em volume
+                    </div>
                 </div>
             </div>
 
@@ -135,9 +143,12 @@ export default function FaturamentoPage() {
                     </ResponsiveContainer>
                     <div className="space-y-2 mt-2">
                         {mockCanais.map((c, i) => (
-                            <div key={i} className="flex justify-between items-center text-xs opacity-40 grayscale">
-                                <div className="flex items-center gap-2"><div className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: c.cor }} /><span className="text-gray-600">{c.name}</span></div>
-                                <span className="font-bold text-gray-900">R$ --</span>
+                            <div key={i} className="flex justify-between items-center text-xs opacity-60">
+                                <div className="flex items-center gap-2">
+                                    <div className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: c.cor }} />
+                                    <span className="text-gray-600">{c.name}</span>
+                                </div>
+                                <span className="font-bold text-gray-900">R$ {c.valor.toLocaleString('pt-BR')}</span>
                             </div>
                         ))}
                     </div>
@@ -152,9 +163,12 @@ export default function FaturamentoPage() {
                     <div className="space-y-4">
                         {mockPagamentos.map((pg, i) => (
                             <div key={i}>
-                                <div className="flex justify-between text-sm mb-1 opacity-40 grayscale"><span className="text-gray-700 font-medium">{pg.name}</span><span className="font-bold text-gray-900">--%</span></div>
+                                <div className="flex justify-between text-sm mb-1 opacity-60">
+                                    <span className="text-gray-700 font-medium">{pg.name}</span>
+                                    <span className="font-bold text-gray-900">{pg.pct}%</span>
+                                </div>
                                 <div className="w-full bg-gray-100 h-2.5 rounded-full overflow-hidden">
-                                    <div className="h-full rounded-full bg-gray-200" style={{ width: `${pg.pct}%` }} />
+                                    <div className="h-full rounded-full bg-indigo-500/50" style={{ width: `${pg.pct}%` }} />
                                 </div>
                             </div>
                         ))}
@@ -171,7 +185,7 @@ export default function FaturamentoPage() {
                             <YAxis tick={{ fill: '#94a3b8', fontSize: 12 }} />
                             <Tooltip contentStyle={{ borderRadius: 12, fontSize: 12 }} />
                             <Bar dataKey="pedidos" radius={[6, 6, 0, 0]}>
-                                {mockDiaSemana.map((_, i) => <Cell key={i} fill={COLORS.brown} opacity={0.3} />)}
+                                {mockDiaSemana.map((_, i) => <Cell key={i} fill={COLORS.brown} opacity={0.6} />)}
                             </Bar>
                         </BarChart>
                     </ResponsiveContainer>

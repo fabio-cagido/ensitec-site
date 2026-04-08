@@ -173,10 +173,12 @@ export default function DashboardRestauranteOverview() {
                         <DollarSign className="w-4 h-4 text-amber-600" />
                     </div>
                     <div className="text-3xl font-bold text-gray-900">
-                        R$ --
+                        R$ {mockFaturamentoHoje.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
                     </div>
                     <div className="flex items-center gap-1.5 mt-2">
-                        <span className="text-[11px] text-gray-400">Aguardando dados...</span>
+                        <TrendingUp className="w-3 h-3 text-emerald-500" />
+                        <span className="text-[11px] text-emerald-600 font-bold">{variacaoHoje}%</span>
+                        <span className="text-[11px] text-gray-400">vs. ontem</span>
                     </div>
                 </div>
 
@@ -190,8 +192,8 @@ export default function DashboardRestauranteOverview() {
                         <ShoppingBag className="w-4 h-4 text-emerald-500" />
                     </div>
                     <div className="flex items-end justify-between">
-                        <div className="text-3xl font-bold text-gray-900">R$ --</div>
-                        <div className="w-24 h-10 opacity-30 grayscale">
+                        <div className="text-3xl font-bold text-gray-900">R$ 48,70</div>
+                        <div className="w-24 h-10 opacity-60">
                             <ResponsiveContainer width="100%" height="100%">
                                 <LineChart data={mockTicketSparkline}>
                                     <Line type="monotone" dataKey="v" stroke={COLORS.emerald} strokeWidth={2} dot={false} />
@@ -200,7 +202,9 @@ export default function DashboardRestauranteOverview() {
                         </div>
                     </div>
                     <div className="flex items-center gap-1 mt-2">
-                        <span className="text-[11px] text-gray-400 italic">Tendência indisponível</span>
+                        <TrendingUp className="w-3 h-3 text-emerald-500" />
+                        <span className="text-[11px] text-emerald-600 font-bold">+5.2%</span>
+                        <span className="text-[11px] text-gray-400">este mês</span>
                     </div>
                 </div>
 
@@ -214,19 +218,20 @@ export default function DashboardRestauranteOverview() {
                         <CheckCircle className="w-4 h-4" style={{ color: COLORS.brown }} />
                     </div>
                     <div className="flex items-baseline gap-2">
-                        <span className="text-3xl font-bold text-gray-900">--</span>
+                        <span className="text-3xl font-bold text-gray-900">{mockPedidosHoje.concluidos}</span>
                         <span className="text-sm text-gray-400">/</span>
                         <div className="flex items-center gap-1">
                             <XCircle className="w-3.5 h-3.5 text-red-500" />
-                            <span className="text-lg font-bold text-red-500">--</span>
+                            <span className="text-lg font-bold text-red-500">{mockPedidosHoje.cancelados}</span>
                         </div>
                     </div>
-                    <div className="mt-2 opacity-30">
+                    <div className="mt-2">
                         <div className="w-full bg-gray-100 h-2 rounded-full overflow-hidden">
-                            <div className="h-full rounded-full bg-gray-300" style={{ width: `100%` }} />
+                            <div className="h-full rounded-full bg-emerald-500" style={{ width: `${100 - parseFloat(taxaCancelamento)}%` }} />
                         </div>
                         <div className="flex justify-between mt-1 text-[11px]">
-                            <span className="text-gray-400">Aguardando integração</span>
+                            <span className="text-emerald-600 font-medium">Sucesso: {(100 - parseFloat(taxaCancelamento)).toFixed(1)}%</span>
+                            <span className="text-gray-400">Taxa de erro: {taxaCancelamento}%</span>
                         </div>
                     </div>
                 </div>
@@ -483,7 +488,7 @@ export default function DashboardRestauranteOverview() {
                     </div>
                     <Clock className="w-5 h-5 text-orange-500" />
                 </div>
-                <div className="overflow-x-auto opacity-20 grayscale">
+                <div className="overflow-x-auto opacity-40">
                     <table className="w-full text-sm">
                         <thead>
                             <tr className="text-xs text-gray-400 uppercase">
@@ -501,13 +506,19 @@ export default function DashboardRestauranteOverview() {
                             {mockHeatmap.map((row, i) => (
                                 <tr key={i}>
                                     <td className="py-2 font-medium text-gray-700">{row.hora}</td>
-                                    {['seg', 'ter', 'qua', 'qui', 'sex', 'sab', 'dom'].map((dia) => (
-                                        <td key={dia} className="py-2 text-center">
-                                            <div className="mx-auto w-10 h-8 rounded-lg flex items-center justify-center text-xs font-bold bg-gray-100 text-gray-300">
-                                                --
-                                            </div>
-                                        </td>
-                                    ))}
+                                    {['seg', 'ter', 'qua', 'qui', 'sex', 'sab', 'dom'].map((dia) => {
+                                        const val = (row as any)[dia];
+                                        const intensity = val > 60 ? 'bg-orange-600 text-white' : 
+                                                         val > 45 ? 'bg-orange-400 text-white' :
+                                                         val > 30 ? 'bg-orange-200 text-orange-900' : 'bg-orange-50 text-orange-300';
+                                        return (
+                                            <td key={dia} className="py-2 text-center">
+                                                <div className={`mx-auto w-10 h-8 rounded-lg flex items-center justify-center text-xs font-bold ${intensity}`}>
+                                                    {val}
+                                                </div>
+                                            </td>
+                                        );
+                                    })}
                                 </tr>
                             ))}
                         </tbody>
