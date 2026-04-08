@@ -7,12 +7,10 @@ const COLORS = { brown: "#8B5E3C", amber: "#D97706", emerald: "#059669", red: "#
 const PIE_COLORS = ["#8B5E3C", "#D97706", "#059669", "#EA580C", "#6366F1", "#DC2626"];
 
 const MockOverlay = ({ text = "Dados de Exemplo — Conecte seu sistema" }) => (
-    <div className="absolute inset-0 z-10 flex items-center justify-center bg-white/60 backdrop-blur-[2px] rounded-2xl border-2 border-dashed border-gray-200 m-1 group text-center">
-        <div className="bg-white px-4 py-2 rounded-xl shadow-lg border border-gray-100 flex flex-col items-center gap-1 transform group-hover:scale-105 transition-transform">
-            <span className="text-[10px] font-bold text-gray-400 uppercase tracking-widest leading-tight">{text}</span>
-            <button className="text-[9px] font-bold text-amber-600 hover:text-amber-700 underline">
-                Aprenda a conectar
-            </button>
+    <div className="absolute top-3 right-3 z-10">
+        <div className="bg-white/90 backdrop-blur-md px-3 py-1.5 rounded-lg shadow-sm border border-gray-100 flex items-center gap-2 group cursor-help">
+            <div className="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse" />
+            <span className="text-[10px] font-bold text-gray-500 uppercase tracking-tight">{text}</span>
         </div>
     </div>
 );

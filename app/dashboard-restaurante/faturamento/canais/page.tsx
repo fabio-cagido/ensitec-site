@@ -1,5 +1,25 @@
 "use client";
 import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer, BarChart, Bar, XAxis, YAxis, CartesianGrid, Legend, AreaChart, Area } from "recharts";
+import { Target } from "lucide-react";
+
+const MockOverlay = ({ text = "Dados de Exemplo — Conecte seu sistema" }) => (
+    <div className="absolute top-3 right-3 z-10">
+        <div className="bg-white/90 backdrop-blur-md px-3 py-1.5 rounded-lg shadow-sm border border-gray-100 flex items-center gap-2 group cursor-help">
+            <div className="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse" />
+            <span className="text-[10px] font-bold text-gray-500 uppercase tracking-tight">{text}</span>
+            <button className="hidden group-hover:flex items-center gap-1 text-[9px] font-bold text-amber-600 border-l border-gray-200 pl-2 ml-1">
+                <Target className="w-2.5 h-2.5" /> Como integrar?
+            </button>
+        </div>
+    </div>
+);
+
+const IntegrarBadge = () => (
+    <span className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded bg-gray-50 text-[9px] font-bold text-gray-400 border border-gray-100 cursor-help">
+        <div className="w-1 h-1 rounded-full bg-gray-300 animate-pulse" />
+        INTEGRAR
+    </span>
+);
 
 const canais = [
     { name: "Salão", valor: 78730, pct: 42, cor: "#8B5E3C", ticket: 55.40 },
@@ -39,10 +59,14 @@ export default function CanaisPage() {
 
             {/* LINHA 1: PIE CHART E BARCHART DE TICKET */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center">
-                    <div className="w-full mb-4">
-                        <h3 className="text-lg font-bold text-gray-900">Participação Mensal (%)</h3>
-                        <p className="text-xs text-gray-400">Share of Wallet dos canais</p>
+                <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center relative overflow-hidden">
+                    <MockOverlay text="Mix de Vendas — Integrar PDV" />
+                    <div className="w-full mb-4 flex justify-between items-start">
+                        <div>
+                            <h3 className="text-lg font-bold text-gray-900">Participação Mensal (%)</h3>
+                            <p className="text-xs text-gray-400">Share of Wallet dos canais</p>
+                        </div>
+                        <IntegrarBadge />
                     </div>
                     <ResponsiveContainer width="100%" height={260}>
                         <PieChart>
@@ -53,7 +77,7 @@ export default function CanaisPage() {
                                 outerRadius={110} 
                                 paddingAngle={5} 
                                 dataKey="pct"
-                                label={(entry: any) => `${entry.name} (${entry.value}%)`}
+                                opacity={0.7}
                             >
                                 {canais.map((e, i) => <Cell key={i} fill={e.cor} />)}
                             </Pie>
@@ -62,10 +86,14 @@ export default function CanaisPage() {
                     </ResponsiveContainer>
                 </div>
 
-                <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex flex-col">
-                    <div className="w-full mb-4">
-                        <h3 className="text-lg font-bold text-gray-900">Ticket Médio por Canal</h3>
-                        <p className="text-xs text-gray-400">Onde o cliente gasta mais por pedido?</p>
+                <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex flex-col relative overflow-hidden">
+                    <MockOverlay text="Ticket por Canal — Integrar Vendas" />
+                    <div className="w-full mb-4 flex justify-between items-start">
+                        <div>
+                            <h3 className="text-lg font-bold text-gray-900">Ticket Médio por Canal</h3>
+                            <p className="text-xs text-gray-400">Onde o cliente gasta mais por pedido?</p>
+                        </div>
+                        <IntegrarBadge />
                     </div>
                     <ResponsiveContainer width="100%" height={260}>
                         <BarChart data={canais} layout="vertical">
@@ -73,7 +101,7 @@ export default function CanaisPage() {
                             <XAxis type="number" tickFormatter={(v) => `R$${v}`} tick={{ fill: '#94a3b8', fontSize: 12 }} />
                             <YAxis dataKey="name" type="category" width={100} tick={{ fill: '#374151', fontSize: 12, fontWeight: 500 }} />
                             <Tooltip cursor={{fill: '#f8fafc'}} contentStyle={{ borderRadius: 8 }} formatter={(v: any) => `R$ ${Number(v).toFixed(2)}`} />
-                            <Bar dataKey="ticket" radius={[0, 6, 6, 0]}>
+                            <Bar dataKey="ticket" radius={[0, 6, 6, 0]} opacity={0.7}>
                                 {canais.map((e, i) => <Cell key={i} fill={e.cor} />)}
                             </Bar>
                         </BarChart>
@@ -83,10 +111,14 @@ export default function CanaisPage() {
 
             {/* LINHA 2: EVOLUÇÃO TEMPORAL E PICOS */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
-                    <div className="w-full mb-4">
-                        <h3 className="text-lg font-bold text-gray-900">Evolução do Faturamento por Canal</h3>
-                        <p className="text-xs text-gray-400">Desempenho dos últimos 6 meses</p>
+                <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 relative overflow-hidden">
+                    <MockOverlay text="Evolução de Canais — Integrar Histórico" />
+                    <div className="w-full mb-4 flex justify-between items-start">
+                        <div>
+                            <h3 className="text-lg font-bold text-gray-900">Evolução do Faturamento por Canal</h3>
+                            <p className="text-xs text-gray-400">Desempenho dos últimos 6 meses</p>
+                        </div>
+                        <IntegrarBadge />
                     </div>
                     <ResponsiveContainer width="100%" height={280}>
                         <AreaChart data={evolucaoCanais}>
@@ -95,18 +127,22 @@ export default function CanaisPage() {
                             <YAxis tickFormatter={(v: any) => `${(v/1000)}k`} tick={{ fill: '#94a3b8', fontSize: 12 }} />
                             <Tooltip contentStyle={{ borderRadius: 8, fontSize: 12 }} formatter={(v: any) => `R$ ${Number(v).toLocaleString('pt-BR')}`} />
                             <Legend wrapperStyle={{ fontSize: 12, paddingTop: '10px' }} />
-                            <Area type="monotone" dataKey="salao" stackId="1" name="Salão" stroke="#8B5E3C" fill="#8B5E3C" />
-                            <Area type="monotone" dataKey="ifood" stackId="1" name="iFood / Apps" stroke="#D97706" fill="#D97706" />
-                            <Area type="monotone" dataKey="retirada" stackId="1" name="Retirada" stroke="#059669" fill="#059669" />
-                            <Area type="monotone" dataKey="site" stackId="1" name="Site Próprio" stroke="#6366F1" fill="#6366F1" />
+                            <Area type="monotone" dataKey="salao" stackId="1" name="Salão" stroke="#8B5E3C" fill="#8B5E3C" opacity={0.7} />
+                            <Area type="monotone" dataKey="ifood" stackId="1" name="iFood / Apps" stroke="#D97706" fill="#D97706" opacity={0.7} />
+                            <Area type="monotone" dataKey="retirada" stackId="1" name="Retirada" stroke="#059669" fill="#059669" opacity={0.7} />
+                            <Area type="monotone" dataKey="site" stackId="1" name="Site Próprio" stroke="#6366F1" fill="#6366F1" opacity={0.7} />
                         </AreaChart>
                     </ResponsiveContainer>
                 </div>
 
-                <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
-                    <div className="w-full mb-4">
-                        <h3 className="text-lg font-bold text-gray-900">Comportamento Salão vs Delivery</h3>
-                        <p className="text-xs text-gray-400">Volume de pedidos por faixa horária</p>
+                <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 relative overflow-hidden">
+                    <MockOverlay text="Horários de Pico — Integrar Operacional" />
+                    <div className="w-full mb-4 flex justify-between items-start">
+                        <div>
+                            <h3 className="text-lg font-bold text-gray-900">Comportamento Salão vs Delivery</h3>
+                            <p className="text-xs text-gray-400">Volume de pedidos por faixa horária</p>
+                        </div>
+                        <IntegrarBadge />
                     </div>
                     <ResponsiveContainer width="100%" height={280}>
                         <BarChart data={picosHorario}>
@@ -115,8 +151,8 @@ export default function CanaisPage() {
                             <YAxis tick={{ fill: '#94a3b8', fontSize: 12 }} />
                             <Tooltip cursor={{fill: '#f8fafc'}} contentStyle={{ borderRadius: 8, fontSize: 12 }} />
                             <Legend wrapperStyle={{ fontSize: 12, paddingTop: '10px' }} />
-                            <Bar dataKey="salao" name="Salão" fill="#8B5E3C" radius={[4, 4, 0, 0]} />
-                            <Bar dataKey="delivery" name="Delivery (iFood + Site)" fill="#D97706" radius={[4, 4, 0, 0]} />
+                            <Bar dataKey="salao" name="Salão" fill="#8B5E3C" radius={[4, 4, 0, 0]} opacity={0.7} />
+                            <Bar dataKey="delivery" name="Delivery (iFood + Site)" fill="#D97706" radius={[4, 4, 0, 0]} opacity={0.7} />
                         </BarChart>
                     </ResponsiveContainer>
                 </div>

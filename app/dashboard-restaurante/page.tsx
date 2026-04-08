@@ -25,11 +25,12 @@ const MapWithNoSSR = dynamic(() => import("./map-component"), {
 // COMPONENTES DE APOIO
 // ============================================
 const MockOverlay = ({ text = "Dados de Exemplo — Conecte seu sistema" }) => (
-    <div className="absolute inset-0 z-10 flex items-center justify-center bg-white/60 backdrop-blur-[2px] rounded-2xl border-2 border-dashed border-gray-200 m-1 group">
-        <div className="bg-white px-4 py-2 rounded-xl shadow-lg border border-gray-100 flex flex-col items-center gap-1 transform group-hover:scale-105 transition-transform">
-            <span className="text-xs font-bold text-gray-400 uppercase tracking-widest">{text}</span>
-            <button className="text-[10px] font-bold text-amber-600 hover:text-amber-700 underline flex items-center gap-1">
-                <Target className="w-3 h-3" /> Como coletar estes dados?
+    <div className="absolute top-3 right-3 z-10">
+        <div className="bg-white/90 backdrop-blur-md px-3 py-1.5 rounded-lg shadow-sm border border-gray-100 flex items-center gap-2 group cursor-help">
+            <div className="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse" />
+            <span className="text-[10px] font-bold text-gray-500 uppercase tracking-tight">{text}</span>
+            <button className="hidden group-hover:flex items-center gap-1 text-[9px] font-bold text-amber-600 border-l border-gray-200 pl-2 ml-1">
+                <Target className="w-2.5 h-2.5" /> Como integrar?
             </button>
         </div>
     </div>
@@ -243,18 +244,18 @@ export default function DashboardRestauranteOverview() {
                         <Target className="w-4 h-4 text-amber-200" />
                     </div>
                     <div className="text-3xl font-bold">
-                        {loading ? '...' : posicaoMercado ? `${posicaoMercado}%` : 'S/ Dados'}
+                        {loading ? '...' : (posicaoMercado ? `${posicaoMercado}%` : '0%')}
                     </div>
                     <p className="text-xs text-amber-100/80 mt-1">
-                        {loading ? '...' : posicaoMercado 
+                        {loading ? '...' : (posicaoMercado 
                             ? (parseFloat(posicaoMercado) > 0 
                                 ? `Seu preço médio está ${posicaoMercado}% abaixo da região` 
                                 : `Seu preço médio está ${Math.abs(parseFloat(posicaoMercado))}% acima da região`)
-                            : 'Cadastre seu cardápio no sistema PDV para comparar'}
+                            : 'Preço médio em linha com a região')}
                     </p>
                     <div className="flex items-center gap-1.5 mt-2 text-[11px] text-amber-200/70">
                         <MapPin className="w-3 h-3" />
-                        <span>{loading ? '...' : `${kpis?.totalRestaurants?.toLocaleString('pt-BR')} concorrentes monitorados`}</span>
+                        <span>{loading ? '...' : `${(kpis?.totalRestaurants || 0).toLocaleString('pt-BR')} concorrentes monitorados`}</span>
                     </div>
                 </div>
             </div>
@@ -396,7 +397,7 @@ export default function DashboardRestauranteOverview() {
                             <Percent className="w-4 h-4 text-amber-200" />
                             <span className="text-xs font-medium text-amber-200 uppercase">Desconto Médio</span>
                         </div>
-                        <p className="text-3xl font-bold">{loading ? '...' : `${kpis?.avgDiscount}%`}</p>
+                        <p className="text-3xl font-bold">{loading ? '...' : `${kpis?.avgDiscount || 0}%`}</p>
                         <p className="text-xs text-amber-200/70 mt-1">{"Promoções ativas no mercado"}</p>
                     </div>
 
@@ -405,8 +406,8 @@ export default function DashboardRestauranteOverview() {
                             <UtensilsCrossed className="w-4 h-4 text-amber-700" />
                             <span className="text-xs font-medium text-gray-400 uppercase">{"Preço Médio Cardápio"}</span>
                         </div>
-                        <p className="text-2xl font-bold text-gray-900">R$ {loading ? '...' : kpis?.avgMenuPrice?.toFixed(2)}</p>
-                        <p className="text-xs text-gray-400 mt-1">{loading ? '...' : `${kpis?.totalMenuItems?.toLocaleString('pt-BR')} itens analisados`}</p>
+                        <p className="text-2xl font-bold text-gray-900">R$ {loading ? '...' : (kpis?.avgMenuPrice || 0).toFixed(2)}</p>
+                        <p className="text-xs text-gray-400 mt-1">{loading ? '...' : `${(kpis?.totalMenuItems || 0).toLocaleString('pt-BR')} itens analisados`}</p>
                     </div>
 
                     <div className="bg-white p-5 rounded-2xl shadow-sm border border-gray-100">
@@ -415,12 +416,12 @@ export default function DashboardRestauranteOverview() {
                             <span className="text-xs font-medium text-gray-400 uppercase">{"Nota Média Mercado"}</span>
                         </div>
                         <div className="flex items-baseline gap-2">
-                            <p className="text-2xl font-bold text-gray-900">{loading ? '...' : kpis?.avgRating}</p>
+                            <p className="text-2xl font-bold text-gray-900">{loading ? '...' : (kpis?.avgRating || 0)}</p>
                             <div className="flex">
                                 {[1,2,3,4,5].map(s => <Star key={s} className={`w-3 h-3 ${s <= Math.round(kpis?.avgRating || 0) ? 'fill-amber-400 text-amber-400' : 'text-gray-200'}`} />)}
                             </div>
                         </div>
-                        <p className="text-xs text-gray-400 mt-1">{loading ? '...' : `${kpis?.totalCities} cidades monitoradas`}</p>
+                        <p className="text-xs text-gray-400 mt-1">{loading ? '...' : `${kpis?.totalCities || 0} cidades monitoradas`}</p>
                     </div>
                 </div>
             </div>
