@@ -90,11 +90,24 @@ const DEFAULT_CONFIG = NICHE_CONFIG["restaurante"];
 // ================================================================
 // HELPERS
 // ================================================================
-function detectNiche(pathname: string): typeof NICHE_CONFIG[string] {
-    if (pathname.includes("dashboard-restaurante")) return NICHE_CONFIG["restaurante"];
-    if (pathname.includes("dashboard-escola")) return NICHE_CONFIG["escola"];
-    if (pathname.includes("dashboard-corporativo")) return NICHE_CONFIG["corporativo"];
-    return DEFAULT_CONFIG;
+function detectNiche(pathname: string): typeof NICHE_CONFIG[string] | null {
+    // Escola: rota /dashboard (sem sufixo)
+    if (pathname.startsWith("/dashboard") && 
+        !pathname.startsWith("/dashboard-restaurante") && 
+        !pathname.startsWith("/dashboard-corporativo") &&
+        !pathname.startsWith("/dashboard-hub")) {
+        return NICHE_CONFIG["escola"];
+    }
+    // Restaurante
+    if (pathname.startsWith("/dashboard-restaurante")) {
+        return NICHE_CONFIG["restaurante"];
+    }
+    // Corporativo
+    if (pathname.startsWith("/dashboard-corporativo")) {
+        return NICHE_CONFIG["corporativo"];
+    }
+    // Hub, landing pages, sign-in, etc — nao mostrar o chat
+    return null;
 }
 
 function generateId() {
@@ -122,6 +135,8 @@ function parseMarkdown(text: string): string {
 export default function AIChat() {
     const pathname = usePathname();
     const config = detectNiche(pathname || "");
+    // safeConfig: usado nas hooks (não pode usar early return antes dos hooks)
+    const safeConfig = config ?? NICHE_CONFIG["restaurante"];
 
     const [isOpen, setIsOpen] = useState(false);
     const [isExpanded, setIsExpanded] = useState(false);
@@ -172,9 +187,9 @@ export default function AIChat() {
     useEffect(() => {
         setMessages([]);
         setAlerts(0);
-    }, [config.niche]);
+    }, [safeConfig.niche]);
 
-    // Simulated alert detection (poderá ser conectado a dados reais)
+    // Simulated alert detection
     useEffect(() => {
         if (!isOpen) {
             const timer = setTimeout(() => {
@@ -192,7 +207,7 @@ export default function AIChat() {
             const kpiElements = document.querySelectorAll("[data-kpi]");
             const context: Record<string, string> = {
                 page: pathname || "unknown",
-                niche: config.niche,
+                niche: safeConfig.niche,
             };
             kpiElements.forEach(el => {
                 const key = el.getAttribute("data-kpi");
@@ -200,9 +215,9 @@ export default function AIChat() {
             });
             return context;
         } catch {
-            return { page: pathname || "unknown", niche: config.niche };
+            return { page: pathname || "unknown", niche: safeConfig.niche };
         }
-    }, [settings.usePageContext, pathname, config.niche]);
+    }, [settings.usePageContext, pathname, safeConfig.niche]);
 
     const sendMessage = useCallback(async (messageText?: string) => {
         const text = (messageText || input).trim();
@@ -230,7 +245,7 @@ export default function AIChat() {
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
                     message: text,
-                    niche: config.niche,
+                    niche: safeConfig.niche,
                     pageContext: getPageContext(),
                     history: historyForAPI,
                     apiKey: settings.apiKey || undefined,
@@ -261,7 +276,7 @@ export default function AIChat() {
         } finally {
             setIsLoading(false);
         }
-    }, [input, isLoading, messages, config.niche, getPageContext, settings]);
+    }, [input, isLoading, messages, safeConfig.niche, getPageContext, settings]);
 
     const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
         if (e.key === "Enter" && !e.shiftKey) {
@@ -283,10 +298,12 @@ export default function AIChat() {
         setIsSettingsOpen(false);
     };
 
-    // Só mostra nos dashboards
-    const isDashboard = pathname?.includes("dashboard");
-    if (!isDashboard) return null;
+    // Só mostra nos dashboards internos (escola, restaurante, corporativo)
+    // Oculta em: hub, landing pages, sign-in, sign-up, home
+    if (!config) return null;
 
+    // A partir daqui, config é garantidamente não-null
+    const C = config;
     const panelWidth = isExpanded ? "w-[480px]" : "w-[380px]";
     const panelHeight = isExpanded ? "h-[640px]" : "h-[520px]";
 
@@ -298,11 +315,11 @@ export default function AIChat() {
                     <button
                         id="ai-chat-toggle"
                         onClick={() => setIsOpen(true)}
-                        className={`relative w-14 h-14 rounded-2xl bg-gradient-to-br ${config.gradientClass} text-white shadow-2xl hover:shadow-3xl hover:scale-110 active:scale-95 transition-all duration-300 flex items-center justify-center group`}
+                        className={`relative w-14 h-14 rounded-2xl bg-gradient-to-br ${C.gradientClass} text-white shadow-2xl hover:shadow-3xl hover:scale-110 active:scale-95 transition-all duration-300 flex items-center justify-center group`}
                         aria-label="Abrir EnsiTec AI Analyst"
                     >
                         {/* Pulsing ring */}
-                        <span className={`absolute inset-0 rounded-2xl bg-gradient-to-br ${config.gradientClass} animate-ping opacity-20`} />
+                        <span className={`absolute inset-0 rounded-2xl bg-gradient-to-br ${C.gradientClass} animate-ping opacity-20`} />
                         <BrainCircuit className="w-6 h-6 relative z-10" />
 
                         {/* Alert badge */}
@@ -329,7 +346,7 @@ export default function AIChat() {
                         }}
                     >
                         {/* === HEADER === */}
-                        <div className={`bg-gradient-to-r ${config.gradientClass} px-4 py-3 flex items-center gap-3 flex-shrink-0`}>
+                        <div className={`bg-gradient-to-r ${C.gradientClass} px-4 py-3 flex items-center gap-3 flex-shrink-0`}>
                             <div className="w-9 h-9 rounded-xl bg-white/20 backdrop-blur flex items-center justify-center flex-shrink-0">
                                 <BrainCircuit className="w-5 h-5 text-white" />
                             </div>
@@ -337,7 +354,7 @@ export default function AIChat() {
                                 <h3 className="text-sm font-bold text-white leading-none">EnsiTec AI Analyst</h3>
                                 <p className="text-[10px] text-white/60 mt-0.5 flex items-center gap-1">
                                     <span className="w-1.5 h-1.5 bg-emerald-400 rounded-full animate-pulse" />
-                                    {config.label} · {settings.apiKey ? "IA Ativa" : "Modo Demo"}
+                                    {C.label} · {settings.apiKey ? "IA Ativa" : "Modo Demo"}
                                 </p>
                             </div>
                             <div className="flex items-center gap-1 flex-shrink-0">
@@ -389,13 +406,13 @@ export default function AIChat() {
                                         <div className="grid grid-cols-2 gap-2">
                                             <button
                                                 onClick={() => setTempProvider("openai")}
-                                                className={`py-2.5 px-3 rounded-xl border text-sm font-bold transition-all ${tempProvider === "openai" ? `${config.colorClass} text-white border-transparent shadow-md` : "bg-white border-gray-200 text-gray-700 hover:border-gray-300"}`}
+                                                className={`py-2.5 px-3 rounded-xl border text-sm font-bold transition-all ${tempProvider === "openai" ? `${C.colorClass} text-white border-transparent shadow-md` : "bg-white border-gray-200 text-gray-700 hover:border-gray-300"}`}
                                             >
                                                 OpenAI (GPT)
                                             </button>
                                             <button
                                                 onClick={() => setTempProvider("gemini")}
-                                                className={`py-2.5 px-3 rounded-xl border text-sm font-bold transition-all ${tempProvider === "gemini" ? `${config.colorClass} text-white border-transparent shadow-md` : "bg-white border-gray-200 text-gray-700 hover:border-gray-300"}`}
+                                                className={`py-2.5 px-3 rounded-xl border text-sm font-bold transition-all ${tempProvider === "gemini" ? `${C.colorClass} text-white border-transparent shadow-md` : "bg-white border-gray-200 text-gray-700 hover:border-gray-300"}`}
                                             >
                                                 Google Gemini
                                             </button>
@@ -420,8 +437,8 @@ export default function AIChat() {
                                         </p>
                                     </div>
 
-                                    <div className={`${config.bgClass} ${config.borderClass} border rounded-xl p-3`}>
-                                        <p className={`text-xs font-bold ${config.textClass} mb-0.5`}>Sem chave?</p>
+                                    <div className={`${C.bgClass} ${C.borderClass} border rounded-xl p-3`}>
+                                        <p className={`text-xs font-bold ${C.textClass} mb-0.5`}>Sem chave?</p>
                                         <p className="text-xs text-gray-600 leading-relaxed">
                                             O sistema funciona em <strong>Modo Demo</strong> com respostas analíticas pré-programadas de alta qualidade, sem nenhum custo.
                                         </p>
@@ -430,7 +447,7 @@ export default function AIChat() {
                                     <div className="pt-2 flex gap-2">
                                         <button
                                             onClick={saveSettings}
-                                            className={`flex-1 py-2.5 rounded-xl text-white text-sm font-bold ${config.colorClass} hover:opacity-90 transition-opacity`}
+                                            className={`flex-1 py-2.5 rounded-xl text-white text-sm font-bold ${C.colorClass} hover:opacity-90 transition-opacity`}
                                         >
                                             Salvar Configurações
                                         </button>
@@ -451,13 +468,13 @@ export default function AIChat() {
                                 <div className="flex-1 overflow-y-auto px-4 py-4 space-y-4 scroll-smooth">
                                     {messages.length === 0 && (
                                         <div className="flex flex-col items-center justify-center h-full gap-4 text-center py-6">
-                                            <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${config.gradientClass} flex items-center justify-center shadow-lg`}>
+                                            <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${C.gradientClass} flex items-center justify-center shadow-lg`}>
                                                 <BrainCircuit className="w-8 h-8 text-white" />
                                             </div>
                                             <div>
                                                 <p className="text-sm font-bold text-gray-900">EnsiTec AI Analyst</p>
                                                 <p className="text-xs text-gray-500 mt-1 max-w-[240px] leading-relaxed">
-                                                    Analista crítico de dados do seu {config.label.toLowerCase()}. Faça uma pergunta ou escolha uma análise rápida abaixo.
+                                                    Analista crítico de dados do seu {C.label.toLowerCase()}. Faça uma pergunta ou escolha uma análise rápida abaixo.
                                                 </p>
                                             </div>
                                             {alerts > 0 && (
@@ -475,14 +492,14 @@ export default function AIChat() {
                                     {messages.map((msg) => (
                                         <div key={msg.id} className={`flex gap-2.5 ${msg.role === "user" ? "flex-row-reverse" : "flex-row"}`}>
                                             {msg.role === "assistant" && (
-                                                <div className={`w-7 h-7 rounded-xl bg-gradient-to-br ${config.gradientClass} flex items-center justify-center flex-shrink-0 mt-0.5 shadow-md`}>
+                                                <div className={`w-7 h-7 rounded-xl bg-gradient-to-br ${C.gradientClass} flex items-center justify-center flex-shrink-0 mt-0.5 shadow-md`}>
                                                     <BrainCircuit className="w-3.5 h-3.5 text-white" />
                                                 </div>
                                             )}
                                             <div className={`max-w-[85%] group relative`}>
                                                 <div className={`rounded-2xl px-3.5 py-2.5 text-sm leading-relaxed ${
                                                     msg.role === "user"
-                                                        ? `bg-gradient-to-br ${config.gradientClass} text-white rounded-tr-sm`
+                                                        ? `bg-gradient-to-br ${C.gradientClass} text-white rounded-tr-sm`
                                                         : "bg-gray-50 text-gray-800 border border-gray-100 rounded-tl-sm"
                                                 }`}>
                                                     {msg.role === "assistant" ? (
@@ -526,7 +543,7 @@ export default function AIChat() {
                                     {/* Typing indicator */}
                                     {isLoading && (
                                         <div className="flex gap-2.5">
-                                            <div className={`w-7 h-7 rounded-xl bg-gradient-to-br ${config.gradientClass} flex items-center justify-center flex-shrink-0 shadow-md`}>
+                                            <div className={`w-7 h-7 rounded-xl bg-gradient-to-br ${C.gradientClass} flex items-center justify-center flex-shrink-0 shadow-md`}>
                                                 <BrainCircuit className="w-3.5 h-3.5 text-white" />
                                             </div>
                                             <div className="bg-gray-50 border border-gray-100 rounded-2xl rounded-tl-sm px-4 py-3 flex items-center gap-1">
@@ -547,7 +564,7 @@ export default function AIChat() {
                                                 key={i}
                                                 onClick={() => sendMessage(action.prompt)}
                                                 disabled={isLoading}
-                                                className={`flex-shrink-0 flex items-center gap-1.5 px-3 py-1.5 rounded-xl ${config.bgClass} ${config.textClass} border ${config.borderClass} text-xs font-bold hover:shadow-sm transition-all whitespace-nowrap`}
+                                                className={`flex-shrink-0 flex items-center gap-1.5 px-3 py-1.5 rounded-xl ${C.bgClass} ${C.textClass} border ${C.borderClass} text-xs font-bold hover:shadow-sm transition-all whitespace-nowrap`}
                                             >
                                                 <span>{action.icon}</span>
                                                 {action.label}
@@ -559,8 +576,8 @@ export default function AIChat() {
                                 {/* Context indicator */}
                                 {settings.usePageContext && (
                                     <div className="px-4 py-1 flex items-center gap-1.5 flex-shrink-0">
-                                        <Cpu className={`w-3 h-3 ${config.textClass}`} />
-                                        <span className={`text-[10px] font-bold ${config.textClass}`}>Dados da tela ativados</span>
+                                        <Cpu className={`w-3 h-3 ${C.textClass}`} />
+                                        <span className={`text-[10px] font-bold ${C.textClass}`}>Dados da tela ativados</span>
                                     </div>
                                 )}
 
@@ -590,7 +607,7 @@ export default function AIChat() {
                                         <button
                                             onClick={() => sendMessage()}
                                             disabled={!input.trim() || isLoading}
-                                            className={`w-8 h-8 rounded-xl ${config.colorClass} text-white flex items-center justify-center flex-shrink-0 hover:opacity-90 active:scale-95 transition-all disabled:opacity-40 disabled:cursor-not-allowed shadow-md`}
+                                            className={`w-8 h-8 rounded-xl ${C.colorClass} text-white flex items-center justify-center flex-shrink-0 hover:opacity-90 active:scale-95 transition-all disabled:opacity-40 disabled:cursor-not-allowed shadow-md`}
                                         >
                                             <Send className="w-3.5 h-3.5" />
                                         </button>
