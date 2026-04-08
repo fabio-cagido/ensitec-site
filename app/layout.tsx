@@ -5,6 +5,8 @@ import { ptBR } from "@clerk/localizations";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import AIChatWrapper from "@/components/AIChatWrapper";
+
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -57,6 +59,9 @@ export default function RootLayout({
           <Header />
           {children}
           <Footer />
+          <AIChatWrapper />
+
+
         </body>
       </html>
     </ClerkProvider>
