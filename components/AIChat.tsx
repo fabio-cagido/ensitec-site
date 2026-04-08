@@ -3,10 +3,67 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import { usePathname } from "next/navigation";
 import {
-    X, Send, Sparkles, ChevronDown, Copy, Check, AlertTriangle,
-    BrainCircuit, Zap, Settings, RotateCcw, Maximize2, Minimize2,
-    Cpu, FileText, ScanSearch
+    X, Send, ChevronDown, Copy, Check, AlertTriangle,
+    Zap, Settings, RotateCcw, Maximize2, Minimize2, Cpu
 } from "lucide-react";
+
+// ================================================================
+// ÍCONE CUSTOMIZADO: Metade Cérebro Orgânico | Metade Circuito
+// ================================================================
+function NeuroChipIcon({ size = 24, className = "" }: { size?: number; className?: string }) {
+    return (
+        <svg
+            width={size}
+            height={size}
+            viewBox="0 0 32 32"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            className={className}
+        >
+            {/* ===== LADO ESQUERDO: CÉREBRO ORGÂNICO ===== */}
+            <path
+                d="M16 6 C13 6 10.5 7.5 9.5 9.5 C8 9 6.5 9.8 6 11.2 C4.5 11.5 3.5 13 4 14.5 C3 15.5 3 17.5 4.5 18.5 C4.5 20.5 6 22 8 22 C9 23.5 11 24 13 23.5 C14 24.5 15 25 16 25 L16 6Z"
+                fill="currentColor"
+                opacity="0.9"
+            />
+            <path d="M8.5 12 C9.5 10.5 11 10 12 10.5" stroke="white" strokeWidth="0.8" strokeLinecap="round" opacity="0.6" />
+            <path d="M6 15 C7 14 8.5 14 9.5 15" stroke="white" strokeWidth="0.8" strokeLinecap="round" opacity="0.6" />
+            <path d="M7.5 18 C8.5 17 10 17 11 18" stroke="white" strokeWidth="0.8" strokeLinecap="round" opacity="0.6" />
+            <path d="M10 21 C11 20 12.5 20 13 21" stroke="white" strokeWidth="0.8" strokeLinecap="round" opacity="0.6" />
+
+            {/* LINHA DIVISÓRIA central */}
+            <line x1="16" y1="5" x2="16" y2="27" stroke="white" strokeWidth="0.5" strokeDasharray="1.5 1.5" opacity="0.4" />
+
+            {/* ===== LADO DIREITO: CIRCUITO ===== */}
+            {/* chip central */}
+            <rect x="18" y="13" width="7" height="7" rx="1" fill="currentColor" opacity="0.9" />
+            <rect x="19.5" y="14.5" width="4" height="4" rx="0.5" fill="white" opacity="0.25" />
+
+            {/* trilhas horizontais */}
+            <line x1="16" y1="14.5" x2="18" y2="14.5" stroke="currentColor" strokeWidth="1.2" />
+            <line x1="16" y1="16.5" x2="18" y2="16.5" stroke="currentColor" strokeWidth="1.2" />
+            <line x1="16" y1="18.5" x2="18" y2="18.5" stroke="currentColor" strokeWidth="1.2" />
+            <line x1="25" y1="14.5" x2="28" y2="14.5" stroke="currentColor" strokeWidth="1.2" />
+            <line x1="25" y1="16.5" x2="28" y2="16.5" stroke="currentColor" strokeWidth="1.2" />
+            <line x1="25" y1="18.5" x2="28" y2="18.5" stroke="currentColor" strokeWidth="1.2" />
+
+            {/* trilhas verticais */}
+            <line x1="20" y1="20" x2="20" y2="23" stroke="currentColor" strokeWidth="1.2" />
+            <line x1="23" y1="20" x2="23" y2="23" stroke="currentColor" strokeWidth="1.2" />
+            <line x1="20" y1="10" x2="20" y2="13" stroke="currentColor" strokeWidth="1.2" />
+            <line x1="23" y1="10" x2="23" y2="13" stroke="currentColor" strokeWidth="1.2" />
+
+            {/* nós */}
+            <circle cx="20" cy="10" r="1.2" fill="currentColor" />
+            <circle cx="23" cy="10" r="1.2" fill="currentColor" />
+            <circle cx="20" cy="23" r="1.2" fill="currentColor" />
+            <circle cx="23" cy="23" r="1.2" fill="currentColor" />
+            <circle cx="28" cy="14.5" r="1" fill="currentColor" />
+            <circle cx="28" cy="16.5" r="1" fill="currentColor" />
+            <circle cx="28" cy="18.5" r="1" fill="currentColor" />
+        </svg>
+    );
+}
 
 // ================================================================
 // TIPOS
@@ -320,7 +377,7 @@ export default function AIChat() {
                     >
                         {/* Pulsing ring */}
                         <span className={`absolute inset-0 rounded-2xl bg-gradient-to-br ${C.gradientClass} animate-ping opacity-20`} />
-                        <BrainCircuit className="w-6 h-6 relative z-10" />
+                        <NeuroChipIcon />
 
                         {/* Alert badge */}
                         {alerts > 0 && (
@@ -348,7 +405,7 @@ export default function AIChat() {
                         {/* === HEADER === */}
                         <div className={`bg-gradient-to-r ${C.gradientClass} px-4 py-3 flex items-center gap-3 flex-shrink-0`}>
                             <div className="w-9 h-9 rounded-xl bg-white/20 backdrop-blur flex items-center justify-center flex-shrink-0">
-                                <BrainCircuit className="w-5 h-5 text-white" />
+                                <NeuroChipIcon className="w-5 h-5 text-white" />
                             </div>
                             <div className="flex-1 min-w-0">
                                 <h3 className="text-sm font-bold text-white leading-none">EnsiTec AI Analyst</h3>
@@ -469,7 +526,7 @@ export default function AIChat() {
                                     {messages.length === 0 && (
                                         <div className="flex flex-col items-center justify-center h-full gap-4 text-center py-6">
                                             <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${C.gradientClass} flex items-center justify-center shadow-lg`}>
-                                                <BrainCircuit className="w-8 h-8 text-white" />
+                                                <NeuroChipIcon className="w-8 h-8 text-white" />
                                             </div>
                                             <div>
                                                 <p className="text-sm font-bold text-gray-900">EnsiTec AI Analyst</p>
@@ -493,7 +550,7 @@ export default function AIChat() {
                                         <div key={msg.id} className={`flex gap-2.5 ${msg.role === "user" ? "flex-row-reverse" : "flex-row"}`}>
                                             {msg.role === "assistant" && (
                                                 <div className={`w-7 h-7 rounded-xl bg-gradient-to-br ${C.gradientClass} flex items-center justify-center flex-shrink-0 mt-0.5 shadow-md`}>
-                                                    <BrainCircuit className="w-3.5 h-3.5 text-white" />
+                                                    <NeuroChipIcon className="w-3.5 h-3.5 text-white" />
                                                 </div>
                                             )}
                                             <div className={`max-w-[85%] group relative`}>
@@ -544,7 +601,7 @@ export default function AIChat() {
                                     {isLoading && (
                                         <div className="flex gap-2.5">
                                             <div className={`w-7 h-7 rounded-xl bg-gradient-to-br ${C.gradientClass} flex items-center justify-center flex-shrink-0 shadow-md`}>
-                                                <BrainCircuit className="w-3.5 h-3.5 text-white" />
+                                                <NeuroChipIcon className="w-3.5 h-3.5 text-white" />
                                             </div>
                                             <div className="bg-gray-50 border border-gray-100 rounded-2xl rounded-tl-sm px-4 py-3 flex items-center gap-1">
                                                 <span className="w-1.5 h-1.5 rounded-full bg-gray-400 animate-bounce" style={{ animationDelay: "0ms" }} />
