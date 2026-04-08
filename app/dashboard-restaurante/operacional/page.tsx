@@ -1,8 +1,26 @@
-﻿"use client";
+"use client";
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Cell, LineChart, Line, Legend } from "recharts";
 import { Clock, Truck, XCircle, RotateCcw, AlertTriangle, CheckCircle, Utensils } from "lucide-react";
 
 const COLORS = { brown: "#8B5E3C", amber: "#D97706", emerald: "#059669", red: "#DC2626", orange: "#EA580C", indigo: "#6366F1" };
+
+const MockOverlay = ({ text = "Dados de Exemplo — Conecte seu sistema" }) => (
+    <div className="absolute inset-0 z-10 flex items-center justify-center bg-white/60 backdrop-blur-[2px] rounded-2xl border-2 border-dashed border-gray-200 m-1 group">
+        <div className="bg-white px-4 py-2 rounded-xl shadow-lg border border-gray-100 flex flex-col items-center gap-1 transform group-hover:scale-105 transition-transform text-center">
+            <span className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">{text}</span>
+            <button className="text-[9px] font-bold text-amber-600 hover:text-amber-700 underline flex items-center gap-1">
+                Como integrar?
+            </button>
+        </div>
+    </div>
+);
+
+const IntegrarBadge = () => (
+    <span className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded bg-gray-50 text-[9px] font-bold text-gray-400 border border-gray-100 cursor-help">
+        <div className="w-1 h-1 rounded-full bg-gray-300 animate-pulse" />
+        INTEGRAR
+    </span>
+);
 
 const mockHeatmap = [
     { hora: "11h", seg: 12, ter: 15, qua: 18, qui: 14, sex: 22, sab: 35, dom: 30 },
@@ -42,32 +60,45 @@ export default function OperacionalPage() {
             {/* KPIs */}
             <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
                 <div className="bg-white p-5 rounded-2xl shadow-sm border border-gray-100 border-t-4 border-t-amber-600">
-                    <div className="flex items-center gap-2 mb-1"><Clock className="w-4 h-4 text-amber-600" /><span className="text-xs font-bold text-gray-400 uppercase">Tempo Médio Preparo</span></div>
-                    <p className="text-3xl font-bold text-gray-900">16 min</p>
-                    <p className="text-xs text-emerald-500 font-medium">Meta: 15 min</p>
+                    <div className="flex items-center justify-between gap-1 mb-1">
+                        <div className="flex items-center gap-2"><Clock className="w-4 h-4 text-amber-600" /><span className="text-xs font-bold text-gray-400 uppercase">Tempo Médio Preparo</span></div>
+                        <IntegrarBadge />
+                    </div>
+                    <p className="text-3xl font-bold text-gray-900">-- min</p>
+                    <p className="text-[10px] text-gray-400 font-medium">Aguardando integração KDS</p>
                 </div>
                 <div className="bg-white p-5 rounded-2xl shadow-sm border border-gray-100 border-t-4 border-t-orange-500">
-                    <div className="flex items-center gap-2 mb-1"><Truck className="w-4 h-4 text-orange-500" /><span className="text-xs font-bold text-gray-400 uppercase">Tempo Médio Entrega</span></div>
-                    <p className="text-3xl font-bold text-gray-900">29 min</p>
-                    <p className="text-xs text-amber-500 font-medium">Meta: 25 min</p>
+                    <div className="flex items-center justify-between gap-1 mb-1">
+                        <div className="flex items-center gap-2"><Truck className="w-4 h-4 text-orange-500" /><span className="text-xs font-bold text-gray-400 uppercase">Tempo Médio Entrega</span></div>
+                        <IntegrarBadge />
+                    </div>
+                    <p className="text-3xl font-bold text-gray-900">-- min</p>
+                    <p className="text-[10px] text-gray-400 font-medium">Aguardando Logística/Apps</p>
                 </div>
                 <div className="bg-white p-5 rounded-2xl shadow-sm border border-gray-100 border-t-4 border-t-red-500">
-                    <div className="flex items-center gap-2 mb-1"><XCircle className="w-4 h-4 text-red-500" /><span className="text-xs font-bold text-gray-400 uppercase">Cancelamentos</span></div>
-                    <p className="text-3xl font-bold text-gray-900">111</p>
-                    <p className="text-xs text-red-500 font-medium">2.9% dos pedidos</p>
+                    <div className="flex items-center justify-between gap-1 mb-1">
+                        <div className="flex items-center gap-2"><XCircle className="w-4 h-4 text-red-500" /><span className="text-xs font-bold text-gray-400 uppercase">Cancelamentos</span></div>
+                        <IntegrarBadge />
+                    </div>
+                    <p className="text-3xl font-bold text-gray-900">--</p>
+                    <p className="text-[10px] text-gray-400 font-medium">Monitoramento de perdas</p>
                 </div>
                 <div className="bg-white p-5 rounded-2xl shadow-sm border border-gray-100 border-t-4 border-t-emerald-500">
-                    <div className="flex items-center gap-2 mb-1"><CheckCircle className="w-4 h-4 text-emerald-500" /><span className="text-xs font-bold text-gray-400 uppercase">Taxa de Sucesso</span></div>
-                    <p className="text-3xl font-bold text-gray-900">97.1%</p>
-                    <p className="text-xs text-emerald-500 font-medium">Entregas dentro do SLA</p>
+                    <div className="flex items-center justify-between gap-1 mb-1">
+                        <div className="flex items-center gap-2"><CheckCircle className="w-4 h-4 text-emerald-500" /><span className="text-xs font-bold text-gray-400 uppercase">Taxa de Sucesso</span></div>
+                        <IntegrarBadge />
+                    </div>
+                    <p className="text-3xl font-bold text-gray-900">--%</p>
+                    <p className="text-[10px] text-gray-400 font-medium">Cumprimento de SLA</p>
                 </div>
             </div>
 
             {/* Mapa de Calor */}
-            <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 mb-8">
-                <h3 className="text-lg font-bold text-gray-900 mb-1">Mapa de Calor â€” Pedidos por Horário</h3>
-                <p className="text-xs text-gray-400 mb-4">Identifique picos para escalar equipe e estoque</p>
-                <div className="overflow-x-auto">
+            <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 mb-8 relative overflow-hidden">
+                <MockOverlay text="Fluxo Operacional — Integrar Monitoramento de Cozinha" />
+                <h3 className="text-lg font-bold text-gray-900 mb-1">Mapa de Calor — Pedidos por Horário</h3>
+                <p className="text-xs text-gray-400 mb-4">Picos operacionais recomendados</p>
+                <div className="overflow-x-auto opacity-20 filter grayscale">
                     <table className="w-full text-sm">
                         <thead>
                             <tr className="text-xs text-gray-400 uppercase">
@@ -79,16 +110,11 @@ export default function OperacionalPage() {
                             {mockHeatmap.map((row, i) => (
                                 <tr key={i}>
                                     <td className="py-2 font-medium text-gray-700">{row.hora}</td>
-                                    {['seg', 'ter', 'qua', 'qui', 'sex', 'sab', 'dom'].map((dia) => {
-                                        const val = (row as any)[dia];
-                                        const intensity = val / 72;
-                                        const bg = intensity > 0.7 ? `rgba(139, 94, 60, ${0.2 + intensity * 0.8})` : intensity > 0.4 ? `rgba(217, 119, 6, ${0.15 + intensity * 0.5})` : `rgba(100, 116, 139, ${0.05 + intensity * 0.25})`;
-                                        return (
-                                            <td key={dia} className="py-2 text-center">
-                                                <div className="mx-auto w-10 h-8 rounded-lg flex items-center justify-center text-xs font-bold" style={{ backgroundColor: bg, color: intensity > 0.5 ? '#fff' : '#6b7280' }}>{val}</div>
-                                            </td>
-                                        );
-                                    })}
+                                    {['seg', 'ter', 'qua', 'qui', 'sex', 'sab', 'dom'].map((dia) => (
+                                        <td key={dia} className="py-2 text-center">
+                                            <div className="mx-auto w-10 h-8 rounded-lg flex items-center justify-center text-xs font-bold bg-gray-100 text-gray-400">--</div>
+                                        </td>
+                                    ))}
                                 </tr>
                             ))}
                         </tbody>
@@ -98,9 +124,10 @@ export default function OperacionalPage() {
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
                 {/* Evolução dos Tempos */}
-                <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
+                <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 relative overflow-hidden">
+                    <MockOverlay text="Histórico de Tempos — Integrar API iFood/Apps" />
                     <h3 className="text-lg font-bold text-gray-900 mb-1">Evolução SLA (Semanas)</h3>
-                    <p className="text-xs text-gray-400 mb-4">Tempo de preparo e entrega em minutos</p>
+                    <p className="text-xs text-gray-400 mb-4">Tempos médios reais</p>
                     <ResponsiveContainer width="100%" height={260}>
                         <LineChart data={mockTempos}>
                             <CartesianGrid strokeDasharray="3 3" stroke="#f1f5f9" />
@@ -108,24 +135,25 @@ export default function OperacionalPage() {
                             <YAxis tick={{ fill: '#94a3b8', fontSize: 12 }} />
                             <Tooltip contentStyle={{ borderRadius: 12, fontSize: 12 }} />
                             <Legend />
-                            <Line type="monotone" dataKey="preparo" name="Preparo" stroke={COLORS.amber} strokeWidth={3} dot={{ r: 5 }} />
-                            <Line type="monotone" dataKey="entrega" name="Entrega" stroke={COLORS.orange} strokeWidth={3} dot={{ r: 5 }} />
+                            <Line type="monotone" dataKey="preparo" name="Preparo" stroke={COLORS.amber} strokeWidth={3} dot={{ r: 5 }} opacity={0.3} />
+                            <Line type="monotone" dataKey="entrega" name="Entrega" stroke={COLORS.orange} strokeWidth={3} dot={{ r: 5 }} opacity={0.3} />
                         </LineChart>
                     </ResponsiveContainer>
                 </div>
 
                 {/* Motivos de Cancelamento */}
-                <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
+                <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 relative overflow-hidden">
+                    <MockOverlay text="Perdas — Integrar Relatório de Motivos" />
                     <h3 className="text-lg font-bold text-gray-900 mb-1">Motivos de Cancelamento</h3>
-                    <p className="text-xs text-gray-400 mb-4">Principais causas de perda</p>
+                    <p className="text-xs text-gray-400 mb-4">Análise de perdas reais</p>
                     <ResponsiveContainer width="100%" height={260}>
                         <BarChart data={mockCancelamentos} layout="vertical">
                             <CartesianGrid strokeDasharray="3 3" stroke="#f1f5f9" />
                             <XAxis type="number" tick={{ fill: '#94a3b8', fontSize: 11 }} />
                             <YAxis dataKey="motivo" type="category" width={130} tick={{ fill: '#374151', fontSize: 11 }} />
                             <Tooltip contentStyle={{ borderRadius: 12, fontSize: 12 }} />
-                            <Bar dataKey="qtd" radius={[0, 6, 6, 0]}>
-                                {mockCancelamentos.map((_, i) => <Cell key={i} fill={i === 0 ? COLORS.red : i === 1 ? COLORS.orange : COLORS.brown} />)}
+                            <Bar dataKey="qtd" radius={[0, 6, 6, 0]} opacity={0.3}>
+                                {mockCancelamentos.map((_, i) => <Cell key={i} fill={COLORS.brown} />)}
                             </Bar>
                         </BarChart>
                     </ResponsiveContainer>

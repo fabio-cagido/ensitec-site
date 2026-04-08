@@ -1,8 +1,26 @@
-﻿"use client";
+"use client";
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell, AreaChart, Area, Legend } from "recharts";
 import { DollarSign, TrendingUp, CreditCard, ShoppingBag, ArrowUpRight, ArrowDownRight } from "lucide-react";
 
 const COLORS = { brown: "#8B5E3C", amber: "#D97706", emerald: "#059669", orange: "#EA580C", indigo: "#6366F1", red: "#DC2626" };
+
+const MockOverlay = ({ text = "Dados de Exemplo — Conecte seu sistema" }) => (
+    <div className="absolute inset-0 z-10 flex items-center justify-center bg-white/60 backdrop-blur-[2px] rounded-2xl border-2 border-dashed border-gray-200 m-1 group">
+        <div className="bg-white px-4 py-2 rounded-xl shadow-lg border border-gray-100 flex flex-col items-center gap-1 transform group-hover:scale-105 transition-transform text-center">
+            <span className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">{text}</span>
+            <button className="text-[9px] font-bold text-amber-600 hover:text-amber-700 underline flex items-center gap-1">
+                Como integrar?
+            </button>
+        </div>
+    </div>
+);
+
+const IntegrarBadge = () => (
+    <span className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded bg-gray-50 text-[9px] font-bold text-gray-400 border border-gray-100 cursor-help">
+        <div className="w-1 h-1 rounded-full bg-gray-300 animate-pulse" />
+        INTEGRAR
+    </span>
+);
 
 const mockResumoMensal = [
     { mes: "Out", bruto: 158000, liquido: 134000 },
@@ -48,32 +66,45 @@ export default function FaturamentoPage() {
             {/* KPIs */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
                 <div className="bg-white p-5 rounded-2xl shadow-sm border border-gray-100 border-t-4 border-t-amber-600">
-                    <span className="text-xs font-bold text-gray-400 uppercase">Faturamento Bruto</span>
-                    <p className="text-3xl font-bold text-gray-900 mt-1">R$ 187k</p>
-                    <div className="flex items-center gap-1 mt-2 text-xs"><ArrowUpRight className="w-3.5 h-3.5 text-emerald-500" /><span className="text-emerald-600 font-bold">+9.0%</span><span className="text-gray-400">vs Fev</span></div>
+                    <div className="flex justify-between items-start mb-1">
+                        <span className="text-xs font-bold text-gray-400 uppercase">Faturamento Bruto</span>
+                        <IntegrarBadge />
+                    </div>
+                    <p className="text-3xl font-bold text-gray-900 mt-1">R$ --</p>
+                    <div className="flex items-center gap-1 mt-2 text-[10px] text-gray-400 font-medium italic">Aguardando dados...</div>
                 </div>
                 <div className="bg-white p-5 rounded-2xl shadow-sm border border-gray-100 border-t-4 border-t-emerald-500">
-                    <span className="text-xs font-bold text-gray-400 uppercase">Faturamento Líquido</span>
-                    <p className="text-3xl font-bold text-gray-900 mt-1">R$ 162k</p>
-                    <div className="flex items-center gap-1 mt-2 text-xs"><ArrowUpRight className="w-3.5 h-3.5 text-emerald-500" /><span className="text-emerald-600 font-bold">+9.5%</span><span className="text-gray-400">vs Fev</span></div>
+                    <div className="flex justify-between items-start mb-1">
+                        <span className="text-xs font-bold text-gray-400 uppercase">Faturamento Líquido</span>
+                        <IntegrarBadge />
+                    </div>
+                    <p className="text-3xl font-bold text-gray-900 mt-1">R$ --</p>
+                    <div className="flex items-center gap-1 mt-2 text-[10px] text-gray-400 font-medium italic">Aguardando dados...</div>
                 </div>
                 <div className="bg-white p-5 rounded-2xl shadow-sm border border-gray-100 border-t-4" style={{ borderTopColor: COLORS.brown }}>
-                    <span className="text-xs font-bold text-gray-400 uppercase">Ticket Médio</span>
-                    <p className="text-3xl font-bold text-gray-900 mt-1">R$ 48,70</p>
-                    <div className="flex items-center gap-1 mt-2 text-xs"><ArrowUpRight className="w-3.5 h-3.5 text-emerald-500" /><span className="text-emerald-600 font-bold">+4.2%</span></div>
+                    <div className="flex justify-between items-start mb-1">
+                        <span className="text-xs font-bold text-gray-400 uppercase">Ticket Médio</span>
+                        <IntegrarBadge />
+                    </div>
+                    <p className="text-3xl font-bold text-gray-900 mt-1">R$ --</p>
+                    <div className="flex items-center gap-1 mt-2 text-[10px] text-gray-400 font-medium italic">Baseado em vendas</div>
                 </div>
                 <div className="bg-white p-5 rounded-2xl shadow-sm border border-gray-100 border-t-4 border-t-indigo-500">
-                    <span className="text-xs font-bold text-gray-400 uppercase">Total Pedidos</span>
-                    <p className="text-3xl font-bold text-gray-900 mt-1">3.847</p>
-                    <div className="flex items-center gap-1 mt-2 text-xs"><ArrowUpRight className="w-3.5 h-3.5 text-emerald-500" /><span className="text-emerald-600 font-bold">+5.1%</span></div>
+                    <div className="flex justify-between items-start mb-1">
+                        <span className="text-xs font-bold text-gray-400 uppercase">Total Pedidos</span>
+                        <IntegrarBadge />
+                    </div>
+                    <p className="text-3xl font-bold text-gray-900 mt-1">--</p>
+                    <div className="flex items-center gap-1 mt-2 text-[10px] text-gray-400 font-medium italic">Volume do mês</div>
                 </div>
             </div>
 
             {/* Gráficos */}
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
-                <div className="lg:col-span-2 bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
+                <div className="lg:col-span-2 bg-white p-6 rounded-2xl shadow-sm border border-gray-100 relative overflow-hidden">
+                    <MockOverlay text="Histórico Financeiro — Integrar Balanço" />
                     <h3 className="text-lg font-bold text-gray-900 mb-1">Evolução Bruto vs Líquido</h3>
-                    <p className="text-xs text-gray-400 mb-4">Ãšltimos 6 meses</p>
+                    <p className="text-xs text-gray-400 mb-4">Análise mensal de performance</p>
                     <ResponsiveContainer width="100%" height={280}>
                         <AreaChart data={mockResumoMensal}>
                             <defs>
@@ -90,7 +121,8 @@ export default function FaturamentoPage() {
                         </AreaChart>
                     </ResponsiveContainer>
                 </div>
-                <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
+                <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 relative overflow-hidden">
+                    <MockOverlay text="Canais — Integrar PDV" />
                     <h3 className="text-lg font-bold text-gray-900 mb-1">Canais de Venda</h3>
                     <p className="text-xs text-gray-400 mb-4">Distribuição do faturamento</p>
                     <ResponsiveContainer width="100%" height={170}>
@@ -103,9 +135,9 @@ export default function FaturamentoPage() {
                     </ResponsiveContainer>
                     <div className="space-y-2 mt-2">
                         {mockCanais.map((c, i) => (
-                            <div key={i} className="flex justify-between items-center text-xs">
+                            <div key={i} className="flex justify-between items-center text-xs opacity-40 grayscale">
                                 <div className="flex items-center gap-2"><div className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: c.cor }} /><span className="text-gray-600">{c.name}</span></div>
-                                <span className="font-bold text-gray-900">R$ {(c.valor/1000).toFixed(1)}k</span>
+                                <span className="font-bold text-gray-900">R$ --</span>
                             </div>
                         ))}
                     </div>
@@ -113,23 +145,25 @@ export default function FaturamentoPage() {
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
-                <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
+                <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 relative overflow-hidden">
+                    <MockOverlay text="Pagamentos — Integrar Forma de Recebimento" />
                     <h3 className="text-lg font-bold text-gray-900 mb-1">Formas de Pagamento</h3>
-                    <p className="text-xs text-gray-400 mb-4">Recebimento por bandeira / método</p>
+                    <p className="text-xs text-gray-400 mb-4">Recebimento por método</p>
                     <div className="space-y-4">
                         {mockPagamentos.map((pg, i) => (
                             <div key={i}>
-                                <div className="flex justify-between text-sm mb-1"><span className="text-gray-700 font-medium">{pg.name}</span><span className="font-bold text-gray-900">{pg.pct}% <span className="text-gray-400 font-normal text-xs">({`R$ ${(pg.valor/1000).toFixed(1)}k`})</span></span></div>
+                                <div className="flex justify-between text-sm mb-1 opacity-40 grayscale"><span className="text-gray-700 font-medium">{pg.name}</span><span className="font-bold text-gray-900">--%</span></div>
                                 <div className="w-full bg-gray-100 h-2.5 rounded-full overflow-hidden">
-                                    <div className="h-full rounded-full transition-all duration-700" style={{ width: `${pg.pct}%`, backgroundColor: ["#8B5E3C","#D97706","#059669","#6366F1","#64748B"][i] }} />
+                                    <div className="h-full rounded-full bg-gray-200" style={{ width: `${pg.pct}%` }} />
                                 </div>
                             </div>
                         ))}
                     </div>
                 </div>
-                <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
+                <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 relative overflow-hidden">
+                    <MockOverlay text="Sazonalidade — Integrar Registro de Caixa" />
                     <h3 className="text-lg font-bold text-gray-900 mb-1">Pedidos por Dia da Semana</h3>
-                    <p className="text-xs text-gray-400 mb-4">Média semanal do mês</p>
+                    <p className="text-xs text-gray-400 mb-4">Distribuição semanal</p>
                     <ResponsiveContainer width="100%" height={250}>
                         <BarChart data={mockDiaSemana}>
                             <CartesianGrid strokeDasharray="3 3" stroke="#f1f5f9" />
@@ -137,7 +171,7 @@ export default function FaturamentoPage() {
                             <YAxis tick={{ fill: '#94a3b8', fontSize: 12 }} />
                             <Tooltip contentStyle={{ borderRadius: 12, fontSize: 12 }} />
                             <Bar dataKey="pedidos" radius={[6, 6, 0, 0]}>
-                                {mockDiaSemana.map((_, i) => <Cell key={i} fill={i >= 4 ? COLORS.amber : COLORS.brown} />)}
+                                {mockDiaSemana.map((_, i) => <Cell key={i} fill={COLORS.brown} opacity={0.3} />)}
                             </Bar>
                         </BarChart>
                     </ResponsiveContainer>

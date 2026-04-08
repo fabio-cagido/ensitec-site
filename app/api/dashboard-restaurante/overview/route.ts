@@ -1,12 +1,21 @@
 import { NextResponse } from 'next/server';
 import { queryRestaurante } from '@/lib/db-restaurante';
 
+export const dynamic = 'force-dynamic';
+
 export async function GET() {
     try {
         // ============================================
         // KPIs extraídos da base real (amostra_restaurants + amostra_catalog)
         // ============================================
-        const [statsRes, catalogRes, categoryRes, topRestaurantsRes] = await Promise.all([
+        const [
+            statsRes, 
+            catalogStatsRes, 
+            categoryRes, 
+            topRestaurantsRes, 
+            catalogItemsRes, 
+            geoRes
+        ] = await Promise.all([
             // Média de taxa de entrega, nota, tempo e total de restaurantes
             queryRestaurante(`
                 SELECT 
@@ -21,7 +30,7 @@ export async function GET() {
                 FROM amostra_restaurants
                 WHERE available = true
             `),
-            // Preço médio do cardápio
+            // Preço médio do cardápio (Estatísticas)
             queryRestaurante(`
                 SELECT 
                     ROUND(AVG(unit_price)::numeric, 2) as avg_price,
@@ -48,16 +57,35 @@ export async function GET() {
                 ORDER BY user_rating DESC, user_rating_count DESC
                 LIMIT 8
             `),
+            // Itens de referência do catálogo (Amostra para o Cardápio)
+            queryRestaurante(`
+                SELECT item_name as name, unit_price as price, description, unit_original_price as original_price
+                FROM amostra_catalog
+                WHERE unit_price > 0
+                ORDER BY RANDOM()
+                LIMIT 20
+            `),
+            // Distribuição por Bairro (Geográfico)
+            queryRestaurante(`
+                SELECT district as name, COUNT(*) as value, ROUND(AVG(user_rating)::numeric, 1) as avg_rating
+                FROM amostra_restaurants
+                WHERE district IS NOT NULL AND district != ''
+                GROUP BY district
+                ORDER BY value DESC
+                LIMIT 10
+            `),
         ]);
 
         const stats = statsRes.rows[0];
-        const catalog = catalogRes.rows[0];
+        const catalogStats = catalogStatsRes.rows[0];
         const categories = categoryRes.rows;
         const topRestaurants = topRestaurantsRes.rows;
+        const catalogItems = catalogItemsRes.rows;
+        const geoDistribution = geoRes.rows;
 
         // Calcular desconto médio do mercado
-        const avgDiscount = catalog.avg_original_price > 0
-            ? ((catalog.avg_original_price - catalog.avg_price) / catalog.avg_original_price * 100).toFixed(1)
+        const avgDiscount = catalogStats.avg_original_price > 0
+            ? ((catalogStats.avg_original_price - catalogStats.avg_price) / catalogStats.avg_original_price * 100).toFixed(1)
             : '0';
 
         return NextResponse.json({
@@ -69,13 +97,15 @@ export async function GET() {
                 avgRatingCount: parseInt(stats.avg_rating_count),
                 totalCategories: parseInt(stats.total_categories),
                 totalCities: parseInt(stats.total_cities),
-                avgMenuPrice: parseFloat(catalog.avg_price),
-                avgOriginalPrice: parseFloat(catalog.avg_original_price),
+                avgMenuPrice: parseFloat(catalogStats.avg_price),
+                avgOriginalPrice: parseFloat(catalogStats.avg_original_price),
                 avgDiscount: parseFloat(avgDiscount),
-                totalMenuItems: parseInt(catalog.total_items),
+                totalMenuItems: parseInt(catalogStats.total_items),
             },
             categories,
             topRestaurants,
+            catalogItems,
+            geoDistribution
         });
     } catch (error: any) {
         console.error('Dashboard Restaurante Overview Error:', error);

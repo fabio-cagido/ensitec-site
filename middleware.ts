@@ -45,11 +45,15 @@ export default clerkMiddleware(async (auth, req) => {
     const allowedNiches = rawNicho.split(',').map(n => n.trim().toLowerCase());
     const path = req.nextUrl.pathname;
 
-    // Se tentar acessar o hub mas só tem um nicho, manda pro nicho específico
-    if (path.startsWith('/dashboard-hub') && allowedNiches.length === 1) {
-        if (allowedNiches.includes('restaurante')) return NextResponse.redirect(new URL('/dashboard-restaurante', req.url));
-        if (allowedNiches.includes('corporativo')) return NextResponse.redirect(new URL('/dashboard-corporativo', req.url));
-        return NextResponse.redirect(new URL('/dashboard', req.url));
+    // Se tentar acessar o hub mas só tem um nicho (e não é admin), manda pro nicho específico
+    if (path.startsWith('/dashboard-hub')) {
+        const isAdmin = allowedNiches.includes('admin');
+        if (!isAdmin && allowedNiches.length === 1) {
+            if (allowedNiches.includes('restaurante')) return NextResponse.redirect(new URL('/dashboard-restaurante', req.url));
+            if (allowedNiches.includes('corporativo')) return NextResponse.redirect(new URL('/dashboard-corporativo', req.url));
+            return NextResponse.redirect(new URL('/dashboard', req.url));
+        }
+        return NextResponse.next();
     }
 
     // PROTEÇÃO DE ROTAS POR NICHO

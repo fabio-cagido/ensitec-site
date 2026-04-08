@@ -31,3 +31,12 @@ test_schema.*
 
 # clerk configuration (can include secrets)
 /.clerk/
+
+# Data and Logs
+*.csv
+*.sql
+*.txt
+*.log
+backup_local_changes/
+debug_*.js
+*.ps1

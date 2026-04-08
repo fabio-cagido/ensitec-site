@@ -1,6 +1,8 @@
 import { NextResponse } from 'next/server';
 import { queryRestaurante } from '@/lib/db-restaurante';
 
+export const dynamic = 'force-dynamic';
+
 export async function GET() {
     try {
         const res = await queryRestaurante(`

@@ -22,6 +22,27 @@ const MapWithNoSSR = dynamic(() => import("./map-component"), {
 });
 
 // ============================================
+// COMPONENTES DE APOIO
+// ============================================
+const MockOverlay = ({ text = "Dados de Exemplo — Conecte seu sistema" }) => (
+    <div className="absolute inset-0 z-10 flex items-center justify-center bg-white/60 backdrop-blur-[2px] rounded-2xl border-2 border-dashed border-gray-200 m-1 group">
+        <div className="bg-white px-4 py-2 rounded-xl shadow-lg border border-gray-100 flex flex-col items-center gap-1 transform group-hover:scale-105 transition-transform">
+            <span className="text-xs font-bold text-gray-400 uppercase tracking-widest">{text}</span>
+            <button className="text-[10px] font-bold text-amber-600 hover:text-amber-700 underline flex items-center gap-1">
+                <Target className="w-3 h-3" /> Como coletar estes dados?
+            </button>
+        </div>
+    </div>
+);
+
+const IntegrarBadge = ({ tooltip = "Integração necessária" }) => (
+    <span className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded bg-gray-50 text-[9px] font-bold text-gray-400 border border-gray-100 cursor-help" title={tooltip}>
+        <div className="w-1 h-1 rounded-full bg-gray-300 animate-pulse" />
+        INTEGRAR
+    </span>
+);
+
+// ============================================
 // PALETA DE CORES
 // ============================================
 const COLORS = {
@@ -145,37 +166,32 @@ export default function DashboardRestauranteOverview() {
                 {/* Card 1: Faturamento Hoje (Mock) */}
                 <div className="bg-white p-5 rounded-2xl shadow-sm border border-gray-100 border-t-4 border-t-amber-600 hover:shadow-lg hover:scale-[1.03] transition-all duration-200 cursor-default">
                     <div className="flex justify-between items-start mb-2">
-                        <span className="text-xs font-bold text-gray-400 uppercase">Faturamento Hoje</span>
+                        <div className="flex flex-col gap-1">
+                            <span className="text-xs font-bold text-gray-400 uppercase">Faturamento Hoje</span>
+                            <IntegrarBadge tooltip="Conecte seu PDV para ver este dado" />
+                        </div>
                         <DollarSign className="w-4 h-4 text-amber-600" />
                     </div>
                     <div className="text-3xl font-bold text-gray-900">
-                        R$ {mockFaturamentoHoje.toLocaleString('pt-BR')}
+                        R$ --
                     </div>
                     <div className="flex items-center gap-1.5 mt-2">
-                        {parseFloat(variacaoHoje) >= 0 ? (
-                            <div className="flex items-center gap-1 px-2 py-0.5 bg-emerald-50 rounded-full">
-                                <TrendingUp className="w-3.5 h-3.5 text-emerald-600" />
-                                <span className="text-xs font-bold text-emerald-700">+{variacaoHoje}%</span>
-                            </div>
-                        ) : (
-                            <div className="flex items-center gap-1 px-2 py-0.5 bg-red-50 rounded-full">
-                                <TrendingDown className="w-3.5 h-3.5 text-red-600" />
-                                <span className="text-xs font-bold text-red-700">{variacaoHoje}%</span>
-                            </div>
-                        )}
-                        <span className="text-[11px] text-gray-400">vs ontem</span>
+                        <span className="text-[11px] text-gray-400">Aguardando dados...</span>
                     </div>
                 </div>
 
                 {/* Card 2: Ticket Médio com Sparkline (Mock) */}
                 <div className="bg-white p-5 rounded-2xl shadow-sm border border-gray-100 border-t-4 border-t-emerald-500 hover:shadow-lg hover:scale-[1.03] transition-all duration-200 cursor-default">
                     <div className="flex justify-between items-start mb-2">
-                        <span className="text-xs font-bold text-gray-400 uppercase">Ticket Médio</span>
+                        <div className="flex flex-col gap-1">
+                            <span className="text-xs font-bold text-gray-400 uppercase">Ticket Médio</span>
+                            <IntegrarBadge tooltip="Cálculo automático via PDV" />
+                        </div>
                         <ShoppingBag className="w-4 h-4 text-emerald-500" />
                     </div>
                     <div className="flex items-end justify-between">
-                        <div className="text-3xl font-bold text-gray-900">R$ 48,70</div>
-                        <div className="w-24 h-10">
+                        <div className="text-3xl font-bold text-gray-900">R$ --</div>
+                        <div className="w-24 h-10 opacity-30 grayscale">
                             <ResponsiveContainer width="100%" height="100%">
                                 <LineChart data={mockTicketSparkline}>
                                     <Line type="monotone" dataKey="v" stroke={COLORS.emerald} strokeWidth={2} dot={false} />
@@ -184,33 +200,33 @@ export default function DashboardRestauranteOverview() {
                         </div>
                     </div>
                     <div className="flex items-center gap-1 mt-2">
-                        <TrendingUp className="w-3.5 h-3.5 text-emerald-500" />
-                        <span className="text-xs font-bold text-emerald-600">+4,2%</span>
-                        <span className="text-[11px] text-gray-400">{"últimos 10 dias"}</span>
+                        <span className="text-[11px] text-gray-400 italic">Tendência indisponível</span>
                     </div>
                 </div>
 
                 {/* Card 3: Pedidos Concluídos vs Cancelados (Mock) */}
                 <div className="bg-white p-5 rounded-2xl shadow-sm border border-gray-100 border-t-4 hover:shadow-lg hover:scale-[1.03] transition-all duration-200 cursor-default" style={{ borderTopColor: COLORS.brown }}>
                     <div className="flex justify-between items-start mb-2">
-                        <span className="text-xs font-bold text-gray-400 uppercase">Pedidos Hoje</span>
+                        <div className="flex flex-col gap-1">
+                            <span className="text-xs font-bold text-gray-400 uppercase">Pedidos Hoje</span>
+                            <IntegrarBadge tooltip="Status de pedidos em tempo real" />
+                        </div>
                         <CheckCircle className="w-4 h-4" style={{ color: COLORS.brown }} />
                     </div>
                     <div className="flex items-baseline gap-2">
-                        <span className="text-3xl font-bold text-gray-900">{mockPedidosHoje.concluidos}</span>
+                        <span className="text-3xl font-bold text-gray-900">--</span>
                         <span className="text-sm text-gray-400">/</span>
                         <div className="flex items-center gap-1">
                             <XCircle className="w-3.5 h-3.5 text-red-500" />
-                            <span className="text-lg font-bold text-red-500">{mockPedidosHoje.cancelados}</span>
+                            <span className="text-lg font-bold text-red-500">--</span>
                         </div>
                     </div>
-                    <div className="mt-2">
+                    <div className="mt-2 opacity-30">
                         <div className="w-full bg-gray-100 h-2 rounded-full overflow-hidden">
-                            <div className="h-full rounded-full bg-gradient-to-r from-emerald-500 to-emerald-400" style={{ width: `${100 - parseFloat(taxaCancelamento)}%` }} />
+                            <div className="h-full rounded-full bg-gray-300" style={{ width: `100%` }} />
                         </div>
                         <div className="flex justify-between mt-1 text-[11px]">
-                            <span className="text-emerald-600 font-medium">{"Concluídos"}</span>
-                            <span className="text-red-500 font-medium">{taxaCancelamento}% cancelados</span>
+                            <span className="text-gray-400">Aguardando integração</span>
                         </div>
                     </div>
                 </div>
@@ -242,15 +258,12 @@ export default function DashboardRestauranteOverview() {
             {/* LINHA 2: Faturamento Mensal + Mix de Canais */}
             {/* ============================================ */}
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
-                <div className="lg:col-span-2 bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
+                <div className="lg:col-span-2 bg-white p-6 rounded-2xl shadow-sm border border-gray-100 relative overflow-hidden">
+                    <MockOverlay text="Evolução Financeira — Integrar Sistema de Caixa" />
                     <div className="flex justify-between items-center mb-6">
                         <div>
                             <h3 className="text-lg font-bold text-gray-900">{"Evolução do Faturamento"}</h3>
-                            <p className="text-xs text-gray-400">{"Últimos 7 meses"}</p>
-                        </div>
-                        <div className="flex items-center gap-2 px-3 py-1 bg-emerald-50 rounded-full">
-                            <TrendingUp className="w-3.5 h-3.5 text-emerald-600" />
-                            <span className="text-xs font-bold text-emerald-700">+8,9%</span>
+                            <p className="text-xs text-gray-400">{"Histórico de vendas reais"}</p>
                         </div>
                     </div>
                     <ResponsiveContainer width="100%" height={240}>
@@ -273,7 +286,8 @@ export default function DashboardRestauranteOverview() {
                     </ResponsiveContainer>
                 </div>
 
-                <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
+                <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 relative overflow-hidden">
+                    <MockOverlay text="Mix de Canais — Integrar PDV" />
                     <h3 className="text-lg font-bold text-gray-900 mb-1">Mix de Canais</h3>
                     <p className="text-xs text-gray-400 mb-4">{"Distribuição de vendas"}</p>
                     <ResponsiveContainer width="100%" height={180}>
@@ -329,7 +343,8 @@ export default function DashboardRestauranteOverview() {
                     )}
                 </div>
 
-                <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
+                <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 relative overflow-hidden">
+                    <MockOverlay text="Pagamentos — Integrar Forma de Recebimento" />
                     <div className="flex justify-between items-center mb-6">
                         <div>
                             <h3 className="text-lg font-bold text-gray-900">Formas de Pagamento</h3>
@@ -340,12 +355,12 @@ export default function DashboardRestauranteOverview() {
                     <div className="space-y-4">
                         {mockPagamentos.map((pg, i) => (
                             <div key={i}>
-                                <div className="flex justify-between text-sm mb-1.5">
+                                <div className="flex justify-between text-sm mb-1.5 grayscale opacity-50">
                                     <span className="text-gray-700 font-medium">{pg.name}</span>
                                     <span className="font-bold text-gray-900">{pg.value}%</span>
                                 </div>
                                 <div className="w-full bg-gray-100 h-2.5 rounded-full overflow-hidden">
-                                    <div className="h-full rounded-full transition-all duration-700" style={{ width: `${pg.value}%`, backgroundColor: PIE_COLORS[i % PIE_COLORS.length] }} />
+                                    <div className="h-full rounded-full bg-gray-300" style={{ width: `${pg.value}%` }} />
                                 </div>
                             </div>
                         ))}
@@ -459,15 +474,16 @@ export default function DashboardRestauranteOverview() {
             {/* ============================================ */}
             {/* LINHA 6: Mapa de Calor por Horário (Mock) */}
             {/* ============================================ */}
-            <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 mb-8">
+            <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 mb-8 relative overflow-hidden">
+                <MockOverlay text="Mapa de Calor — Integrar Status de Pedidos" />
                 <div className="flex justify-between items-center mb-6">
                     <div>
                         <h3 className="text-lg font-bold text-gray-900">{"Mapa de Calor — Pedidos por Horário"}</h3>
-                        <p className="text-xs text-gray-400">{"Identifique seus horários de pico para otimizar a operação"}</p>
+                        <p className="text-xs text-gray-400">{"Identifique seus horários de pico"}</p>
                     </div>
                     <Clock className="w-5 h-5 text-orange-500" />
                 </div>
-                <div className="overflow-x-auto">
+                <div className="overflow-x-auto opacity-20 grayscale">
                     <table className="w-full text-sm">
                         <thead>
                             <tr className="text-xs text-gray-400 uppercase">
@@ -485,23 +501,13 @@ export default function DashboardRestauranteOverview() {
                             {mockHeatmap.map((row, i) => (
                                 <tr key={i}>
                                     <td className="py-2 font-medium text-gray-700">{row.hora}</td>
-                                    {['seg', 'ter', 'qua', 'qui', 'sex', 'sab', 'dom'].map((dia) => {
-                                        const val = (row as any)[dia];
-                                        const maxVal = 72;
-                                        const intensity = val / maxVal;
-                                        const bg = intensity > 0.7
-                                            ? `rgba(139, 94, 60, ${0.2 + intensity * 0.8})`
-                                            : intensity > 0.4
-                                                ? `rgba(217, 119, 6, ${0.15 + intensity * 0.5})`
-                                                : `rgba(100, 116, 139, ${0.05 + intensity * 0.25})`;
-                                        return (
-                                            <td key={dia} className="py-2 text-center">
-                                                <div className="mx-auto w-10 h-8 rounded-lg flex items-center justify-center text-xs font-bold transition-all" style={{ backgroundColor: bg, color: intensity > 0.5 ? '#fff' : '#6b7280' }}>
-                                                    {val}
-                                                </div>
-                                            </td>
-                                        );
-                                    })}
+                                    {['seg', 'ter', 'qua', 'qui', 'sex', 'sab', 'dom'].map((dia) => (
+                                        <td key={dia} className="py-2 text-center">
+                                            <div className="mx-auto w-10 h-8 rounded-lg flex items-center justify-center text-xs font-bold bg-gray-100 text-gray-300">
+                                                --
+                                            </div>
+                                        </td>
+                                    ))}
                                 </tr>
                             ))}
                         </tbody>
