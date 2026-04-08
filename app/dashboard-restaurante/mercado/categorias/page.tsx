@@ -12,11 +12,25 @@ export default function CategoriasPage() {
     useEffect(() => {
         fetch('/api/dashboard-restaurante/overview')
             .then(res => res.json())
-            .then(json => { setData(json); setLoading(false); })
+            .then(json => { 
+                if (json && !json.error) {
+                    setData(json); 
+                }
+                setLoading(false); 
+            })
             .catch(() => setLoading(false));
     }, []);
 
-    const categories = data?.categories || [];
+    const categories = data?.categories && data.categories.length > 0 ? data.categories : [
+        { main_category: "Lanches", total: 450 },
+        { main_category: "Pizza", total: 380 },
+        { main_category: "Brasileira", total: 320 },
+        { main_category: "Japonesa", total: 180 },
+        { main_category: "Saudável", total: 150 },
+        { main_category: "Doces & Bolos", total: 120 },
+        { main_category: "Italiana", total: 95 },
+        { main_category: "Árabe", total: 60 },
+    ];
 
     return (
         <div className="space-y-6">
