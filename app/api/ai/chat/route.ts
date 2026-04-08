@@ -207,7 +207,11 @@ export async function POST(req: NextRequest) {
 
         if (hasKey) {
             const cleanKey = apiKey.trim();
-            const isGemini = aiProvider === 'gemini' || cleanKey.startsWith('AI');
+            // Detecta provedor: respeita a escolha do usuário nas configurações primeiro;
+            // usa prefixo da chave como fallback (chaves Gemini começam com AIza)
+            const isGemini = aiProvider === 'gemini' 
+                || cleanKey.startsWith('AIza') 
+                || cleanKey.startsWith('AI');
 
             try {
                 let reply: string;
@@ -231,17 +235,25 @@ export async function POST(req: NextRequest) {
                 });
 
             } catch (aiError: any) {
-                // Erro com chave — informa ao usuário em vez de cair no fallback silencioso
-                console.error('[EnsiTec AI] Erro com chave real:', aiError.message);
+                const errMsg = aiError?.message || 'erro desconhecido';
+                console.error('[EnsiTec AI] Erro com chave real:', errMsg);
 
-                const errorReply = `⚠️ **Erro ao conectar com a IA**\n\n${aiError.message?.includes('401') || aiError.message?.includes('403')
-                    ? 'Sua chave de API parece **inválida ou sem crédito**. Verifique em ⚙️ Configurações.'
-                    : aiError.message?.includes('429')
-                        ? 'Você atingiu o **limite de requisições** da sua chave. Aguarde alguns instantes e tente novamente.'
-                        : 'Não foi possível conectar à IA no momento. Verifique sua chave nas ⚙️ Configurações ou tente novamente.'
-                }`;
+                let userMsg: string;
+                if (errMsg.includes('401') || errMsg.includes('403') || errMsg.includes('API_KEY_INVALID') || errMsg.includes('invalid_api_key')) {
+                    userMsg = 'Sua chave de API parece **inválida**. Verifique se copiou corretamente em ⚙️ Configurações.';
+                } else if (errMsg.includes('429') || errMsg.includes('RESOURCE_EXHAUSTED') || errMsg.includes('rate_limit')) {
+                    userMsg = 'Você atingiu o **limite de requisições** da sua chave. Aguarde alguns instantes e tente novamente.';
+                } else if (errMsg.includes('insufficient_quota') || errMsg.includes('billing')) {
+                    userMsg = 'Sua conta OpenAI **não tem crédito** ou está sem faturamento ativo. Verifique em platform.openai.com.';
+                } else {
+                    // Mostra o erro real para ajudar no diagnóstico
+                    userMsg = `Erro ao chamar a IA: \`${errMsg}\`\n\nVerifique se escolheu o provedor correto (OpenAI ou Gemini) em ⚙️ Configurações.`;
+                }
 
-                return NextResponse.json({ reply: errorReply, mode: 'error' }, { status: 200 });
+                return NextResponse.json({
+                    reply: `⚠️ **Erro ao conectar com a IA**\n\n${userMsg}`,
+                    mode: 'error'
+                }, { status: 200 });
             }
         }
 
