@@ -72,7 +72,7 @@ interface Message {
     id: string;
     role: "user" | "assistant";
     content: string;
-    mode?: "ai" | "demo";
+    mode?: "ai" | "demo" | "error";
     timestamp: Date;
 }
 
@@ -575,12 +575,15 @@ export default function AIChat() {
                                                     </span>
                                                     {msg.role === "assistant" && (
                                                         <>
-                                                            {msg.mode === "demo" && (
+                                                            {msg.mode === "demo" && !settings.apiKey && (
                                                                 <span className="text-[9px] font-bold text-orange-500 uppercase">Demo</span>
+                                                            )}
+                                                            {msg.mode === "error" && (
+                                                                <span className="text-[9px] font-bold text-red-500 uppercase">⚠ Erro</span>
                                                             )}
                                                             {msg.mode === "ai" && (
                                                                 <span className="text-[9px] font-bold text-emerald-600 uppercase flex items-center gap-0.5">
-                                                                    <Zap className="w-2.5 h-2.5" />AI
+                                                                    <Zap className="w-2.5 h-2.5" />IA Ativa
                                                                 </span>
                                                             )}
                                                             <button
